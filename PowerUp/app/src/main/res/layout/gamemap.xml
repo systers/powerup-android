@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/map" >
 
-    <Button
+    <!--<Button
         android:id="@+id/ContinueButtonMapGameBegins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/continue_button_map_margin_right"
-        android:text="@string/enter" />
+        android:text="@string/enter" />-->
 
     <Button
         android:id="@+id/HouseButton"
@@ -39,7 +39,7 @@
         android:id="@+id/BoyfriendButton"
         android:layout_width="@dimen/map_click_width"
         android:layout_height="@dimen/map_click_height"
-        android:layout_above="@id/ContinueButtonMapGameBegins"
+
         android:layout_alignLeft="@id/HouseButton"
         android:layout_alignStart="@id/HouseButton"
         android:alpha="0.00"
@@ -50,7 +50,6 @@
         android:layout_width="@dimen/map_click_width"
         android:layout_height="@dimen/map_click_height"
         android:layout_alignBottom="@id/BoyfriendButton"
-        android:layout_alignRight="@id/ContinueButtonMapGameBegins"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/school_button_margin_bottom"
         android:alpha="0.00"
