@@ -117,11 +117,11 @@ public class Game extends Activity {
 					public void onItemClick(AdapterView<?> arg0, View view,
 											int position, long id) {
 						if (answers.get(position).getNextQuestionID() > 0) {
-							Toast.makeText(
+						/*	Toast.makeText(
 									getApplicationContext(),
 									((TextView) view).getText()
 											+ scene.getScenarioName(),
-									Toast.LENGTH_SHORT).show();
+									Toast.LENGTH_SHORT).show();*/
 							// Next Question
 							SessionHistory.currQID = answers.get(position)
 									.getNextQuestionID();
@@ -129,8 +129,8 @@ public class Game extends Activity {
 							updateQA();
 
 						} else {
-							Toast.makeText(getApplicationContext(),
-									"Next Scene", Toast.LENGTH_SHORT).show();
+						/*	Toast.makeText(getApplicationContext(),
+									"Next Scene", Toast.LENGTH_SHORT).show();*/
 							SessionHistory.currSessionID = scene
 									.getNextScenarioID();
 							if (SessionHistory.currSessionID == -1) {
