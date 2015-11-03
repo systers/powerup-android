@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="1">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="335dp">
+    <TextView
+        android:layout_width="@dimen/about_text_width"
+        android:layout_height="@dimen/about_text_height"
+        android:text="@string/about_text"
+        android:id="@+id/textView"
+        android:clickable="true"
+        android:fontFamily="cursive"
+        android:typeface="serif"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.29"
+        android:textSize="@dimen/about_textSize"
+        android:textColor="@android:color/black" />
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/play_game"
+        android:layout_width="@dimen/start_button_width"
+        android:layout_height="@dimen/start_button_height"
+        android:background="@drawable/buttons" />
+</LinearLayout>

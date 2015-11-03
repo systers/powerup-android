@@ -17,5 +17,30 @@
     <string name="enter">Continue..</string>
     <string name="back_to_map">Back to Map</string>
     <string name="replay">Replay</string>
+    <string name="about_text"> <b><u>Welcome to PowerUp!</u></b> \n
+   <b> About PowerUp</b> \n
+PowerUp seeks to empower pre-adolescents to take
+charge of their reproductive health through this app.
+PowerUp teaches social, emotional learning, conflict
+resolution, and health skills in a fun, interactive way. \n
+<b>How to play</b> \n
+You are Rosie, a girlin her confused teens. There are 4
+locations you can choose and play the situation.
+Everytime you select an answer you earn points
+depending on the option you chose. Here, we judge your
+deciscion making and your strength to handle critical
+situations.\n
+Superpowers - As you keep going further, you can get the
+superpowers that will add to your personality and make
+you stronger and better! \n
+MiniGames - We also have mini games for you, where you
+can earn more points, and also get a mental break from
+the storyline. \n
+<b>As a Systers\' Initiative</b>
+This app was built through a Systers\' initiative, to improve
+the physical and mental health trends in pre-adoloescents
+all over the world.
+    </string>
+    <string name="enter1">Start now!</string>
 
 </resources>
