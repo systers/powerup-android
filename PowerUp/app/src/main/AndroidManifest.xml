@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="powerup.systers.com.AboutActivity"
+            android:label="Power Up"></activity>
         <activity
             android:name="powerup.systers.com.Game"
             android:label="@string/app_name" >

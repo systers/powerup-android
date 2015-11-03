@@ -11,23 +11,27 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="335dp">
     <TextView
-        android:layout_width="200dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/about_text_width"
+        android:layout_height="@dimen/about_text_height"
         android:text="@string/about_text"
         android:id="@+id/textView"
+        android:clickable="true"
         android:fontFamily="cursive"
         android:typeface="serif"
         android:layout_alignParentTop="true"
         android:layout_weight="0.29"
-        android:textSize="16dp"
-        android:textIsSelectable="false"
-        android:textColor="#000000" />
+        android:textSize="@dimen/about_textSize"
+        android:textColor="@android:color/black" />
+    </ScrollView>
 
     <ImageButton
-        android:id="@+id/startButtonMain1"
+        android:id="@+id/play_game"
         android:layout_width="@dimen/start_button_width"
         android:layout_height="@dimen/start_button_height"
         android:background="@drawable/buttons" />
-
 </LinearLayout>
