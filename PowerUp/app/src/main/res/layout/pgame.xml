@@ -21,16 +21,38 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
 
-    <ListView
-        android:id="@+id/mainListView"
-        android:layout_width="@dimen/main_list_view_width"
-        android:layout_height="@dimen/main_list_view_height"
+    <ImageView
+        android:id="@+id/askerImageView"
+        android:layout_width="@dimen/asker_image_view_width"
+        android:layout_height="@dimen/asker_image_view_height"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/askerImageView"
-        android:background="@android:color/white"
-        android:backgroundTint="@color/abc_secondary_text_material_dark"
-        android:clickable="true" >
-    </ListView>
+        android:layout_below="@id/scenarioNameEditText"
+        android:src="@drawable/marco" />
+
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="212dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/askerImageView"
+        android:background="@android:color/black">
+        <ListView
+            android:id="@+id/mainListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="6dp"
+            android:dividerHeight="2dp"
+            android:divider="@color/abc_input_method_navigation_guard"
+            android:scrollbars="vertical"
+            android:fastScrollEnabled="true"
+            android:fastScrollAlwaysVisible="true"
+            android:background="@android:color/white"
+            android:fadeScrollbars="true"
+            android:backgroundTint="@color/abc_secondary_text_material_dark"
+            android:clickable="true" >
+        </ListView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/continueButtonGoesToMap"
@@ -48,13 +70,6 @@
         android:layout_toLeftOf="@id/continueButtonGoesToMap"
         android:background="@drawable/replay" />
 
-    <ImageView
-        android:id="@id/askerImageView"
-        android:layout_width="@dimen/asker_image_view_width"
-        android:layout_height="@dimen/asker_image_view_height"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/scenarioNameEditText"
-        android:src="@drawable/marco" />
 
     <ImageView
         android:id="@+id/powerBarView"
@@ -64,18 +79,29 @@
         android:layout_alignParentLeft="true"
         android:background="@drawable/clothing_room_all" />
 
-    <TextView
-        android:id="@+id/questionView"
+    <LinearLayout
         android:layout_width="@dimen/question_view_width"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/askerImageView"
         android:layout_marginTop="@dimen/question_view_margin_top"
+        android:orientation="vertical"
+        android:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/questionView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="6dp"
         android:background="@android:color/white"
         android:backgroundTint="@color/abc_secondary_text_material_dark"
         android:ems="10"
+        android:gravity="center_vertical"
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/avatarView"
