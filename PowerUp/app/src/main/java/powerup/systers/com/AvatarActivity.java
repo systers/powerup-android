@@ -83,6 +83,8 @@ public class AvatarActivity extends Activity {
                 }
                 Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
 				startActivityForResult(myIntent, 0);
+				AvatarRoom.activityInstance.finish();
+				finish();
 			}
 		});
 	}

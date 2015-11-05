@@ -24,9 +24,11 @@ public class AvatarRoom extends Activity {
 	private Integer hair = 1;
 	private Integer face = 1;
 	private Integer cloth = 1;
+	public static Activity activityInstance;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		activityInstance = this;
 		setmDbHandler(new DatabaseHandler(this));
 		getmDbHandler().open();
 		setContentView(R.layout.avatar_room);
