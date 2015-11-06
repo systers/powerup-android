@@ -31,8 +31,8 @@
 
 
     <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="212dp"
+        android:layout_width="@dimen/main_list_view_width"
+        android:layout_height="@dimen/main_list_view_height"
         android:layout_alignParentRight="true"
         android:layout_below="@id/askerImageView"
         android:background="@android:color/black">
@@ -41,8 +41,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
-            android:layout_margin="6dp"
-            android:dividerHeight="2dp"
+            android:layout_margin="@dimen/main_list_view_margin"
+            android:dividerHeight="@dimen/main_list_view_divider_height"
             android:divider="@color/abc_input_method_navigation_guard"
             android:scrollbars="vertical"
             android:fastScrollEnabled="true"
@@ -93,7 +93,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
-        android:layout_margin="6dp"
+        android:layout_margin="@dimen/question_view_margin"
         android:background="@android:color/white"
         android:backgroundTint="@color/abc_secondary_text_material_dark"
         android:ems="10"
