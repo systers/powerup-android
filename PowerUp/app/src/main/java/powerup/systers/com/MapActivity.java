@@ -45,6 +45,7 @@ public class MapActivity extends Activity {
 			} else {
 				Intent myIntent = new Intent(MapActivity.this, CompletedScene.class);
 				startActivityForResult(myIntent, 0);
+				finish();
 			}
 		}
 	};

@@ -20,8 +20,16 @@ public class CompletedScene extends Activity {
 				Intent myIntent = new Intent(CompletedScene.this,
 						MapActivity.class);
 				startActivityForResult(myIntent, 0);
+				finish();
 			}
 		});
 	}
-	
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Intent i = new Intent(CompletedScene.this,MapActivity.class);
+		startActivity(i);
+		finish();
+	}
 }
