@@ -50,8 +50,8 @@
             android:background="@android:color/white"
             android:fadeScrollbars="true"
             android:backgroundTint="@color/abc_secondary_text_material_dark"
-            android:clickable="true" >
-        </ListView>
+            android:clickable="true" />
+
     </LinearLayout>
 
     <Button
