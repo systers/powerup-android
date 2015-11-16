@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/map"
+    >
+
+    <Button
+        android:id="@+id/HouseButton"
+        android:layout_width="@dimen/map_click_width"
+        android:layout_height="@dimen/map_click_height"
+        android:layout_marginLeft="57dp"
+        android:alpha="0.00"
+        android:text="@string/house"
+        />
+
+    <Button
+        android:id="@+id/HospitalButton"
+        android:layout_width="@dimen/map_click_width"
+        android:layout_height="@dimen/map_click_height"
+        android:layout_marginRight="59dp"
+        android:alpha="0.00"
+        android:text="@string/hospital"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="59dp" />
+
+    <Button
+        android:id="@+id/SchoolButton"
+        android:layout_width="@dimen/map_click_width"
+        android:layout_height="@dimen/map_click_height"
+        android:alpha="0.00"
+        android:text="@string/school"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/HospitalButton"
+        android:layout_alignStart="@+id/HospitalButton" />
+
+    <Button
+        android:id="@+id/BoyfriendButton"
+        android:layout_width="@dimen/map_click_width"
+        android:layout_height="@dimen/map_click_height"
+        android:alpha="0.00"
+        android:text="@string/boyfriend"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/HouseButton"
+        android:layout_alignStart="@+id/HouseButton" />
+
+</RelativeLayout>
