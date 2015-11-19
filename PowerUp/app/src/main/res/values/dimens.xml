@@ -54,6 +54,7 @@
     <dimen name="map_click_width">100dp</dimen>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <dimen name="main_list_view_width">255dp</dimen>
 =======
     <dimen name="main_list_view_width">250dp</dimen>
@@ -61,6 +62,9 @@
 =======
     <dimen name="main_list_view_width">250dp</dimen>
 >>>>>>> f5a992d29ed4b16ff1faaf64b56a622809dbd2a9
+=======
+    <dimen name="main_list_view_width">250dp</dimen>
+>>>>>>> 3b68af39c24cef96db321091a130ac677f9fa448
     <dimen name="main_list_view_height">212dp</dimen>
     <dimen name="question_view_margin_top">34dp</dimen>
     <dimen name="question_view_width">200dp</dimen>
@@ -69,5 +73,8 @@
     <dimen name="main_list_view_margin">6dp</dimen>
     <dimen name="question_view_margin">6dp</dimen>
     <dimen name="main_list_view_divider_height">2dp</dimen>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b68af39c24cef96db321091a130ac677f9fa448
 </resources>

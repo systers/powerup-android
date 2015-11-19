@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:gravity="fill"
-    tools:context="com.example.powerup.Game">
+    tools:context="com.example.powerup.Game" >
 
     <TextView
         android:id="@+id/scenarioNameEditText"
@@ -31,15 +31,13 @@
 
 
     <LinearLayout
-        android:layout_width="@dimen/main_list_view_width"
-        android:layout_height="@dimen/main_list_view_height"
-        android:layout_alignParentRight="true"
 <<<<<<< HEAD
-        android:layout_below="@+id/askerImageView"
-        android:background="@android:color/white"
-        android:backgroundTint="@color/abc_secondary_text_material_dark"
-        android:clickable="true"/>
+        android:id="@+id/listviewlayout"
 =======
+>>>>>>> 3ff20e9cdb844de9101bf9bc298c6a11cc508039
+        android:layout_width="@dimen/main_list_view_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_below="@id/askerImageView"
         android:background="@android:color/black">
         <ListView
@@ -52,14 +50,20 @@
             android:divider="@color/abc_input_method_navigation_guard"
             android:scrollbars="vertical"
             android:fastScrollEnabled="true"
-            android:fastScrollAlwaysVisible="true"
+<<<<<<< HEAD
             android:background="@android:color/white"
             android:fadeScrollbars="true"
             android:backgroundTint="@color/abc_secondary_text_material_dark"
             android:clickable="true" />
-
+=======
+            android:fastScrollAlwaysVisible="true"
+            android:background="@android:color/white"
+            android:fadeScrollbars="true"
+            android:backgroundTint="@color/abc_secondary_text_material_dark"
+            android:clickable="true" >
+        </ListView>
+>>>>>>> 3ff20e9cdb844de9101bf9bc298c6a11cc508039
     </LinearLayout>
->>>>>>> f5a992d29ed4b16ff1faaf64b56a622809dbd2a9
 
     <Button
         android:id="@+id/continueButtonGoesToMap"
@@ -95,6 +99,7 @@
         android:orientation="vertical"
         android:background="@android:color/black">
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/questionView"
             android:layout_width="fill_parent"
@@ -109,51 +114,29 @@
             android:textSize="@dimen/game_text_size" />
 
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="@dimen/asker_image_view_width"
-        android:layout_height="@dimen/asker_image_view_height"
-        android:layout_above="@id/powerBarView"
-        android:layout_below="@id/questionView"
-        android:layout_marginTop="@dimen/avatar_margin_top">
-
-        <ImageView
-            android:id="@+id/faceImageView"
-            android:layout_width="@dimen/face_view_width"
-            android:layout_height="@dimen/face_view_height"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/face_view_margin_top"
-            android:src="@drawable/face1" />
-
-        <ImageView
-            android:id="@+id/eyeImageView"
-            android:layout_width="@dimen/eye_view_width"
-            android:layout_height="@dimen/eye_view_height"
-            android:layout_alignBottom="@id/faceImageView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/eye_view_margin_bottom"
-            android:src="@drawable/eye1" />
-
-        <ImageView
-            android:id="@+id/hairImageView"
-            android:layout_width="@dimen/hair_view_width"
-            android:layout_height="@dimen/hair_view_height"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/hair1" />
-
-        <ImageView
-            android:id="@+id/clothImageView"
-            android:layout_width="@dimen/cloth_view_width"
-            android:layout_height="@dimen/cloth_view_height"
-            android:layout_alignTop="@id/eyeImageView"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/cloth1" />
-
-<<<<<<< HEAD
-    </RelativeLayout>
-</RelativeLayout>
 =======
+    <TextView
+        android:id="@+id/questionView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/question_view_margin"
+        android:background="@android:color/white"
+        android:backgroundTint="@color/abc_secondary_text_material_dark"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/game_text_size" />
+>>>>>>> 3ff20e9cdb844de9101bf9bc298c6a11cc508039
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/avatarView"
+        android:layout_width="@dimen/avatar_view_width"
+        android:layout_height="@dimen/avatar_view_height"
+        android:layout_above="@id/powerBarView"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/character_design" />
+
 </RelativeLayout>
->>>>>>> f5a992d29ed4b16ff1faaf64b56a622809dbd2a9
