@@ -31,6 +31,7 @@
 
 
     <LinearLayout
+        android:id="@+id/listviewlayout"
         android:layout_width="@dimen/main_list_view_width"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

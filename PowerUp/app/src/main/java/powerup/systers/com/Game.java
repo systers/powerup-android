@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import powerup.systers.com.datamodel.Answer;
 import powerup.systers.com.datamodel.Question;
@@ -29,6 +34,8 @@ public class Game extends Activity {
 	private TextView scenarioNameTextView;
 	private Button replay;
 	private Button goToMap;
+	private LinearLayout listview_layout;
+	private ImageView askerimageview,powerbarview;
 	private ArrayAdapter<String> listAdapter;
 
 	/** Called when the activity is first created. */
@@ -40,6 +47,9 @@ public class Game extends Activity {
 		setContentView(R.layout.pgame);
 		// Find the ListView resource.
 		ListView mainListView = (ListView) findViewById(R.id.mainListView);
+		listview_layout = (LinearLayout) findViewById(R.id.listviewlayout);
+		askerimageview = (ImageView) findViewById(R.id.askerImageView);
+		powerbarview = (ImageView) findViewById(R.id.powerBarView);
 		questionTextView = (TextView) findViewById(R.id.questionView);
 		scenarioNameTextView = (TextView) findViewById(R.id.scenarioNameEditText);
 		listAdapter = new ArrayAdapter<>(this, R.layout.simplerow,
@@ -107,8 +117,22 @@ public class Game extends Activity {
 			replay.setAlpha((float) 0.0);
 		}
 
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		int displayheight = displaymetrics.heightPixels;
+
+
 		// Set the ArrayAdapter as the ListView's adapter.
 		mainListView.setAdapter(listAdapter);
+
+		int height=listview_layout.getHeight();
+
+		int freeheight=displayheight-scenarioNameTextView.getHeight()-askerimageview.getHeight()-powerbarview.getHeight();
+		if(height>freeheight){
+			System.out.println("--------------in if to change height--------------");
+			RelativeLayout.LayoutParams parms = (RelativeLayout.LayoutParams) listview_layout.getLayoutParams();
+			parms.height=freeheight;
+		}
 		mainListView
 				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					@Override
@@ -116,6 +140,7 @@ public class Game extends Activity {
 											int position, long id) {
 						if (answers.get(position).getNextQuestionID() > 0) {
 							// Next Question
+
 							SessionHistory.currQID = answers.get(position)
 									.getNextQuestionID();
 							updatePoints(position);
@@ -203,10 +228,35 @@ public class Game extends Activity {
 	private void updateQA() {
 
 		listAdapter.clear();
+
+		//adjusting height of listview layout on change of question.
+		RelativeLayout.LayoutParams parms1 = (RelativeLayout.LayoutParams) listview_layout.getLayoutParams();
+		parms1.height= RelativeLayout.LayoutParams.WRAP_CONTENT;
+
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		int displayheight = displaymetrics.heightPixels;
+
+		int height=listview_layout.getHeight();
+
+		int freeheight=displayheight-scenarioNameTextView.getHeight()-askerimageview.getHeight()-powerbarview.getHeight();
+		System.out.println("------------------"+height+"           "+(freeheight));
 		getmDbHandler().getAllAnswer(answers, SessionHistory.currQID);
 		for (Answer ans : answers) {
 			listAdapter.add(ans.getAnswerDescription());
+
+			if(height>freeheight){
+				System.out.println("--------------in if to change height--------------");
+				RelativeLayout.LayoutParams parms = (RelativeLayout.LayoutParams) listview_layout.getLayoutParams();
+				parms.height=freeheight;
+			}
+
 		}
+
+
+
+
+
 		Question questions = getmDbHandler().getCurrentQuestion();
 		questionTextView.setText(questions.getQuestionDescription());
 	}
