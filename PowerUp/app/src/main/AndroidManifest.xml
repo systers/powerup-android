@@ -11,11 +11,6 @@
         <activity
             android:name="powerup.systers.com.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="powerup.systers.com.Game"
@@ -41,6 +36,16 @@
         <activity
             android:name="powerup.systers.com.GameOver"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="powerup.systers.com.SplashScreen"
+            android:label="@string/app_name" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <uses-library android:name="android.test.runner" />

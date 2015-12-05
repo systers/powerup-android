@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ced3d2d2" >
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginTop="@dimen/splash_screen_ImageView_layout_marginTop"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_dark_material_dark"
+        android:gravity="center_horizontal"
+        android:fontFamily="cursive"
+        android:text="@string/powerup"
+        android:textAlignment="center"
+        android:textSize="@dimen/powerup_size"
+        android:typeface="serif"
+        android:layout_below="@+id/imgLogo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/splash_screen_layout_marginTop" />
+
+</RelativeLayout>
