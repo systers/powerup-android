@@ -16,5 +16,11 @@
     <dimen name="map_school_click_width">150dp</dimen>
     <dimen name="map_boyfriend_click_height">150dp</dimen>
     <dimen name="map_boyfriend_click_width">150dp</dimen>
-
+    <dimen name="avatar_room_width">150dp</dimen>
+    <dimen name="avatar_room_height">150dp</dimen>
+    <dimen name="eyes_margin_left">60dp</dimen>
+    <dimen name="eyes_margin_top">60dp</dimen>
+    <dimen name="face_margin_top">100dp</dimen>
+    <dimen name="hair_margin_left">60dp</dimen>
+    <dimen name="continue_button_avatar_margin_bottom">150dp</dimen>
 </resources>

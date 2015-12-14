@@ -11,11 +11,14 @@
     <dimen name="about_button_height">30dp</dimen>
     <dimen name="avatar_room_width">100dp</dimen>
     <dimen name="avatar_room_height">100dp</dimen>
+    <dimen name="avatar_room_margin_top">30dp</dimen>
+    <dimen name="avatar_room_margin_left">40dp</dimen>
     <dimen name="cloth_view_width">75dp</dimen>
     <dimen name="cloth_view_height">200dp</dimen>
     <dimen name="continue_margin_bottom">44dp</dimen>
     <dimen name="continue_button_map_margin_right">52dp</dimen>
     <dimen name="continue_button_avatar_margin_top">30dp</dimen>
+    <dimen name="continue_button_avatar_margin_bottom">50dp</dimen>
     <dimen name="completed_game_height">150dp</dimen>
     <dimen name="completed_game_width">200dp</dimen>
     <dimen name="completed_scene_margin_right">26dp</dimen>
@@ -32,7 +35,7 @@
     <dimen name="face_view_width">100dp</dimen>
     <dimen name="face_view_height">120dp</dimen>
     <dimen name="face_view_margin_top">54dp</dimen>
-    <dimen name="face_right_margin_top">21dp</dimen>
+    <dimen name="face_margin_top">60dp</dimen>
     <dimen name="hair_view_width">200dp</dimen>
     <dimen name="hair_view_height">200dp</dimen>
     <dimen name="hair_margin_left">35dp</dimen>
