@@ -70,7 +70,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
-            android:id="@+id/power_bar_healing"
+            android:id="@+id/powerbarHealing"
             android:layout_width="@dimen/power_bar_width"
             android:layout_height="@dimen/power_bar_height"
             app:rcBackgroundPadding="@dimen/power_bar_radius_padding"
@@ -84,7 +84,7 @@
             android:layout_alignParentTop="true" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
             android:layout_width="@dimen/power_bar_width"
-            android:id="@+id/power_bar_strength"
+            android:id="@+id/powerbarStrength"
             android:layout_height="@dimen/power_bar_height"
             app:rcBackgroundPadding="@dimen/power_bar_radius_padding"
             app:rcRadius="@dimen/power_bar_radius"
@@ -94,32 +94,32 @@
             app:rcBackgroundColor="@android:color/black"
             app:rcProgressColor="@color/powerup_pink"
             app:rcMax="@integer/max_progress"
-            android:layout_below="@id/power_bar_healing" />
+            android:layout_below="@id/powerbarHealing" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
             android:layout_width="@dimen/power_bar_width"
-            android:id="@+id/power_bar_telepathy"
+            android:id="@+id/powerbarTelepathy"
             android:layout_height="@dimen/power_bar_height"
             app:rcBackgroundPadding="@dimen/power_bar_radius_padding"
             app:rcRadius="@dimen/power_bar_radius"
             app:rcBackgroundColor="@android:color/black"
             app:rcProgressColor="@color/powerup_blue_green"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="@dimen/power_bar_margin_right"
             app:rcMax="@integer/max_progress"
-            android:layout_alignTop="@id/power_bar_healing"
-            android:layout_toLeftOf="@id/power_bar_healing"
-            android:layout_toStartOf="@id/power_bar_healing" />
+            android:layout_alignTop="@id/powerbarHealing"
+            android:layout_toLeftOf="@id/powerbarHealing"
+            android:layout_toStartOf="@id/powerbarHealing" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
             android:layout_width="@dimen/power_bar_width"
-            android:id="@+id/power_bar_invisibility"
+            android:id="@+id/powerbarInvisibility"
             android:layout_height="@dimen/power_bar_height"
             app:rcBackgroundPadding="@dimen/power_bar_radius_padding"
             app:rcRadius="@dimen/power_bar_radius"
             app:rcBackgroundColor="@android:color/black"
             app:rcProgressColor="@color/powerup_yellow"
             app:rcMax="@integer/max_progress"
-            android:layout_alignTop="@id/power_bar_strength"
-            android:layout_alignLeft="@id/power_bar_telepathy"
-            android:layout_alignStart="@id/power_bar_telepathy"
+            android:layout_alignTop="@id/powerbarStrength"
+            android:layout_alignLeft="@id/powerbarTelepathy"
+            android:layout_alignStart="@id/powerbarTelepathy"
             />
 
     </RelativeLayout>
