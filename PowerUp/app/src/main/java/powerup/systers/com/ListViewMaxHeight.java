@@ -20,6 +20,7 @@ public class ListViewMaxHeight extends ListView {
     public ListViewMaxHeight(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         if (attrs != null) {
+
             TypedArray styleAttributes = getContext().obtainStyledAttributes(attrs, R.styleable.ListViewMaxHeight);
             maxHeight = styleAttributes.getDimensionPixelSize(R.styleable.ListViewMaxHeight_maxHeight, Integer.MAX_VALUE);
             styleAttributes.recycle();
