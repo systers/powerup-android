@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
     android:gravity="fill"
     tools:context="com.example.powerup.Game">
@@ -16,20 +17,47 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="@android:color/white"
-        android:backgroundTint="@color/abc_primary_text_disable_only_material_dark"
         android:ems="10"
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
 
-    <ListView
-        android:id="@+id/mainListView"
-        android:layout_width="@dimen/main_list_view_width"
-        android:layout_height="@dimen/main_list_view_height"
+    <ImageView
+        android:id="@+id/askerImageView"
+        android:layout_width="@dimen/asker_image_view_width"
+        android:layout_height="@dimen/asker_image_view_height"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/askerImageView"
-        android:background="@android:color/white"
-        android:backgroundTint="@color/abc_secondary_text_material_dark"
-        android:clickable="true"/>
+        android:layout_below="@id/scenarioNameEditText"
+        android:src="@drawable/marco" />
+
+    <LinearLayout
+
+        android:id="@+id/listviewlayout"
+
+        android:layout_width="@dimen/main_list_view_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/askerImageView"
+        android:background="@android:color/black">
+        <powerup.systers.com.ListViewMaxHeight
+            android:id="@+id/mainListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:maxHeight="@dimen/main_list_view_maxheight"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/main_list_view_margin"
+            android:dividerHeight="@dimen/main_list_view_divider_height"
+            android:divider="@color/abc_input_method_navigation_guard"
+            android:scrollbars="vertical"
+            android:fastScrollEnabled="true"
+            android:background="@android:color/white"
+            android:fadeScrollbars="true"
+            android:clickable="true"
+            android:fastScrollAlwaysVisible="false"/>
+
+
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/continueButtonGoesToMap"
@@ -40,20 +68,14 @@
         android:background="@drawable/home" />
 
     <Button
-        android:id="@id/redoButton"
+        android:id="@+id/redoButton"
         android:layout_width="@dimen/redo_button_width"
         android:layout_height="@dimen/redo_button_height"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/continueButtonGoesToMap"
         android:background="@drawable/replay" />
 
-    <ImageView
-        android:id="@id/askerImageView"
-        android:layout_width="@dimen/asker_image_view_width"
-        android:layout_height="@dimen/asker_image_view_height"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/scenarioNameEditText"
-        android:src="@drawable/marco" />
+
 
     <ImageView
         android:id="@+id/powerBarView"
@@ -63,24 +85,37 @@
         android:layout_alignParentLeft="true"
         android:background="@drawable/clothing_room_all" />
 
-    <TextView
-        android:id="@+id/questionView"
+    <LinearLayout
+        android:id="@+id/questionViewlayout"
         android:layout_width="@dimen/question_view_width"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/askerImageView"
         android:layout_marginTop="@dimen/question_view_margin_top"
-        android:background="@android:color/white"
-        android:backgroundTint="@color/abc_secondary_text_material_dark"
-        android:ems="10"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/game_text_size" />
+        android:orientation="vertical"
+        android:background="@android:color/black">
+
+
+        <TextView
+            android:id="@+id/questionView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/question_view_margin"
+            android:background="@android:color/white"
+            android:backgroundTint="@color/abc_secondary_text_material_dark"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/game_text_size" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="@dimen/asker_image_view_width"
         android:layout_height="@dimen/asker_image_view_height"
         android:layout_above="@id/powerBarView"
-        android:layout_below="@id/questionView"
+        android:layout_below="@id/questionViewlayout"
         android:layout_marginTop="@dimen/avatar_margin_top">
 
         <ImageView
