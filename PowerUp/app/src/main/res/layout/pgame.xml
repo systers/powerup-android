@@ -80,6 +80,7 @@
             android:layout_marginTop="@dimen/power_bar_margin_top"
             app:rcBackgroundColor="@android:color/black"
             app:rcProgressColor="@color/powerup_purple_light"
+            app:rcProgress = "@integer/half_progress"
             app:rcMax="@integer/max_progress"
             android:layout_alignParentTop="true" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
@@ -94,6 +95,7 @@
             app:rcBackgroundColor="@android:color/black"
             app:rcProgressColor="@color/powerup_pink"
             app:rcMax="@integer/max_progress"
+            app:rcProgress = "@integer/half_progress"
             android:layout_below="@id/powerbarHealing" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
             android:layout_width="@dimen/power_bar_width"
@@ -107,7 +109,8 @@
             app:rcMax="@integer/max_progress"
             android:layout_alignTop="@id/powerbarHealing"
             android:layout_toLeftOf="@id/powerbarHealing"
-            android:layout_toStartOf="@id/powerbarHealing" />
+            android:layout_toStartOf="@id/powerbarHealing"
+            app:rcProgress = "@integer/half_progress" />
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
             android:layout_width="@dimen/power_bar_width"
             android:id="@+id/powerbarInvisibility"
@@ -120,7 +123,7 @@
             android:layout_alignTop="@id/powerbarStrength"
             android:layout_alignLeft="@id/powerbarTelepathy"
             android:layout_alignStart="@id/powerbarTelepathy"
-            />
+            app:rcProgress = "@integer/half_progress" />
 
     </RelativeLayout>
 
