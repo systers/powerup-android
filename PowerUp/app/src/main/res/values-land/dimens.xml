@@ -16,5 +16,11 @@
     <dimen name="map_school_click_width">175dp</dimen>
     <dimen name="map_boyfriend_click_height">50dp</dimen>
     <dimen name="map_boyfriend_click_width">100dp</dimen>
+    <dimen name="power_bar_height">15dp</dimen>
+    <dimen name="power_bar_width">100dp</dimen>
+    <dimen name="power_bar_radius_padding">2dp</dimen>
+    <dimen name="power_bar_radius">5dp</dimen>
+    <dimen name="power_bar_margin_right">5dp</dimen>
+    <dimen name="power_bar_margin_top">30dp</dimen>
 
 </resources>
