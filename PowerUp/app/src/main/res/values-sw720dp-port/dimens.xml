@@ -23,5 +23,8 @@
     <dimen name="about_button_width">380dp</dimen>
     <dimen name="about_button_height">100dp</dimen>
     <dimen name="powerup_size">100sp</dimen>
+    <dimen name="main_list_view_width">230dp</dimen>
+    <dimen name="main_list_view_height">212dp</dimen>
+    <dimen name="main_list_view_maxheight">400dp</dimen>
 
 </resources>
