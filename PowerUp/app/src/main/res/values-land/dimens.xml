@@ -16,5 +16,6 @@
     <dimen name="map_school_click_width">175dp</dimen>
     <dimen name="map_boyfriend_click_height">50dp</dimen>
     <dimen name="map_boyfriend_click_width">100dp</dimen>
+    <dimen name="intro_screen_1_text_layout_marginTop">70dp</dimen>
 
 </resources>
