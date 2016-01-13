@@ -1,0 +1,34 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="powerup.systers.com/IntroActivity">
+
+    <ImageView
+        android:layout_width="@dimen/intro_screen_2_rosie_layout_width"
+        android:layout_height="@dimen/intro_screen_2_rosie_layout_height"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="@dimen/intro_screen_2_rosie_layout_marginLeft"
+        android:src="@drawable/character_design" />
+
+    <ImageView
+        android:layout_width="@dimen/intro_screen_2_marco_layout_width"
+        android:layout_height="@dimen/intro_screen_2_marco_layout_height"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginBottom="@dimen/intro_screen_2_marco_layout_marginBottom"
+        android:layout_marginRight="@dimen/intro_screen_2_marco_layout_marginRight"
+        android:src="@drawable/marco" />
+
+    <TextView
+        android:layout_width="@dimen/intro_screen_2_text_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="@dimen/intro_screen_2_text_layout_marginBottom"
+        android:layout_marginLeft="@dimen/intro_screen_2_text_layout_marginLeft"
+        android:text="@string/intro_screen_2_text"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/intro_screen_2_text_size" />
+
+
+</FrameLayout>
