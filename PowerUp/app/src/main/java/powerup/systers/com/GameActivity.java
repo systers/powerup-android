@@ -114,7 +114,7 @@ public class GameActivity extends Activity {
 					public void onItemClick(AdapterView<?> arg0, View view,
 											int position, long id) {
 						if (answers.get(position).getNextQuestionID() > 0) {
-							// Next Question
+							// Next Questioni
 							SessionHistory.currQID = answers.get(position)
 									.getNextQuestionID();
 							updatePoints(position);
@@ -128,10 +128,14 @@ public class GameActivity extends Activity {
 								SessionHistory.currSessionID = 1;
 							}
 							updatePoints(position);
-							getmDbHandler().setCompletedScenario(
-									scene.getScenarioName());
+							Intent intent = new Intent(GameActivity.this, DisplayPointsActivity.class);
+							intent.putExtra("current_scenario_points", SessionHistory.currScenePoints);
+							startActivityForResult(intent , 1);
 							SessionHistory.currScenePoints = 0;
-							updateScenario();
+							getmDbHandler().setCompletedScenario(
+                                    scene.getScenarioName());
+							//startActivity(new Intent(GameActivity.this, DisplayPointsActivity.class));
+
 						}
 					}
 				});
@@ -218,4 +222,22 @@ public class GameActivity extends Activity {
 	public void setmDbHandler(DatabaseHandler mDbHandler) {
 		this.mDbHandler = mDbHandler;
 	}
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                updateScenario();
+            }
+            if(resultCode == Activity.RESULT_CANCELED){
+                startActivity(new Intent(GameActivity.this, MapActivity.class));
+                finish();
+            }
+
+
+        }
+
+    }
 }
