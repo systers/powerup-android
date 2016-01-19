@@ -9,7 +9,7 @@
     <string name="school">School</string>
     <string name="powerup">"PowerUp"</string>
     <string name="completed_scene">This scene is completed Darling.\n\n
-        Please go back to the map or buy exiting things from the store</string>
+        Please go back to the map or buy exciting things from the store</string>
     <string name="completed_game">Wow! You are brilliant. Game completed \n \n \n
         Wait till we upload new scenarios</string>
     <string name="map">Map</string>
@@ -19,5 +19,8 @@
     <string name="replay">Replay</string>
     <string name="pref_previously_started">pref_previously_started</string>
     <string name="display_points_scenario">Brilliant! Scenario completed. Here are the points you earned:</string>
+    <string name="last_scenario">Last Scenario: </string>
+    <string name="total_points">Total Points: </string>
+    <string name="next_scenario">Next Scenario</string>
 
 </resources>

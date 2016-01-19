@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-
     <TextView
         android:id="@+id/display_points_text"
         android:layout_width="@dimen/completed_game_width"
@@ -23,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Scenario: "
+            android:text="@string/last_scenario"
             android:textColor="@android:color/black"
             android:textSize="@dimen/game_text_size" />
         <TextView
@@ -42,7 +41,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Points: "
+            android:text="@string/total_points"
             android:textColor="@android:color/black"
             android:textSize="@dimen/game_text_size" />
         <TextView
@@ -65,16 +64,16 @@
             android:id="@+id/mapButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Map"
+            android:text="@string/map"
             android:layout_marginLeft="@dimen/display_points_margin_left"
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="@dimen/display_points_margin_right"/>
 
         <Button
+            android:id="@+id/nextScenarioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Scenario"
-            android:id="@+id/nextScenarioButton"
+            android:text="@string/next_scenario"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
