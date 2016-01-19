@@ -26,5 +26,11 @@
     <dimen name="main_list_view_width">230dp</dimen>
     <dimen name="main_list_view_height">212dp</dimen>
     <dimen name="main_list_view_maxheight">350dp</dimen>
+    <dimen name="power_bar_height">15dp</dimen>
+    <dimen name="power_bar_width">90dp</dimen>
+    <dimen name="power_bar_radius_padding">2dp</dimen>
+    <dimen name="power_bar_radius">5dp</dimen>
+    <dimen name="power_bar_margin_right">10dp</dimen>
+    <dimen name="power_bar_margin_top">30dp</dimen>
 
 </resources>
