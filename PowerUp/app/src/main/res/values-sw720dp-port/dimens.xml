@@ -30,5 +30,7 @@
     <dimen name="power_bar_margin_right">15dp</dimen>
     <dimen name="power_bar_margin_top">50dp</dimen>
     <dimen name="power_bar_view_height">130dp</dimen>
+    <dimen name="main_list_view_width">230dp</dimen>
+    <dimen name="main_list_view_maxheight">400dp</dimen>
 
 </resources>
