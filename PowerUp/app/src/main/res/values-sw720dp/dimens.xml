@@ -33,5 +33,9 @@
     <dimen name="power_bar_margin_right">15dp</dimen>
     <dimen name="power_bar_margin_top">45dp</dimen>
     <dimen name="power_bar_view_height">130dp</dimen>
+    <dimen name="completed_game_textview">140dp</dimen>
+    <dimen name="completed_game_width">400dp</dimen>
+    <dimen name="completed_game_height">300dp</dimen>
+    <dimen name="game_text_size">40dp</dimen>
 
 </resources>

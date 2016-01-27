@@ -31,5 +31,6 @@
     <dimen name="power_bar_radius">5dp</dimen>
     <dimen name="power_bar_margin_right">5dp</dimen>
     <dimen name="power_bar_margin_top">30dp</dimen>
+    <dimen name= "completed_game_textview">50dp</dimen>
 
 </resources>
