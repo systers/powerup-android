@@ -158,7 +158,9 @@ public class GameActivity extends Activity {
 					SessionHistory.totalPoints -= SessionHistory.currScenePoints;
 					goToMap.setClickable(false);
 					Intent myIntent = new Intent(GameActivity.this, MapActivity.class);
-					startActivityForResult(myIntent, 0);
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    startActivityForResult(myIntent, 0);
 					getmDbHandler()
 							.setReplayedScenario(scene.getScenarioName());
 					goToMap.setAlpha((float) 0.0);
@@ -176,6 +178,7 @@ public class GameActivity extends Activity {
 					SessionHistory.totalPoints -= SessionHistory.currScenePoints;
 					replay.setClickable(false);
 					Intent myIntent = new Intent(GameActivity.this, GameActivity.class);
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivityForResult(myIntent, 0);
 					getmDbHandler()
 							.setReplayedScenario(scene.getScenarioName());
