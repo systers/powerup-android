@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background" >
+
+    <TextView
+        android:id="@+id/completed_scene_textView"
+        android:layout_width="@dimen/completed_game_width"
+        android:layout_height="@dimen/completed_game_height"
+        android:text="@string/completed_scene"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/game_text_size"
+        android:gravity="center"/>
+
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center_horizontal"
+       android:layout_marginTop="@dimen/completed_game_textview"
+       >
+       <Button
+           android:id="@+id/ContinueButtonMap"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/map" />
+
+       <Button
+           android:id="@+id/store_button"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/store" />
+   </LinearLayout>
+
+</LinearLayout>

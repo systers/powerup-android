@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="right"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/completed_game_textView"
+        android:layout_width="@dimen/completed_game_width"
+        android:layout_height="@dimen/completed_game_height"
+        android:text="@string/completed_game"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/game_text_size"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/completed_game_textview"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

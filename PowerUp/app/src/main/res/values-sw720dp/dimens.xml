@@ -39,5 +39,9 @@
     <dimen name="avatar_room_width">150dp</dimen>
     <dimen name="avatar_room_height">150dp</dimen>
     <dimen name="avatar_room_continue_button_land">100dp</dimen>
+	<dimen name="completed_game_textview">140dp</dimen>
+    <dimen name="completed_game_width">400dp</dimen>
+    <dimen name="completed_game_height">300dp</dimen>
+    <dimen name="game_text_size">40dp</dimen>
 
 </resources>

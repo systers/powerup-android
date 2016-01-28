@@ -51,7 +51,7 @@
     <dimen name="powerup_icon_width">150dp</dimen>
     <dimen name="powerup_width">304dp</dimen>
     <dimen name="power_bar_view_height">75dp</dimen>
-    <dimen name="game_text_size">20dp</dimen>
+    <dimen name="game_text_size">17dp</dimen>
     <dimen name="map_house_click_height">100dp</dimen>
     <dimen name="map_house_click_width">100dp</dimen>
     <dimen name="map_hospital_click_height">100dp</dimen>
