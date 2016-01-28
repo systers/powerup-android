@@ -63,7 +63,7 @@
         android:background="@drawable/home" />
 
     <Button
-        android:id="@id/redoButton"
+        android:id="@+id/redoButton"
         android:layout_width="@dimen/redo_button_width"
         android:layout_height="@dimen/redo_button_height"
         android:layout_alignParentTop="true"
