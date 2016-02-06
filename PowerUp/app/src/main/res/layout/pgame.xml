@@ -26,7 +26,7 @@
         android:id="@+id/mainListView"
         android:layout_width="@dimen/main_list_view_width"
         android:layout_height="@dimen/main_list_view_height"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/avatarLayout"
         android:layout_below="@+id/askerImageView"
         android:background="@android:color/white"
         android:clickable="true"/>
@@ -130,7 +130,7 @@
         android:id="@+id/questionView"
         android:layout_width="@dimen/question_view_width"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/askerImageView"
         android:layout_alignTop="@id/askerImageView"
         android:layout_marginTop="@dimen/question_view_margin_top"
         android:background="@android:color/white"
@@ -139,6 +139,7 @@
         android:textSize="@dimen/game_text_size" />
 
     <RelativeLayout
+        android:id="@+id/avatarLayout"
         android:layout_width="@dimen/asker_image_view_width"
         android:layout_height="@dimen/asker_image_view_height"
         android:layout_above="@id/power_bar"
