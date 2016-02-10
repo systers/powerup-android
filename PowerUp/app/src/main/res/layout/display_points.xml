@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/display_points_text"
+        android:layout_width="@dimen/completed_game_width"
+        android:layout_height="@dimen/display_points_height"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/display_points_scenario"
+        android:layout_marginTop="@dimen/display_points_height"
+        android:textSize="@dimen/game_text_size" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="@dimen/completed_game_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_scenario"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/game_text_size" />
+        <TextView
+            android:id="@+id/current_points_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/game_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="@dimen/completed_game_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_points"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/game_text_size" />
+        <TextView
+            android:id="@+id/total_points_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/game_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/display_points_margin_top">
+
+        <Button
+            android:id="@+id/mapButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map"
+            android:layout_marginLeft="@dimen/display_points_margin_left"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="@dimen/display_points_margin_right"/>
+
+        <Button
+            android:id="@+id/nextScenarioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next_scenario"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
