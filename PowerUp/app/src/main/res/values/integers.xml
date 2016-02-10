@@ -2,4 +2,5 @@
 <resources>
     <integer name="max_progress">100</integer>
     <integer name="half_progress">50</integer>
+    <integer name="display_points_request_code">1</integer>
 </resources>
