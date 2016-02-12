@@ -22,14 +22,37 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
 
-    <ListView
-        android:id="@+id/mainListView"
-        android:layout_width="@dimen/main_list_view_width"
-        android:layout_height="@dimen/main_list_view_height"
+    <ImageView
+        android:id="@+id/askerImageView"
+        android:layout_width="@dimen/asker_image_view_width"
+        android:layout_height="@dimen/asker_image_view_height"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/askerImageView"
-        android:background="@android:color/white"
-        android:clickable="true"/>
+        android:layout_below="@id/scenarioNameEditText"
+        android:src="@drawable/marco" />
+
+    <LinearLayout
+        android:id="@+id/listviewLayout"
+        android:layout_width="@dimen/main_list_view_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/askerImageView"
+        android:background="@android:color/black">
+        <powerup.systers.com.ListViewMaxHeight
+            android:id="@+id/mainListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:maxHeight="@dimen/main_list_view_maxheight"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/main_list_view_margin"
+            android:dividerHeight="@dimen/main_list_view_divider_height"
+            android:divider="@color/abc_input_method_navigation_guard"
+            android:scrollbars="vertical"
+            android:fastScrollEnabled="true"
+            android:background="@android:color/white"
+            android:fadeScrollbars="true"
+            android:clickable="true"
+            android:fastScrollAlwaysVisible="false"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/continueButtonGoesToMap"
@@ -47,13 +70,6 @@
         android:layout_toLeftOf="@id/continueButtonGoesToMap"
         android:background="@drawable/replay" />
 
-    <ImageView
-        android:id="@+id/askerImageView"
-        android:layout_width="@dimen/asker_image_view_width"
-        android:layout_height="@dimen/asker_image_view_height"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/scenarioNameEditText"
-        android:src="@drawable/marco" />
     <RelativeLayout
         android:id="@+id/power_bar"
         android:layout_width="match_parent"
@@ -123,26 +139,35 @@
             android:layout_alignLeft="@id/powerbarTelepathy"
             android:layout_alignStart="@id/powerbarTelepathy"
             app:rcProgress = "@integer/half_progress" />
-
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/questionView"
+    <LinearLayout
+        android:id="@+id/questionViewLayout"
         android:layout_width="@dimen/question_view_width"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/askerImageView"
         android:layout_marginTop="@dimen/question_view_margin_top"
-        android:background="@android:color/white"
-        android:ems="10"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/game_text_size" />
+        android:orientation="vertical"
+        android:background="@android:color/black">
+        <TextView
+            android:id="@+id/questionView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/question_view_margin"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/game_text_size" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="@dimen/asker_image_view_width"
         android:layout_height="@dimen/asker_image_view_height"
         android:layout_above="@id/power_bar"
-        android:layout_below="@id/questionView"
+        android:layout_below="@id/questionViewLayout"
         android:layout_marginTop="@dimen/avatar_margin_top">
 
         <ImageView
@@ -178,7 +203,6 @@
             android:layout_alignTop="@id/eyeImageView"
             android:layout_centerHorizontal="true"
             android:src="@drawable/cloth1" />
-
 
     </RelativeLayout>
 </RelativeLayout>
