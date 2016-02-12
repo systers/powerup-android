@@ -1,8 +1,5 @@
 package powerup.systers.com;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.security.Key;
+import java.util.ArrayList;
+import java.util.List;
+
 import powerup.systers.com.datamodel.Answer;
 import powerup.systers.com.datamodel.Question;
 import powerup.systers.com.datamodel.Scenario;
@@ -28,8 +30,8 @@ public class GameActivity extends Activity {
 	private Scenario scene;
 	private TextView questionTextView;
 	private TextView scenarioNameTextView;
-	private Button replay;
-	private Button goToMap;
+	private Button replayButton;
+	private Button goToMapButoon;
 	private ArrayAdapter<String> listAdapter;
 
 	@Override
@@ -45,8 +47,8 @@ public class GameActivity extends Activity {
 		listAdapter = new ArrayAdapter<>(this, R.layout.simplerow,
 				new ArrayList<String>());
 		answers = new ArrayList<>();
-		goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
-		replay = (Button) findViewById(R.id.redoButton);
+		goToMapButoon = (Button) findViewById(R.id.continueButtonGoesToMap);
+		replayButton = (Button) findViewById(R.id.redoButton);
 
 		ImageView eyeImageView = (ImageView) findViewById(R.id.eyeImageView);
 		ImageView faceImageView = (ImageView) findViewById(R.id.faceImageView);
@@ -102,8 +104,8 @@ public class GameActivity extends Activity {
 		// Update Scene
 		updateScenario();
 		if (scene.getReplayed() == 1) {
-			goToMap.setAlpha((float) 0.0);
-			replay.setAlpha((float) 0.0);
+			goToMapButoon.setAlpha((float) 0.0);
+			replayButton.setAlpha((float) 0.0);
 		}
 
 		// Set the ArrayAdapter as the ListView's adapter.
@@ -128,10 +130,12 @@ public class GameActivity extends Activity {
 								SessionHistory.currSessionID = 1;
 							}
 							updatePoints(position);
+							Intent displayPointsIntent = new Intent(GameActivity.this, DisplayPointsActivity.class);
+							displayPointsIntent.putExtra(Keys.currentPointsKey, SessionHistory.currScenePoints);
+							startActivityForResult(displayPointsIntent, getResources().getInteger(R.integer.display_points_request_code));
+							SessionHistory.currScenePoints = 0;
 							getmDbHandler().setCompletedScenario(
 									scene.getScenarioName());
-							SessionHistory.currScenePoints = 0;
-							updateScenario();
 						}
 					}
 				});
@@ -148,41 +152,41 @@ public class GameActivity extends Activity {
 		scene = getmDbHandler().getScenario();
 		// Replay a scenario
 		if (scene.getReplayed() == 0) {
-			// goToMap Mechanics
-			goToMap.setAlpha((float) 1.0);
-			goToMap.setOnClickListener(new View.OnClickListener() {
+			// goToMapButoon Mechanics
+			goToMapButoon.setAlpha((float) 1.0);
+			goToMapButoon.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					// Incase the user move back to map in between a running
 					// Scenario.
 					SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-					goToMap.setClickable(false);
+					goToMapButoon.setClickable(false);
 					Intent myIntent = new Intent(GameActivity.this, MapActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivityForResult(myIntent, 0);
 					getmDbHandler()
 							.setReplayedScenario(scene.getScenarioName());
-					goToMap.setAlpha((float) 0.0);
-					replay.setAlpha((float) 0.0);
+					goToMapButoon.setAlpha((float) 0.0);
+					replayButton.setAlpha((float) 0.0);
 				}
 			});
 			// Replay Mechanics
-			replay.setAlpha((float) 1.0);
-			replay.setOnClickListener(new View.OnClickListener() {
+			replayButton.setAlpha((float) 1.0);
+			replayButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					// In case the user moves back to map in between a running
 					// Scenario.
 
 					SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-					replay.setClickable(false);
+					replayButton.setClickable(false);
 					Intent myIntent = new Intent(GameActivity.this, GameActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivityForResult(myIntent, 0);
 					getmDbHandler()
 							.setReplayedScenario(scene.getScenarioName());
-					goToMap.setAlpha((float) 0.0);
-					replay.setAlpha((float) 0.0);
+					goToMapButoon.setAlpha((float) 0.0);
+					replayButton.setAlpha((float) 0.0);
 				}
 			});
 		}
@@ -219,5 +223,24 @@ public class GameActivity extends Activity {
 
 	public void setmDbHandler(DatabaseHandler mDbHandler) {
 		this.mDbHandler = mDbHandler;
+	}
+
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (requestCode == getResources().getInteger(R.integer.display_points_request_code)) {
+			if (resultCode == Activity.RESULT_OK) {
+				updateScenario();
+			}
+			if (resultCode == Activity.RESULT_CANCELED) {
+				startActivity(new Intent(GameActivity.this, MapActivity.class));
+				finish();
+			}
+
+
+		}
+
 	}
 }

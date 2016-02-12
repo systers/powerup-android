@@ -38,6 +38,9 @@
             android:name=".CompletedSceneActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity android:name=".DisplayPointsActivity"
+            android:label="@string/app_name">
+        </activity>
         <activity
             android:name=".GameOverActivity"
             android:label="@string/app_name" >
