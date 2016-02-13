@@ -29,6 +29,8 @@
     <dimen name="power_bar_radius">5dp</dimen>
     <dimen name="power_bar_margin_right">10dp</dimen>
     <dimen name="power_bar_margin_top">30dp</dimen>
+    <dimen name="main_list_view_width">230dp</dimen>
+    <dimen name="main_list_view_maxheight">350dp</dimen>
     <dimen name="avatar_room_margin">100dp</dimen>
     <dimen name="avatar_room_width">150dp</dimen>
     <dimen name="avatar_room_height">150dp</dimen>
