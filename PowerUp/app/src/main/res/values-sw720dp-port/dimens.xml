@@ -34,5 +34,11 @@
     <dimen name="avatar_room_width">170dp</dimen>
     <dimen name="avatar_room_height">170dp</dimen>
     <dimen name="avatar_room_continue_button">120dp</dimen>
+    <dimen name="main_list_view_width">230dp</dimen>
+    <dimen name="main_list_view_maxheight">400dp</dimen>
+    <dimen name="question_view_margin_top">60dp</dimen>
+    <dimen name="question_view_margin_left">300dp</dimen>
+    <dimen name="main_list_view_marginTop">230dp</dimen>
+    <dimen name="main_list_view_marginLeft">159dp</dimen>
 
 </resources>
