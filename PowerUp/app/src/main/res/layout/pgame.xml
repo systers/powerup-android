@@ -22,15 +22,6 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
 
-    <ListView
-        android:id="@+id/mainListView"
-        android:layout_width="@dimen/main_list_view_width"
-        android:layout_height="@dimen/main_list_view_height"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/askerImageView"
-        android:background="@android:color/white"
-        android:clickable="true"/>
-
     <Button
         android:id="@+id/continueButtonGoesToMap"
         android:layout_width="@dimen/continue_button_map_width"
@@ -54,11 +45,13 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/scenarioNameEditText"
         android:src="@drawable/marco" />
+
     <RelativeLayout
         android:id="@+id/power_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/power_bar_view_height"
         android:layout_alignParentBottom="true">
+
         <ImageView
             android:id="@+id/powerBarView"
             android:layout_width="match_parent"
@@ -130,7 +123,7 @@
         android:id="@+id/questionView"
         android:layout_width="@dimen/question_view_width"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/askerImageView"
         android:layout_alignTop="@id/askerImageView"
         android:layout_marginTop="@dimen/question_view_margin_top"
         android:background="@android:color/white"
@@ -139,6 +132,7 @@
         android:textSize="@dimen/game_text_size" />
 
     <RelativeLayout
+        android:id="@+id/avatarLayout"
         android:layout_width="@dimen/asker_image_view_width"
         android:layout_height="@dimen/asker_image_view_height"
         android:layout_above="@id/power_bar"
@@ -179,6 +173,16 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/cloth1" />
 
-
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/mainListView"
+        android:layout_width="@dimen/main_list_view_width"
+        android:layout_height="@dimen/main_list_view_height"
+        android:layout_toRightOf="@id/avatarLayout"
+        android:layout_below="@id/askerImageView"
+        android:background="@android:color/white"
+        android:clickable="true"/>
+
 </RelativeLayout>
+
