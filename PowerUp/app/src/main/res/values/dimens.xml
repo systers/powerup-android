@@ -52,6 +52,7 @@
     <dimen name="powerup_width">304dp</dimen>
     <dimen name="power_bar_view_height">75dp</dimen>
     <dimen name="game_text_size">20dp</dimen>
+    <dimen name="game_text_size_final">20dp</dimen>
     <dimen name="map_house_click_height">100dp</dimen>
     <dimen name="map_house_click_width">100dp</dimen>
     <dimen name="map_hospital_click_height">100dp</dimen>
@@ -76,5 +77,8 @@
     <item name="map_alpha" type="dimen" format="float">0.00</item>
     <dimen name="avatar_room_margin">50dp</dimen>
     <dimen name="avatar_room_continue_button">50dp</dimen>
+    <dimen name= "completed_game_textview">50dp</dimen>
+    <dimen name="completed_scene_map_margin_top">30dp</dimen>
+    <dimen name="avatar_margin_top_land">10dp</dimen>
 
 </resources>
