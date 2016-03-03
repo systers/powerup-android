@@ -33,5 +33,12 @@
     <dimen name="avatar_room_width">150dp</dimen>
     <dimen name="avatar_room_height">150dp</dimen>
     <dimen name="avatar_room_continue_button">150dp</dimen>
+    <dimen name="about_page_header_textSize">35dp</dimen>
+    <dimen name="about_page_content_textSize">30dp</dimen>
+    <dimen name="about_page_header_marginTop">100dp</dimen>
+    <dimen name="about_page_content_height">600dp</dimen>
+    <dimen name="about_page_content_width">350dp</dimen>
+
+
 
 </resources>
