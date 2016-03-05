@@ -34,5 +34,6 @@
     <dimen name="avatar_room_width">170dp</dimen>
     <dimen name="avatar_room_height">170dp</dimen>
     <dimen name="avatar_room_continue_button">120dp</dimen>
+    <dimen name="completed_scene_map_margin_bottom">430dp</dimen>
 
 </resources>
