@@ -12,6 +12,7 @@
         android:layout_height="@dimen/completed_game_height"
         android:text="@string/completed_game"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/game_text_size" />
+        android:gravity="center"
+        android:textSize="@dimen/game_text_size_final" />
 
 </LinearLayout>
