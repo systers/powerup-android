@@ -134,9 +134,7 @@ public class AvatarRoomActivity extends Activity {
 			}
 		});
 
-
-
-		clothLeft.setOnClickListener(new View.OnClickListener() {
+                clothLeft.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				cloth = (cloth - 1) % SessionHistory.clothTotalNo;
