@@ -18,5 +18,7 @@
     <string name="back_to_map">Back to Map</string>
     <string name="replay">Replay</string>
     <string name="preferences_has_previously_started">has_previously_started</string>
+    <string name="splash_screen_heading">POWER UP</string>
+    <string name="splash_screen_description">A Female Empowerment Educational Game</string>
 
 </resources>
