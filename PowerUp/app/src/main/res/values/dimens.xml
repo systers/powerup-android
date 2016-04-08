@@ -76,5 +76,32 @@
     <item name="map_alpha" type="dimen" format="float">0.00</item>
     <dimen name="avatar_room_margin">50dp</dimen>
     <dimen name="avatar_room_continue_button">50dp</dimen>
+    <dimen name="intro_screen_1_text_layout_width">200dp</dimen>
+    <dimen name="intro_screen_1_text_layout_height">236dp</dimen>
+    <dimen name="intro_screen_1_text_layout_marginTop">100dp</dimen>
+    <dimen name="intro_screen_1_text_size">20dp</dimen>
+    <dimen name="intro_screen_2_rosie_layout_height">150dp</dimen>
+    <dimen name="intro_screen_2_rosie_layout_width">110dp</dimen>
+    <dimen name="intro_screen_2_rosie_layout_marginLeft">80dp</dimen>
+    <dimen name="intro_screen_2_marco_layout_height">210dp</dimen>
+    <dimen name="intro_screen_2_marco_layout_width">180dp</dimen>
+    <dimen name="intro_screen_2_marco_layout_marginRight">10dp</dimen>
+    <dimen name="intro_screen_2_marco_layout_marginBottom">20dp</dimen>
+    <dimen name="intro_screen_2_text_layout_marginBottom">130dp</dimen>
+    <dimen name="intro_screen_2_text_layout_marginLeft">10dp</dimen>
+    <dimen name="intro_screen_2_text_size">15dp</dimen>
+    <dimen name="intro_screen_3_text_size">20dp</dimen>
+    <dimen name="intro_screen_3_text_layout_width">283dp</dimen>
+    <dimen name="intro_screen_3_text_layout_height">87dp</dimen>
+    <dimen name="intro_screen_4_text_layout_width">220dp</dimen>
+    <dimen name="intro_screen_4_text_layout_height">77dp</dimen>
+    <dimen name="intro_screen_4_text_layout_marginTop">100dp</dimen>
+    <dimen name="intro_screen_4_text_size">17dp</dimen>
+    <dimen name="intro_screen_4_text_layout_marginRight">10dp</dimen>
+    <dimen name="intro_screen_5_text_layout_width">333dp</dimen>
+    <dimen name="intro_screen_5_text_layout_height">51dp</dimen>
+    <dimen name="intro_screen_4_textView_layout_width">262dp</dimen>
+    <dimen name="intro_screen_5_textsize">17dp</dimen>
+    <dimen name="intro_screen_5_layout_marginBottom">85dp</dimen>
 
 </resources>

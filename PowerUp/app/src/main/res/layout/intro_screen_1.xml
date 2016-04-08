@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="powerup.systers.com/IntroActivity"
+    android:background="@drawable/background">
+    <TextView
+        android:layout_width="@dimen/intro_screen_1_text_layout_width"
+        android:layout_height="@dimen/intro_screen_1_text_layout_height"
+        android:text="@string/intro_screen_1_text"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="@dimen/intro_screen_1_text_layout_marginTop"
+        android:textSize="@dimen/intro_screen_1_text_size"
+        android:textColor="@android:color/black" />
+</FrameLayout>

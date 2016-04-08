@@ -18,5 +18,12 @@
     <string name="back_to_map">Back to Map</string>
     <string name="replay">Replay</string>
     <string name="preferences_has_previously_started">has_previously_started</string>
+    <string name="intro_screen_1_text">Welcome to PowerUp! Let\'s take you through a tour of our application so you can give your best!</string>
+    <string name="intro_screen_2_text">You are Rosie, and on the right is your boyfriend Marco!</string>
+    <string name="intro_screen_3_text">These are different places in your neighborhood. Each place creates a new scenario</string>
+    <string name="intro_screen_4_text">Different conversations are created and you can choose from the given answers</string>
+    <string name="intro_screen_5_text">Current emotions and powers are shown according to your answers</string>
+    <string name="intro_screen_6_text">You will earn points as you make decisions in the game. Points can be used to purchase clothes, accessories and advancing in levels</string>
+
 
 </resources>
