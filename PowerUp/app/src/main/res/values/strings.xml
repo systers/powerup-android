@@ -18,5 +18,18 @@
     <string name="back_to_map">Back to Map</string>
     <string name="replay">Replay</string>
     <string name="preferences_has_previously_started">has_previously_started</string>
+    <string name="splash_screen_heading">POWER UP</string>
+    <string name="splash_screen_description">A Female Empowerment Educational Game</string>
+    <string name="screen_1_title">Start your adventure</string>
+    <string name="screen_1_desc">Start a new game or choose your avatar</string>
+    <string name="screen_2_title">Avatar Room</string>
+    <string name="screen_2_desc">Get creative and create your own avatar</string>
+    <string name="screen_3_title">Map</string>
+    <string name="screen_3_desc">Choose the location from the map to start conversations</string>
+    <string name="screen_4_title">Sample Conversation</string>
+    <string name="screen_4_desc">Choose from a list of answers. The powers and emotion vary according to answers.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
