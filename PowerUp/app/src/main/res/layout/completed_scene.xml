@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/completed_scene_margin_right"
         android:layout_marginTop="@dimen/completed_scene_margin_top"
-        android:ems="10"
+        android:ems="@integer/ems"
         android:text="@string/completed_scene"
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
