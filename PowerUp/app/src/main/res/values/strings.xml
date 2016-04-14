@@ -18,5 +18,8 @@
     <string name="back_to_map">Back to Map</string>
     <string name="replay">Replay</string>
     <string name="preferences_has_previously_started">has_previously_started</string>
+    <string name="about_page_content">This app was built through a Syster\'s initiative, to improve the physical and mental health trends of pre-adoloescents all over the world. PowerUp teaches social, emotional learning, conflict resolution, and health skills in a fun, interactive way. Through the game, the player\'s decision making skills and trends while in critical situations are judged and alloted points.
+    Super powers can be unleashed to make the player stronger as the game proceeds.</string>
+    <string name="about_page_header">About PowerUp</string>
 
 </resources>
