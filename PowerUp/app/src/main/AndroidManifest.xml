@@ -19,27 +19,33 @@
         </activity>
         <activity
             android:name=".GameActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".AvatarRoomActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="powerup.systers.com.AvatarActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="powerup.systers.com.MapActivity"
+            android:configChanges="orientation|screenSize"
             android:launchMode="singleTop"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".CompletedSceneActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".GameOverActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
 
