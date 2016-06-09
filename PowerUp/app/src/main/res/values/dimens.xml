@@ -73,7 +73,7 @@
     <dimen name="power_bar_radius">5dp</dimen>
     <dimen name="power_bar_margin_right">5dp</dimen>
     <dimen name="power_bar_margin_top">30dp</dimen>
-    <item name="map_alpha" type="dimen" format="float">0.00</item>
+    <item name="map_alpha" format="float" type="dimen">0.00</item>
     <dimen name="avatar_room_margin">50dp</dimen>
     <dimen name="avatar_room_continue_button">50dp</dimen>
     <dimen name="simple_row_text_view_padding">10dp</dimen>
