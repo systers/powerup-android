@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import powerup.systers.com.db.DatabaseHandler;
+import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 public class DressingRoomActivity extends AppCompatActivity {
 
@@ -17,32 +18,81 @@ public class DressingRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
-        ImageView clothesImageView = (ImageView) findViewById(R.id.clothesImageView);
-        ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
-        ImageView accessoriesImageView = (ImageView) findViewById(R.id.accessoriesImageView);
 
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
 
+        ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
+        ImageView faceView = (ImageView) findViewById(R.id.faceView);
+        ImageView hairView = (ImageView) findViewById(R.id.hairView);
+        ImageView clothView = (ImageView) findViewById(R.id.clothView);
+
+        String eyeImageName = "eye";
+        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+        R.drawable ourRID = new R.drawable();
+        java.lang.reflect.Field photoNameField;
+        try {
+            photoNameField = ourRID.getClass().getField(eyeImageName);
+            eyeView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        String faceImageName = "face";
+        faceImageName = faceImageName + getmDbHandler().getAvatarFace();
+        try {
+            photoNameField = ourRID.getClass().getField(faceImageName);
+            faceView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        String clothImageName = "cloth";
+        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+        try {
+            photoNameField = ourRID.getClass().getField(clothImageName);
+            clothView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        String hairImageName = "hair";
+        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+        try {
+            photoNameField = ourRID.getClass().getField(hairImageName);
+            hairView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
         powerBarHealing.setProgress(mDbHandler.getHealing());
-        Log.i("healing", " " + mDbHandler.getHealing());
 
         IconRoundCornerProgressBar powerbarInvisibility = (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
         powerbarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
         powerbarInvisibility.setProgress(mDbHandler.getInvisibility());
-        Log.i("invis", " " + mDbHandler.getInvisibility());
 
         IconRoundCornerProgressBar powerbarStrength = (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
         powerbarStrength.setIconImageResource(R.drawable.icon_strength);
         powerbarStrength.setProgress(mDbHandler.getStrength());
-        Log.i("str", " " + mDbHandler.getStrength());
 
         IconRoundCornerProgressBar powerbarTelepathy = (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
         powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
         powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
-        Log.i("tele", " " + mDbHandler.getTelepathy());
+
+        ImageView clothesImageView = (ImageView) findViewById(R.id.clothesImageView);
+        ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
+        ImageView accessoriesImageView = (ImageView) findViewById(R.id.accessoriesImageView);
+
 
         clothesImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,5 +129,4 @@ public class DressingRoomActivity extends AppCompatActivity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
-
 }

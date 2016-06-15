@@ -5,23 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/curtains">
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:src="@drawable/character"
-        android:id="@+id/characterImageView"
-        android:layout_alignBottom="@+id/health_text_ImageView"
-        android:layout_toRightOf="@+id/ageImageView"
-        android:layout_toEndOf="@+id/ageImageView" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/karmaImageView"
+        android:layout_toEndOf="@+id/karmaImageView"
+        >
+        <ImageView
+            android:id="@+id/faceView"
+            android:layout_width="@dimen/face_view_width"
+            android:layout_height="@dimen/face_view_height"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/face1" />
+
+        <ImageView
+            android:id="@+id/eyeView"
+            android:layout_width="@dimen/eye_view_width"
+            android:layout_height="@dimen/eye_view_height"
+            android:layout_alignBottom="@id/faceView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/eye_view_margin_bottom"
+            android:src="@drawable/eye1" />
+
+        <ImageView
+            android:id="@+id/hairView"
+            android:layout_width="@dimen/hair_view_width"
+            android:layout_height="@dimen/hair_view_height"
+            android:src="@drawable/hair2"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/clothView"
+            android:layout_width="@dimen/cloth_view_width"
+            android:layout_height="@dimen/cloth_view_height"
+            android:src="@drawable/cloth1"
+            android:layout_alignTop="@+id/eyeView"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/karmaImageView"
         android:src="@drawable/karma"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/characterImageView"
-        android:layout_toStartOf="@+id/characterImageView" />
+        android:layout_alignParentTop="true" />
+
 
     <ImageView
         android:layout_width="wrap_content"
@@ -33,17 +63,17 @@
         android:layout_alignParentStart="true" />
 
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/dressing_room_variants_width"
+        android:layout_height="@dimen/dressing_room_variants_height"
         android:id="@+id/clothesImageView"
         android:src="@drawable/clothes_text"
         android:layout_alignLeft="@+id/accessoriesImageView"
         android:layout_alignStart="@+id/accessoriesImageView" />
 
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="@dimen/dressing_room_variants_width"
+        android:layout_height="@dimen/dressing_room_variants_height"
+        android:layout_marginTop="@dimen/dressing_room_variants_margin_land"
         android:id="@+id/hairImageView"
         android:src="@drawable/hair_text"
         android:layout_below="@+id/clothesImageView"
@@ -51,9 +81,9 @@
         android:layout_alignParentEnd="true" />
 
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="@dimen/dressing_room_variants_width"
+        android:layout_height="@dimen/dressing_room_variants_height"
+        android:layout_marginTop="@dimen/dressing_room_variants_margin_land"
         android:id="@+id/accessoriesImageView"
         android:src="@drawable/accessories"
         android:layout_below="@+id/hairImageView"

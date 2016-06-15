@@ -8,24 +8,25 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import powerup.systers.com.db.DatabaseHandler;
 
 public class AvatarActivity extends Activity {
 
 	private DatabaseHandler mDbHandler;
-	
+	int fromActivity;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.avatar);
 		setmDbHandler(new DatabaseHandler(this));
 		getmDbHandler().open();
+		fromActivity = getIntent().getExtras().getInt("fromActivity");
 		ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
 		ImageView faceView = (ImageView) findViewById(R.id.faceView);
 		ImageView hairView = (ImageView) findViewById(R.id.hairView);
 		ImageView clothView = (ImageView) findViewById(R.id.clothView);
 		Button continueButton = (Button) findViewById(R.id.continueButton);
-		
+		Button backButton = (Button) findViewById(R.id.backButton);
+
 		String eyeImageName = "eye";
 		eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
 		R.drawable ourRID = new R.drawable();
@@ -38,7 +39,7 @@ public class AvatarActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		String faceImageName = "face";
 		faceImageName = faceImageName + getmDbHandler().getAvatarFace();
 		try {
@@ -49,7 +50,7 @@ public class AvatarActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		String clothImageName = "cloth";
 		clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
 		try {
@@ -60,7 +61,7 @@ public class AvatarActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		String hairImageName = "hair";
 		hairImageName = hairImageName + getmDbHandler().getAvatarHair();
 		try {
@@ -74,17 +75,31 @@ public class AvatarActivity extends Activity {
 		continueButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
-                boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
-                if (!hasPreviouslyStarted) {
-                    SharedPreferences.Editor edit = prefs.edit();
-                    edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
-                    edit.apply();
-                }
-                Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
-				AvatarRoomActivity.avatarRoomInstance.finish();
+				if(fromActivity == 1) {
+					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
+					boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
+					if (!hasPreviouslyStarted) {
+						SharedPreferences.Editor edit = prefs.edit();
+						edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
+						edit.apply();
+					}
+					Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
+					AvatarRoomActivity.avatarRoomInstance.finish();
+					finish();
+					startActivityForResult(myIntent, 0);
+				}
+				else{
+					Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
+					startActivity(myIntent);
+					finish();
+				}
+			}
+		});
+
+		backButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
 				finish();
-				startActivityForResult(myIntent, 0);
 			}
 		});
 	}

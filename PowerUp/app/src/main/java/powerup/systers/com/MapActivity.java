@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
 import powerup.systers.com.db.DatabaseHandler;
 
 public class MapActivity extends Activity {
@@ -32,6 +31,15 @@ public class MapActivity extends Activity {
 
 		Button school = (Button) findViewById(R.id.SchoolButton);
 		school.setOnClickListener(onClickListener);
+
+        Button storeButton = (Button) findViewById(R.id.storeButton);
+        storeButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapActivity.this, DressingRoomActivity.class);
+                startActivity(intent);
+            }
+        });
 
 	}
 

@@ -46,4 +46,13 @@
         android:alpha="@dimen/map_alpha"
         android:text="@string/boyfriend" />
 
+    <Button
+        android:layout_width="@dimen/store_width"
+        android:layout_height="@dimen/store_height"
+        android:text="@string/store"
+        android:id="@+id/storeButton"
+        android:alpha="@dimen/map_alpha"
+        android:layout_alignTop="@+id/HouseButton"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

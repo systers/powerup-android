@@ -45,10 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/endingscreen6"
-        android:layout_marginRight="@dimen/avatar_margin"
-        android:layout_below="@+id/faceView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/backButton"
+        android:layout_toRightOf="@+id/hairView"
+        android:layout_toEndOf="@+id/hairView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,5 +59,17 @@
         android:layout_marginTop="@dimen/avatar_margin"
         android:layout_marginLeft="@dimen/avatar_margin"
         />
+
+    <Button
+        android:layout_width="@dimen/back_button_width"
+        android:layout_height="@dimen/back_button_height"
+        android:text="@string/back_button"
+        android:textAllCaps="false"
+        android:textSize="@dimen/back_button_textsize"
+        android:id="@+id/backButton"
+        android:background="@drawable/back_background"
+        android:layout_below="@+id/hairView"
+        android:layout_toLeftOf="@+id/hairView"
+        android:layout_toStartOf="@+id/hairView" />
 
 </RelativeLayout>

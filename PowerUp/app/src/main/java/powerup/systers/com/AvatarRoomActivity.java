@@ -247,6 +247,7 @@ public class AvatarRoomActivity extends Activity {
                 Log.i("Powers", mDbHandler.getHealing() + " " + mDbHandler.getInvisibility() +
                         " " + mDbHandler.getStrength());
                 Intent myIntent = new Intent(AvatarRoomActivity.this, AvatarActivity.class);
+				myIntent.putExtra("fromActivity", 1);
 				startActivityForResult(myIntent, 0);
 			}
 		});

@@ -1,30 +1,35 @@
 package powerup.systers.com;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.db.DatabaseHandler;
 
 public class SelectFeaturesActivity extends AppCompatActivity {
 
     private Integer hair = 1;
     private Integer accessory = 1;
     private Integer cloth = 1;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_features);
+        setmDbHandler(new DatabaseHandler(this));
+        getmDbHandler().open();
         final String value = getIntent().getExtras().getString("feature");
         TextView tv = (TextView)findViewById(R.id.textViewSelectFeature);
         tv.setText("Choose your " + value);
         ImageButton left = (ImageButton)findViewById(R.id.leftSelectFeature);
         ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
+        Button continueButton = (Button) findViewById(R.id.continueButton);
         final ImageView imageViewSelectFeature = (ImageView) findViewById(R.id.imageViewSelectFeature);
         if(value.equalsIgnoreCase("cloth"))
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.cloth1));
@@ -147,5 +152,29 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                 }
             }
         });
+
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getmDbHandler().open();
+                if(value.equalsIgnoreCase("cloth")){
+                    getmDbHandler().setAvatarCloth(cloth);
+                }
+                else if(value.equalsIgnoreCase("hair")){
+                    getmDbHandler().setAvatarHair(hair);
+                }
+                Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
+                myIntent.putExtra("fromActivity", 2);
+                startActivity(myIntent);
+            }
+        });
+        getmDbHandler().close();
+    }
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }

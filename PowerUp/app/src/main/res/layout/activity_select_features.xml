@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginBottom="@dimen/select_feature_image_view_margin"
-        android:hint="Choose your feature.."
+        android:hint="@string/select_feature"
         android:id="@+id/textViewSelectFeature"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
