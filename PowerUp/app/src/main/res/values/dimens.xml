@@ -102,5 +102,7 @@
     <dimen name="dressing_room_variants_margin">20dp</dimen>
     <dimen name="dressing_room_variants_margin_land">5dp</dimen>
     <dimen name="avatar_button_margin">30dp</dimen>
+    <dimen name="select_feature_coin_width">70dp</dimen>
+    <dimen name="select_feature_coin_height">60dp</dimen>
 
 </resources>

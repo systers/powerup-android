@@ -1,5 +1,6 @@
 package powerup.systers.com;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
     private Integer accessory = 1;
     private Integer cloth = 1;
     private DatabaseHandler mDbHandler;
+    public static Activity selectFeatureInstance;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_features);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
+        selectFeatureInstance = this;
         final String value = getIntent().getExtras().getString("feature");
         TextView tv = (TextView)findViewById(R.id.textViewSelectFeature);
         tv.setText("Choose your " + value);

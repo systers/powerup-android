@@ -62,12 +62,13 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/select_feature_coin_width"
+        android:layout_height="@dimen/select_feature_coin_height"
         android:text="@string/select_feature_coins"
         android:textSize="@dimen/final_avatar_text_view_text_size"
+        android:gravity="center"
         android:textColor="@color/powerup_black"
-        android:background="@color/powerup_blue_green"
+        android:background="@drawable/back_background"
         android:id="@+id/textView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

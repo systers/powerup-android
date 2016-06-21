@@ -86,12 +86,17 @@ public class AvatarActivity extends Activity {
 					Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
 					AvatarRoomActivity.avatarRoomInstance.finish();
 					finish();
+                   // myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivityForResult(myIntent, 0);
 				}
 				else{
 					Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
-					startActivity(myIntent);
-					finish();
+                    DressingRoomActivity.dressingRoomInstance.finish();
+                    SelectFeaturesActivity.selectFeatureInstance.finish();
+                    finish();
+                    //myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivityForResult(myIntent, 0);
+
 				}
 			}
 		});
