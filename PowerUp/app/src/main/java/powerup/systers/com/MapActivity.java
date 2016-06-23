@@ -6,12 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
 import powerup.systers.com.db.DatabaseHandler;
 
 public class MapActivity extends Activity {
 
     private DatabaseHandler mDbHandler;
+    private OnClickListener onClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Button b = (Button) v;
+            if (getmDbHandler().setSessionId(b.getText().toString())) {
+                startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
+            } else {
+                startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
+            }
+        }
+    };
 
     /**
      * Called when the activity is first created.
@@ -44,18 +54,6 @@ public class MapActivity extends Activity {
         });
 
     }
-
-    private OnClickListener onClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Button b = (Button) v;
-            if (getmDbHandler().setSessionId(b.getText().toString())) {
-                startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
-            } else {
-                startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
-            }
-        }
-    };
 
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;

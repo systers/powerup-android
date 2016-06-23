@@ -2,25 +2,22 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import powerup.systers.com.db.DatabaseHandler;
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
+import powerup.systers.com.db.DatabaseHandler;
 
 public class DressingRoomActivity extends AppCompatActivity {
 
-    private DatabaseHandler mDbHandler;
     public static Activity dressingRoomInstance;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
-
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         dressingRoomInstance = this;
@@ -28,7 +25,6 @@ public class DressingRoomActivity extends AppCompatActivity {
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
         ImageView clothView = (ImageView) findViewById(R.id.clothView);
-
         String eyeImageName = String.valueOf(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -100,7 +96,7 @@ public class DressingRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DressingRoomActivity.this, SelectFeaturesActivity.class);
-                intent.putExtra(String.valueOf(R.string.feature),String.valueOf(R.string.cloth));
+                intent.putExtra(String.valueOf(R.string.feature), String.valueOf(R.string.cloth));
                 startActivity(intent);
             }
         });
@@ -109,7 +105,7 @@ public class DressingRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DressingRoomActivity.this, SelectFeaturesActivity.class);
-                intent.putExtra(String.valueOf(R.string.feature),String.valueOf(R.string.hair));
+                intent.putExtra(String.valueOf(R.string.feature), String.valueOf(R.string.hair));
                 startActivity(intent);
             }
         });
@@ -118,7 +114,7 @@ public class DressingRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DressingRoomActivity.this, SelectFeaturesActivity.class);
-                intent.putExtra(String.valueOf(R.string.feature),String.valueOf(R.string.accessory));
+                intent.putExtra(String.valueOf(R.string.feature), String.valueOf(R.string.accessory));
                 startActivity(intent);
             }
         });

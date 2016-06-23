@@ -2,8 +2,8 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,12 +14,11 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class SelectFeaturesActivity extends AppCompatActivity {
 
+    public static Activity selectFeatureInstance;
     private Integer hair = 1;
     private Integer accessory = 1;
     private Integer cloth = 1;
     private DatabaseHandler mDbHandler;
-    public static Activity selectFeatureInstance;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +28,21 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         getmDbHandler().open();
         selectFeatureInstance = this;
         final String value = getIntent().getExtras().getString(String.valueOf(R.string.feature));
-        TextView tv = (TextView)findViewById(R.id.textViewSelectFeature);
+        TextView tv = (TextView) findViewById(R.id.textViewSelectFeature);
         tv.setText(R.string.select_feature_title + value);
-        ImageButton left = (ImageButton)findViewById(R.id.leftSelectFeature);
+        ImageButton left = (ImageButton) findViewById(R.id.leftSelectFeature);
         ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
         Button continueButton = (Button) findViewById(R.id.continueButton);
         final ImageView imageViewSelectFeature = (ImageView) findViewById(R.id.imageViewSelectFeature);
-        if(value.equalsIgnoreCase(String.valueOf(R.string.cloth)))
+        if (value.equalsIgnoreCase(String.valueOf(R.string.cloth)))
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.cloth1));
-        else if(value.equalsIgnoreCase(String.valueOf(R.string.accessory)))
+        else if (value.equalsIgnoreCase(String.valueOf(R.string.accessory)))
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.accessory1));
 
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(value.equalsIgnoreCase(String.valueOf(R.string.cloth))){
+                if (value.equalsIgnoreCase(String.valueOf(R.string.cloth))) {
                     cloth = (cloth - 1) % SessionHistory.clothTotalNo;
                     if (cloth == 0) {
                         cloth = SessionHistory.clothTotalNo;
@@ -61,8 +60,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else if(value.equalsIgnoreCase(String.valueOf(R.string.hair))){
+                } else if (value.equalsIgnoreCase(String.valueOf(R.string.hair))) {
                     hair = (hair - 1) % SessionHistory.hairTotalNo;
                     if (hair == 0) {
                         hair = SessionHistory.hairTotalNo;
@@ -80,8 +78,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else if(value.equalsIgnoreCase(String.valueOf(R.string.accessory))){
+                } else if (value.equalsIgnoreCase(String.valueOf(R.string.accessory))) {
                     accessory = (accessory - 1) % SessionHistory.accessoryTotalNo;
                     if (accessory == 0) {
                         accessory = SessionHistory.hairTotalNo;
@@ -106,7 +103,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(value.equalsIgnoreCase(String.valueOf(R.string.cloth))){
+                if (value.equalsIgnoreCase(String.valueOf(R.string.cloth))) {
                     cloth = (cloth + SessionHistory.clothTotalNo)
                             % SessionHistory.clothTotalNo + 1;
                     String clothImageName = String.valueOf(R.string.cloth);
@@ -121,8 +118,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else if(value.equalsIgnoreCase(String.valueOf(R.string.hair))){
+                } else if (value.equalsIgnoreCase(String.valueOf(R.string.hair))) {
                     hair = (hair + SessionHistory.hairTotalNo)
                             % SessionHistory.hairTotalNo + 1;
                     String hairImageName = String.valueOf(R.string.hair);
@@ -137,8 +133,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else if(value.equalsIgnoreCase(String.valueOf(R.string.accessory))){
+                } else if (value.equalsIgnoreCase(String.valueOf(R.string.accessory))) {
                     accessory = (accessory + SessionHistory.accessoryTotalNo)
                             % SessionHistory.accessoryTotalNo + 1;
                     String accessoryImageName = String.valueOf(R.string.accessory);
@@ -161,10 +156,9 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getmDbHandler().open();
-                if(value.equalsIgnoreCase(String.valueOf(R.string.cloth))){
+                if (value.equalsIgnoreCase(String.valueOf(R.string.cloth))) {
                     getmDbHandler().setAvatarCloth(cloth);
-                }
-                else if(value.equalsIgnoreCase(String.valueOf(R.string.hair))){
+                } else if (value.equalsIgnoreCase(String.valueOf(R.string.hair))) {
                     getmDbHandler().setAvatarHair(hair);
                 }
                 Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
@@ -174,6 +168,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         });
         getmDbHandler().close();
     }
+
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
