@@ -57,7 +57,7 @@ public class AvatarRoomActivity extends Activity {
 					eye = SessionHistory.eyesTotalNo;
 				}
 
-				String eyeImageName = "eye";
+				String eyeImageName = String.valueOf(R.string.eye);
 				eyeImageName = eyeImageName + eye.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -77,7 +77,7 @@ public class AvatarRoomActivity extends Activity {
 			public void onClick(View v) {
 				eye = (eye + SessionHistory.eyesTotalNo)
 						% SessionHistory.eyesTotalNo + 1;
-				String eyeImageName = "eye";
+				String eyeImageName = String.valueOf(R.string.eye);
 				eyeImageName = eyeImageName + eye.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -100,7 +100,7 @@ public class AvatarRoomActivity extends Activity {
 					face = SessionHistory.faceTotalNo;
 				}
 
-				String faceImageName = "face";
+				String faceImageName = String.valueOf(R.string.face);
 				faceImageName = faceImageName + face.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -120,7 +120,7 @@ public class AvatarRoomActivity extends Activity {
 			public void onClick(View v) {
 				face = (face + SessionHistory.faceTotalNo)
 						% SessionHistory.faceTotalNo + 1;
-				String faceImageName = "face";
+				String faceImageName = String.valueOf(R.string.face);
 				faceImageName = faceImageName + face.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -143,7 +143,7 @@ public class AvatarRoomActivity extends Activity {
 					cloth = SessionHistory.clothTotalNo;
 				}
 
-				String clothImageName = "cloth";
+				String clothImageName = String.valueOf(R.string.cloth);
 				clothImageName = clothImageName + cloth.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -163,7 +163,7 @@ public class AvatarRoomActivity extends Activity {
 			public void onClick(View v) {
 				cloth = (cloth + SessionHistory.clothTotalNo)
 						% SessionHistory.clothTotalNo + 1;
-				String clothImageName = "cloth";
+				String clothImageName = String.valueOf(R.string.cloth);
 				clothImageName = clothImageName + cloth.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -186,7 +186,7 @@ public class AvatarRoomActivity extends Activity {
 					hair = SessionHistory.hairTotalNo;
 				}
 
-				String hairImageName = "hair";
+				String hairImageName = String.valueOf(R.string.hair);
 				hairImageName = hairImageName + hair.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -206,7 +206,7 @@ public class AvatarRoomActivity extends Activity {
 			public void onClick(View v) {
 				hair = (hair + SessionHistory.hairTotalNo)
 						% SessionHistory.hairTotalNo + 1;
-				String hairImageName = "hair";
+				String hairImageName = String.valueOf(R.string.hair);
 				hairImageName = hairImageName + hair.toString();
 				R.drawable ourRID = new R.drawable();
 				java.lang.reflect.Field photoNameField;
@@ -247,7 +247,7 @@ public class AvatarRoomActivity extends Activity {
                 Log.i("Powers", mDbHandler.getHealing() + " " + mDbHandler.getInvisibility() +
                         " " + mDbHandler.getStrength());
                 Intent myIntent = new Intent(AvatarRoomActivity.this, AvatarActivity.class);
-				myIntent.putExtra("fromActivity", 1);
+				myIntent.putExtra(String.valueOf(R.string.from_activity), 1);
 				startActivityForResult(myIntent, 0);
 			}
 		});

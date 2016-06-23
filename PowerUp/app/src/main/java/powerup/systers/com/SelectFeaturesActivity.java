@@ -28,28 +28,28 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         selectFeatureInstance = this;
-        final String value = getIntent().getExtras().getString("feature");
+        final String value = getIntent().getExtras().getString(String.valueOf(R.string.feature));
         TextView tv = (TextView)findViewById(R.id.textViewSelectFeature);
-        tv.setText("Choose your " + value);
+        tv.setText(R.string.select_feature_title + value);
         ImageButton left = (ImageButton)findViewById(R.id.leftSelectFeature);
         ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
         Button continueButton = (Button) findViewById(R.id.continueButton);
         final ImageView imageViewSelectFeature = (ImageView) findViewById(R.id.imageViewSelectFeature);
-        if(value.equalsIgnoreCase("cloth"))
+        if(value.equalsIgnoreCase(String.valueOf(R.string.cloth)))
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.cloth1));
-        else if(value.equalsIgnoreCase("accessory"))
+        else if(value.equalsIgnoreCase(String.valueOf(R.string.accessory)))
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.accessory1));
 
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(value.equalsIgnoreCase("cloth")){
+                if(value.equalsIgnoreCase(String.valueOf(R.string.cloth))){
                     cloth = (cloth - 1) % SessionHistory.clothTotalNo;
                     if (cloth == 0) {
                         cloth = SessionHistory.clothTotalNo;
                     }
 
-                    String clothImageName = "cloth";
+                    String clothImageName = String.valueOf(R.string.cloth);
                     clothImageName = clothImageName + cloth.toString();
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
@@ -62,13 +62,13 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                else if(value.equalsIgnoreCase("hair")){
+                else if(value.equalsIgnoreCase(String.valueOf(R.string.hair))){
                     hair = (hair - 1) % SessionHistory.hairTotalNo;
                     if (hair == 0) {
                         hair = SessionHistory.hairTotalNo;
                     }
 
-                    String hairImageName = "hair";
+                    String hairImageName = String.valueOf(R.string.hair);
                     hairImageName = hairImageName + hair.toString();
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
@@ -81,13 +81,13 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                else if(value.equalsIgnoreCase("accessory")){
+                else if(value.equalsIgnoreCase(String.valueOf(R.string.accessory))){
                     accessory = (accessory - 1) % SessionHistory.accessoryTotalNo;
                     if (accessory == 0) {
                         accessory = SessionHistory.hairTotalNo;
                     }
 
-                    String accessoryImageName = "accessory";
+                    String accessoryImageName = String.valueOf(R.string.accessory);
                     accessoryImageName = accessoryImageName + accessory.toString();
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
@@ -106,10 +106,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(value.equalsIgnoreCase("cloth")){
+                if(value.equalsIgnoreCase(String.valueOf(R.string.cloth))){
                     cloth = (cloth + SessionHistory.clothTotalNo)
                             % SessionHistory.clothTotalNo + 1;
-                    String clothImageName = "cloth";
+                    String clothImageName = String.valueOf(R.string.cloth);
                     clothImageName = clothImageName + cloth.toString();
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
@@ -122,10 +122,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                else if(value.equalsIgnoreCase("hair")){
+                else if(value.equalsIgnoreCase(String.valueOf(R.string.hair))){
                     hair = (hair + SessionHistory.hairTotalNo)
                             % SessionHistory.hairTotalNo + 1;
-                    String hairImageName = "hair";
+                    String hairImageName = String.valueOf(R.string.hair);
                     hairImageName = hairImageName + hair.toString();
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
@@ -138,10 +138,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                else if(value.equalsIgnoreCase("accessory")){
+                else if(value.equalsIgnoreCase(String.valueOf(R.string.accessory))){
                     accessory = (accessory + SessionHistory.accessoryTotalNo)
                             % SessionHistory.accessoryTotalNo + 1;
-                    String accessoryImageName = "accessory";
+                    String accessoryImageName = String.valueOf(R.string.accessory);
                     accessoryImageName = accessoryImageName + accessory.toString();
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
@@ -161,14 +161,14 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getmDbHandler().open();
-                if(value.equalsIgnoreCase("cloth")){
+                if(value.equalsIgnoreCase(String.valueOf(R.string.cloth))){
                     getmDbHandler().setAvatarCloth(cloth);
                 }
-                else if(value.equalsIgnoreCase("hair")){
+                else if(value.equalsIgnoreCase(String.valueOf(R.string.hair))){
                     getmDbHandler().setAvatarHair(hair);
                 }
                 Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
-                myIntent.putExtra("fromActivity", 2);
+                myIntent.putExtra(String.valueOf(R.string.feature), 2);
                 startActivity(myIntent);
             }
         });

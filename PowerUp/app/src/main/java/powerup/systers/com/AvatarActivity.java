@@ -19,7 +19,7 @@ public class AvatarActivity extends Activity {
 		setContentView(R.layout.avatar);
 		setmDbHandler(new DatabaseHandler(this));
 		getmDbHandler().open();
-		fromActivity = getIntent().getExtras().getInt("fromActivity");
+		fromActivity = getIntent().getExtras().getInt(String.valueOf(R.string.from_activity));
 		ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
 		ImageView faceView = (ImageView) findViewById(R.id.faceView);
 		ImageView hairView = (ImageView) findViewById(R.id.hairView);
@@ -27,7 +27,7 @@ public class AvatarActivity extends Activity {
 		Button continueButton = (Button) findViewById(R.id.continueButton);
 		Button backButton = (Button) findViewById(R.id.backButton);
 
-		String eyeImageName = "eye";
+		String eyeImageName = String.valueOf(R.string.eye);
 		eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
 		R.drawable ourRID = new R.drawable();
 		java.lang.reflect.Field photoNameField;
@@ -40,7 +40,7 @@ public class AvatarActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		String faceImageName = "face";
+		String faceImageName = String.valueOf(R.string.face);
 		faceImageName = faceImageName + getmDbHandler().getAvatarFace();
 		try {
 			photoNameField = ourRID.getClass().getField(faceImageName);
@@ -51,7 +51,7 @@ public class AvatarActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		String clothImageName = "cloth";
+		String clothImageName = String.valueOf(R.string.cloth);
 		clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
 		try {
 			photoNameField = ourRID.getClass().getField(clothImageName);
@@ -62,7 +62,7 @@ public class AvatarActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		String hairImageName = "hair";
+		String hairImageName = String.valueOf(R.string.hair);
 		hairImageName = hairImageName + getmDbHandler().getAvatarHair();
 		try {
 			photoNameField = ourRID.getClass().getField(hairImageName);
@@ -83,20 +83,15 @@ public class AvatarActivity extends Activity {
 						edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
 						edit.apply();
 					}
-					Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
 					AvatarRoomActivity.avatarRoomInstance.finish();
 					finish();
-                   // myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivityForResult(myIntent, 0);
+					startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
 				}
 				else{
-					Intent myIntent = new Intent(AvatarActivity.this, MapActivity.class);
                     DressingRoomActivity.dressingRoomInstance.finish();
                     SelectFeaturesActivity.selectFeatureInstance.finish();
                     finish();
-                    //myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivityForResult(myIntent, 0);
-
+                    startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
 				}
 			}
 		});
