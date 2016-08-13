@@ -46,11 +46,19 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/karmaImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/karmaImageView"
-        android:src="@drawable/karma"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:src="@drawable/karma_text" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/karmaPoints"
+        android:layout_marginLeft="@dimen/avatar_button_margin"
+        android:layout_marginTop="@dimen/avatar_button_margin"
+        android:textColor="@color/powerup_black"
+        android:textSize="@dimen/back_button_textsize"/>
 
 
     <ImageView

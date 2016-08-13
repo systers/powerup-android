@@ -191,4 +191,27 @@
 
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewPoints"
+        android:textColor="@color/powerup_black"
+        android:textSize="20sp"
+        android:layout_above="@+id/power_bar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points: "
+        android:textSize="20sp"
+        android:textColor="@color/powerup_black"
+        android:id="@+id/textView"
+        android:layout_above="@+id/power_bar"
+        android:layout_toLeftOf="@+id/textViewPoints"
+        android:layout_toStartOf="@+id/textViewPoints"
+        android:visibility="gone"/>
 </RelativeLayout>

@@ -5,39 +5,52 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
-
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
-public class DressingRoomActivity extends AppCompatActivity {
+public class ScenarioOverActivity extends AppCompatActivity {
 
-    public static Activity dressingRoomInstance;
     private DatabaseHandler mDbHandler;
+    public static Activity scenarioOverActivityInstance;
+    public static int scenarioActivityDone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dressing_room);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
-        dressingRoomInstance = this;
-        ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
-        ImageView faceView = (ImageView) findViewById(R.id.faceView);
-        ImageView hairView = (ImageView) findViewById(R.id.hairView);
-        ImageView clothView = (ImageView) findViewById(R.id.clothView);
-        TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
-        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        setContentView(R.layout.activity_scenario_over);
+        scenarioOverActivityInstance = this;
+        scenarioActivityDone = 1;
+        ImageButton replayButton = (ImageButton) findViewById(R.id.replayButton);
+        ImageButton continueButton = (ImageButton) findViewById(R.id.continueButton);
+        Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(ScenarioOverActivity.this, StartActivity.class));
+            }
+        });
+        TextView scenarioTextView = (TextView)findViewById(R.id.scenarioTextView);
+        TextView karmaPoints = (TextView)findViewById(R.id.karmaPoints);
+        ImageView eyeImageView = (ImageView) findViewById(R.id.eyeView);
+        ImageView faceImageView = (ImageView) findViewById(R.id.faceView);
+        ImageView hairImageView = (ImageView) findViewById(R.id.hairView);
+        ImageView clothImageView = (ImageView) findViewById(R.id.clothView);
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
         try {
             photoNameField = ourRID.getClass().getField(eyeImageName);
-            eyeView.setImageResource(photoNameField.getInt(ourRID));
+            eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -48,7 +61,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         faceImageName = faceImageName + getmDbHandler().getAvatarFace();
         try {
             photoNameField = ourRID.getClass().getField(faceImageName);
-            faceView.setImageResource(photoNameField.getInt(ourRID));
+            faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -59,7 +72,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
         try {
             photoNameField = ourRID.getClass().getField(clothImageName);
-            clothView.setImageResource(photoNameField.getInt(ourRID));
+            clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -70,7 +83,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         hairImageName = hairImageName + getmDbHandler().getAvatarHair();
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
-            hairView.setImageResource(photoNameField.getInt(ourRID));
+            hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -79,6 +92,7 @@ public class DressingRoomActivity extends AppCompatActivity {
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
+        powerBarHealing.setIconBackgroundColor(R.color.powerup_purple_light);
         powerBarHealing.setProgress(mDbHandler.getHealing());
 
         IconRoundCornerProgressBar powerbarInvisibility = (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
@@ -93,35 +107,13 @@ public class DressingRoomActivity extends AppCompatActivity {
         powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
         powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
 
-        ImageView clothesImageView = (ImageView) findViewById(R.id.clothesImageView);
-        ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
-        ImageView accessoriesImageView = (ImageView) findViewById(R.id.accessoriesImageView);
-
-
-        clothesImageView.setOnClickListener(new View.OnClickListener() {
+        scenarioTextView.setText("Current Scene: " + getIntent().getExtras().getString("Scene"));
+        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DressingRoomActivity.this, SelectFeaturesActivity.class);
-                intent.putExtra(getResources().getString(R.string.feature), getResources().getString(R.string.cloth));
-                startActivity(intent);
-            }
-        });
-
-        hairImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DressingRoomActivity.this, SelectFeaturesActivity.class);
-                intent.putExtra(getResources().getString(R.string.feature), getResources().getString(R.string.hair));
-                startActivity(intent);
-            }
-        });
-
-        accessoriesImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DressingRoomActivity.this, SelectFeaturesActivity.class);
-                intent.putExtra(getResources().getString(R.string.feature), getResources().getString(R.string.accessory));
-                startActivity(intent);
+                GameActivity.gameActivityInstance.finish();
+                startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
     }

@@ -242,6 +242,10 @@ public class AvatarRoomActivity extends Activity {
                 getmDbHandler().setAvatarFace(face);
                 getmDbHandler().setAvatarHair(hair);
                 getmDbHandler().setAvatarCloth(cloth);
+                getmDbHandler().setAvatarBag(0);
+                getmDbHandler().setAvatarGlasses(0);
+                getmDbHandler().setAvatarHat(0);
+                getmDbHandler().setAvatarNecklace(0);
                 Random r = new Random();
                 Integer healing = r.nextInt(101 - 1) + 1;
                 getmDbHandler().setHealing(healing);

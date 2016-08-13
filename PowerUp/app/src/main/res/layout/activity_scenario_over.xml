@@ -1,32 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/curtains"
-    android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/karmaImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/karma_text" />
-
-    <TextView
-        android:id="@+id/karmaPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/avatar_button_margin"
-        android:layout_marginTop="@dimen/avatar_button_margin"
-        android:hint="points"
-        android:textColor="@color/powerup_black"
-        android:textSize="@dimen/back_button_textsize" />
+    android:background="@drawable/background"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="powerup.systers.com.ScenarioOverActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ageImageView"
         android:layout_centerVertical="true">
 
         <ImageView
@@ -61,44 +49,14 @@
             android:src="@drawable/cloth1" />
     </RelativeLayout>
 
-
-    <ImageView
-        android:id="@+id/ageImageView"
+    <Button
+        android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/power_bar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/age" />
-
-    <ImageView
-        android:id="@+id/clothesImageView"
-        android:layout_width="@dimen/dressing_room_variants_width"
-        android:layout_height="@dimen/dressing_room_variants_height"
-        android:layout_alignLeft="@+id/accessoriesImageView"
-        android:layout_alignStart="@+id/accessoriesImageView"
-        android:src="@drawable/clothes_text" />
-
-    <ImageView
-        android:id="@+id/hairImageView"
-        android:layout_width="@dimen/dressing_room_variants_width"
-        android:layout_height="@dimen/dressing_room_variants_height"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/clothesImageView"
-        android:layout_marginTop="@dimen/dressing_room_variants_margin"
-        android:src="@drawable/hair_text" />
-
-    <ImageView
-        android:id="@+id/accessoriesImageView"
-        android:layout_width="@dimen/dressing_room_variants_width"
-        android:layout_height="@dimen/dressing_room_variants_height"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/hairImageView"
-        android:layout_marginTop="@dimen/dressing_room_variants_margin"
-        android:src="@drawable/accessories" />
-
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ic_launcher" />
 
     <ImageView
         android:id="@+id/health_text_ImageView"
@@ -185,4 +143,49 @@
             app:rcRadius="@dimen/power_bar_radius" />
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/scenarioTextView"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/relativeLayout3"
+        android:layout_toRightOf="@+id/relativeLayout3"
+        android:text="Scenario description"
+        android:textColor="@color/powerup_black"
+        android:textSize="@dimen/back_button_textsize" />
+
+    <ImageButton
+        android:id="@+id/replayButton"
+        android:layout_width="@dimen/linear_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scenarioTextView"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/replay_text" />
+
+    <ImageButton
+        android:id="@+id/continueButton"
+        android:layout_width="@dimen/linear_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/replayButton"
+        android:layout_toEndOf="@+id/replayButton"
+        android:layout_toRightOf="@+id/replayButton"
+        android:background="@drawable/endingscreen6" />
+
+    <ImageView
+        android:id="@+id/karmaImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/karma_text" />
+
+    <TextView
+        android:id="@+id/karmaPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/avatar_button_margin"
+        android:layout_marginTop="@dimen/avatar_button_margin"
+        android:hint="points"
+        android:textColor="@color/powerup_black"
+        android:textSize="@dimen/back_button_textsize" />
 </RelativeLayout>

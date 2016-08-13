@@ -54,6 +54,10 @@ public abstract class AbstractDbAdapter {
             values.put(PowerUpContract.AvatarEntry.COLUMN_CLOTHES, 1);
             values.put(PowerUpContract.AvatarEntry.COLUMN_HAIR, 1);
             values.put(PowerUpContract.AvatarEntry.COLUMN_EYES, 1);
+            values.put(PowerUpContract.AvatarEntry.COLUMN_HAT, 0);
+            values.put(PowerUpContract.AvatarEntry.COLUMN_GLASSES, 0);
+            values.put(PowerUpContract.AvatarEntry.COLUMN_BAG, 0);
+            values.put(PowerUpContract.AvatarEntry.COLUMN_NECKLACE, 0);
             db.insert(PowerUpContract.AvatarEntry.TABLE_NAME, null, values);
         }
 
@@ -264,7 +268,7 @@ public abstract class AbstractDbAdapter {
                     PowerUpContract.PointEntry.COLUMN_STRENGTH + " INTEGER," +
                     PowerUpContract.PointEntry.COLUMN_INVISIBILITY + " INTEGER, " +
                     PowerUpContract.PointEntry.COLUMN_HEALING + " INTEGER, " +
-                    PowerUpContract.PointEntry.COLUMN_TELEPATHY + " INTEGER" +
+                    PowerUpContract.PointEntry.COLUMN_TELEPATHY + " INTEGER, " +
                     PowerUpContract.PointEntry.COLUMN_USER_POINTS + " INTEGER" +
                     ")";
 
@@ -273,7 +277,11 @@ public abstract class AbstractDbAdapter {
                     PowerUpContract.AvatarEntry.COLUMN_FACE + " INTEGER, " +
                     PowerUpContract.AvatarEntry.COLUMN_CLOTHES + " INTEGER, " +
                     PowerUpContract.AvatarEntry.COLUMN_HAIR + " INTEGER, " +
-                    PowerUpContract.AvatarEntry.COLUMN_EYES + " INTEGER" +
+                    PowerUpContract.AvatarEntry.COLUMN_EYES + " INTEGER, " +
+                    PowerUpContract.AvatarEntry.COLUMN_HAT + " INTEGER, " +
+                    PowerUpContract.AvatarEntry.COLUMN_BAG + " INTEGER, " +
+                    PowerUpContract.AvatarEntry.COLUMN_GLASSES + " INTEGER, " +
+                    PowerUpContract.AvatarEntry.COLUMN_NECKLACE + " INTEGER" +
                     ")";
 
             String CREATE_CLOTHES_TABLE = " CREATE TABLE " + PowerUpContract.ClothesEntry.TABLE_NAME + "(" +
@@ -325,6 +333,10 @@ public abstract class AbstractDbAdapter {
             db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.AnswerEntry.TABLE_NAME);
             db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.ScenarioEntry.TABLE_NAME);
             db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.PointEntry.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.AvatarEntry.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.ClothesEntry.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.HairEntry.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + PowerUpContract.AccessoryEntry.TABLE_NAME);
             onCreate(db);
         }
     }
