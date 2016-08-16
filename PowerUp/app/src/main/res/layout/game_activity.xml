@@ -139,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/askerImageView"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/game_activity_question_view_layout_margin_left"
         android:layout_marginTop="@dimen/question_view_margin_top"
         android:background="@android:color/transparent"
         android:ems="@integer/text_view_ems"

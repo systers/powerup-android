@@ -138,5 +138,12 @@
     <dimen name="select_feature_tv_paid_top_margin_small">30dp</dimen>
     <dimen name="select_feature_tv_paid_left_margin_small">10dp</dimen>
     <dimen name="select_feature_tv_paid_size_small">21sp</dimen>
+    <dimen name="avatar_hair_view_layout_margin_top">180dp</dimen>
+    <dimen name="game_activity_question_view_layout_margin_left">20dp</dimen>
+
+    <dimen name="gamemap_home_button_layout_width">50dp</dimen>
+    <dimen name="gamemap_home_button_layout_height">70dp</dimen>
+
+    <dimen name="pgame_question_view_layout_margin_left">20dp</dimen>
 
 </resources>
