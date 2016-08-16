@@ -37,5 +37,13 @@
     <dimen name="avatar_room_width">80dp</dimen>
     <dimen name="avatar_room_height">80dp</dimen>
     <dimen name="avatar_room_continue_button_land">30dp</dimen>
+    <dimen name="avatar_face_view_layout_margin_top">95dp</dimen>
+    <dimen name="avatar_room_linearlayout5_layout_margin_top">50dp</dimen>
+    <dimen name="game_activity_scenarioname_edittext_layout_margin_left">20dp</dimen>
+    <dimen name="game_activity_mainlist_view_layout_width">280dp</dimen>
+    <dimen name="game_activity_asker_imageview_layout_height">300dp</dimen>
+    <dimen name="game_activity_asker_imageview_layout_width">180dp</dimen>
+    <dimen name="game_activity_question_view_layout_width">400dp</dimen>
+    <dimen name="game_activity_relativelayout_layout_margin_top">10dp</dimen>
 
 </resources>
