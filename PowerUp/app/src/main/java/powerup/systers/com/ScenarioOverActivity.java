@@ -116,6 +116,12 @@ public class ScenarioOverActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        GameActivity.gameActivityInstance.finish();
+    }
+
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
