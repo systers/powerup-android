@@ -5,4 +5,11 @@
     <color name="powerup_yellow">#edf064</color>
     <color name="powerup_blue_green">#12bea2</color>
     <color name="powerup_black">#000000</color>
+
+    <color name="powerup_blue_shape">#80d5ea</color>
+    <color name="powerup_green_shape">#80ea97</color>
+    <color name="powerup_pink_shape">#f779ed</color>
+    <color name="powerup_purple_shape">#ad72f4</color>
+    <color name="powerup_yellow_shape">#e2e261</color>
+
 </resources>

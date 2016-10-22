@@ -146,4 +146,10 @@
 
     <dimen name="pgame_question_view_layout_margin_left">20dp</dimen>
 
+    <dimen name="round_rect_blue_shape_radius">15dp</dimen>
+    <dimen name="round_rect_green_shape_radius">15dp</dimen>
+    <dimen name="round_rect_pink_shape_radius">15dp</dimen>
+    <dimen name="round_rect_purple_shape_radius">15dp</dimen>
+    <dimen name="round_rect_yellow_shape_radius">15dp</dimen>
+
 </resources>
