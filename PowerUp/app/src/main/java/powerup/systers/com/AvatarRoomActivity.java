@@ -247,7 +247,10 @@ public class AvatarRoomActivity extends Activity {
                 getmDbHandler().setAvatarHat(0);
                 getmDbHandler().setAvatarNecklace(0);
                 getmDbHandler().updateComplete();//set all the complete scenario fields back to 0
+<<<<<<< HEAD
                 getmDbHandler().updateReplayed();//set all the replayed fields back to 0
+=======
+>>>>>>> eb0cf3a00ef33db2750291151047b62ce1fe3507
                 SessionHistory.totalPoints=0;    //reset the points stored
                 SessionHistory.currSessionID=1;  //make the starting session 1 again
                 SessionHistory.currScenePoints=0;//make the initial points as zero for new user

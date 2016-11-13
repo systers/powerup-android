@@ -467,12 +467,15 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0";
         mDb.execSQL(query);
     }
+<<<<<<< HEAD
     public void updateReplayed()
     {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0";
         mDb.execSQL(query);
     }
+=======
+>>>>>>> eb0cf3a00ef33db2750291151047b62ce1fe3507
     public void resetPurchase()
     {
         String query = "UPDATE " + PowerUpContract.ClothesEntry.TABLE_NAME +
@@ -487,4 +490,8 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " SET " + PowerUpContract.AccessoryEntry.COLUMN_PURCHASED + " = 0";
         mDb.execSQL(query3);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> eb0cf3a00ef33db2750291151047b62ce1fe3507
