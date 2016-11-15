@@ -24,8 +24,10 @@
     <dimen name="completed_scene_map_margin_right">25dp</dimen>
     <dimen name="completed_scene_text_land_margin_top">53dp</dimen>
     <dimen name="completed_scene_text_land_width">300dp</dimen>
+    <dimen name="completed_scene_text_margin_top">107dp</dimen>
     <dimen name="completed_scene_continue_button_map_land_margin_bottom">50dp</dimen>
     <dimen name="completed_scene_continue_button_map_land_margin_right">90dp</dimen>
+    <dimen name="completed_scene_continue_button_map_margin_bottom">69dp</dimen>
     <dimen name="completed_scene_store_button_land_margin_left">145dp</dimen>
     <dimen name="continue_button_map_width">30dp</dimen>
     <dimen name="continue_button_map_height">30dp</dimen>

@@ -20,7 +20,7 @@
         android:id="@+id/ContinueButtonMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/completed_scene_continue_button_map_land_margin_bottom"
         android:text="@string/map"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/completed_scene_textView"
