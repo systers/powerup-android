@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +115,10 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
+                        if (answers.get(position).getPoints() == 0 &&
+                                !answers.get(position).getAnswerDescription().equals("Returns Home")) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.warning_inappropriate), Toast.LENGTH_LONG).show();
+                        }
                         if (answers.get(position).getNextQuestionID() > 0) {
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
