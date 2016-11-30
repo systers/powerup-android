@@ -118,21 +118,19 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
+                        // Inappropriate decision is selected
                         if (answers.get(position).getPoints() == 0 &&
                                 !answers.get(position).getAnswerDescription().equals("Returns Home")) {
-                            Snackbar s = Snackbar
+                            Snackbar snackbar = Snackbar
                                     .make(findViewById(R.id.GameLayout),
                                             getResources().getString(R.string.warning_inappropriate),
                                             Snackbar.LENGTH_LONG)
-                                    //show "warning" in red
                                     .setAction("WARNING", new View.OnClickListener() { @Override public void onClick(View v) {}})
                                     .setActionTextColor(Color.RED);
-                            TextView snackbarText = (TextView) s.getView().findViewById(android.support.design.R.id.snackbar_text);
+                            TextView snackbarText = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
                             snackbarText.setTextColor(Color.WHITE);
-                            s.show();
-                            //Toast.makeText(getApplicationContext(), getResources().getString(R.string.warning_inappropriate), Toast.LENGTH_LONG).show();
+                            snackbar.show();
                         }
-                        //don't go to next question if inappropriate answer is selected
                         else if (answers.get(position).getNextQuestionID() > 0) {
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
