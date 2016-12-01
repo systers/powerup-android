@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,7 @@ public class GameActivity extends Activity {
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
     private static boolean isStateChanged = false;
+    private Answer lastAnswer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class GameActivity extends Activity {
         listAdapter = new ArrayAdapter<>(this, R.layout.simplerow,
                 new ArrayList<String>());
         answers = new ArrayList<>();
+        lastAnswer = null;
         goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
         replay = (Button) findViewById(R.id.redoButton);
         ImageView eyeImageView = (ImageView) findViewById(R.id.eyeImageView);
@@ -118,7 +121,15 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
-                        if (answers.get(position).getNextQuestionID() > 0) {
+
+                        if(answers.get(position).getPoints() == 0
+                                && !answers.get(position).getAnswerDescription().equals(getString(R.string.return_home_answer))
+                                && !(lastAnswer != null && lastAnswer.equals(answers.get(position)))) {
+                            // display a Snackbar when an inappropriate answer is chosen (only the first time it is chosen)
+                            answers.get(position);
+                            Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_inappropriate_choice_selected, Snackbar.LENGTH_SHORT).show();
+                            lastAnswer = answers.get(position);
+                        } else if (answers.get(position).getNextQuestionID() > 0) {
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
                                     .getNextQuestionID();
