@@ -3,7 +3,9 @@ package powerup.systers.com;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +35,7 @@ public class GameActivity extends Activity {
     private Button replay;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
+    private boolean isPrevInappropriate = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,14 +116,30 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
-                        if (answers.get(position).getNextQuestionID() > 0) {
+                        // Inappropriate decision is selected
+                        if (!isPrevInappropriate && answers.get(position).getPoints() == 0 &&
+                                !answers.get(position).getAnswerDescription().equals("Returns Home")) {
+                            isPrevInappropriate = true;
+                            Snackbar snackbar = Snackbar
+                                    .make(findViewById(R.id.GameLayout),
+                                            getResources().getString(R.string.warning_inappropriate),
+                                            Snackbar.LENGTH_LONG)
+                                    .setAction("WARNING", new View.OnClickListener() { @Override public void onClick(View v) {}})
+                                    .setActionTextColor(Color.RED);
+                            TextView snackbarText = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+                            snackbarText.setTextColor(Color.WHITE);
+                            snackbar.show();
+                        }
+                        else if (answers.get(position).getNextQuestionID() > 0) {
                             // Next Question
+                            isPrevInappropriate = false;
                             SessionHistory.currQID = answers.get(position)
                                     .getNextQuestionID();
                             updatePoints(position);
                             updateQA();
 
                         } else {
+                            isPrevInappropriate = false;
                             SessionHistory.currSessionID = scene
                                     .getNextScenarioID();
                             if (SessionHistory.currSessionID == -1) {
