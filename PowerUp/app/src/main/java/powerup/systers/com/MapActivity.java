@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
 import powerup.systers.com.db.DatabaseHandler;
 
 public class MapActivity extends Activity {
@@ -73,11 +72,9 @@ public class MapActivity extends Activity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
-
     boolean text = false;
 
     public void showText(View v) {
-
         final TextView houset = (TextView) findViewById(R.id.houset);
         final TextView hospitalt = (TextView) findViewById(R.id.hospitalt);
         final TextView schoolt = (TextView) findViewById(R.id.schoolt);
@@ -85,29 +82,19 @@ public class MapActivity extends Activity {
         final TextView storet = (TextView) findViewById(R.id.storet);
 
         if (text == true) {
-
             text = false;
-
             houset.setVisibility(View.VISIBLE);
             hospitalt.setVisibility(View.VISIBLE);
             schoolt.setVisibility(View.VISIBLE);
             boyfriendt.setVisibility(View.VISIBLE);
             storet.setVisibility(View.VISIBLE);
-
         } else {
-
             text = true;
-
             houset.setVisibility(View.INVISIBLE);
             hospitalt.setVisibility(View.INVISIBLE);
             schoolt.setVisibility(View.INVISIBLE);
             boyfriendt.setVisibility(View.INVISIBLE);
             storet.setVisibility(View.INVISIBLE);
-
         }
-
-
-
     }
-
 }
