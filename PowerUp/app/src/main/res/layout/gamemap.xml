@@ -16,16 +16,16 @@
         android:text="@string/house" />
 
     <TextView
+        android:id="@+id/houset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/HouseButton"
         android:layout_alignLeft="@id/HouseButton"
         android:layout_alignRight="@id/HouseButton"
         android:gravity="center"
-        android:text="House"
         android:textColor="@color/background_floating_material_light"
         android:textSize="20sp"
-        android:id="@+id/houset" />
+        android:text="@string/house" />
 
     <Button
         android:id="@+id/HospitalButton"
@@ -38,16 +38,16 @@
         android:text="@string/hospital" />
 
     <TextView
+        android:id="@+id/hospitalt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hospital"
+        android:text="@string/hospital"
         android:layout_below="@id/HospitalButton"
         android:layout_alignLeft="@id/HospitalButton"
         android:layout_alignRight="@id/HospitalButton"
         android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/background_floating_material_light"
-        android:id="@+id/hospitalt" />
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/background_floating_material_light" />
 
     <Button
         android:id="@+id/SchoolButton"
@@ -61,17 +61,17 @@
         android:text="@string/school" />
 
     <TextView
+        android:id="@+id/schoolt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="School"
+        android:text="@string/school"
         android:layout_alignRight="@id/SchoolButton"
         android:layout_alignLeft="@id/SchoolButton"
         android:layout_above="@id/SchoolButton"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:textColor="@color/background_floating_material_light"
-        android:layout_marginBottom="10sp"
-        android:id="@+id/schoolt" />
+        android:layout_marginBottom="10sp" />
 
     <Button
         android:id="@+id/BoyfriendButton"
@@ -84,14 +84,14 @@
         android:text="@string/boyfriend" />
 
     <TextView
+        android:id="@+id/boyfriendt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Boyfriend"
+        android:text="@string/boyfriend"
         android:layout_alignLeft="@id/BoyfriendButton"
         android:layout_above="@id/BoyfriendButton"
-        android:textSize="20sp"
-        android:textColor="@color/background_floating_material_light"
-        android:id="@+id/boyfriendt" />
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/background_floating_material_light" />
 
     <Button
         android:id="@+id/storeButton"
@@ -103,16 +103,16 @@
         android:text="@string/store" />
 
     <TextView
+        android:id="@+id/storet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Store"
+        android:text="@string/store"
         android:layout_alignLeft="@id/storeButton"
         android:layout_alignRight="@id/storeButton"
         android:layout_below="@id/storeButton"
         android:gravity="center"
         android:textSize="20sp"
-        android:textColor="@color/background_floating_material_light"
-        android:id="@+id/storet" />
+        android:textColor="@color/background_floating_material_light" />
 
     <Button
         android:id="@+id/homeButton"
@@ -124,6 +124,7 @@
         android:alpha="@dimen/map_alpha" />
 
     <Button
+        android:id="@+id/nameButtonToggle"
         android:layout_width="50dp"
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
