@@ -8,24 +8,23 @@
         android:id="@+id/completed_scene_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="@dimen/completed_scene_margin_right"
-        android:layout_marginTop="@dimen/completed_scene_margin_top"
+        android:layout_marginTop="@dimen/completed_scene_text_margin_top"
         android:ems="10"
         android:text="@string/completed_scene"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/game_text_size" />
+        android:textSize="@dimen/game_text_size"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/ContinueButtonMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/completed_scene_continue_button_map_margin_bottom"
+        android:text="@string/map"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@id/completed_scene_textView"
-        android:layout_marginBottom="@dimen/completed_scene_map_margin_bottom"
-        android:layout_marginRight="@dimen/completed_scene_map_margin_right"
-        android:text="@string/map" />
+        android:layout_alignRight="@+id/completed_scene_textView"
+        android:layout_alignEnd="@+id/completed_scene_textView" />
 
     <Button
         android:id="@+id/store_button"
