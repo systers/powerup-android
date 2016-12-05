@@ -3,7 +3,10 @@ package powerup.systers.com;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,26 +117,59 @@ public class GameActivity extends Activity {
                 .setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
-                                            int position, long id) {
-                        if (answers.get(position).getNextQuestionID() > 0) {
-                            // Next Question
-                            SessionHistory.currQID = answers.get(position)
-                                    .getNextQuestionID();
-                            updatePoints(position);
-                            updateQA();
+                                            final int position, long id) {
+                        if (answers.get(position).getPoints() != 0) {
 
-                        } else {
-                            SessionHistory.currSessionID = scene
-                                    .getNextScenarioID();
-                            if (SessionHistory.currSessionID == -1) {
-                                // Check to make sure all scenes are completed
-                                SessionHistory.currSessionID = 1;
+                            if (answers.get(position).getNextQuestionID() > 0) {
+                                // Next Question
+                                SessionHistory.currQID = answers.get(position)
+                                        .getNextQuestionID();
+                                updatePoints(position);
+                                updateQA();
+
+                            } else {
+                                SessionHistory.currSessionID = scene
+                                        .getNextScenarioID();
+                                if (SessionHistory.currSessionID == -1) {
+                                    // Check to make sure all scenes are completed
+                                    SessionHistory.currSessionID = 1;
+                                }
+                                updatePoints(position);
+                                getmDbHandler().setCompletedScenario(
+                                        scene.getId());
+                                SessionHistory.currScenePoints = 0;
+                                updateScenario();
                             }
-                            updatePoints(position);
-                            getmDbHandler().setCompletedScenario(
-                                    scene.getId());
-                            SessionHistory.currScenePoints = 0;
-                            updateScenario();
+                        } else {
+                            Snackbar snackbar = Snackbar.make(view, "Are you sure?", Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Yes", new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    if (answers.get(position).getNextQuestionID() > 0) {
+                                        // Next Question
+                                        SessionHistory.currQID = answers.get(position)
+                                                .getNextQuestionID();
+                                        updatePoints(position);
+                                        updateQA();
+
+                                    } else {
+                                        SessionHistory.currSessionID = scene
+                                                .getNextScenarioID();
+                                        if (SessionHistory.currSessionID == -1) {
+                                            // Check to make sure all scenes are completed
+                                            SessionHistory.currSessionID = 1;
+                                        }
+                                        updatePoints(position);
+                                        getmDbHandler().setCompletedScenario(
+                                                scene.getId());
+                                        SessionHistory.currScenePoints = 0;
+                                        updateScenario();
+                                    }
+                                }
+                            });
+                            snackbar.setActionTextColor(Color.RED);
+                            snackbar.show();
                         }
                     }
                 });
