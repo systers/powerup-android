@@ -118,7 +118,8 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             final int position, long id) {
-                        if (answers.get(position).getPoints() != 0) {
+                        if (answers.get(position).getPoints() != 0 ||
+                                answers.get(position).getAnswerDescription().matches("Returns Home")) {
 
                             if (answers.get(position).getNextQuestionID() > 0) {
                                 // Next Question
