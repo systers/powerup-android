@@ -121,6 +121,7 @@ public class GameActivity extends Activity {
                             updateQA();
 
                         } else {
+                            SessionHistory.prevSessionID = scene.getId();
                             SessionHistory.currSessionID = scene
                                     .getNextScenarioID();
                             if (SessionHistory.currSessionID == -1) {

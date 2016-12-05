@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
+
+import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
@@ -28,6 +30,29 @@ public class ScenarioOverActivity extends AppCompatActivity {
         scenarioOverActivityInstance = this;
         scenarioActivityDone = 1;
         ImageButton replayButton = (ImageButton) findViewById(R.id.replayButton);
+        replayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Reset session ids and points
+                SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                SessionHistory.totalPoints -= SessionHistory.currScenePoints;
+                SessionHistory.currScenePoints = 0;
+                scenarioActivityDone = 0;
+
+                // Reset database values for being completed and replayed
+                mDbHandler.resetComplete(SessionHistory.currSessionID);
+                mDbHandler.resetReplayed(SessionHistory.currSessionID);
+
+                // Finish current activities
+                scenarioOverActivityInstance.finish();
+                GameActivity.gameActivityInstance.finish();
+
+                // Start GameActivity to replay the scene
+                Intent intent = new Intent(ScenarioOverActivity.this, GameActivity.class);
+                startActivity(intent);
+
+            }
+        });
         ImageButton continueButton = (ImageButton) findViewById(R.id.continueButton);
         Button homeButton = (Button) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener() {
