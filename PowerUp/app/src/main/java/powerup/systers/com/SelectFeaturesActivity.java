@@ -3,7 +3,6 @@ package powerup.systers.com;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -538,10 +537,9 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getmDbHandler().open();
-                boolean purchaseFail = false;
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth))
-                        purchaseFail = true;
+                        Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                     else{
                         getmDbHandler().setAvatarCloth(cloth);
                         getmDbHandler().setPurchasedClothes(cloth);
@@ -549,41 +547,43 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.hair))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsHair(hair))
-                        purchaseFail = true;
+                        Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                     else{
                         getmDbHandler().setAvatarHair(hair);
                         getmDbHandler().setPurchasedHair(hair);
                         SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsClothes(cloth);
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.accessory))) {
-                    if (hatPurchased != 0)
-                        if (SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(hatPurchased))
-                            purchaseFail = true;
-                        else {
+                    if (hatPurchased != 0){
+                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(hatPurchased))
+                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
+                        else{
                             getmDbHandler().setPurchasedAccessories(hatPurchased);
                             getmDbHandler().setAvatarHat(hat);
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                         }
+                    }
                     if (glassesPurchased != 0){
                         if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(glassesPurchased))
-                            purchaseFail = true;
+                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                         else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(glassesPurchased);
                             getmDbHandler().setAvatarGlasses(glasses);
                         }
                     }
-                    if (bagPurchased != 0)
-                        if (SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(bagPurchased))
-                            purchaseFail = true;
-                        else {
+                    if (bagPurchased != 0){
+                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(bagPurchased))
+                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
+                        else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(bagPurchased);
                             getmDbHandler().setAvatarBag(bag);
                         }
+                    }
                     if (necklacePurchased != 0){
                         if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(necklacePurchased))
-                            purchaseFail = true;
+                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                         else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(necklacePurchased);
@@ -591,21 +591,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         }
                     }
                 }
-                if (!purchaseFail) {
-                    Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
-                    myIntent.putExtra(getResources().getString(R.string.feature), 2);
-                    startActivity(myIntent);
-                    getmDbHandler().close();
-                } else {
-                    final Snackbar purchase_fail_snackbar = Snackbar.make(v, "Sorry! Not enough points for purchase!", Snackbar.LENGTH_LONG);
-                    purchase_fail_snackbar.setAction("OK", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            purchase_fail_snackbar.dismiss();
-                        }
-                    });
-                    purchase_fail_snackbar.show();
-                }
+                Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
+                myIntent.putExtra(getResources().getString(R.string.feature), 2);
+                startActivity(myIntent);
+                getmDbHandler().close();
             }
         });
 
