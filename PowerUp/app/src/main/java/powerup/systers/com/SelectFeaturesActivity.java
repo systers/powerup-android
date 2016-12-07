@@ -597,8 +597,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     startActivity(myIntent);
                     getmDbHandler().close();
                 } else {
-                    final Snackbar purchase_fail_snackbar = Snackbar.make(v, "Sorry! Not enough points for purchase!", Snackbar.LENGTH_LONG);
-                    purchase_fail_snackbar.setAction("OK", new View.OnClickListener() {
+                    final Snackbar purchase_fail_snackbar = Snackbar.make(v, R.string.low_points_purchase, Snackbar.LENGTH_LONG);
+                    purchase_fail_snackbar.setAction(R.string.msg_ok, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             purchase_fail_snackbar.dismiss();
