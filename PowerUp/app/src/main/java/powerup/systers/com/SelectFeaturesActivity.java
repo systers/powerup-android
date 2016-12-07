@@ -601,6 +601,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     purchase_fail_snackbar.setAction(R.string.msg_ok, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
+                            myIntent.putExtra(getResources().getString(R.string.feature), 2);
+                            startActivity(myIntent);
+                            getmDbHandler().close();
                             purchase_fail_snackbar.dismiss();
                         }
                     });
