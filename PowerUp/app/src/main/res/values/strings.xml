@@ -45,4 +45,6 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+	<string name="low_points_purchase">Sorry! Not enough points for purchase!</string>
+	<string name="msg_ok">OK</string>
 </resources>
