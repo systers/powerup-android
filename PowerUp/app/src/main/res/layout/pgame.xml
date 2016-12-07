@@ -51,6 +51,7 @@
 
     <ImageView
         android:id="@+id/askerImageView"
+        android:contentDescription="@string/asker"
         android:layout_width="@dimen/asker_image_view_width"
         android:layout_height="@dimen/asker_image_view_height"
         android:layout_alignParentRight="true"
@@ -63,6 +64,7 @@
         android:layout_alignParentBottom="true">
         <ImageView
             android:id="@+id/powerBarView"
+            android:contentDescription="@string/power_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/power_bar_view_height"
             android:layout_alignParentBottom="true"
@@ -151,6 +153,7 @@
 
         <ImageView
             android:id="@+id/faceImageView"
+            android:contentDescription="@string/face"
             android:layout_width="@dimen/face_view_width"
             android:layout_height="@dimen/face_view_height"
             android:layout_alignParentTop="true"
@@ -160,6 +163,7 @@
 
         <ImageView
             android:id="@+id/eyeImageView"
+            android:contentDescription="@string/eye"
             android:layout_width="@dimen/eye_view_width"
             android:layout_height="@dimen/eye_view_height"
             android:layout_alignBottom="@id/faceImageView"
@@ -169,6 +173,7 @@
 
         <ImageView
             android:id="@+id/hairImageView"
+            android:contentDescription="@string/hair"
             android:layout_width="@dimen/hair_view_width"
             android:layout_height="@dimen/hair_view_height"
             android:src="@drawable/hair1"
@@ -178,6 +183,7 @@
 
         <ImageView
             android:id="@+id/clothImageView"
+            android:contentDescription="@string/cloth"
             android:layout_width="@dimen/cloth_view_width"
             android:layout_height="@dimen/cloth_view_height"
             android:src="@drawable/cloth1"

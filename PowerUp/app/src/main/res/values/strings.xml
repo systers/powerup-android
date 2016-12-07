@@ -45,4 +45,33 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+
+    <string name="karma">Karma</string>
+    <string name="age">Age</string>
+    <string name="left_select_feature">Left select feature</string>
+    <string name="right_select_feature">Right select feature</string>
+    <string name="left_handbag">Left handbag</string>
+    <string name="right_handbag">Right handbag</string>
+    <string name="left_glasses">Left glasses</string>
+    <string name="right_glasses">Right glasses</string>
+    <string name="left_hat">Left hat</string>
+    <string name="right_hat">Right hat</string>
+    <string name="left_necklace">Left necklace</string>
+    <string name="right_necklace">Right necklace</string>
+    <string name="power_bar">Power bar</string>
+    <string name="left_eye">Left eye</string>
+    <string name="right_eye">Right eye</string>
+    <string name="left_hair">Left hair</string>
+    <string name="right_hair">Right hair</string>
+    <string name="left_face">Left face</string>
+    <string name="right_face">Right face</string>
+    <string name="clothes">Clothes</string>
+    <string name="left_clothes">Left clothes</string>
+    <string name="right_clothes">Right clothes</string>
+    <string name="health_text">Health text</string>
+    <string name="cont_text">Continue</string>
+    <string name="start">Start</string>
+    <string name="new_user">New user</string>
+    <string name="about">About</string>
+    <string name="asker">Asker</string>
 </resources>

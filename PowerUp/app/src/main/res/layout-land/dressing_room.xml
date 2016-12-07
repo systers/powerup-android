@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/faceView"
+            android:contentDescription="@string/face"
             android:layout_width="@dimen/face_view_width"
             android:layout_height="@dimen/face_view_height"
             android:layout_centerHorizontal="true"
@@ -22,6 +23,7 @@
 
         <ImageView
             android:id="@+id/eyeView"
+            android:contentDescription="@string/eye"
             android:layout_width="@dimen/eye_view_width"
             android:layout_height="@dimen/eye_view_height"
             android:layout_alignBottom="@id/faceView"
@@ -31,6 +33,7 @@
 
         <ImageView
             android:id="@+id/hairView"
+            android:contentDescription="@string/hair"
             android:layout_width="@dimen/hair_view_width"
             android:layout_height="@dimen/hair_view_height"
             android:layout_centerHorizontal="true"
@@ -38,6 +41,7 @@
 
         <ImageView
             android:id="@+id/clothView"
+            android:contentDescription="@string/cloth"
             android:layout_width="@dimen/cloth_view_width"
             android:layout_height="@dimen/cloth_view_height"
             android:layout_alignTop="@+id/eyeView"
@@ -47,6 +51,7 @@
 
     <ImageView
         android:id="@+id/karmaImageView"
+        android:contentDescription="@string/karma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -65,6 +70,7 @@
 
     <ImageView
         android:id="@+id/ageImageView"
+        android:contentDescription="@string/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/health_text_ImageView"
@@ -74,6 +80,7 @@
 
     <ImageView
         android:id="@+id/clothesImageView"
+        android:contentDescription="@string/clothes"
         android:layout_width="@dimen/dressing_room_variants_width"
         android:layout_height="@dimen/dressing_room_variants_height"
         android:layout_alignLeft="@+id/accessoriesImageView"
@@ -82,6 +89,7 @@
 
     <ImageView
         android:id="@+id/hairImageView"
+        android:contentDescription="@string/hair"
         android:layout_width="@dimen/dressing_room_variants_width"
         android:layout_height="@dimen/dressing_room_variants_height"
         android:layout_alignParentEnd="true"
@@ -92,6 +100,7 @@
 
     <ImageView
         android:id="@+id/accessoriesImageView"
+        android:contentDescription="@string/accessory"
         android:layout_width="@dimen/dressing_room_variants_width"
         android:layout_height="@dimen/dressing_room_variants_height"
         android:layout_alignParentEnd="true"
@@ -103,6 +112,7 @@
 
     <ImageView
         android:id="@+id/health_text_ImageView"
+        android:contentDescription="@string/health_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/power_bar"
@@ -118,6 +128,7 @@
 
         <ImageView
             android:id="@+id/powerBarView"
+            android:contentDescription="@string/power_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/power_bar_view_height"
             android:layout_alignParentBottom="true"

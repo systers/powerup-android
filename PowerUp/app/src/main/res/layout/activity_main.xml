@@ -25,24 +25,28 @@
 
     <ImageView
         android:id="@+id/imageView1"
+        android:contentDescription="@string/powerup"
         android:layout_width="@dimen/powerup_icon_width"
         android:layout_height="@dimen/powerup_icon_height"
         android:src="@drawable/ic_launcher" />
 
     <ImageButton
         android:id="@+id/startButtonMain"
+        android:contentDescription="@string/start"
         android:layout_width="@dimen/start_button_width"
         android:layout_height="@dimen/start_button_height"
         android:background="@drawable/buttons" />
 
     <ImageButton
         android:id="@+id/newUserButtonFirstPage"
+        android:contentDescription="@string/new_user"
         android:layout_width="@dimen/new_user_button_width"
         android:layout_height="@dimen/new_user_button_height"
         android:background="@drawable/new_user" />
 
     <ImageButton
         android:id="@+id/aboutButtonMain"
+        android:contentDescription="@string/about"
         android:layout_width="@dimen/about_button_width"
         android:layout_height="@dimen/about_button_height"
         android:background="@drawable/aboutbutton" />
