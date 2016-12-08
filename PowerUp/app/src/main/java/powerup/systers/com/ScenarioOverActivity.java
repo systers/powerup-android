@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
+
+import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
@@ -111,6 +113,23 @@ public class ScenarioOverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GameActivity.gameActivityInstance.finish();
+                startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+            }
+        });
+        replayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //As scenario is being replayed, remove the previously done progress
+                SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                SessionHistory.totalPoints -= SessionHistory.currScenePoints;
+                SessionHistory.currScenePoints = 0;
+                scenarioActivityDone = 0;
+                //Update the database
+                getmDbHandler().resetComplete(SessionHistory.currSessionID);
+                getmDbHandler().resetReplayed(SessionHistory.currSessionID);
+                //Finish this activity, and start game activity again
+                GameActivity.gameActivityInstance.finish();
+                ScenarioOverActivity.scenarioOverActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });

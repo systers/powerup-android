@@ -121,8 +121,10 @@ public class GameActivity extends Activity {
                             updateQA();
 
                         } else {
+                            SessionHistory.prevSessionID = scene.getId();
                             SessionHistory.currSessionID = scene
                                     .getNextScenarioID();
+
                             if (SessionHistory.currSessionID == -1) {
                                 // Check to make sure all scenes are completed
                                 SessionHistory.currSessionID = 1;
@@ -130,7 +132,6 @@ public class GameActivity extends Activity {
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(
                                     scene.getId());
-                            SessionHistory.currScenePoints = 0;
                             updateScenario();
                         }
                     }
