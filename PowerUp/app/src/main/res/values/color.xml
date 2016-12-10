@@ -5,4 +5,6 @@
     <color name="powerup_yellow">#edf064</color>
     <color name="powerup_blue_green">#12bea2</color>
     <color name="powerup_black">#000000</color>
+    <color name="grad_start">#1AB50D</color>
+    <color name="grad_end">#EBF7FB</color>
 </resources>
