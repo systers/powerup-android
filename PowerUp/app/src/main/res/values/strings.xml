@@ -45,4 +45,12 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="features">Users are placed in situations where they choose the outcome of events. Users are awarded points for their informed decisions in the game scenarios. The game encourages healthy habits and good decisions by allotting points to the user - the better the choice, the more points. These points can be used to purchase new clothes and accessories and let the user advance to further levels. These items bought can be applied to the avatar created  by the user. The user will also gather superpowers associated with particular personality traits, which helps the user to see their strengths and weaknesses.</string>
+    <string name="urgency">Nowadays young teenagers are put under a lot of pressure, whether it be from peers, or the many forms of media. Preadolescent girls need better options for reproductive health and self-esteem education to appropriately handle the pressure put on them. Preadolescents are at risk of possible pregnancy and spread of STIs, yet very little information reaches preadolescents about the risk and responsibility associated with sex. Additionally, preadolescents struggle with self-esteem, which makes them more vulnerable to media and peer influence. Current trends in sexual activity amongst preadolescents impact the economy, hurts family cohesion, affects female education, and burdens healthcare systems.</string>
+    <string name="help">In response to these problems, PowerUp aims to build on social and emotional learning to help preadolescent girls to make more informed decisions regarding their sexual and reproductive health. PowerUp puts preadolescents in a simulated environment where they are presented with various scenarios. In each scenario the user will have to choose what they would like to happen next. They are encouraged to make good and safe decisions by being rewarded for their choices with points.</string>
+    <string name="about">About</string>
+    <string name="featuretext">Features:</string>
+    <string name="urgencytext">Urgency:</string>
+    <string name="helptext">How PowerUp helps:</string>
+    <string name="enjoy">ENJOY THE GAME!</string>
 </resources>
