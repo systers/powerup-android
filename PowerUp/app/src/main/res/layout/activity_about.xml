@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/gradient"
+    tools:context="powerup.systers.com.AboutActivity">
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/powerupTextView"
+                android:layout_width="@dimen/powerup_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="@string/about"
+                android:textAlignment="center"
+                android:textSize="@dimen/powerup_size"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/featureHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/featuretext"
+                android:textStyle="normal|bold"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/featuresText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/features"
+                android:layout_marginBottom="@dimen/paragraph_margin" />
+
+            <TextView
+                android:id="@+id/urgencyHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/urgencytext"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/urgencyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/urgency"
+                android:layout_marginBottom="@dimen/paragraph_margin" />
+
+            <TextView
+                android:id="@+id/helpHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/helptext"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/helpsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
