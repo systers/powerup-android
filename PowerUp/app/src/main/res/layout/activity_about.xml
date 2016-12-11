@@ -34,7 +34,8 @@
                 android:text="@string/about"
                 android:textAlignment="center"
                 android:textSize="@dimen/powerup_size"
-                android:typeface="serif" />
+                android:typeface="serif"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/featureHead"
@@ -42,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/featuretext"
                 android:textStyle="normal|bold"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/featuresText"
@@ -50,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/features"
                 android:layout_marginBottom="@dimen/paragraph_margin"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/urgencyHead"
@@ -58,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/urgencytext"
                 android:textSize="@dimen/text_size"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/urgencyText"
@@ -66,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/urgency"
                 android:layout_marginBottom="@dimen/paragraph_margin"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/helpHead"
@@ -74,14 +79,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/helptext"
                 android:textSize="@dimen/text_size"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/helpsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/help"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
