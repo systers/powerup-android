@@ -45,4 +45,7 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="alert_yes">Yes</string>
+    <string name="alert_confirm">"Are you sure?"</string>
+    <string name="returns_home">Returns Home</string>
 </resources>

@@ -119,7 +119,8 @@ public class GameActivity extends Activity {
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             final int position, long id) {
                         if (answers.get(position).getPoints() != 0 ||
-                                answers.get(position).getAnswerDescription().matches("Returns Home")) {
+                                answers.get(position).getAnswerDescription()
+                                        .matches(getString(R.string.returns_home))) {
 
                             if (answers.get(position).getNextQuestionID() > 0) {
                                 // Next Question
@@ -142,8 +143,8 @@ public class GameActivity extends Activity {
                                 updateScenario();
                             }
                         } else {
-                            Snackbar snackbar = Snackbar.make(view, "Are you sure?", Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Yes", new View.OnClickListener() {
+                            Snackbar snackbar = Snackbar.make(view, R.string.alert_confirm, Snackbar.LENGTH_LONG);
+                            snackbar.setAction(R.string.alert_yes, new View.OnClickListener() {
 
                                 @Override
                                 public void onClick(View view) {
