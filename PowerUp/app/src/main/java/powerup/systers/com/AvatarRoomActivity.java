@@ -15,6 +15,11 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class AvatarRoomActivity extends Activity {
 
+    /**
+     * This activity is used to customize a character by changing
+     * face, eyes, hair etc.
+     */
+
     public static Activity avatarRoomInstance;
     private DatabaseHandler mDbHandler;
     private ImageView eyeView;
@@ -36,6 +41,7 @@ public class AvatarRoomActivity extends Activity {
         getmDbHandler().open();
         avatarRoomInstance = this;
         setContentView(R.layout.avatar_room);
+        // Initialize elements in Activity (XML file)
         eyeView = (ImageView) findViewById(R.id.eyes);
         faceView = (ImageView) findViewById(R.id.face);
         clothView = (ImageView) findViewById(R.id.clothes);
@@ -54,6 +60,7 @@ public class AvatarRoomActivity extends Activity {
         ImageButton hairRight = (ImageButton) findViewById(R.id.hairRight);
         Button continueButton = (Button) findViewById(R.id.continueButtonAvatar);
 
+        //region Contains OnClickListeners to cycle between and select the required features like face, eyes, etc.
         eyeLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,10 +240,13 @@ public class AvatarRoomActivity extends Activity {
                 }
             }
         });
+        //endregion
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Finalize the character, set special powers(Invisibility, Healing, Strength, etc.),
+                // save it, and then go to AvatarActivity.
                 getmDbHandler().open();
                 getmDbHandler().setAvatarEye(eye);
                 getmDbHandler().setAvatarFace(face);

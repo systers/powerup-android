@@ -10,10 +10,16 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class MapActivity extends Activity {
 
+    /**
+     * The base map from which a Scenario is played
+     */
+
     private DatabaseHandler mDbHandler;
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
+            // This onClickListener is used to open a Scene
+            // and it is used as a global variable to remove copies of same code.
             Button b = (Button) v;
             if (getmDbHandler().setSessionId(b.getText().toString())) {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
@@ -23,9 +29,6 @@ public class MapActivity extends Activity {
         }
     };
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class MapActivity extends Activity {
         getmDbHandler().open();
         setContentView(R.layout.gamemap);
 
+        // Initialize buttons from XML file and set their onClickListeners
         Button house = (Button) findViewById(R.id.HouseButton);
         house.setOnClickListener(onClickListener);
 

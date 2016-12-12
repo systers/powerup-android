@@ -23,6 +23,10 @@ import powerup.systers.com.db.DatabaseHandler;
 @SuppressLint("NewApi")
 public class GameActivity extends Activity {
 
+    /**
+     * The Activity in which a Scenario is played.
+     */
+
     public static Activity gameActivityInstance;
     private DatabaseHandler mDbHandler;
     private List<Answer> answers;
@@ -48,6 +52,7 @@ public class GameActivity extends Activity {
         listAdapter = new ArrayAdapter<>(this, R.layout.simplerow,
                 new ArrayList<String>());
         answers = new ArrayList<>();
+        // Initialize elements in Activity (XML file)
         goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
         replay = (Button) findViewById(R.id.redoButton);
         ImageView eyeImageView = (ImageView) findViewById(R.id.eyeImageView);
@@ -58,6 +63,7 @@ public class GameActivity extends Activity {
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
+        // Get character's characteristics from Database
         try {
             photoNameField = ourRID.getClass().getField(eyeImageName);
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
@@ -66,7 +72,6 @@ public class GameActivity extends Activity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         String faceImageName = getResources().getString(R.string.face);
         faceImageName = faceImageName + getmDbHandler().getAvatarFace();
         try {
@@ -225,7 +230,7 @@ public class GameActivity extends Activity {
     }
 
     private void updateQA() {
-
+        //Update the question and answer
         listAdapter.clear();
         getmDbHandler().getAllAnswer(answers, SessionHistory.currQID);
         for (Answer ans : answers) {

@@ -4,6 +4,10 @@ import android.provider.BaseColumns;
 
 public class PowerUpContract {
 
+    /**
+     * Stores all the columns' names for the database
+     */
+
     public static final class ScenarioEntry implements BaseColumns {
 
         public static final String TABLE_NAME = "Scenario";
