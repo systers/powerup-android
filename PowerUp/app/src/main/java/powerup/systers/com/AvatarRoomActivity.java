@@ -41,7 +41,7 @@ public class AvatarRoomActivity extends Activity {
         getmDbHandler().open();
         avatarRoomInstance = this;
         setContentView(R.layout.avatar_room);
-        // Initialize elements in Activity (XML file)
+
         eyeView = (ImageView) findViewById(R.id.eyes);
         faceView = (ImageView) findViewById(R.id.face);
         clothView = (ImageView) findViewById(R.id.clothes);
@@ -60,7 +60,6 @@ public class AvatarRoomActivity extends Activity {
         ImageButton hairRight = (ImageButton) findViewById(R.id.hairRight);
         Button continueButton = (Button) findViewById(R.id.continueButtonAvatar);
 
-        //region Contains OnClickListeners to cycle between and select the required features like face, eyes, etc.
         eyeLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +78,6 @@ public class AvatarRoomActivity extends Activity {
                     eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -100,7 +98,6 @@ public class AvatarRoomActivity extends Activity {
                     eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -124,7 +121,6 @@ public class AvatarRoomActivity extends Activity {
                     faceAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -145,7 +141,6 @@ public class AvatarRoomActivity extends Activity {
                     faceAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -169,7 +164,6 @@ public class AvatarRoomActivity extends Activity {
                     clothAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -190,7 +184,6 @@ public class AvatarRoomActivity extends Activity {
                     clothAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -214,7 +207,6 @@ public class AvatarRoomActivity extends Activity {
                     hairAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -235,12 +227,10 @@ public class AvatarRoomActivity extends Activity {
                     hairAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
-        //endregion
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,7 +31,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scenario_over);
         scenarioOverActivityInstance = this;
         scenarioActivityDone = 1;
-        // Initialize elements in Activity (XML file)
+
         ImageButton replayButton = (ImageButton) findViewById(R.id.replayButton);
         ImageButton continueButton = (ImageButton) findViewById(R.id.continueButton);
         Button homeButton = (Button) findViewById(R.id.homeButton);
@@ -58,7 +58,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -69,7 +68,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -80,7 +78,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -91,7 +88,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

@@ -27,7 +27,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         dressingRoomInstance = this;
-        // Initialize elements in Activity (XML file)
+
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
@@ -45,7 +45,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -56,7 +55,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -67,7 +65,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -78,7 +75,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -102,7 +98,6 @@ public class DressingRoomActivity extends AppCompatActivity {
         ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
         ImageView accessoriesImageView = (ImageView) findViewById(R.id.accessoriesImageView);
 
-        // OnClickListeners to change things like dress, hair or accessories.
         clothesImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

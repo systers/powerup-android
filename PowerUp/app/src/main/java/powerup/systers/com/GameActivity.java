@@ -52,7 +52,7 @@ public class GameActivity extends Activity {
         listAdapter = new ArrayAdapter<>(this, R.layout.simplerow,
                 new ArrayList<String>());
         answers = new ArrayList<>();
-        // Initialize elements in Activity (XML file)
+
         goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
         replay = (Button) findViewById(R.id.redoButton);
         ImageView eyeImageView = (ImageView) findViewById(R.id.eyeImageView);
@@ -69,7 +69,6 @@ public class GameActivity extends Activity {
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         String faceImageName = getResources().getString(R.string.face);
@@ -79,7 +78,6 @@ public class GameActivity extends Activity {
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -90,7 +88,6 @@ public class GameActivity extends Activity {
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -101,7 +98,6 @@ public class GameActivity extends Activity {
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

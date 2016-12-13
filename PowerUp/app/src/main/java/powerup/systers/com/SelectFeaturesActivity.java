@@ -43,7 +43,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         selectFeatureInstance = this;
-        //Initialize the elements in the activity (XML file)
+
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         LinearLayout linearLayouthandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
         LinearLayout linearLayoutGlasses = (LinearLayout) findViewById(R.id.linearLayoutGlasses);
@@ -55,7 +55,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         final ImageView hairView = (ImageView) findViewById(R.id.hairView);
         final ImageView clothView = (ImageView) findViewById(R.id.clothView);
-        // Fetch character data (eye, face etc.) from Database
+
+        // Update character's characteristics from database
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -203,7 +204,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             tv.setText(R.string.hair);
             ImageButton left = (ImageButton) findViewById(R.id.leftSelectFeature);
             ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
-            // Move left and select an item
+
             left.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -233,7 +234,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                 }
             });
-            // Move right and select an item
+
             right.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -294,7 +295,6 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             tvNecklacePoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(accessory
                     + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo)));
 
-            //region The OnClickListeners below to select an item
             leftHandbag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -540,14 +540,12 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                 }
             });
-            //endregion
         }
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Update the character, and if points are low to make a purchase, show a message.
-                // After that, go to AvatarActivty.
                 getmDbHandler().open();
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth))
