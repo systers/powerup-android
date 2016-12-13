@@ -18,6 +18,10 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class SelectFeaturesActivity extends AppCompatActivity {
 
+    /**
+     * This activity is used to add other features like hairstyle, accessories etc. to the character.
+     */
+
     public static Activity selectFeatureInstance;
     Integer bag = 1;
     Integer glasses = 1;
@@ -39,6 +43,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         selectFeatureInstance = this;
+
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         LinearLayout linearLayouthandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
         LinearLayout linearLayoutGlasses = (LinearLayout) findViewById(R.id.linearLayoutGlasses);
@@ -50,6 +55,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         final ImageView hairView = (ImageView) findViewById(R.id.hairView);
         final ImageView clothView = (ImageView) findViewById(R.id.clothView);
+
+        // Update character's characteristics from database
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -197,6 +204,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             tv.setText(R.string.hair);
             ImageButton left = (ImageButton) findViewById(R.id.leftSelectFeature);
             ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
+
             left.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -286,6 +294,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo)));
             tvNecklacePoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(accessory
                     + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo)));
+
             leftHandbag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -536,6 +545,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Update the character, and if points are low to make a purchase, show a message.
                 getmDbHandler().open();
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth))

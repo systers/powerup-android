@@ -9,7 +9,7 @@ import android.widget.Button;
 public class CompletedSceneActivity extends Activity {
 
     /**
-     * Called when the activity is first created.
+     * Self explanatory code. This is shown after a scene is completed in the app
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {

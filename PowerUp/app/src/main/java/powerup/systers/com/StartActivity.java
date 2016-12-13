@@ -10,6 +10,10 @@ import android.widget.ImageButton;
 
 public class StartActivity extends Activity {
 
+    /**
+     * The first activity called when app is opened.
+     */
+
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
 
@@ -23,6 +27,7 @@ public class StartActivity extends Activity {
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Create new Avatar.
                 startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
             }
         });
@@ -31,6 +36,7 @@ public class StartActivity extends Activity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // If the app was played before, go directly to MapActivity, else open AvatarRoomActivity to create new Avatar.
                 if (hasPreviouslyStarted) {
                     startActivity(new Intent(StartActivity.this, MapActivity.class));
                 } else {

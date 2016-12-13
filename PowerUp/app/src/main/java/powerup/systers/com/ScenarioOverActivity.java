@@ -15,6 +15,10 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class ScenarioOverActivity extends AppCompatActivity {
 
+    /**
+     * This activity is shown when a scenario is over
+     */
+
     public static Activity scenarioOverActivityInstance;
     public static int scenarioActivityDone;
     private DatabaseHandler mDbHandler;
@@ -27,6 +31,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scenario_over);
         scenarioOverActivityInstance = this;
         scenarioActivityDone = 1;
+
         ImageButton replayButton = (ImageButton) findViewById(R.id.replayButton);
         ImageButton continueButton = (ImageButton) findViewById(R.id.continueButton);
         Button homeButton = (Button) findViewById(R.id.homeButton);
@@ -43,6 +48,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         ImageView faceImageView = (ImageView) findViewById(R.id.faceView);
         ImageView hairImageView = (ImageView) findViewById(R.id.hairView);
         ImageView clothImageView = (ImageView) findViewById(R.id.clothView);
+        // Update character's characteristics from database
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -52,7 +58,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -63,7 +68,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -74,7 +78,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -85,7 +88,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

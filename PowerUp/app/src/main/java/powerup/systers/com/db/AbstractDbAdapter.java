@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 
 public abstract class AbstractDbAdapter {
 
+    /**
+     * The Database Adapter, used to create and modify the database.
+     */
+
     // All Static variables
     // Database Version
     private static final int DATABASE_VERSION = 2;

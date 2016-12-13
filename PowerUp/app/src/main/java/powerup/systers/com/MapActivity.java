@@ -10,6 +10,10 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class MapActivity extends Activity {
 
+    /**
+     * The base map from which a Scenario is played
+     */
+
     private DatabaseHandler mDbHandler;
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
@@ -23,9 +27,6 @@ public class MapActivity extends Activity {
         }
     };
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

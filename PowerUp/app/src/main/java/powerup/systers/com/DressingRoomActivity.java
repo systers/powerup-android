@@ -13,6 +13,10 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class DressingRoomActivity extends AppCompatActivity {
 
+    /**
+     * Used to dress up/change a character's characteristics (dress, hair etc.)
+     */
+
     public static Activity dressingRoomInstance;
     private DatabaseHandler mDbHandler;
 
@@ -23,11 +27,14 @@ public class DressingRoomActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         dressingRoomInstance = this;
+
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
         ImageView clothView = (ImageView) findViewById(R.id.clothView);
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
+
+        // Update character's characteristics from database
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
@@ -38,7 +45,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -49,7 +55,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -60,7 +65,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -71,7 +75,6 @@ public class DressingRoomActivity extends AppCompatActivity {
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -94,7 +97,6 @@ public class DressingRoomActivity extends AppCompatActivity {
         ImageView clothesImageView = (ImageView) findViewById(R.id.clothesImageView);
         ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
         ImageView accessoriesImageView = (ImageView) findViewById(R.id.accessoriesImageView);
-
 
         clothesImageView.setOnClickListener(new View.OnClickListener() {
             @Override

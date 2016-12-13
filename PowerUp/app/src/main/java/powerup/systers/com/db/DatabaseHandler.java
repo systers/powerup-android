@@ -12,6 +12,10 @@ import powerup.systers.com.datamodel.SessionHistory;
 
 public class DatabaseHandler extends AbstractDbAdapter {
 
+    /**
+     * Used to manage the game database
+     */
+
     public DatabaseHandler(Context ctx) {
         super(ctx);
         ctx.getAssets();

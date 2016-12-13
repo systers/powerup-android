@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class GameOverActivity extends Activity {
 
     /**
-     * Called when the activity is first created.
+     * This activity is shown when all scenarios are over.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
