@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -45,4 +46,5 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="not_enough_points">Sorry, you did not have enough points for that purchase</string>
 </resources>
