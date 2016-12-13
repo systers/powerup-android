@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/karmaImageView"
-        android:contentDescription="@string/karma"
+        android:contentDescription="@string/karma_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -104,7 +104,7 @@
 
     <ImageView
         android:id="@+id/ageImageView"
-        android:contentDescription="@string/age"
+        android:contentDescription="@string/age_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/power_bar"
@@ -171,14 +171,14 @@
 
             <ImageButton
                 android:id="@+id/leftSelectFeature"
-                android:contentDescription="@string/left_select_feature"
+                android:contentDescription="@string/left_select_feature_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/rightSelectFeature"
-                android:contentDescription="@string/right_select_feature"
+                android:contentDescription="@string/right_select_feature_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -243,14 +243,14 @@
 
             <ImageButton
                 android:id="@+id/leftHandbag"
-                android:contentDescription="@string/left_handbag"
+                android:contentDescription="@string/left_handbag_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/rightHandbag"
-                android:contentDescription="@string/right_handbag"
+                android:contentDescription="@string/right_handbag_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -314,14 +314,14 @@
 
             <ImageButton
                 android:id="@+id/leftGlasses"
-                android:contentDescription="@string/left_glasses"
+                android:contentDescription="@string/left_glasses_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/rightGlasses"
-                android:contentDescription="@string/right_glasses"
+                android:contentDescription="@string/right_glasses_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -385,14 +385,14 @@
 
             <ImageButton
                 android:id="@+id/leftHat"
-                android:contentDescription="@string/left_hat"
+                android:contentDescription="@string/left_hat_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/rightHat"
-                android:contentDescription="@string/right_hat"
+                android:contentDescription="@string/right_hat_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -457,14 +457,14 @@
 
             <ImageButton
                 android:id="@+id/leftNecklace"
-                android:contentDescription="@string/left_necklace"
+                android:contentDescription="@string/left_necklace_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/rightNecklace"
-                android:contentDescription="@string/right_necklace"
+                android:contentDescription="@string/right_necklace_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -479,7 +479,7 @@
 
         <ImageView
             android:id="@+id/powerBarView"
-            android:contentDescription="@string/power_bar"
+            android:contentDescription="@string/power_bar_description"
             android:layout_width="match_parent"
             android:layout_height="@dimen/power_bar_view_height"
             android:layout_alignParentBottom="true"

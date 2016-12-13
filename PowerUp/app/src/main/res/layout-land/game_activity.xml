@@ -52,7 +52,7 @@
 
     <ImageView
         android:id="@+id/askerImageView"
-        android:contentDescription="@string/asker"
+        android:contentDescription="@string/asker_description"
         android:layout_width="180dp"
         android:layout_height="300dp"
         android:src="@drawable/marco"
@@ -122,7 +122,7 @@
         android:layout_alignParentBottom="true">
         <ImageView
             android:id="@+id/powerBarView"
-            android:contentDescription="@string/power_bar"
+            android:contentDescription="@string/power_bar_description"
             android:layout_width="match_parent"
             android:layout_height="@dimen/power_bar_view_height"
             android:layout_alignParentBottom="true"

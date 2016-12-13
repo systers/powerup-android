@@ -51,7 +51,7 @@
 
     <ImageView
         android:id="@+id/karmaImageView"
-        android:contentDescription="@string/karma"
+        android:contentDescription="@string/karma_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -70,7 +70,7 @@
 
     <ImageView
         android:id="@+id/ageImageView"
-        android:contentDescription="@string/age"
+        android:contentDescription="@string/age_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/health_text_ImageView"
@@ -80,7 +80,7 @@
 
     <ImageView
         android:id="@+id/clothesImageView"
-        android:contentDescription="@string/clothes"
+        android:contentDescription="@string/clothes_description"
         android:layout_width="@dimen/dressing_room_variants_width"
         android:layout_height="@dimen/dressing_room_variants_height"
         android:layout_alignLeft="@+id/accessoriesImageView"
@@ -112,7 +112,7 @@
 
     <ImageView
         android:id="@+id/health_text_ImageView"
-        android:contentDescription="@string/health_text"
+        android:contentDescription="@string/health_text_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/power_bar"
@@ -128,7 +128,7 @@
 
         <ImageView
             android:id="@+id/powerBarView"
-            android:contentDescription="@string/power_bar"
+            android:contentDescription="@string/power_bar_description"
             android:layout_width="match_parent"
             android:layout_height="@dimen/power_bar_view_height"
             android:layout_alignParentBottom="true"

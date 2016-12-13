@@ -32,21 +32,21 @@
 
     <ImageButton
         android:id="@+id/startButtonMain"
-        android:contentDescription="@string/start"
+        android:contentDescription="@string/start_description"
         android:layout_width="@dimen/start_button_width"
         android:layout_height="@dimen/start_button_height"
         android:background="@drawable/buttons" />
 
     <ImageButton
         android:id="@+id/newUserButtonFirstPage"
-        android:contentDescription="@string/new_user"
+        android:contentDescription="@string/new_user_description"
         android:layout_width="@dimen/new_user_button_width"
         android:layout_height="@dimen/new_user_button_height"
         android:background="@drawable/new_user" />
 
     <ImageButton
         android:id="@+id/aboutButtonMain"
-        android:contentDescription="@string/about"
+        android:contentDescription="@string/about_description"
         android:layout_width="@dimen/about_button_width"
         android:layout_height="@dimen/about_button_height"
         android:background="@drawable/aboutbutton" />
