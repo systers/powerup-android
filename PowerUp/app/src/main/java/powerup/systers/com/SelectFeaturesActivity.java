@@ -1,17 +1,5 @@
-package powerup.systers.com;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
@@ -538,63 +526,65 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getmDbHandler().open();
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
-                    if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth))
-                        Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
-                    else{
+                    if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth)) {
+                        Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                        notEnoughPointsBar.show();
+                    }else{
                         getmDbHandler().setAvatarCloth(cloth);
                         getmDbHandler().setPurchasedClothes(cloth);
                         SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsClothes(cloth);
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.hair))) {
-                    if(SessionHistory.totalPoints < getmDbHandler().getPointsHair(hair))
-                        Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
-                    else{
+                    if(SessionHistory.totalPoints < getmDbHandler().getPointsHair(hair)) {
+                        Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                        notEnoughPointsBar.show();
+                    }else{
                         getmDbHandler().setAvatarHair(hair);
                         getmDbHandler().setPurchasedHair(hair);
                         SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsClothes(cloth);
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.accessory))) {
                     if (hatPurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(hatPurchased))
-                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
-                        else{
+                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(hatPurchased)) {
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
+                        }else{
                             getmDbHandler().setPurchasedAccessories(hatPurchased);
                             getmDbHandler().setAvatarHat(hat);
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                         }
                     }
                     if (glassesPurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(glassesPurchased))
-                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
-                        else{
+                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(glassesPurchased)) {
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
+                        }else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(glassesPurchased);
                             getmDbHandler().setAvatarGlasses(glasses);
                         }
                     }
                     if (bagPurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(bagPurchased))
-                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
-                        else{
+                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(bagPurchased)) {
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
+                        }else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(bagPurchased);
                             getmDbHandler().setAvatarBag(bag);
                         }
                     }
                     if (necklacePurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(necklacePurchased))
-                            Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
-                        else{
+                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(necklacePurchased)) {
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
+                        }else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(necklacePurchased);
                             getmDbHandler().setAvatarNecklace(necklace);
                         }
                     }
                 }
-                Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
-                myIntent.putExtra(getResources().getString(R.string.feature), 2);
-                startActivity(myIntent);
-                getmDbHandler().close();
             }
         });
 
