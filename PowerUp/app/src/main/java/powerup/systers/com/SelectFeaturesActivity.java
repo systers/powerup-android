@@ -1,13 +1,3 @@
-package powerup.systers.com;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
@@ -537,8 +527,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                 getmDbHandler().open();
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth)) {
-                        Snackbar bar = Snackbar.make(v, "Sorry, you did not have enough points for that purchas", Snackbar.LENGTH_LONG);
-                        bar.show();
+                        Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                        notEnoughPointsBar.show();
                     }else{
                         getmDbHandler().setAvatarCloth(cloth);
                         getmDbHandler().setPurchasedClothes(cloth);
@@ -546,8 +536,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.hair))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsHair(hair)) {
-                        Snackbar bar = Snackbar.make(v, "Sorry, you did not have enough points for that purchase", Snackbar.LENGTH_LONG);
-                        bar.show();
+                        Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                        notEnoughPointsBar.show();
                     }else{
                         getmDbHandler().setAvatarHair(hair);
                         getmDbHandler().setPurchasedHair(hair);
@@ -556,8 +546,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.accessory))) {
                     if (hatPurchased != 0){
                         if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(hatPurchased)) {
-                            Snackbar bar = Snackbar.make(v, "Sorry, you did not have enough points for that purchase", Snackbar.LENGTH_LONG);
-                            bar.show();
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
                         }else{
                             getmDbHandler().setPurchasedAccessories(hatPurchased);
                             getmDbHandler().setAvatarHat(hat);
@@ -566,8 +556,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                     if (glassesPurchased != 0){
                         if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(glassesPurchased)) {
-                            Snackbar bar = Snackbar.make(v, "Sorry, you did not have enough points for that purchase", Snackbar.LENGTH_LONG);
-                            bar.show();
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
                         }else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(glassesPurchased);
@@ -576,8 +566,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                     if (bagPurchased != 0){
                         if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(bagPurchased)) {
-                            Snackbar bar = Snackbar.make(v, "Sorry, you did not have enough points for that purchase", Snackbar.LENGTH_LONG);
-                            bar.show();
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
                         }else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(bagPurchased);
@@ -586,8 +576,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                     if (necklacePurchased != 0){
                         if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(necklacePurchased)) {
-                            Snackbar bar = Snackbar.make(v, "Sorry, you did not have enough points for that purchase", Snackbar.LENGTH_LONG);
-                            bar.show();
+                            Snackbar notEnoughPointsBar = Snackbar.make(v, getString(R.string.not_enough_points), Snackbar.LENGTH_LONG);
+                            notEnoughPointsBar.show();
                         }else{
                             SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(hatPurchased);
                             getmDbHandler().setPurchasedAccessories(necklacePurchased);
