@@ -68,7 +68,7 @@
     <string name="clothes_description">Clothes</string>
     <string name="left_clothes_description">Left clothes</string>
     <string name="right_clothes_description">Right clothes</string>
-    <string name="health_text_description">Health text</string>
+    <string name="health_text_description">Health and Powers</string>
     <string name="cont_text_description">Continue</string>
     <string name="start_description">Start</string>
     <string name="new_user_description">New user</string>
