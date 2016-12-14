@@ -8,8 +8,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StartActivity"
-            android:label="@string/app_name">
+            android:name=".db.SplashScreen"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,13 +41,14 @@
 
         <activity
             android:name=".DressingRoomActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".SelectFeaturesActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".ScenarioOverActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
+        <activity android:name=".StartActivity"></activity>
     </application>
 
 </manifest>
