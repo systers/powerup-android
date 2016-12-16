@@ -1,3 +1,8 @@
+/** 
+* If the user has already completed a scenario, she can go 
+* to the store or go back to the map.
+*/
+
 package powerup.systers.com;
 
 import android.app.Activity;
