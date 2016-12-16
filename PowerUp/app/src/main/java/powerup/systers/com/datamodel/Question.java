@@ -1,3 +1,7 @@
+/**
+* Getter and setter methods for each question and the scenario it belongs to.
+*/
+
 package powerup.systers.com.datamodel;
 
 public class Question {
