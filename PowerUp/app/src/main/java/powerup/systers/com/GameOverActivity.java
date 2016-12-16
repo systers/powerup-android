@@ -1,3 +1,8 @@
+/** 
+* Finishes the game and shows a screen telling the user that the game
+* has completed.
+*/
+
 package powerup.systers.com;
 
 import android.app.Activity;
