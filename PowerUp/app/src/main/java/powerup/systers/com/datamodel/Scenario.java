@@ -1,3 +1,7 @@
+/**
+* Getter and setter methods for each dialogue scenario's status.
+*/
+
 package powerup.systers.com.datamodel;
 
 public class Scenario {
@@ -8,9 +12,9 @@ public class Scenario {
     private String asker;
     private int avatar;
     private int firstQuestionID;
-    private int completed;
+    private int completed;  // If equal to 1, the scenario is already completed
     private int nextScenarioID;
-    private int replayed;
+    private int replayed;   // If equal to 0, the scenario can be replayed
 
     public int getId() {
         return id;
