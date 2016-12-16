@@ -1,3 +1,7 @@
+/**
+* Getter and setter methods for user's score in power/health bars
+*/
+
 package powerup.systers.com.datamodel;
 
 public class Score {
