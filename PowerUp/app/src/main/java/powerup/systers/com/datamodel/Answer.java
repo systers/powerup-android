@@ -1,3 +1,8 @@
+/**
+* Getter and setter methods for each question/answer pair. Each answer
+* has a specific point value.
+*/
+
 package powerup.systers.com.datamodel;
 
 public class Answer {
