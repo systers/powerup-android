@@ -1,3 +1,7 @@
+/**
+* Getter and setter methods for displaying avatar features.
+*/
+
 package powerup.systers.com.datamodel;
 
 public class Avatar {
