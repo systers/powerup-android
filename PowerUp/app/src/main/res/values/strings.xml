@@ -45,4 +45,6 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="org">"Systers,an Anita Borg Institute Community"</string>
+    <string name="initiative">"An Initiative by</string>
 </resources>
