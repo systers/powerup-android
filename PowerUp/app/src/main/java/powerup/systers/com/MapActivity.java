@@ -1,3 +1,7 @@
+/** 
+* Sets up the map screen.
+*/
+
 package powerup.systers.com;
 
 import android.app.Activity;
