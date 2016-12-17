@@ -1,5 +1,5 @@
 /** 
-* Sets up the “Avatar Room” for user to customize avatar features. 
+* @desc sets up the “Avatar Room” for user to customize avatar features. 
 * Allows user to scroll through different face/hair/clothing options.
 */
 
