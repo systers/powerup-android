@@ -12,10 +12,10 @@ public class CompletedSceneActivity extends Activity {
      * Called when the activity is first created.
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) { // Creation of this window.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_scene);
-        Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
+        Button backToMap = (Button) findViewById(R.id.ContinueButtonMap); // Creates a button called backtoMap from the asset ContinueButtonMap
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +25,7 @@ public class CompletedSceneActivity extends Activity {
                 startActivityForResult(myIntent, 0);
             }
         });
-        Button storeButton = (Button) findViewById(R.id.store_button);
+        Button storeButton = (Button) findViewById(R.id.store_button); // Creates a button called Storebutton from the asset store_button
         storeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

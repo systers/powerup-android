@@ -15,6 +15,9 @@ public class StartActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        Adds buttons to the first window. The buttons added are New User, Start Activity and then sets the content view to activity_main
+         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());

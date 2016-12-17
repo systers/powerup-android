@@ -18,6 +18,10 @@ public class DressingRoomActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /* On creation of the window. This function is executed. It sets the content view from the asset dressing_room.
+        Declares and opens the database. Gets all avatar based values from the database. If
+
+         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
         setmDbHandler(new DatabaseHandler(this));

@@ -34,6 +34,9 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        Creates the scene and loads all the images from database needed for the avatar
+         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_features);
         setmDbHandler(new DatabaseHandler(this));
@@ -288,7 +291,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo)));
             leftHandbag.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     bag = (bag - 1) % SessionHistory.bagTotalNo;
                     if (bag == 0) {
                         bag = SessionHistory.bagTotalNo;
@@ -319,7 +322,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             rightHandbag.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     bag = (bag + SessionHistory.bagTotalNo)
                             % SessionHistory.bagTotalNo + 1;
                     bagPurchased = bag;
@@ -348,7 +351,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             leftGlasses.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     glasses = (glasses - 1) % SessionHistory.bagTotalNo;
                     if (glasses == 0) {
                         glasses = SessionHistory.glassesTotalNo;
@@ -379,7 +382,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             rightGlasses.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     glasses = (glasses + SessionHistory.glassesTotalNo)
                             % SessionHistory.glassesTotalNo + 1;
                     glassesPurchased = glasses + SessionHistory.bagTotalNo;
@@ -408,7 +411,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             leftHat.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     hat = (hat - 1) % SessionHistory.hatTotalNo;
                     if (hat == 0) {
                         hat = SessionHistory.hatTotalNo;
@@ -440,7 +443,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             rightHat.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     hat = (hat + SessionHistory.hatTotalNo)
                             % SessionHistory.hatTotalNo + 1;
                     hatPurchased = hat + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo;
@@ -470,7 +473,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             leftNecklace.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     necklace = (necklace - 1) % SessionHistory.necklaceTotalNo;
                     if (necklace == 0) {
                         necklace = SessionHistory.necklaceTotalNo;
@@ -503,7 +506,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
             rightNecklace.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { // If clicked checks whether purchased and if true sets text as "**Paid**" and sets the image
                     necklace = (necklace + SessionHistory.necklaceTotalNo)
                             % SessionHistory.necklaceTotalNo + 1;
                     necklacePurchased = necklace
@@ -535,7 +538,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Code for continue button
+                /*
+                Saves al changes to Database. If purchased then checks if the user has points to buy this if false prints Not enough points. If true it subtracts the points needed for it from the total points.
+                 */
                 getmDbHandler().open();
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
                     if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(cloth))
