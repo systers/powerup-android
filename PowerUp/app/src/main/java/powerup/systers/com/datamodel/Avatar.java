@@ -1,5 +1,6 @@
 /**
-* Getter and setter methods for displaying avatar features.
+* @desc this class holds getter and setter methods for displaying avatar features
+* examples include getEyes() and setClothes()
 */
 
 package powerup.systers.com.datamodel;
