@@ -1,5 +1,5 @@
 /** 
-* If the user has already completed a scenario, she can go 
+* @desc if the user has already completed a scenario, she can go 
 * to the store or go back to the map.
 */
 
