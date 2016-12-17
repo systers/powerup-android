@@ -1,5 +1,5 @@
 /** 
-* Finishes dialogue situation when the “continue” or “back” button is pressed. 
+* @desc finishes dialogue situation when the “continue” or “back” button is pressed. 
 * Brings user to ending screen displaying current progress of power/health
 * bars and karma points.
 */
