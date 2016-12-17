@@ -1,5 +1,6 @@
 /**
-* Getter and setter methods for each dialogue scenario's status.
+* @desc this class holds getter and setter methods for each dialogue scenario's status
+* examples include setAsker() and getNextScenarioID()
 */
 
 package powerup.systers.com.datamodel;
