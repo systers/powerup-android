@@ -1,5 +1,5 @@
 /** 
-* Sets up the map screen.
+* @desc sets up the map screen.
 */
 
 package powerup.systers.com;
