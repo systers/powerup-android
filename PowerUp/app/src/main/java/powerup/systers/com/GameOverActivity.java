@@ -1,5 +1,5 @@
 /** 
-* Finishes the game and shows a screen telling the user that the game
+* @desc finishes the game and shows a screen telling the user that the game
 * has completed.
 */
 
