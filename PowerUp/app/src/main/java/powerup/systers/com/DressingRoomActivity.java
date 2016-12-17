@@ -1,5 +1,5 @@
 /** 
-* Displays avatar features in dressing room and updates power/health bars.
+* @desc displays avatar features in dressing room and updates power/health bars.
 */
 
 package powerup.systers.com;
