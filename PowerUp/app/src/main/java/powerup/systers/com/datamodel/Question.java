@@ -1,5 +1,6 @@
 /**
-* Getter and setter methods for each question and the scenario it belongs to.
+* @desc this class holds getter and setter methods for each question and the scenario it belongs to
+* examples include getQuestionDescription() and setScenarioID()
 */
 
 package powerup.systers.com.datamodel;
