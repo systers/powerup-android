@@ -1,7 +1,6 @@
 /** 
-* Presents the user with a dialogue scenario and updates the scenario 
-* with more questions and answers as needed. Also updates power/health 
-* bars.
+* @desc presents the user with a dialogue scenario and updates the scenario 
+* with more questions and answers as needed. Also updates power/health bars.
 */
 
 package powerup.systers.com;
