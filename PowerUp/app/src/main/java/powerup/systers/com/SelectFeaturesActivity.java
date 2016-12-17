@@ -1,5 +1,5 @@
 /** 
-* Allows user to purchase/change clothes using the current session's total points 
+* @desc allows user to purchase/change clothes using the current session's total points 
 * (karma) and sets progress of power and health bars. 
 */
 
