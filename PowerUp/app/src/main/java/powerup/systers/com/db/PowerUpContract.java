@@ -1,5 +1,5 @@
 /**
-* Creates directories for scenarios, avatar features, questions, answers, and points.
+* @desc creates directories for scenarios, avatar features, questions, answers, and points
 */
 
 package powerup.systers.com.db;
