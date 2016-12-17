@@ -1,5 +1,5 @@
 /**
-* Displays avatar features, sets hasPreviouslyStarted to true, and 
+* @desc displays avatar features, sets hasPreviouslyStarted to true, and 
 * returns the user to map after clicking “continue”. 
 */
 
