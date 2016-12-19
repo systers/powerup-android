@@ -17,6 +17,9 @@ public class DatabaseHandler extends AbstractDbAdapter {
         ctx.getAssets();
     }
 
+    /**
+     * @return whether or not the game is over (if all scenarios have been completed)
+     */
     public boolean gameOver() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0";
@@ -28,6 +31,12 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return true;
     }
 
+    /**
+     * Retrieves data from the database in the form of {@link Answer} objects
+     *
+     * @param answers The list to be populated and added to with answers ({@link Answer})
+     * @param qId The question identifier
+     */
     public void getAllAnswer(List<Answer> answers, Integer qId) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.AnswerEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AnswerEntry.COLUMN_QUESTION_ID + " = " + qId;
@@ -47,6 +56,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         cursor.close();
     }
 
+    /**
+     * @return the current {@link Question}. This is found using the current question identifier
+     *      from {@link SessionHistory}.
+     */
     public Question getCurrentQuestion() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.QuestionEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.QuestionEntry.COLUMN_QUESTION_ID + " = "
@@ -63,6 +76,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return null;
     }
 
+    /**
+     * @return the current {@link Scenario} using the current session id from {@link SessionHistory}
+     *
+     * @see #getScenarioFromID(int)
+     */
     public Scenario getScenario() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = "
@@ -85,6 +103,12 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return null;
     }
 
+    /**
+     * @param id The integer identifier of the scenario to return
+     * @return the {@link Scenario} of the specified id
+     *
+     * @see #getScenario()
+     */
     public Scenario getScenarioFromID(int id) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = "
@@ -107,6 +131,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return null;
     }
 
+    /**
+     * @param ScenarioName The name (string) of the {@link Scenario} to modify
+     * @return whether or not the scenario has been found in the database
+     */
     public boolean setSessionId(CharSequence ScenarioName) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_SCENARIO_NAME + " = "
@@ -126,6 +154,14 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return false;
     }
 
+    /**
+     * Marks a {@link Scenario} as completed in the database
+     *
+     * @param id The identifier of the {@link Scenario} to be marked as complete
+     *
+     * @see #setCompletedScenario(CharSequence)
+     * @see #updateComplete()
+     */
     public void setCompletedScenario(int id) {
         String updateQuery = "UPDATE  " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + "=1" +
@@ -141,6 +177,14 @@ public class DatabaseHandler extends AbstractDbAdapter {
         cursor.close();
     }
 
+    /**
+     * Marks a {@link Scenario} as completed in the database using the scenario name
+     *
+     * @param ScenarioName The identifier of the {@link Scenario} to be marked as complete
+     *
+     * @see #setCompletedScenario(int)
+     * @see #updateComplete()
+     */
     public void setCompletedScenario(CharSequence ScenarioName) {
         String updateQuery = "UPDATE  " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + "=1" +
@@ -149,6 +193,13 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(updateQuery);
     }
 
+    /**
+     * Set the {@code replayed} attribute of a {@link Scenario} to {@code 1} (true)
+     *
+     * @param ScenarioName The name of the {@link Scenario} to be modified
+     *
+     * @see #updateReplayed()
+     */
     public void setReplayedScenario(CharSequence ScenarioName) {
         String updateQuery = "UPDATE  " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + "=1" +
@@ -461,21 +512,37 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
-    public void updateComplete()
-    {
+    /**
+     * Set the {@code complete} attribute of a {@link Scenario} to 0 (false)
+     *
+     * @see #setCompletedScenario(int)
+     * @see #setCompletedScenario(CharSequence)
+     */
+    public void updateComplete() {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0";
         mDb.execSQL(query);
     }
 
-    public void updateReplayed()
-    {
+    /**
+     * Set the {@code replayed} attribute of a {@link Scenario} to 0 (false)
+     *
+     * @see #setReplayedScenario(CharSequence)
+     */
+    public void updateReplayed() {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0";
         mDb.execSQL(query);
     }
-    public void resetPurchase()
-    {
+
+    /**
+     * Reset any purchases that have been made for clothes, hair and accessories.
+     *
+     * @see #setPurchasedClothes(int)
+     * @see #setPurchasedHair(int)
+     * @see #setPurchasedAccessories(int)
+     */
+    public void resetPurchase() {
         String query = "UPDATE " + PowerUpContract.ClothesEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ClothesEntry.COLUMN_PURCHASED + " = 0";
         mDb.execSQL(query);
