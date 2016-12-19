@@ -1,5 +1,8 @@
 package powerup.systers.com.datamodel;
 
+/**
+ * Represents a scenario in the PowerUp game
+ */
 public class Scenario {
 
     private int id;

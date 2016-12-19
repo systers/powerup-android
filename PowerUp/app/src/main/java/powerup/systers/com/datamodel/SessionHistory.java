@@ -1,5 +1,8 @@
 package powerup.systers.com.datamodel;
 
+/**
+ * A class holding values for the session history including the current session and total points.
+ */
 public class SessionHistory {
     public static int currQID = 1;
     public static int currSessionID = 1;

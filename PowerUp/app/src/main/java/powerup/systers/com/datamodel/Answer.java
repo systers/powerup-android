@@ -1,5 +1,10 @@
 package powerup.systers.com.datamodel;
 
+/**
+ * An object representing an answer in the PowerUp game.
+ *
+ * @see Question
+ */
 public class Answer {
 
     private Integer answerID;
