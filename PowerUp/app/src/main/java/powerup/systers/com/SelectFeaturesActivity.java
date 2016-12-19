@@ -16,6 +16,10 @@ import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
+/**
+ * This activity can be invoked from {@link DressingRoomActivity} to change one of the avatar
+ * features, such as clothes, hair and accessories.
+ */
 public class SelectFeaturesActivity extends AppCompatActivity {
 
     public static Activity selectFeatureInstance;
@@ -105,7 +109,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
         powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
 
-        final String value = getIntent().getExtras().getString(getResources().getString(R.string.feature));
+        final String value = getIntent().getExtras().getString(getResources().getString(R.string.feature)); // the avatar feature we want to change
         Button continueButton = (Button) findViewById(R.id.continueButton);
         final ImageView imageViewSelectFeature = (ImageView) findViewById(R.id.imageViewSelectFeature);
         final TextView tvPaidSelectFeature = (TextView) findViewById(R.id.tvPaidSelectFeature);

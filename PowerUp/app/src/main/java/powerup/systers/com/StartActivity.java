@@ -11,6 +11,10 @@ import android.widget.ImageButton;
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
+
+    /**
+     * Indicates whether or not the user has played the game (and chosen their avatar) before
+     */
     private boolean hasPreviouslyStarted;
 
     @Override
@@ -32,6 +36,7 @@ public class StartActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (hasPreviouslyStarted) {
+                    // We can go straight to the map since the avatar has already been chosen
                     startActivity(new Intent(StartActivity.this, MapActivity.class));
                 } else {
                     startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));

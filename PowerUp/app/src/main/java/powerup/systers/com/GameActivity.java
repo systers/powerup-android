@@ -20,6 +20,10 @@ import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
+/**
+ * The part of the UI responsible for the game, including showing questions and allowing the user
+ * to choose answers
+ */
 @SuppressLint("NewApi")
 public class GameActivity extends Activity {
 
@@ -225,7 +229,7 @@ public class GameActivity extends Activity {
     }
 
     private void updateQA() {
-
+        // Update the questions and answers by modifying the listAdapter
         listAdapter.clear();
         getmDbHandler().getAllAnswer(answers, SessionHistory.currQID);
         for (Answer ans : answers) {

@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Shown to the user once they have completed a scene.
+ *
+ * From here, they can go back to the map or to the store.
+ */
 public class CompletedSceneActivity extends Activity {
 
     /**

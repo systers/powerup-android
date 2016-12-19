@@ -11,6 +11,10 @@ import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
+/**
+ * From this activity, the user can change their clothes, hair and accessories, providing they
+ * have enough Karma points.
+ */
 public class DressingRoomActivity extends AppCompatActivity {
 
     public static Activity dressingRoomInstance;
@@ -29,6 +33,9 @@ public class DressingRoomActivity extends AppCompatActivity {
         ImageView clothView = (ImageView) findViewById(R.id.clothView);
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+
+        // Display the avatar features
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();

@@ -13,6 +13,12 @@ import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
+/**
+ * This activity allows the user to decide whether they would like to replay the current scene
+ * after completing it.
+ *
+ * Alternatively they can choose to continue.
+ */
 public class ScenarioOverActivity extends AppCompatActivity {
 
     public static Activity scenarioOverActivityInstance;

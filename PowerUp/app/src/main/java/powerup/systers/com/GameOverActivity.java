@@ -3,6 +3,9 @@ package powerup.systers.com;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * Shown to the user after they have completed all of the scenes
+ */
 public class GameOverActivity extends Activity {
 
     /**

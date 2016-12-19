@@ -10,9 +10,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import powerup.systers.com.db.DatabaseHandler;
 
+/**
+ * This screen shows the user their new avatar after they have finished designing it
+ */
 public class AvatarActivity extends Activity {
 
+    /**
+     * A value indicating whether this activity has been started by {@link AvatarRoomActivity}
+     */
     int fromActivity;
+
     private DatabaseHandler mDbHandler;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,9 @@ public class AvatarActivity extends Activity {
 
         Button continueButton = (Button) findViewById(R.id.continueButton);
         Button backButton = (Button) findViewById(R.id.backButton);
+
+        // Now we display the drawables for the different parts of the body
+
         String eyeImageName =getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -133,10 +143,12 @@ public class AvatarActivity extends Activity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fromActivity == 1) {
+                if (fromActivity == 1) { // we've chosen our avatar and confirmed to continue
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
                     boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
                     if (!hasPreviouslyStarted) {
+                        // The avatar has been chosen so we have started the game and
+                        // 'has_previously_started' becomes true
                         SharedPreferences.Editor edit = prefs.edit();
                         edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
                         edit.apply();

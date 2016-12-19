@@ -1,6 +1,5 @@
 package powerup.systers.com;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,9 @@ import java.util.Random;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
+/**
+ * Here, the user can choose what their avatar will look like
+ */
 public class AvatarRoomActivity extends Activity {
 
     public static Activity avatarRoomInstance;
@@ -238,6 +240,8 @@ public class AvatarRoomActivity extends Activity {
             @Override
             public void onClick(View v) {
                 getmDbHandler().open();
+
+                // Set and save the chosen avatar features
                 getmDbHandler().setAvatarEye(eye);
                 getmDbHandler().setAvatarFace(face);
                 getmDbHandler().setAvatarHair(hair);
@@ -246,12 +250,14 @@ public class AvatarRoomActivity extends Activity {
                 getmDbHandler().setAvatarGlasses(0);
                 getmDbHandler().setAvatarHat(0);
                 getmDbHandler().setAvatarNecklace(0);
-                getmDbHandler().updateComplete();//set all the complete fields back to 0
-                getmDbHandler().updateReplayed();//set all the replayed fields back to 0
-                SessionHistory.totalPoints=0;    //reset the points stored
+                getmDbHandler().updateComplete(); // set all the complete fields back to 0
+                getmDbHandler().updateReplayed(); // set all the replayed fields back to 0
+                SessionHistory.totalPoints=0; // reset the points stored
                 SessionHistory.currSessionID=1;
                 SessionHistory.currScenePoints=0;
                 getmDbHandler().resetPurchase();
+
+                // Healing, strength, invisibility and telepathy are randomly chosen
                 Random r = new Random();
                 Integer healing = r.nextInt(101 - 1) + 1;
                 getmDbHandler().setHealing(healing);
