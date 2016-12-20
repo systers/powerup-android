@@ -309,6 +309,32 @@ public class DatabaseHandler extends AbstractDbAdapter {
     }
 
     /**
+     * @desc get the current hat to display.
+     * @return int - the number of the current hat. Default is 0.
+     */
+    public int getAvatarHat() {
+        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
+                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
+        Cursor cursor = mDb.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            return cursor.getInt(5);
+        }
+        cursor.close();
+        return 0;
+    }
+
+    /**
+     * @desc change the avatar's hat.
+     * @param hat - the number of the requested hat
+     */
+    public void setAvatarHat(Integer hat) {
+        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
+                " SET " + PowerUpContract.AvatarEntry.COLUMN_HAT + " = " + hat +
+                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
+        mDb.execSQL(query);
+    }
+
+    /**
     * @desc get the current bag to display.
     * @return int - the number of the current bag. Default is 0.
     */
@@ -317,7 +343,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            return cursor.getInt(5);
+            return cursor.getInt(6);
         }
         cursor.close();
         return 0;
@@ -343,7 +369,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            return cursor.getInt(6);
+            return cursor.getInt(7);
         }
         cursor.close();
         return 0;
@@ -356,32 +382,6 @@ public class DatabaseHandler extends AbstractDbAdapter {
     public void setAvatarGlasses(Integer glasses) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_GLASSES + " = " + glasses +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    /**
-    * @desc get the current hat to display.
-    * @return int - the number of the current hat. Default is 0.
-    */
-    public int getAvatarHat() {
-        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(7);
-        }
-        cursor.close();
-        return 0;
-    }
-
-    /**
-    * @desc change the avatar's hat.
-    * @param hat - the number of the requested hat
-    */
-    public void setAvatarHat(Integer hat) {
-        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " SET " + PowerUpContract.AvatarEntry.COLUMN_HAT + " = " + hat +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         mDb.execSQL(query);
     }
