@@ -9,14 +9,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="powerup.systers.com.ScenarioOverActivity"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+    tools:context="powerup.systers.com.ScenarioOverActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:theme="AppBaseTheme">
 
         <ImageView
             android:id="@+id/faceView"

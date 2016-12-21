@@ -10,7 +10,7 @@
         <activity
             android:name=".StartActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar">
+            android:theme="@style/AppBaseTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,44 +19,39 @@
         </activity>
         <activity
             android:name=".GameActivity"
-            android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".AvatarRoomActivity"
-            android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".AvatarActivity"
-            android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".MapActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:theme="@style/MyNoActionBar"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".CompletedSceneActivity"
-            android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".GameOverActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:theme="@style/AppBaseTheme"/>
 
         <uses-library android:name="android.test.runner" />
 
         <activity
             android:name=".DressingRoomActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".SelectFeaturesActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".ScenarioOverActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyNoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>
