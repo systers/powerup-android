@@ -16,9 +16,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import powerup.systers.com.datamodel.Answer;
 import powerup.systers.com.datamodel.Question;
 import powerup.systers.com.datamodel.Scenario;
