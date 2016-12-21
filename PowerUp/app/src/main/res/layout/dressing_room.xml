@@ -4,14 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/curtains"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-    <ImageView
+    <TextView
+        android:id="@+id/store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/redoButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Store"
+        android:textColor="#ff000000"
+        android:textSize="@dimen/game_text_size"
+        android:paddingTop="0dp"/>
+
+
+<ImageView
         android:id="@+id/karmaImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:src="@drawable/karma_text" />
+        android:src="@drawable/karma_text"
+        android:paddingTop="25dp"/>
 
     <TextView
         android:id="@+id/karmaPoints"
@@ -21,7 +37,8 @@
         android:layout_marginTop="@dimen/avatar_button_margin"
         android:hint="points"
         android:textColor="@color/powerup_black"
-        android:textSize="@dimen/back_button_textsize" />
+        android:textSize="@dimen/back_button_textsize"
+        android:paddingTop="33dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
