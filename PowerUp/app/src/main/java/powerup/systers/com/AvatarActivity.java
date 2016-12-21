@@ -21,6 +21,7 @@ public class AvatarActivity extends Activity {
     private DatabaseHandler mDbHandler;
 
     public void onCreate(Bundle savedInstanceState) {
+        // Avatar creation from shared preferences . Getting all things like eyes,face,hair,cloth
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avatar);
         setmDbHandler(new DatabaseHandler(this));
@@ -41,7 +42,7 @@ public class AvatarActivity extends Activity {
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
-        try {
+        try { // Gets the value and sets it
             photoNameField = ourRID.getClass().getField(eyeImageName);
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
@@ -51,7 +52,7 @@ public class AvatarActivity extends Activity {
 
         String faceImageName = getResources().getString(R.string.face);
         faceImageName = faceImageName + getmDbHandler().getAvatarFace();
-        try {
+        try { // Gets the value and sets it
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
@@ -61,7 +62,7 @@ public class AvatarActivity extends Activity {
 
         String clothImageName = getResources().getString(R.string.cloth);
         clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
-        try {
+        try { // Gets the value and sets it
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
@@ -71,7 +72,7 @@ public class AvatarActivity extends Activity {
 
         String hairImageName = getResources().getString(R.string.hair);
         hairImageName = hairImageName + getmDbHandler().getAvatarHair();
-        try {
+        try { // Gets the value and sets it
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
@@ -79,7 +80,7 @@ public class AvatarActivity extends Activity {
             e.printStackTrace();
         }
 
-        if(getmDbHandler().getAvatarBag()!= 0){
+        if(getmDbHandler().getAvatarBag()!= 0){ //Check whether if the value of bag in Database is null. If false then get the value
             String bagImageName = getResources().getString(R.string.bag);
             bagImageName = bagImageName + getmDbHandler().getAvatarBag();
             try {
@@ -91,7 +92,7 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if(getmDbHandler().getAvatarGlasses()!= 0){
+        if(getmDbHandler().getAvatarGlasses()!= 0){ //Check whether if the value of glasses in Database is null. If false then get the value
             String glassesImageName = getResources().getString(R.string.glasses);
             glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
             try {
@@ -103,7 +104,7 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if(getmDbHandler().getAvatarHat()!= 0){
+        if(getmDbHandler().getAvatarHat()!= 0){ //Check whether if the value of hat in Database is null. If false then get the value
             String hatImageName = getResources().getString(R.string.hat);
             hatImageName = hatImageName + getmDbHandler().getAvatarHat();
             try {
@@ -115,7 +116,7 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if(getmDbHandler().getAvatarNeckalce()!= 0){
+        if(getmDbHandler().getAvatarNeckalce()!= 0){ //Check whether if the value of necklace in Database is null. If false then get the value
             String necklaceImageName = getResources().getString(R.string.necklace);
             necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
             try {
@@ -130,6 +131,7 @@ public class AvatarActivity extends Activity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Code for continue button. Set preferences for avatar.
                 if (fromActivity == 1) {
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
                     boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
@@ -155,7 +157,7 @@ public class AvatarActivity extends Activity {
             public void onClick(View v) {
                 finish();
             }
-        });
+        }); /* Code for back button. If clicked exit application */
     }
 
     public DatabaseHandler getmDbHandler() {

@@ -36,6 +36,7 @@ public class AvatarRoomActivity extends Activity {
     private Integer cloth = 1;
 
     public void onCreate(Bundle savedInstanceState) {
+        // Avatar creation from shared preferences if existing or use default . Getting all things like eyes,face,hair,cloth
         super.onCreate(savedInstanceState);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
@@ -61,7 +62,7 @@ public class AvatarRoomActivity extends Activity {
 
         eyeLeft.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for left eye. Load from assets
                 eye = (eye - 1) % SessionHistory.eyesTotalNo;
                 if (eye == 0) {
                     eye = SessionHistory.eyesTotalNo;
@@ -84,7 +85,7 @@ public class AvatarRoomActivity extends Activity {
 
         eyeRight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for right eye. Load from assets
                 eye = (eye + SessionHistory.eyesTotalNo)
                         % SessionHistory.eyesTotalNo + 1;
                 String eyeImageName = getResources().getString(R.string.eye);
@@ -104,7 +105,7 @@ public class AvatarRoomActivity extends Activity {
 
         faceLeft.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for left part of face. Load from assets
                 face = (face - 1) % SessionHistory.faceTotalNo;
                 if (face == 0) {
                     face = SessionHistory.faceTotalNo;
@@ -127,7 +128,7 @@ public class AvatarRoomActivity extends Activity {
 
         faceRight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for right part of face. Load from assets
                 face = (face + SessionHistory.faceTotalNo)
                         % SessionHistory.faceTotalNo + 1;
                 String faceImageName = getResources().getString(R.string.face);
@@ -147,7 +148,7 @@ public class AvatarRoomActivity extends Activity {
 
         clothLeft.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for part of cloth. Load from assets
                 cloth = (cloth - 1) % SessionHistory.clothTotalNo;
                 if (cloth == 0) {
                     cloth = SessionHistory.clothTotalNo;
@@ -170,7 +171,7 @@ public class AvatarRoomActivity extends Activity {
 
         clothRight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for right part of cloth. Load from assets
                 cloth = (cloth + SessionHistory.clothTotalNo)
                         % SessionHistory.clothTotalNo + 1;
                 String clothImageName = getResources().getString(R.string.cloth);
@@ -190,7 +191,7 @@ public class AvatarRoomActivity extends Activity {
 
         hairLeft.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for left part of hair. Load from assets
                 hair = (hair - 1) % SessionHistory.hairTotalNo;
                 if (hair == 0) {
                     hair = SessionHistory.hairTotalNo;
@@ -213,7 +214,7 @@ public class AvatarRoomActivity extends Activity {
 
         hairRight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Load Image for right part of hair. Load from assets
                 hair = (hair + SessionHistory.hairTotalNo)
                         % SessionHistory.hairTotalNo + 1;
                 String hairImageName = getResources().getString(R.string.hair);
@@ -233,12 +234,12 @@ public class AvatarRoomActivity extends Activity {
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                getmDbHandler().open();
-                getmDbHandler().setAvatarEye(eye);
-                getmDbHandler().setAvatarFace(face);
-                getmDbHandler().setAvatarHair(hair);
-                getmDbHandler().setAvatarCloth(cloth);
+            public void onClick(View v) { // Code for continue button
+                getmDbHandler().open(); // Opens the Database for editing values
+                getmDbHandler().setAvatarEye(eye); // Sets the eye preference to Database for further use
+                getmDbHandler().setAvatarFace(face); // Sets the face preference to Database for further use
+                getmDbHandler().setAvatarHair(hair); // Sets the hair preference to Database for further use
+                getmDbHandler().setAvatarCloth(cloth); // Sets the cloth preference to Database for further use
                 getmDbHandler().setAvatarBag(0);
                 getmDbHandler().setAvatarGlasses(0);
                 getmDbHandler().setAvatarHat(0);
@@ -271,7 +272,7 @@ public class AvatarRoomActivity extends Activity {
                 startActivityForResult(myIntent, 0);
             }
         });
-        getmDbHandler().close();
+        getmDbHandler().close(); // Save changes and close the Database
     }
 
     public DatabaseHandler getmDbHandler() {

@@ -32,6 +32,9 @@ public class MapActivity extends Activity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        /*
+        Creates all buttons for the view of the map. The buttons created are house,boyfriend,hospital,school,storeButton,homeButton
+         */
         super.onCreate(savedInstanceState);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();

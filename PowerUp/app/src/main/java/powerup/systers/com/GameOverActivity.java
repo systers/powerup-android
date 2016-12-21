@@ -14,7 +14,7 @@ public class GameOverActivity extends Activity {
      * Called when the activity is first created.
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) { // Sets the application to completed_game seen.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_game);
     }
