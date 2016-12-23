@@ -5,4 +5,7 @@
     <color name="powerup_yellow">#edf064</color>
     <color name="powerup_blue_green">#12bea2</color>
     <color name="powerup_black">#000000</color>
+    <color name="startscreen_background">#CCF1F5</color>
+    <color name="blackfont">#FFFFFF</color>
+    <color name="gray">#686A6A</color>
 </resources>

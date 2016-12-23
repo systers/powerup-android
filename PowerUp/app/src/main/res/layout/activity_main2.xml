@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="powerup.systers.com.db.Main2Activity"
+    android:background="@color/startscreen_background">
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:src="@drawable/ic_launcher"
+        android:paddingTop="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/powerupTextView"
+        android:layout_width="@dimen/powerup_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="@string/powerup"
+        android:textAlignment="center"
+        android:textSize="@dimen/powerup_size"
+        android:typeface="serif"
+        android:paddingTop="@dimen/powerup_splashScreenTopPad"
+        android:textColor="@color/gray"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/org"
+        android:layout_width="@dimen/powerup_width"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:fontFamily="Oleo-script"
+        android:gravity="center"
+        android:text="@string/org"
+        android:textAlignment="center"
+        android:textSize="@dimen/org_size"
+        android:typeface="sans"
+        android:paddingTop="300dp"
+        android:textColor="@color/powerup_black"/>
+    <TextView
+        android:id="@+id/initiative"
+        android:layout_width="@dimen/powerup_width"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:fontFamily="Molle"
+        android:gravity="center"
+        android:text="@string/initiative"
+        android:textAlignment="center"
+        android:textSize="@dimen/org_size"
+        android:typeface="sans"
+        android:paddingTop="150dp"
+        android:textColor="@color/powerup_black"/>
+
+
+
+</RelativeLayout>
