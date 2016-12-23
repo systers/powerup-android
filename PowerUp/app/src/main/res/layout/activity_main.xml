@@ -45,6 +45,7 @@
         android:id="@+id/aboutButtonMain"
         android:layout_width="@dimen/about_button_width"
         android:layout_height="@dimen/about_button_height"
-        android:background="@drawable/aboutbutton" />
+        android:background="@drawable/aboutbutton"
+        android:onClick="goToAbout"/>
 
 </LinearLayout>

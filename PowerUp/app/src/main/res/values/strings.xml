@@ -45,4 +45,9 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="features">PowerUp is an educational simulation game aimed at preadolescent girls between the ages of 12 and 14. Many young girls struggle with self-esteem issues, and feelings of disempowerment. PowerUp aims at helping these preadolescent girls to cope with these feelings and to give them a simulated environment where they can practise real world skills. PowerUp has a friendly user-interface where children can design their own avatar to represent them in the game. They will then be put in various scenarios where they will have to make informed decisions about how to react to the scenario. They will be rewarded with points based on their choices - the better the choice, the more points. they will also have the ability to stand up for themselves against peer-pressure situations to help them gain a feeling of empowerment. Upon completion of each scenario, the user will be shown their "Health Powers" which encourages them to make better decisions to increase their Health Powers and to gain more points. Oh, and don't forget, there is also a store for you to buy acessories for your avatar with the points you have earned.</string>
+    <string name="urgency">In todays day and time, it is especially important to teach children certain skills such as learning to say no, and to stand up for themselves. Nowadays there are also lots of pressure on young teenagers, wheather it be peer-pressure, or through social media, and it is important to tackle these problems and to teach them the correct ways to go about handling it.</string>
+    <string name="about">About</string>
+    <string name="enjoy">ENJOY THE GAME!</string>
+
 </resources>
