@@ -40,7 +40,6 @@
 
         <activity
             android:name=".DressingRoomActivity"
-<<<<<<< HEAD
             android:label="@string/app_name" />
         <activity
             android:name=".SelectFeaturesActivity"
@@ -60,7 +59,6 @@
             android:name=".ScenarioOverActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
->>>>>>> upstream/develop
     </application>
 
 </manifest>
