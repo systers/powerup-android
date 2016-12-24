@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="powerup.systers.com.AboutActivity">
+
+    <TextView
+        android:id="@+id/textViewAboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/about_title_margin_top"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="@string/about_app_title"
+        android:textAlignment="center"
+        android:textSize="@dimen/about_title_text_size"
+        android:typeface="serif" />
+
+    <Button
+        android:id="@+id/aboutBtnGoBack"
+        android:layout_width="@dimen/about_btn_go_back_width"
+        android:layout_height="@dimen/about_btn_go_back_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/back_background"
+        android:fontFamily="cursive"
+        android:text="@string/about_app_btn_go_back"
+        android:textSize="@dimen/about_btn_go_back_text_size"
+        android:textStyle="normal|bold"
+        android:typeface="serif" />
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/aboutBtnGoBack"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/textViewAboutTitle"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:id="@+id/aboutAppTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="true"
+            android:padding="@dimen/about_text_padding"
+            android:scrollbars="vertical"
+            android:text="@string/about_app_text"
+            android:textColor="#000"
+            android:textSize="@dimen/about_text_size"
+            android:typeface="serif" />
+
+    </ScrollView>
+
+</RelativeLayout>
