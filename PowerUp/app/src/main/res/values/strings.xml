@@ -45,4 +45,10 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="about_app_title">About App</string>
+    <string name="about_app_btn_go_back">Go Back</string>
+    <string name="about_app_text">
+        \t\t\tPreadolescent girls need better options for reproductive health and self-esteem education. Preadolescents are at risk for teenage pregnancy and spread of Sexually Transmitted Infections(STIs). Additionally, preadolescents struggle with self-esteem which makes them vulnerable to peer and social media influence. These can impact economy, hurt family cohesion, and affect female education and health.\n\n
+        \t\t\tIn response to this crisis, PowerUp seeks to help preadolescent girls between the age of 12 to 14 make informed decisions regarding their reproductive and sexual health. This app is an educational choose-your-own-adventure choice making game. The user can create a character and start playing, beginning with easier, less vulnerable subjects towards the hard-hitting subject of sex, menstruation, pregnancy, and STIs. Here, preadolescent girls can engage in interactive media about self-esteem, puberty, sex, and reproductive health.
+    </string>
 </resources>

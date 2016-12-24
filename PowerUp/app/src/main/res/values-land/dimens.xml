@@ -37,5 +37,7 @@
     <dimen name="avatar_room_width">80dp</dimen>
     <dimen name="avatar_room_height">80dp</dimen>
     <dimen name="avatar_room_continue_button_land">30dp</dimen>
-
+    <dimen name="about_title_text_size">40sp</dimen>
+    <dimen name="about_title_margin_top">10dp</dimen>
+    <dimen name="about_btn_go_back_text_size">20sp</dimen>
 </resources>
