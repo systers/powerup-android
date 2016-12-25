@@ -138,5 +138,8 @@
     <dimen name="select_feature_tv_paid_top_margin_small">30dp</dimen>
     <dimen name="select_feature_tv_paid_left_margin_small">10dp</dimen>
     <dimen name="select_feature_tv_paid_size_small">21sp</dimen>
+    <dimen name="about_description_lateral">36dp</dimen>
+    <dimen name="about_description_vertical">76dp</dimen>
+    <dimen name="about_paragraph_margin">36dp</dimen>
 
 </resources>

@@ -45,4 +45,25 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+
+    <string name="about_description_brief">Design your own avatar, go on adventures, and learn about
+        sex education with the PowerUp app.
+    </string>
+
+    <string name="about_description_detail">You can customise your avatar however you like: choose
+        from a range of clothing, bags, accessories, and even personal characteristics such as eyes.
+        Save up karma points to buy cool new accessories for your avatar, or perhaps a new item of
+        clothing. \n\nTo gain these karma points, you and your avatar can go on adventures, making
+        powerful decisions and learning about sex education. Changed your mind about something your
+        avatar did? You always have the option of replaying a scene.
+    </string>
+
+    <string name="about_project_description">We live in a time where sexual activity is becoming
+        increasingly common amongst adolescents and even preadolescents. Sex education at school or
+        information from parents/guardians and can be very awkward too, making it more challenging
+        for you to know what to do when confronted with such a situation in real life. PowerUp is a
+        game that will help you discover and learn through interaction with other characters, such
+        as a friend from school.
+    </string>
+
 </resources>

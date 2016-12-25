@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="powerup.systers.com.AboutActivity">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="@dimen/back_button_width"
+        android:layout_height="@dimen/back_button_height"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/back_background"
+        android:text="@string/back_button"
+        android:textSize="@dimen/back_button_textsize" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/about_description_lateral"
+        android:layout_marginRight="@dimen/about_description_lateral"
+        android:layout_marginTop="@dimen/about_description_vertical"
+        android:layout_marginBottom="@dimen/about_description_vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/about_description_brief"
+                android:textSize="@dimen/game_text_size"
+                android:textStyle="bold|italic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="@string/about_description_detail"
+                android:textSize="@dimen/game_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/about_paragraph_margin"/>
+
+            <TextView
+                android:text="@string/about_project_description"
+                android:textSize="@dimen/game_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/about_paragraph_margin"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
