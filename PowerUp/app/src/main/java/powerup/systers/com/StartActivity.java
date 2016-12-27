@@ -10,15 +10,15 @@ import android.widget.ImageButton;
 
 public class StartActivity extends Activity {
 
-    private SharedPreferences preferences;
-    private boolean hasPreviouslyStarted;
+    private SharedPreferences mPreferences;
+    private boolean mHasPreviouslyStarted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        mHasPreviouslyStarted = mPreferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
         ImageButton newUserButton = (ImageButton) findViewById(R.id.newUserButtonFirstPage);
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +31,7 @@ public class StartActivity extends Activity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hasPreviouslyStarted) {
+                if (mHasPreviouslyStarted) {
                     startActivity(new Intent(StartActivity.this, MapActivity.class));
                 } else {
                     startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));
@@ -45,6 +45,6 @@ public class StartActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
+        mHasPreviouslyStarted = mPreferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
     }
 }

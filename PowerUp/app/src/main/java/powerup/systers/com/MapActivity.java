@@ -11,7 +11,7 @@ import powerup.systers.com.db.DatabaseHandler;
 public class MapActivity extends Activity {
 
     private DatabaseHandler mDbHandler;
-    private OnClickListener onClickListener = new OnClickListener() {
+    private OnClickListener mOnClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             Button b = (Button) v;
@@ -34,16 +34,16 @@ public class MapActivity extends Activity {
         setContentView(R.layout.gamemap);
 
         Button house = (Button) findViewById(R.id.HouseButton);
-        house.setOnClickListener(onClickListener);
+        house.setOnClickListener(mOnClickListener);
 
         Button boyfriend = (Button) findViewById(R.id.BoyfriendButton);
-        boyfriend.setOnClickListener(onClickListener);
+        boyfriend.setOnClickListener(mOnClickListener);
 
         Button hospital = (Button) findViewById(R.id.HospitalButton);
-        hospital.setOnClickListener(onClickListener);
+        hospital.setOnClickListener(mOnClickListener);
 
         Button school = (Button) findViewById(R.id.SchoolButton);
-        school.setOnClickListener(onClickListener);
+        school.setOnClickListener(mOnClickListener);
 
         Button storeButton = (Button) findViewById(R.id.storeButton);
         storeButton.setOnClickListener(new OnClickListener() {

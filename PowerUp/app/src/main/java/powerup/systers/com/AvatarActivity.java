@@ -12,7 +12,7 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class AvatarActivity extends Activity {
 
-    int fromActivity;
+    private int mFromActivity;
     private DatabaseHandler mDbHandler;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class AvatarActivity extends Activity {
         setContentView(R.layout.avatar);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
-        fromActivity = getIntent().getExtras().getInt(getResources().getString(R.string.from_activity));
+        mFromActivity = getIntent().getExtras().getInt(getResources().getString(R.string.from_activity));
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
@@ -133,7 +133,7 @@ public class AvatarActivity extends Activity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fromActivity == 1) {
+                if (mFromActivity == 1) {
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
                     boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
                     if (!hasPreviouslyStarted) {
@@ -141,12 +141,12 @@ public class AvatarActivity extends Activity {
                         edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
                         edit.apply();
                     }
-                    AvatarRoomActivity.avatarRoomInstance.finish();
+                    AvatarRoomActivity.mAvatarRoomInstance.finish();
                     finish();
                     startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
                 } else {
-                    DressingRoomActivity.dressingRoomInstance.finish();
-                    SelectFeaturesActivity.selectFeatureInstance.finish();
+                    DressingRoomActivity.mDressingRoomInstance.finish();
+                    SelectFeaturesActivity.mSelectFeatureInstance.finish();
                     finish();
                     startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
                 }

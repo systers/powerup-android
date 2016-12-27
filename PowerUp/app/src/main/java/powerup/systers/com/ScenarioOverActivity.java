@@ -110,7 +110,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameActivity.gameActivityInstance.finish();
+                GameActivity.mGameActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
@@ -119,7 +119,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        GameActivity.gameActivityInstance.finish();
+        GameActivity.mGameActivityInstance.finish();
     }
 
     public DatabaseHandler getmDbHandler() {
