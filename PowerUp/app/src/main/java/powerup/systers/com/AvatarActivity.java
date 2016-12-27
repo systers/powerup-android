@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import powerup.systers.com.db.DatabaseHandler;
 
@@ -120,9 +119,9 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
             }
         }
 
-        if(mDbHandler.getAvatarNeckalce()!= 0){
+        if(mDbHandler.getAvatarNecklace()!= 0){
             String necklaceImageName = getResources().getString(R.string.necklace);
-            necklaceImageName = necklaceImageName + mDbHandler.getAvatarNeckalce();
+            necklaceImageName = necklaceImageName + mDbHandler.getAvatarNecklace();
             try {
                 photoNameField = ourRID.getClass().getField(necklaceImageName);
                 necklaceView.setImageResource(photoNameField.getInt(ourRID));

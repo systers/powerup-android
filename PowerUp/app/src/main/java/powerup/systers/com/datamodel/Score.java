@@ -31,11 +31,11 @@ public class Score {
         this.telepathy = telepathy;
     }
 
-    public int getInvisibilty() {
+    public int getInvisibility() {
         return invisibility;
     }
 
-    public void setInvisibilty(int invisibilty) {
-        this.invisibility = invisibilty;
+    public void setInvisibility(int invisibility) {
+        this.invisibility = invisibility;
     }
 }

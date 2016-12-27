@@ -40,7 +40,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         mDbHandler.open();
         mSelectFeatureInstance = this;
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        LinearLayout linearLayouthandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
+        LinearLayout linearLayoutHandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
         LinearLayout linearLayoutGlasses = (LinearLayout) findViewById(R.id.linearLayoutGlasses);
         LinearLayout linearLayoutHat = (LinearLayout) findViewById(R.id.linearLayoutHat);
         LinearLayout linearLayoutNecklace = (LinearLayout) findViewById(R.id.linearLayoutNecklace);
@@ -117,7 +117,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
             linearLayout.setVisibility(View.VISIBLE);
             linearLayoutGlasses.setVisibility(View.GONE);
-            linearLayouthandbag.setVisibility(View.GONE);
+            linearLayoutHandbag.setVisibility(View.GONE);
             linearLayoutHat.setVisibility(View.GONE);
             linearLayoutNecklace.setVisibility(View.GONE);
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.cloth1));
@@ -187,7 +187,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         } else if (value.equalsIgnoreCase(getResources().getString(R.string.hair))) {
             linearLayout.setVisibility(View.VISIBLE);
             linearLayoutGlasses.setVisibility(View.GONE);
-            linearLayouthandbag.setVisibility(View.GONE);
+            linearLayoutHandbag.setVisibility(View.GONE);
             linearLayoutHat.setVisibility(View.GONE);
             linearLayoutNecklace.setVisibility(View.GONE);
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.hair1));
@@ -257,7 +257,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         } else if (value.equalsIgnoreCase(getResources().getString(R.string.accessory))) {
             linearLayout.setVisibility(View.GONE);
             linearLayoutGlasses.setVisibility(View.VISIBLE);
-            linearLayouthandbag.setVisibility(View.VISIBLE);
+            linearLayoutHandbag.setVisibility(View.VISIBLE);
             linearLayoutHat.setVisibility(View.VISIBLE);
             linearLayoutNecklace.setVisibility(View.VISIBLE);
             ImageButton leftHandbag = (ImageButton) findViewById(R.id.leftHandbag);
@@ -272,7 +272,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             final ImageView glassesView = (ImageView) findViewById(R.id.glassesView);
             final ImageView hatView = (ImageView) findViewById(R.id.hatView);
             final ImageView necklaceView = (ImageView) findViewById(R.id.necklaceView);
-            final ImageView imageViewhandbag = (ImageView) findViewById(R.id.imageViewhandbag);
+            final ImageView imageViewHandbag = (ImageView) findViewById(R.id.imageViewhandbag);
             final ImageView imageViewGlasses = (ImageView) findViewById(R.id.imageViewGlasses);
             final ImageView imageViewHat = (ImageView) findViewById(R.id.imageViewHat);
             final ImageView imageViewNecklace = (ImageView) findViewById(R.id.imageViewNecklace);
@@ -295,10 +295,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                     mBagPurchased = mBag;
                     int isPurchased = mDbHandler.getPurchasedAccessories(mBagPurchased);
-                    imageViewhandbag.setAlpha((float) 1);
+                    imageViewHandbag.setAlpha((float) 1);
                     tvPaidHandbag.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
-                        imageViewhandbag.setAlpha((float) 0.5);
+                        imageViewHandbag.setAlpha((float) 0.5);
                         tvPaidHandbag.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.bag);
@@ -308,7 +308,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     try {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         bagView.setImageResource(photoNameField.getInt(ourRID));
-                        imageViewhandbag.setImageResource(photoNameField.getInt(ourRID));
+                        imageViewHandbag.setImageResource(photoNameField.getInt(ourRID));
                         tvHandbagPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mBag)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
@@ -324,10 +324,10 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                             % SessionHistory.bagTotalNo + 1;
                     mBagPurchased = mBag;
                     int isPurchased = mDbHandler.getPurchasedAccessories(mBagPurchased);
-                    imageViewhandbag.setAlpha((float) 1);
+                    imageViewHandbag.setAlpha((float) 1);
                     tvPaidHandbag.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
-                        imageViewhandbag.setAlpha((float) 0.5);
+                        imageViewHandbag.setAlpha((float) 0.5);
                         tvPaidHandbag.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.bag);
@@ -337,7 +337,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     try {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         bagView.setImageResource(photoNameField.getInt(ourRID));
-                        imageViewhandbag.setImageResource(photoNameField.getInt(ourRID));
+                        imageViewHandbag.setImageResource(photoNameField.getInt(ourRID));
                         tvHandbagPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mBag)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {

@@ -173,7 +173,7 @@ public class GameActivity extends Activity {
             mGoToMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Incase the user move back to map in between a running
+                    // In case the user move back to map in between a running
                     // Scenario.
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                     mGoToMap.setClickable(false);
