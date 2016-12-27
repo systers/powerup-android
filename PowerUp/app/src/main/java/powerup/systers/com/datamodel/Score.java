@@ -1,40 +1,41 @@
 package powerup.systers.com.datamodel;
 
 public class Score {
-    public Integer healing;
-    public Integer strength;
-    public Integer telepathy;
-    public Integer invisibility;
 
-    public Integer getHealing() {
+    public int healing;
+    public int strength;
+    public int telepathy;
+    public int invisibility;
+
+    public int getHealing() {
         return healing;
     }
 
-    public void setHealing(Integer healing) {
+    public void setHealing(int healing) {
         this.healing = healing;
     }
 
-    public Integer getStrength() {
+    public int getStrength() {
         return strength;
     }
 
-    public void setStrength(Integer strength) {
+    public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public Integer getTelepathy() {
+    public int getTelepathy() {
         return telepathy;
     }
 
-    public void setTelepathy(Integer telepathy) {
+    public void setTelepathy(int telepathy) {
         this.telepathy = telepathy;
     }
 
-    public Integer getInvisibilty() {
+    public int getInvisibilty() {
         return invisibility;
     }
 
-    public void setInvisibilty(Integer invisibilty) {
+    public void setInvisibilty(int invisibilty) {
         this.invisibility = invisibilty;
     }
 }

@@ -19,17 +19,17 @@ import powerup.systers.com.db.DatabaseHandler;
 public class SelectFeaturesActivity extends AppCompatActivity {
 
     public static Activity selectFeatureInstance;
-    Integer bag = 1;
-    Integer glasses = 1;
-    Integer hat = 1;
-    Integer necklace = 1;
-    Integer hatPurchased = 0;
-    Integer glassesPurchased = 0;
-    Integer bagPurchased = 0;
-    Integer necklacePurchased = 0;
-    private Integer hair = 1;
-    private Integer accessory = 1;
-    private Integer cloth = 1;
+    int bag = 1;
+    int glasses = 1;
+    int hat = 1;
+    int necklace = 1;
+    int hatPurchased = 0;
+    int glassesPurchased = 0;
+    int bagPurchased = 0;
+    int necklacePurchased = 0;
+    private int hair = 1;
+    private int accessory = 1;
+    private int cloth = 1;
     private DatabaseHandler mDbHandler;
 
     @Override
@@ -136,13 +136,13 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                     imageViewSelectFeature.setAlpha((float) 1);
                     tvPaidSelectFeature.setText(getResources().getString(R.string.empty));
-                    Integer isPurchased = mDbHandler.getPurchasedClothes(cloth);
+                    int isPurchased = mDbHandler.getPurchasedClothes(cloth);
                     if (isPurchased == 1) {
                         imageViewSelectFeature.setAlpha((float) 0.5);
                         tvPaidSelectFeature.setText(getResources().getString(R.string.paid_feature));
                     }
                     String clothImageName = getResources().getString(R.string.cloth);
-                    clothImageName = clothImageName + cloth.toString();
+                    clothImageName = clothImageName + cloth;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -162,7 +162,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     cloth = (cloth + SessionHistory.clothTotalNo)
                             % SessionHistory.clothTotalNo + 1;
-                    Integer isPurchased = mDbHandler.getPurchasedClothes(cloth);
+                    int isPurchased = mDbHandler.getPurchasedClothes(cloth);
                     imageViewSelectFeature.setAlpha((float) 1);
                     tvPaidSelectFeature.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -170,7 +170,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidSelectFeature.setText(getResources().getString(R.string.paid_feature));
                     }
                     String clothImageName = getResources().getString(R.string.cloth);
-                    clothImageName = clothImageName + cloth.toString();
+                    clothImageName = clothImageName + cloth;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -204,7 +204,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     if (hair == 0) {
                         hair = SessionHistory.hairTotalNo;
                     }
-                    Integer isPurchased = mDbHandler.getPurchasedHair(hair);
+                    int isPurchased = mDbHandler.getPurchasedHair(hair);
                     imageViewSelectFeature.setAlpha((float) 1);
                     tvPaidSelectFeature.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -212,7 +212,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidSelectFeature.setText(getResources().getString(R.string.paid_feature));
                     }
                     String hairImageName = getResources().getString(R.string.hair);
-                    hairImageName = hairImageName + hair.toString();
+                    hairImageName = hairImageName + hair;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -232,7 +232,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     hair = (hair + SessionHistory.hairTotalNo)
                             % SessionHistory.hairTotalNo + 1;
-                    Integer isPurchased = mDbHandler.getPurchasedHair(hair);
+                    int isPurchased = mDbHandler.getPurchasedHair(hair);
                     imageViewSelectFeature.setAlpha((float) 1);
                     tvPaidSelectFeature.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -240,7 +240,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidSelectFeature.setText(getResources().getString(R.string.paid_feature));
                     }
                     String hairImageName = getResources().getString(R.string.hair);
-                    hairImageName = hairImageName + hair.toString();
+                    hairImageName = hairImageName + hair;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -294,7 +294,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         bag = SessionHistory.bagTotalNo;
                     }
                     bagPurchased = bag;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(bagPurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(bagPurchased);
                     imageViewhandbag.setAlpha((float) 1);
                     tvPaidHandbag.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -302,7 +302,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidHandbag.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.bag);
-                    eyeImageName = eyeImageName + bag.toString();
+                    eyeImageName = eyeImageName + bag;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -323,7 +323,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     bag = (bag + SessionHistory.bagTotalNo)
                             % SessionHistory.bagTotalNo + 1;
                     bagPurchased = bag;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(bagPurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(bagPurchased);
                     imageViewhandbag.setAlpha((float) 1);
                     tvPaidHandbag.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -331,7 +331,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidHandbag.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.bag);
-                    eyeImageName = eyeImageName + bag.toString();
+                    eyeImageName = eyeImageName + bag;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -354,7 +354,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         glasses = SessionHistory.glassesTotalNo;
                     }
                     glassesPurchased = glasses + SessionHistory.bagTotalNo;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(glassesPurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(glassesPurchased);
                     imageViewGlasses.setAlpha((float) 1);
                     tvPaidGlasses.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -362,7 +362,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidGlasses.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.glasses);
-                    eyeImageName = eyeImageName + glasses.toString();
+                    eyeImageName = eyeImageName + glasses;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -383,7 +383,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     glasses = (glasses + SessionHistory.glassesTotalNo)
                             % SessionHistory.glassesTotalNo + 1;
                     glassesPurchased = glasses + SessionHistory.bagTotalNo;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(glassesPurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(glassesPurchased);
                     imageViewGlasses.setAlpha((float) 1);
                     tvPaidGlasses.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -391,7 +391,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidGlasses.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.glasses);
-                    eyeImageName = eyeImageName + glasses.toString();
+                    eyeImageName = eyeImageName + glasses;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -414,7 +414,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         hat = SessionHistory.hatTotalNo;
                     }
                     hatPurchased = hat + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(hatPurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(hatPurchased);
                     imageViewHat.setAlpha((float) 1);
                     tvPaidHat.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -422,7 +422,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidHat.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.hat);
-                    eyeImageName = eyeImageName + hat.toString();
+                    eyeImageName = eyeImageName + hat;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -444,7 +444,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     hat = (hat + SessionHistory.hatTotalNo)
                             % SessionHistory.hatTotalNo + 1;
                     hatPurchased = hat + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(hatPurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(hatPurchased);
                     imageViewHat.setAlpha((float) 1);
                     tvPaidHat.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -452,7 +452,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidHat.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.hat);
-                    eyeImageName = eyeImageName + hat.toString();
+                    eyeImageName = eyeImageName + hat;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -477,7 +477,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                     }
                     necklacePurchased = necklace
                             + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(necklacePurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(necklacePurchased);
                     imageViewNecklace.setAlpha((float) 1);
                     tvPaidNecklace.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -485,7 +485,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidNecklace.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.necklace);
-                    eyeImageName = eyeImageName + necklace.toString();
+                    eyeImageName = eyeImageName + necklace;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {
@@ -508,7 +508,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                             % SessionHistory.necklaceTotalNo + 1;
                     necklacePurchased = necklace
                             + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo;
-                    Integer isPurchased = mDbHandler.getPurchasedAccessories(necklacePurchased);
+                    int isPurchased = mDbHandler.getPurchasedAccessories(necklacePurchased);
                     imageViewNecklace.setAlpha((float) 1);
                     tvPaidNecklace.setText(getResources().getString(R.string.empty));
                     if (isPurchased == 1) {
@@ -516,7 +516,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         tvPaidNecklace.setText(getResources().getString(R.string.paid_feature_small));
                     }
                     String eyeImageName = getResources().getString(R.string.necklace);
-                    eyeImageName = eyeImageName + necklace.toString();
+                    eyeImageName = eyeImageName + necklace;
                     R.drawable ourRID = new R.drawable();
                     java.lang.reflect.Field photoNameField;
                     try {

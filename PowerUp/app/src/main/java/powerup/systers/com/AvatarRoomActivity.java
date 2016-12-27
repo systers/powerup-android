@@ -25,10 +25,10 @@ public class AvatarRoomActivity extends Activity {
     private ImageView faceAvatar;
     private ImageView clothAvatar;
     private ImageView hairAvatar;
-    private Integer eye = 1;
-    private Integer hair = 1;
-    private Integer face = 1;
-    private Integer cloth = 1;
+    private int eye = 1;
+    private int hair = 1;
+    private int face = 1;
+    private int cloth = 1;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class AvatarRoomActivity extends Activity {
                 }
 
                 String eyeImageName = getResources().getString(R.string.eye);
-                eyeImageName = eyeImageName + eye.toString();
+                eyeImageName = eyeImageName + eye;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -84,7 +84,7 @@ public class AvatarRoomActivity extends Activity {
                 eye = (eye + SessionHistory.eyesTotalNo)
                         % SessionHistory.eyesTotalNo + 1;
                 String eyeImageName = getResources().getString(R.string.eye);
-                eyeImageName = eyeImageName + eye.toString();
+                eyeImageName = eyeImageName + eye;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -108,7 +108,7 @@ public class AvatarRoomActivity extends Activity {
                 }
 
                 String faceImageName = getResources().getString(R.string.face);
-                faceImageName = faceImageName + face.toString();
+                faceImageName = faceImageName + face;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -129,7 +129,7 @@ public class AvatarRoomActivity extends Activity {
                 face = (face + SessionHistory.faceTotalNo)
                         % SessionHistory.faceTotalNo + 1;
                 String faceImageName = getResources().getString(R.string.face);
-                faceImageName = faceImageName + face.toString();
+                faceImageName = faceImageName + face;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -153,7 +153,7 @@ public class AvatarRoomActivity extends Activity {
                 }
 
                 String clothImageName = getResources().getString(R.string.cloth);
-                clothImageName = clothImageName + cloth.toString();
+                clothImageName = clothImageName + cloth;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -174,7 +174,7 @@ public class AvatarRoomActivity extends Activity {
                 cloth = (cloth + SessionHistory.clothTotalNo)
                         % SessionHistory.clothTotalNo + 1;
                 String clothImageName = getResources().getString(R.string.cloth);
-                clothImageName = clothImageName + cloth.toString();
+                clothImageName = clothImageName + cloth;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -198,7 +198,7 @@ public class AvatarRoomActivity extends Activity {
                 }
 
                 String hairImageName = getResources().getString(R.string.hair);
-                hairImageName = hairImageName + hair.toString();
+                hairImageName = hairImageName + hair;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -219,7 +219,7 @@ public class AvatarRoomActivity extends Activity {
                 hair = (hair + SessionHistory.hairTotalNo)
                         % SessionHistory.hairTotalNo + 1;
                 String hairImageName = getResources().getString(R.string.hair);
-                hairImageName = hairImageName + hair.toString();
+                hairImageName = hairImageName + hair;
                 R.drawable ourRID = new R.drawable();
                 java.lang.reflect.Field photoNameField;
                 try {
@@ -253,19 +253,19 @@ public class AvatarRoomActivity extends Activity {
                 SessionHistory.currScenePoints=0;
                 getmDbHandler().resetPurchase();
                 Random r = new Random();
-                Integer healing = r.nextInt(101 - 1) + 1;
+                int healing = r.nextInt(101 - 1) + 1;
                 getmDbHandler().setHealing(healing);
 
                 r = new Random();
-                Integer strength = r.nextInt(101 - 1) + 1;
+                int strength = r.nextInt(101 - 1) + 1;
                 getmDbHandler().setStrength(strength);
 
                 r = new Random();
-                Integer invisibility = r.nextInt(101 - 1) + 1;
+                int invisibility = r.nextInt(101 - 1) + 1;
                 getmDbHandler().setInvisibility(invisibility);
 
                 r = new Random();
-                Integer telepathy = r.nextInt(101 - 1) + 1;
+                int telepathy = r.nextInt(101 - 1) + 1;
                 getmDbHandler().setTelepathy(telepathy);
                 Log.i("Powers", mDbHandler.getHealing() + " " + mDbHandler.getInvisibility() +
                         " " + mDbHandler.getStrength());

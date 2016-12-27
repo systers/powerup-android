@@ -28,7 +28,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return true;
     }
 
-    public void getAllAnswer(List<Answer> answers, Integer qId) {
+    public void getAllAnswer(List<Answer> answers, int qId) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.AnswerEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AnswerEntry.COLUMN_QUESTION_ID + " = " + qId;
         Cursor cursor = mDb.rawQuery(selectQuery, null);
@@ -157,7 +157,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(updateQuery);
     }
 
-    public Integer getAvatarFace() {
+    public int getAvatarFace() {
         String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
@@ -168,7 +168,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setAvatarFace(Integer face) {
+    public void setAvatarFace(int face) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_FACE + " = " + face +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -186,7 +186,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setAvatarEye(Integer eye) {
+    public void setAvatarEye(int eye) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_EYES + " = " + eye +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -204,7 +204,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setAvatarCloth(Integer cloth) {
+    public void setAvatarCloth(int cloth) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_CLOTHES + " = " + cloth +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -222,7 +222,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setAvatarHair(Integer hair) {
+    public void setAvatarHair(int hair) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_HAIR + " = " + hair +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -240,7 +240,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 0;
     }
 
-    public void setAvatarBag(Integer bag) {
+    public void setAvatarBag(int bag) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_BAG + " = " + bag +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -258,7 +258,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 0;
     }
 
-    public void setAvatarGlasses(Integer glasses) {
+    public void setAvatarGlasses(int glasses) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_GLASSES + " = " + glasses +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -276,7 +276,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 0;
     }
 
-    public void setAvatarHat(Integer hat) {
+    public void setAvatarHat(int hat) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_HAT + " = " + hat +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -294,7 +294,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 0;
     }
 
-    public void setAvatarNecklace(Integer necklace) {
+    public void setAvatarNecklace(int necklace) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_NECKLACE + " = " + necklace +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -312,7 +312,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setHealing(Integer healing) {
+    public void setHealing(int healing) {
         String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
                 " SET " + PowerUpContract.PointEntry.COLUMN_HEALING + " = " + healing +
                 " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
@@ -331,7 +331,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setStrength(Integer strength) {
+    public void setStrength(int strength) {
         String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
                 " SET " + PowerUpContract.PointEntry.COLUMN_STRENGTH + " = " + strength +
                 " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
@@ -349,7 +349,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setTelepathy(Integer telepathy) {
+    public void setTelepathy(int telepathy) {
         String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
                 " SET " + PowerUpContract.PointEntry.COLUMN_TELEPATHY + " = " + telepathy +
                 " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
@@ -367,7 +367,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setInvisibility(Integer invisibility) {
+    public void setInvisibility(int invisibility) {
         String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
                 " SET " + PowerUpContract.PointEntry.COLUMN_INVISIBILITY + " = " + invisibility +
                 " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";

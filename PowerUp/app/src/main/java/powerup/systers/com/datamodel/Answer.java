@@ -2,17 +2,17 @@ package powerup.systers.com.datamodel;
 
 public class Answer {
 
-    private Integer answerID;
+    private int answerID;
     private String answerDescription;
-    private Integer questionID;
-    private Integer nextQuestionID;
-    private Integer points;
+    private int questionID;
+    private int nextQuestionID;
+    private int points;
 
-    public Integer getAnswerID() {
+    public int getAnswerID() {
         return answerID;
     }
 
-    public void setAnswerID(Integer aId) {
+    public void setAnswerID(int aId) {
         this.answerID = aId;
     }
 
@@ -24,27 +24,27 @@ public class Answer {
         this.answerDescription = aDes;
     }
 
-    public Integer getQuestionID() {
+    public int getQuestionID() {
         return questionID;
     }
 
-    public void setQuestionID(Integer qId) {
+    public void setQuestionID(int qId) {
         this.questionID = qId;
     }
 
-    public Integer getNextQuestionID() {
+    public int getNextQuestionID() {
         return nextQuestionID;
     }
 
-    public void setNextQuestionID(Integer nextQuestionID) {
+    public void setNextQuestionID(int nextQuestionID) {
         this.nextQuestionID = nextQuestionID;
     }
 
-    public Integer getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(Integer points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 

@@ -2,15 +2,15 @@ package powerup.systers.com.datamodel;
 
 public class Question {
 
-    private Integer questionID;
+    private int questionID;
     private String questionDescription;
-    private Integer scenarioID;
+    private int scenarioID;
 
-    public Integer getQuestionID() {
+    public int getQuestionID() {
         return questionID;
     }
 
-    public void setQuestionID(Integer qId) {
+    public void setQuestionID(int qId) {
         this.questionID = qId;
     }
 
@@ -22,11 +22,11 @@ public class Question {
         this.questionDescription = qDes;
     }
 
-    public Integer getScenarioID() {
+    public int getScenarioID() {
         return scenarioID;
     }
 
-    public void setScenarioID(Integer scenarioID) {
+    public void setScenarioID(int scenarioID) {
         this.scenarioID = scenarioID;
     }
 }
