@@ -18,8 +18,8 @@ public class AvatarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avatar);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
         mFromActivity = getIntent().getExtras().getInt(getResources().getString(R.string.from_activity));
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
@@ -33,7 +33,7 @@ public class AvatarActivity extends Activity {
         Button continueButton = (Button) findViewById(R.id.continueButton);
         Button backButton = (Button) findViewById(R.id.backButton);
         String eyeImageName =getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+        eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
         try {
@@ -46,7 +46,7 @@ public class AvatarActivity extends Activity {
         }
 
         String faceImageName = getResources().getString(R.string.face);
-        faceImageName = faceImageName + getmDbHandler().getAvatarFace();
+        faceImageName = faceImageName + mDbHandler.getAvatarFace();
         try {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceView.setImageResource(photoNameField.getInt(ourRID));
@@ -57,7 +57,7 @@ public class AvatarActivity extends Activity {
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+        clothImageName = clothImageName + mDbHandler.getAvatarCloth();
         try {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothView.setImageResource(photoNameField.getInt(ourRID));
@@ -68,7 +68,7 @@ public class AvatarActivity extends Activity {
         }
 
         String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+        hairImageName = hairImageName + mDbHandler.getAvatarHair();
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairView.setImageResource(photoNameField.getInt(ourRID));
@@ -78,9 +78,9 @@ public class AvatarActivity extends Activity {
             e.printStackTrace();
         }
 
-        if(getmDbHandler().getAvatarBag()!= 0){
+        if(mDbHandler.getAvatarBag()!= 0){
             String bagImageName = getResources().getString(R.string.bag);
-            bagImageName = bagImageName + getmDbHandler().getAvatarBag();
+            bagImageName = bagImageName + mDbHandler.getAvatarBag();
             try {
                 photoNameField = ourRID.getClass().getField(bagImageName);
                 bagView.setImageResource(photoNameField.getInt(ourRID));
@@ -91,9 +91,9 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if(getmDbHandler().getAvatarGlasses()!= 0){
+        if(mDbHandler.getAvatarGlasses()!= 0){
             String glassesImageName = getResources().getString(R.string.glasses);
-            glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
+            glassesImageName = glassesImageName + mDbHandler.getAvatarGlasses();
             try {
                 photoNameField = ourRID.getClass().getField(glassesImageName);
                 glassesView.setImageResource(photoNameField.getInt(ourRID));
@@ -104,9 +104,9 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if(getmDbHandler().getAvatarHat()!= 0){
+        if(mDbHandler.getAvatarHat()!= 0){
             String hatImageName = getResources().getString(R.string.hat);
-            hatImageName = hatImageName + getmDbHandler().getAvatarHat();
+            hatImageName = hatImageName + mDbHandler.getAvatarHat();
             try {
                 photoNameField = ourRID.getClass().getField(hatImageName);
                 hatView.setImageResource(photoNameField.getInt(ourRID));
@@ -117,9 +117,9 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if(getmDbHandler().getAvatarNeckalce()!= 0){
+        if(mDbHandler.getAvatarNeckalce()!= 0){
             String necklaceImageName = getResources().getString(R.string.necklace);
-            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
+            necklaceImageName = necklaceImageName + mDbHandler.getAvatarNeckalce();
             try {
                 photoNameField = ourRID.getClass().getField(necklaceImageName);
                 necklaceView.setImageResource(photoNameField.getInt(ourRID));
@@ -159,13 +159,5 @@ public class AvatarActivity extends Activity {
                 finish();
             }
         });
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
     }
 }

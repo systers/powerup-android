@@ -22,8 +22,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
         setContentView(R.layout.activity_scenario_over);
         scenarioOverActivityInstance = this;
         scenarioActivityDone = 1;
@@ -44,7 +44,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         ImageView hairImageView = (ImageView) findViewById(R.id.hairView);
         ImageView clothImageView = (ImageView) findViewById(R.id.clothView);
         String eyeImageName = getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+        eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
         try {
@@ -57,7 +57,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         }
 
         String faceImageName = getResources().getString(R.string.face);
-        faceImageName = faceImageName + getmDbHandler().getAvatarFace();
+        faceImageName = faceImageName + mDbHandler.getAvatarFace();
         try {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
@@ -68,7 +68,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+        clothImageName = clothImageName + mDbHandler.getAvatarCloth();
         try {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
@@ -79,7 +79,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         }
 
         String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+        hairImageName = hairImageName + mDbHandler.getAvatarHair();
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
@@ -120,13 +120,5 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         GameActivity.mGameActivityInstance.finish();
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
     }
 }

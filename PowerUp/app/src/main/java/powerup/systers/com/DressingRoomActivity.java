@@ -20,8 +20,8 @@ public class DressingRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
         mDressingRoomInstance = this;
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
@@ -30,7 +30,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         String eyeImageName = getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+        eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
         try {
@@ -43,7 +43,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         }
 
         String faceImageName = getResources().getString(R.string.face);
-        faceImageName = faceImageName + getmDbHandler().getAvatarFace();
+        faceImageName = faceImageName + mDbHandler.getAvatarFace();
         try {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceView.setImageResource(photoNameField.getInt(ourRID));
@@ -54,7 +54,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+        clothImageName = clothImageName + mDbHandler.getAvatarCloth();
         try {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothView.setImageResource(photoNameField.getInt(ourRID));
@@ -65,7 +65,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         }
 
         String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+        hairImageName = hairImageName + mDbHandler.getAvatarHair();
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairView.setImageResource(photoNameField.getInt(ourRID));
@@ -122,13 +122,5 @@ public class DressingRoomActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
     }
 }

@@ -32,8 +32,8 @@ public class AvatarRoomActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
         mAvatarRoomInstance = this;
         setContentView(R.layout.avatar_room);
         mEyeView = (ImageView) findViewById(R.id.eyes);
@@ -237,36 +237,36 @@ public class AvatarRoomActivity extends Activity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getmDbHandler().open();
-                getmDbHandler().setAvatarEye(mEye);
-                getmDbHandler().setAvatarFace(mFace);
-                getmDbHandler().setAvatarHair(mHair);
-                getmDbHandler().setAvatarCloth(mCloth);
-                getmDbHandler().setAvatarBag(0);
-                getmDbHandler().setAvatarGlasses(0);
-                getmDbHandler().setAvatarHat(0);
-                getmDbHandler().setAvatarNecklace(0);
-                getmDbHandler().updateComplete();//set all the complete fields back to 0
-                getmDbHandler().updateReplayed();//set all the replayed fields back to 0
+                mDbHandler.open();
+                mDbHandler.setAvatarEye(mEye);
+                mDbHandler.setAvatarFace(mFace);
+                mDbHandler.setAvatarHair(mHair);
+                mDbHandler.setAvatarCloth(mCloth);
+                mDbHandler.setAvatarBag(0);
+                mDbHandler.setAvatarGlasses(0);
+                mDbHandler.setAvatarHat(0);
+                mDbHandler.setAvatarNecklace(0);
+                mDbHandler.updateComplete();//set all the complete fields back to 0
+                mDbHandler.updateReplayed();//set all the replayed fields back to 0
                 SessionHistory.totalPoints=0;    //reset the points stored
                 SessionHistory.currSessionID=1;
                 SessionHistory.currScenePoints=0;
-                getmDbHandler().resetPurchase();
+                mDbHandler.resetPurchase();
                 Random r = new Random();
                 int healing = r.nextInt(101 - 1) + 1;
-                getmDbHandler().setHealing(healing);
+                mDbHandler.setHealing(healing);
 
                 r = new Random();
                 int strength = r.nextInt(101 - 1) + 1;
-                getmDbHandler().setStrength(strength);
+                mDbHandler.setStrength(strength);
 
                 r = new Random();
                 int invisibility = r.nextInt(101 - 1) + 1;
-                getmDbHandler().setInvisibility(invisibility);
+                mDbHandler.setInvisibility(invisibility);
 
                 r = new Random();
                 int telepathy = r.nextInt(101 - 1) + 1;
-                getmDbHandler().setTelepathy(telepathy);
+                mDbHandler.setTelepathy(telepathy);
                 Log.i("Powers", mDbHandler.getHealing() + " " + mDbHandler.getInvisibility() +
                         " " + mDbHandler.getStrength());
                 Intent myIntent = new Intent(AvatarRoomActivity.this, AvatarActivity.class);
@@ -274,14 +274,6 @@ public class AvatarRoomActivity extends Activity {
                 startActivityForResult(myIntent, 0);
             }
         });
-        getmDbHandler().close();
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
+        mDbHandler.close();
     }
 }

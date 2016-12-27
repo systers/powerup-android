@@ -36,8 +36,8 @@ public class SelectFeaturesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_features);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
         mSelectFeatureInstance = this;
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         LinearLayout linearLayouthandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
@@ -51,7 +51,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         final ImageView hairView = (ImageView) findViewById(R.id.hairView);
         final ImageView clothView = (ImageView) findViewById(R.id.clothView);
         String eyeImageName = getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+        eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
         try {
@@ -63,7 +63,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         }
 
         String faceImageName = getResources().getString(R.string.face);
-        faceImageName = faceImageName + getmDbHandler().getAvatarFace();
+        faceImageName = faceImageName + mDbHandler.getAvatarFace();
         try {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceView.setImageResource(photoNameField.getInt(ourRID));
@@ -73,7 +73,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+        clothImageName = clothImageName + mDbHandler.getAvatarCloth();
         try {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothView.setImageResource(photoNameField.getInt(ourRID));
@@ -83,7 +83,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         }
 
         String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+        hairImageName = hairImageName + mDbHandler.getAvatarHair();
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairView.setImageResource(photoNameField.getInt(ourRID));
@@ -123,7 +123,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.cloth1));
             TextView tv = (TextView) findViewById(R.id.textViewSelectFeature);
             final TextView tvPoints = (TextView) findViewById(R.id.tvSelectFeaturePoints);
-            tvPoints.setText(String.valueOf(getmDbHandler().getPointsClothes(mCloth)));
+            tvPoints.setText(String.valueOf(mDbHandler.getPointsClothes(mCloth)));
             tv.setText(R.string.cloth);
             ImageButton left = (ImageButton) findViewById(R.id.leftSelectFeature);
             ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
@@ -149,7 +149,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(clothImageName);
                         imageViewSelectFeature.setImageResource(photoNameField.getInt(ourRID));
                         clothView.setImageResource(photoNameField.getInt(ourRID));
-                        tvPoints.setText(String.valueOf(getmDbHandler().getPointsClothes(mCloth)));
+                        tvPoints.setText(String.valueOf(mDbHandler.getPointsClothes(mCloth)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -177,7 +177,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(clothImageName);
                         imageViewSelectFeature.setImageResource(photoNameField.getInt(ourRID));
                         clothView.setImageResource(photoNameField.getInt(ourRID));
-                        tvPoints.setText(String.valueOf(getmDbHandler().getPointsClothes(mCloth)));
+                        tvPoints.setText(String.valueOf(mDbHandler.getPointsClothes(mCloth)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -193,7 +193,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             imageViewSelectFeature.setImageDrawable(getResources().getDrawable(R.drawable.hair1));
             TextView tv = (TextView) findViewById(R.id.textViewSelectFeature);
             final TextView tvPoints = (TextView) findViewById(R.id.tvSelectFeaturePoints);
-            tvPoints.setText(String.valueOf(getmDbHandler().getPointsHair(mHair)));
+            tvPoints.setText(String.valueOf(mDbHandler.getPointsHair(mHair)));
             tv.setText(R.string.hair);
             ImageButton left = (ImageButton) findViewById(R.id.leftSelectFeature);
             ImageButton right = (ImageButton) findViewById(R.id.rightSelectFeature);
@@ -219,7 +219,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(hairImageName);
                         imageViewSelectFeature.setImageResource(photoNameField.getInt(ourRID));
                         hairView.setImageResource(photoNameField.getInt(ourRID));
-                        tvPoints.setText(String.valueOf(getmDbHandler().getPointsHair(mHair)));
+                        tvPoints.setText(String.valueOf(mDbHandler.getPointsHair(mHair)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -247,7 +247,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(hairImageName);
                         imageViewSelectFeature.setImageResource(photoNameField.getInt(ourRID));
                         hairView.setImageResource(photoNameField.getInt(ourRID));
-                        tvPoints.setText(String.valueOf(getmDbHandler().getPointsHair(mHair)));
+                        tvPoints.setText(String.valueOf(mDbHandler.getPointsHair(mHair)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -280,11 +280,11 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             final TextView tvGlassesPoints = (TextView) findViewById(R.id.tvGlassesPoints);
             final TextView tvHatPoints = (TextView) findViewById(R.id.tvHatPoints);
             final TextView tvNecklacePoints = (TextView) findViewById(R.id.tvNecklacePoints);
-            tvHandbagPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mAccessory)));
-            tvGlassesPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mAccessory + SessionHistory.bagTotalNo)));
-            tvHatPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mAccessory
+            tvHandbagPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mAccessory)));
+            tvGlassesPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mAccessory + SessionHistory.bagTotalNo)));
+            tvHatPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mAccessory
                     + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo)));
-            tvNecklacePoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mAccessory
+            tvNecklacePoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mAccessory
                     + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo)));
             leftHandbag.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -309,7 +309,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         bagView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewhandbag.setImageResource(photoNameField.getInt(ourRID));
-                        tvHandbagPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mBag)));
+                        tvHandbagPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mBag)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -338,7 +338,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         bagView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewhandbag.setImageResource(photoNameField.getInt(ourRID));
-                        tvHandbagPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mBag)));
+                        tvHandbagPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mBag)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -369,7 +369,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         glassesView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewGlasses.setImageResource(photoNameField.getInt(ourRID));
-                        tvGlassesPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mGlasses + SessionHistory.bagTotalNo)));
+                        tvGlassesPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mGlasses + SessionHistory.bagTotalNo)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -398,7 +398,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         glassesView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewGlasses.setImageResource(photoNameField.getInt(ourRID));
-                        tvGlassesPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mGlasses + SessionHistory.bagTotalNo)));
+                        tvGlassesPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mGlasses + SessionHistory.bagTotalNo)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
                         e.printStackTrace();
@@ -429,7 +429,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         hatView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewHat.setImageResource(photoNameField.getInt(ourRID));
-                        tvHatPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mHat
+                        tvHatPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mHat
                                 + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
@@ -459,7 +459,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         hatView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewHat.setImageResource(photoNameField.getInt(ourRID));
-                        tvHatPoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mHat
+                        tvHatPoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mHat
                                 + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
@@ -492,7 +492,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         necklaceView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewNecklace.setImageResource(photoNameField.getInt(ourRID));
-                        tvNecklacePoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mNecklace
+                        tvNecklacePoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mNecklace
                                 + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
@@ -523,7 +523,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         photoNameField = ourRID.getClass().getField(eyeImageName);
                         necklaceView.setImageResource(photoNameField.getInt(ourRID));
                         imageViewNecklace.setImageResource(photoNameField.getInt(ourRID));
-                        tvNecklacePoints.setText(String.valueOf(getmDbHandler().getPointsAccessories(mNecklace
+                        tvNecklacePoints.setText(String.valueOf(mDbHandler.getPointsAccessories(mNecklace
                                 + SessionHistory.bagTotalNo + SessionHistory.glassesTotalNo + SessionHistory.hatTotalNo)));
                     } catch (NoSuchFieldException | IllegalAccessException
                             | IllegalArgumentException e) {
@@ -536,75 +536,67 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getmDbHandler().open();
+                mDbHandler.open();
                 if (value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
-                    if(SessionHistory.totalPoints < getmDbHandler().getPointsClothes(mCloth))
+                    if(SessionHistory.totalPoints < mDbHandler.getPointsClothes(mCloth))
                         Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                     else{
-                        getmDbHandler().setAvatarCloth(mCloth);
-                        getmDbHandler().setPurchasedClothes(mCloth);
-                        SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsClothes(mCloth);
+                        mDbHandler.setAvatarCloth(mCloth);
+                        mDbHandler.setPurchasedClothes(mCloth);
+                        SessionHistory.totalPoints = SessionHistory.totalPoints - mDbHandler.getPointsClothes(mCloth);
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.hair))) {
-                    if(SessionHistory.totalPoints < getmDbHandler().getPointsHair(mHair))
+                    if(SessionHistory.totalPoints < mDbHandler.getPointsHair(mHair))
                         Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                     else{
-                        getmDbHandler().setAvatarHair(mHair);
-                        getmDbHandler().setPurchasedHair(mHair);
-                        SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsClothes(mCloth);
+                        mDbHandler.setAvatarHair(mHair);
+                        mDbHandler.setPurchasedHair(mHair);
+                        SessionHistory.totalPoints = SessionHistory.totalPoints - mDbHandler.getPointsClothes(mCloth);
                     }
                 } else if (value.equalsIgnoreCase(getResources().getString(R.string.accessory))) {
                     if (mHatPurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(mHatPurchased))
+                        if(SessionHistory.totalPoints < mDbHandler.getPointsAccessories(mHatPurchased))
                             Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                         else{
-                            getmDbHandler().setPurchasedAccessories(mHatPurchased);
-                            getmDbHandler().setAvatarHat(mHat);
-                            SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(mHatPurchased);
+                            mDbHandler.setPurchasedAccessories(mHatPurchased);
+                            mDbHandler.setAvatarHat(mHat);
+                            SessionHistory.totalPoints = SessionHistory.totalPoints - mDbHandler.getPointsAccessories(mHatPurchased);
                         }
                     }
                     if (mGlassesPurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(mGlassesPurchased))
+                        if(SessionHistory.totalPoints < mDbHandler.getPointsAccessories(mGlassesPurchased))
                             Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                         else{
-                            SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(mHatPurchased);
-                            getmDbHandler().setPurchasedAccessories(mGlassesPurchased);
-                            getmDbHandler().setAvatarGlasses(mGlasses);
+                            SessionHistory.totalPoints = SessionHistory.totalPoints - mDbHandler.getPointsAccessories(mHatPurchased);
+                            mDbHandler.setPurchasedAccessories(mGlassesPurchased);
+                            mDbHandler.setAvatarGlasses(mGlasses);
                         }
                     }
                     if (mBagPurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(mBagPurchased))
+                        if(SessionHistory.totalPoints < mDbHandler.getPointsAccessories(mBagPurchased))
                             Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                         else{
-                            SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(mHatPurchased);
-                            getmDbHandler().setPurchasedAccessories(mBagPurchased);
-                            getmDbHandler().setAvatarBag(mBag);
+                            SessionHistory.totalPoints = SessionHistory.totalPoints - mDbHandler.getPointsAccessories(mHatPurchased);
+                            mDbHandler.setPurchasedAccessories(mBagPurchased);
+                            mDbHandler.setAvatarBag(mBag);
                         }
                     }
                     if (mNecklacePurchased != 0){
-                        if(SessionHistory.totalPoints < getmDbHandler().getPointsAccessories(mNecklacePurchased))
+                        if(SessionHistory.totalPoints < mDbHandler.getPointsAccessories(mNecklacePurchased))
                             Toast.makeText(SelectFeaturesActivity.this, R.string.points_check, Toast.LENGTH_SHORT).show();
                         else{
-                            SessionHistory.totalPoints = SessionHistory.totalPoints - getmDbHandler().getPointsAccessories(mHatPurchased);
-                            getmDbHandler().setPurchasedAccessories(mNecklacePurchased);
-                            getmDbHandler().setAvatarNecklace(mNecklace);
+                            SessionHistory.totalPoints = SessionHistory.totalPoints - mDbHandler.getPointsAccessories(mHatPurchased);
+                            mDbHandler.setPurchasedAccessories(mNecklacePurchased);
+                            mDbHandler.setAvatarNecklace(mNecklace);
                         }
                     }
                 }
                 Intent myIntent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
                 myIntent.putExtra(getResources().getString(R.string.feature), 2);
                 startActivity(myIntent);
-                getmDbHandler().close();
+                mDbHandler.close();
             }
         });
 
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
     }
 }

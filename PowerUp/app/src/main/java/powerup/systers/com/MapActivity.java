@@ -15,7 +15,7 @@ public class MapActivity extends Activity {
         @Override
         public void onClick(View v) {
             Button b = (Button) v;
-            if (getmDbHandler().setSessionId(b.getText().toString())) {
+            if (mDbHandler.setSessionId(b.getText().toString())) {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
             } else {
                 startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
@@ -29,8 +29,8 @@ public class MapActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
         setContentView(R.layout.gamemap);
 
         Button house = (Button) findViewById(R.id.HouseButton);
@@ -62,13 +62,5 @@ public class MapActivity extends Activity {
             }
         });
 
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
     }
 }
