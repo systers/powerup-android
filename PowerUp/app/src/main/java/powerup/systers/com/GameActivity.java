@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,9 +17,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import powerup.systers.com.datamodel.Answer;
 import powerup.systers.com.datamodel.Question;
 import powerup.systers.com.datamodel.Scenario;
@@ -38,6 +42,7 @@ public class GameActivity extends Activity {
     private Button replay;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
+    private boolean snackshow = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +125,11 @@ public class GameActivity extends Activity {
                                     .getNextQuestionID();
                             updatePoints(position);
                             updateQA();
+
+                        } else if (answers.get(position).getPoints()==0 && answers.get(position).getAnswerID()!=15 && answers.get(position).getAnswerID()!=30 && answers.get(position).getAnswerID()!=45 && snackshow == true ){
+                            Snackbar bar= Snackbar.make(view, "Are you sure this is the right decision to take?", Snackbar.LENGTH_LONG);
+                            bar.show();
+                            snackshow = false;
 
                         } else {
                             SessionHistory.currSessionID = scene
