@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import powerup.systers.com.db.DatabaseHandler;
 
-public class AvatarActivity extends Activity {
+public class AvatarActivity extends Activity implements View.OnClickListener {
 
     private int mFromActivity;
     private DatabaseHandler mDbHandler;
@@ -18,9 +18,14 @@ public class AvatarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avatar);
+
         mDbHandler = new DatabaseHandler(this);
         mDbHandler.open();
         mFromActivity = getIntent().getExtras().getInt(getResources().getString(R.string.from_activity));
+
+        findViewById(R.id.continueButton).setOnClickListener(this);
+        findViewById(R.id.backButton).setOnClickListener(this);
+
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
@@ -30,8 +35,6 @@ public class AvatarActivity extends Activity {
         ImageView hatView = (ImageView) findViewById(R.id.hatView);
         ImageView necklaceView = (ImageView) findViewById(R.id.necklaceView);
 
-        Button continueButton = (Button) findViewById(R.id.continueButton);
-        Button backButton = (Button) findViewById(R.id.backButton);
         String eyeImageName =getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -129,16 +132,21 @@ public class AvatarActivity extends Activity {
                 e.printStackTrace();
             }
         }
+    }
 
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.continueButton:
                 if (mFromActivity == 1) {
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
-                    boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
+                    SharedPreferences prefs =
+                            PreferenceManager.getDefaultSharedPreferences(AvatarActivity.this);
+                    boolean hasPreviouslyStarted = prefs.getBoolean(
+                            getString(R.string.preferences_has_previously_started), false);
                     if (!hasPreviouslyStarted) {
                         SharedPreferences.Editor edit = prefs.edit();
-                        edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
+                        edit.putBoolean(getString(R.string.preferences_has_previously_started),
+                                Boolean.TRUE);
                         edit.apply();
                     }
                     AvatarRoomActivity.mAvatarRoomInstance.finish();
@@ -150,14 +158,11 @@ public class AvatarActivity extends Activity {
                     finish();
                     startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
                 }
-            }
-        });
+                break;
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.backButton:
                 finish();
-            }
-        });
+                break;
+        }
     }
 }
