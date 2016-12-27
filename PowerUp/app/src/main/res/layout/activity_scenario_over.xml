@@ -19,6 +19,7 @@
 
         <ImageView
             android:id="@+id/faceView"
+            android:contentDescription="@string/face"
             android:layout_width="@dimen/face_view_width"
             android:layout_height="@dimen/face_view_height"
             android:layout_centerHorizontal="true"
@@ -26,6 +27,7 @@
 
         <ImageView
             android:id="@+id/eyeView"
+            android:contentDescription="@string/eye"
             android:layout_width="@dimen/eye_view_width"
             android:layout_height="@dimen/eye_view_height"
             android:layout_alignBottom="@id/faceView"
@@ -35,6 +37,7 @@
 
         <ImageView
             android:id="@+id/hairView"
+            android:contentDescription="@string/hair"
             android:layout_width="@dimen/hair_view_width"
             android:layout_height="@dimen/hair_view_height"
             android:layout_centerHorizontal="true"
@@ -42,6 +45,7 @@
 
         <ImageView
             android:id="@+id/clothView"
+            android:contentDescription="@string/cloth"
             android:layout_width="@dimen/cloth_view_width"
             android:layout_height="@dimen/cloth_view_height"
             android:layout_alignTop="@+id/eyeView"
@@ -60,6 +64,7 @@
 
     <ImageView
         android:id="@+id/health_text_ImageView"
+        android:contentDescription="@string/health_text_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/power_bar"
@@ -75,6 +80,7 @@
 
         <ImageView
             android:id="@+id/powerBarView"
+            android:contentDescription="@string/power_bar_description"
             android:layout_width="match_parent"
             android:layout_height="@dimen/power_bar_view_height"
             android:layout_alignParentBottom="true"
@@ -157,6 +163,7 @@
 
     <ImageButton
         android:id="@+id/replayButton"
+        android:contentDescription="@string/replay"
         android:layout_width="@dimen/linear_layout_width"
         android:layout_height="45dp"
         android:layout_below="@+id/scenarioTextView"
@@ -165,6 +172,7 @@
 
     <ImageButton
         android:id="@+id/continueButton"
+        android:contentDescription="@string/cont_text_description"
         android:layout_width="@dimen/linear_layout_width"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/replayButton"
@@ -174,6 +182,7 @@
 
     <ImageView
         android:id="@+id/karmaImageView"
+        android:contentDescription="@string/karma_description"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:src="@drawable/karma_box" />

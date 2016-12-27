@@ -14,6 +14,7 @@
 
         <ImageView
             android:id="@+id/faceView"
+            android:contentDescription="@string/face"
             android:layout_width="@dimen/face_view_width"
             android:layout_height="@dimen/face_view_height"
             android:layout_centerHorizontal="true"
@@ -21,6 +22,7 @@
 
         <ImageView
             android:id="@+id/eyeView"
+            android:contentDescription="@string/eye"
             android:layout_width="@dimen/eye_view_width"
             android:layout_height="@dimen/eye_view_height"
             android:layout_alignBottom="@id/faceView"
@@ -30,6 +32,7 @@
 
         <ImageView
             android:id="@+id/hairView"
+            android:contentDescription="@string/hair"
             android:layout_width="@dimen/hair_view_width"
             android:layout_height="@dimen/hair_view_height"
             android:layout_centerHorizontal="true"
@@ -37,6 +40,7 @@
 
         <ImageView
             android:id="@+id/clothView"
+            android:contentDescription="@string/cloth"
             android:layout_width="@dimen/cloth_view_width"
             android:layout_height="@dimen/cloth_view_height"
             android:layout_alignTop="@+id/eyeView"
@@ -64,6 +68,7 @@
 
         <ImageView
             android:id="@+id/eyes"
+            android:contentDescription="@string/eye"
             android:layout_width="match_parent"
             android:layout_height="@dimen/avatar_room_height"
             android:src="@drawable/eye1" />
@@ -76,12 +81,14 @@
 
             <ImageButton
                 android:id="@+id/eyeLeft"
+                android:contentDescription="@string/left_eye_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/eyeRight"
+                android:contentDescription="@string/right_eye_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -110,6 +117,7 @@
 
         <ImageView
             android:id="@+id/hair"
+            android:contentDescription="@string/hair"
             android:layout_width="match_parent"
             android:layout_height="@dimen/avatar_room_height"
             android:src="@drawable/hair1" />
@@ -122,12 +130,14 @@
 
             <ImageButton
                 android:id="@+id/hairLeft"
+                android:contentDescription="@string/left_hair_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/hairRight"
+                android:contentDescription="@string/right_hair_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -155,6 +165,7 @@
 
         <ImageView
             android:id="@+id/face"
+            android:contentDescription="@string/face"
             android:layout_width="match_parent"
             android:layout_height="@dimen/avatar_room_height"
             android:src="@drawable/face1" />
@@ -167,12 +178,14 @@
 
             <ImageButton
                 android:id="@+id/faceLeft"
+                android:contentDescription="@string/left_face_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/faceRight"
+                android:contentDescription="@string/right_face_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />
@@ -198,6 +211,7 @@
 
         <ImageView
             android:id="@+id/clothes"
+            android:contentDescription="@string/clothes_description"
             android:layout_width="match_parent"
             android:layout_height="@dimen/avatar_room_height"
             android:src="@drawable/cloth1" />
@@ -210,12 +224,14 @@
 
             <ImageButton
                 android:id="@+id/clotheLeft"
+                android:contentDescription="@string/left_clothes_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_18dp" />
 
             <ImageButton
                 android:id="@+id/clotheRight"
+                android:contentDescription="@string/right_clothes_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right_white_18dp" />

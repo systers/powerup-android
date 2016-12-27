@@ -45,4 +45,33 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+
+    <string name="karma_description">Karma</string>
+    <string name="age_description">Age</string>
+    <string name="left_select_feature_description">Left select feature</string>
+    <string name="right_select_feature_description">Right select feature</string>
+    <string name="left_handbag_description">Left handbag</string>
+    <string name="right_handbag_description">Right handbag</string>
+    <string name="left_glasses_description">Left glasses</string>
+    <string name="right_glasses_description">Right glasses</string>
+    <string name="left_hat_description">Left hat</string>
+    <string name="right_hat_description">Right hat</string>
+    <string name="left_necklace_description">Left necklace</string>
+    <string name="right_necklace_description">Right necklace</string>
+    <string name="power_bar_description">Power bar</string>
+    <string name="left_eye_description">Left eye</string>
+    <string name="right_eye_description">Right eye</string>
+    <string name="left_hair_description">Left hair</string>
+    <string name="right_hair_description">Right hair</string>
+    <string name="left_face_description">Left face</string>
+    <string name="right_face_description">Right face</string>
+    <string name="clothes_description">Clothes</string>
+    <string name="left_clothes_description">Left clothes</string>
+    <string name="right_clothes_description">Right clothes</string>
+    <string name="health_text_description">Health and Powers</string>
+    <string name="cont_text_description">Continue</string>
+    <string name="start_description">Start</string>
+    <string name="new_user_description">New user</string>
+    <string name="about_description">About</string>
+    <string name="asker_description">Asker</string>
 </resources>
