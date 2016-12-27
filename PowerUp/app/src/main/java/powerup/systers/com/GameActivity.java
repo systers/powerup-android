@@ -205,7 +205,7 @@ public class GameActivity extends Activity {
                     // Scenario.
 
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                    replay.setClickable(false);
+                  replay.setClickable(false);
                     Intent myIntent = new Intent(GameActivity.this, GameActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(myIntent, 0);
