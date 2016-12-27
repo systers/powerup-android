@@ -2,10 +2,10 @@ package powerup.systers.com.datamodel;
 
 public class Score {
 
-    public int healing;
-    public int strength;
-    public int telepathy;
-    public int invisibility;
+    private int healing;
+    private int strength;
+    private int telepathy;
+    private int invisibility;
 
     public int getHealing() {
         return healing;
