@@ -8,7 +8,10 @@ package powerup.systers.com;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,7 +119,22 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
-                        if (answers.get(position).getNextQuestionID() > 0) {
+                        if (answers.get(position).getPoints() == 0 &&
+                                !answers.get(position).getAnswerDescription().equals("Returns Home")) {
+                            Snackbar s = Snackbar
+                                    .make(findViewById(R.id.GameLayout),
+                                            getResources().getString(R.string.warning_inappropriate),
+                                            Snackbar.LENGTH_LONG)
+                                    //show "warning" in red
+                                    .setAction("WARNING", new View.OnClickListener() { @Override public void onClick(View v) {}})
+                                    .setActionTextColor(Color.RED);
+                            TextView snackbarText = (TextView) s.getView().findViewById(android.support.design.R.id.snackbar_text);
+                            snackbarText.setTextColor(Color.WHITE);
+                            s.show();
+                            //Toast.makeText(getApplicationContext(), getResources().getString(R.string.warning_inappropriate), Toast.LENGTH_LONG).show();
+                        }
+                        //don't go to next question if inappropriate answer is selected
+                        else if (answers.get(position).getNextQuestionID() > 0) {
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
                                     .getNextQuestionID();
