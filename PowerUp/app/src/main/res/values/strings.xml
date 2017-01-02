@@ -45,4 +45,8 @@
     <string name="empty">""</string>
     <string name="scene">"Scene"</string>
     <string name="points_check">"Not enough points"</string>
+    <string name="inappropriate_warning">"Are you sure this is the right decision to take?"</string>
+    <string name="inappropriate_undo">"UNDO"</string>
+    <string name="inappropriate_restore">"Restored!"</string>
+    <string name="returns_home">"Returns Home"</string>
 </resources>
