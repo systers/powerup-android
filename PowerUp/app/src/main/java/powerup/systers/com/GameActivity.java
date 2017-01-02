@@ -34,6 +34,7 @@ public class GameActivity extends Activity {
     private Button replay;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
+    private int count;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,8 @@ public class GameActivity extends Activity {
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             final int position, long id) {
                         if (answers.get(position).getPoints() == 0 &&
-                            !(answers.get(position).getAnswerDescription().equals(R.string.returns_home))) {
+                            !(answers.get(position).getAnswerDescription().matches(getString(R.string.returns_home))) &&
+                            count == 0) {
                                 Snackbar inappropriate = Snackbar.make(view, R.string.inappropriate_warning,
                                                             Snackbar.LENGTH_LONG).setAction(R.string.inappropriate_undo,
                                                                     new View.OnClickListener() {
@@ -126,18 +128,17 @@ public class GameActivity extends Activity {
                                     }
                         });
                         inappropriate.show();
+                        count++;    // Snackbar will only appear on first time
                         } else {
+                            // Snackbar will show if a different bad response is chosen.
+                            // If the same bad response is chosen, the game continues.
+                               count = 0;
                                if (answers.get(position).getNextQuestionID() > 0) {
                                    // Next Question
                                    SessionHistory.currQID = answers.get(position).getNextQuestionID();
                                    updatePoints(position);
                                    updateQA();
                                } else {
-                                   SessionHistory.currSessionID = scene.getNextScenarioID();
-                                   if (SessionHistory.currSessionID == -1) {
-                                       // Check to make sure all scenes are completed
-                                       SessionHistory.currSessionID == 1;
-                                   }
                                    updatePoints(position);
                                    getmDbHandler().setCompletedScenario(scene.getId());
                                    SessionHistory.currScenePoints = 0;
@@ -146,14 +147,6 @@ public class GameActivity extends Activity {
                             }
                         }
                     });
-                            updatePoints(position);
-                            getmDbHandler().setCompletedScenario(
-                                    scene.getId());
-                            SessionHistory.currScenePoints = 0;
-                            updateScenario();
-                        }
-                    }
-                });
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
