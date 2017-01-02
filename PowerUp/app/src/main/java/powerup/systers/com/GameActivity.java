@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.support.design.widget.Snackbar;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -112,21 +113,39 @@ public class GameActivity extends Activity {
                 .setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
-                                            int position, long id) {
-                        if (answers.get(position).getNextQuestionID() > 0) {
-                            // Next Question
-                            SessionHistory.currQID = answers.get(position)
-                                    .getNextQuestionID();
-                            updatePoints(position);
-                            updateQA();
-
+                                            final int position, long id) {
+                        if (answers.get(position).getPoints() == 0 &&
+                            !(answers.get(position).getAnswerDescription().equals(R.string.returns_home))) {
+                                Snackbar inappropriate = Snackbar.make(view, R.string.inappropriate_warning,
+                                                            Snackbar.LENGTH_LONG).setAction(R.string.inappropriate_undo,
+                                                                    new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Snackbar restore = Snackbar.make(view, R.string.inappropriate_restore, Snackbar.LENGTH_SHORT);
+                                        restore.show();
+                                    }
+                        });
+                        inappropriate.show();
                         } else {
-                            SessionHistory.currSessionID = scene
-                                    .getNextScenarioID();
-                            if (SessionHistory.currSessionID == -1) {
-                                // Check to make sure all scenes are completed
-                                SessionHistory.currSessionID = 1;
+                               if (answers.get(position).getNextQuestionID() > 0) {
+                                   // Next Question
+                                   SessionHistory.currQID = answers.get(position).getNextQuestionID();
+                                   updatePoints(position);
+                                   updateQA();
+                               } else {
+                                   SessionHistory.currSessionID = scene.getNextScenarioID();
+                                   if (SessionHistory.currSessionID == -1) {
+                                       // Check to make sure all scenes are completed
+                                       SessionHistory.currSessionID == 1;
+                                   }
+                                   updatePoints(position);
+                                   getmDbHandler().setCompletedScenario(scene.getId());
+                                   SessionHistory.currScenePoints = 0;
+                                   updateScenario();        
+                                }
                             }
+                        }
+                    });
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(
                                     scene.getId());
@@ -135,6 +154,7 @@ public class GameActivity extends Activity {
                         }
                     }
                 });
+
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
         powerBarHealing.setIconBackgroundColor(R.color.powerup_purple_light);
