@@ -59,6 +59,10 @@ public class GameActivity extends Activity {
         ImageView faceImageView = (ImageView) findViewById(R.id.faceImageView);
         ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
         ImageView clothImageView = (ImageView) findViewById(R.id.clothImageView);
+        ImageView bagImageView = (ImageView) findViewById(R.id.bagImageView);
+        ImageView glassesImageView = (ImageView) findViewById(R.id.glassesImageView);
+        ImageView hatImageView = (ImageView) findViewById(R.id.hatImageView);
+        ImageView necklaceImageView = (ImageView) findViewById(R.id.necklaceImageView);
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -99,6 +103,54 @@ public class GameActivity extends Activity {
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
+        }
+
+        if (getmDbHandler().getAvatarBag() != 0) {
+            String bagImageName = getResources().getString(R.string.bag);
+            bagImageName = bagImageName + getmDbHandler().getAvatarBag();
+            try {
+                photoNameField = ourRID.getClass().getField(bagImageName);
+                bagImageView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarGlasses() != 0) {
+            String glassesImageName = getResources().getString(R.string.glasses);
+            glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
+            try {
+                photoNameField = ourRID.getClass().getField(glassesImageName);
+                glassesImageView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarHat() != 0) {
+            String hatImageName = getResources().getString(R.string.hat);
+            hatImageName = hatImageName + getmDbHandler().getAvatarHat();
+            try {
+                photoNameField = ourRID.getClass().getField(hatImageName);
+                hatImageView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarNeckalce() != 0) {
+            String necklaceImageName = getResources().getString(R.string.necklace);
+            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
+            try {
+                photoNameField = ourRID.getClass().getField(necklaceImageName);
+                necklaceImageView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         }
 
         // Update Scene

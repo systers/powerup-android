@@ -189,6 +189,35 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/cloth1" />
 
+        <ImageView
+            android:id="@+id/bagImageView"
+            android:layout_width="@dimen/select_feature_bag_view_width"
+            android:layout_height="@dimen/select_feature_bag_view_height"
+            android:layout_alignLeft="@+id/hairImageView"
+            android:layout_alignStart="@+id/hairImageView"
+            android:layout_below="@+id/glassesImageView" />
+
+        <ImageView
+            android:id="@+id/glassesImageView"
+            android:layout_width="@dimen/select_feature_glasses_view_width"
+            android:layout_height="@dimen/select_feature_glasses_view_height"
+            android:layout_alignBottom="@+id/eyeImageView"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/hatImageView"
+            android:layout_width="@dimen/select_feature_hat_view_width"
+            android:layout_height="@dimen/select_feature_hat_view_height"
+            android:layout_above="@+id/eyeImageView"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/necklaceImageView"
+            android:layout_width="@dimen/select_feature_necklace_view_width"
+            android:layout_height="@dimen/select_feature_necklace_view_height"
+            android:layout_alignBottom="@+id/faceImageView"
+            android:layout_alignLeft="@+id/clothImageView"
+            android:layout_alignStart="@+id/clothImageView" />
 
     </RelativeLayout>
 </RelativeLayout>
