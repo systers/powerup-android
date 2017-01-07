@@ -38,6 +38,7 @@
     <dimen name="face_view_height">120dp</dimen>
     <dimen name="face_view_margin_top">180dp</dimen>
     <dimen name="face_right_margin_top">21dp</dimen>
+    <dimen name="avatar_container_margin_top">180dp</dimen>
     <dimen name="hair_view_width">150dp</dimen>
     <dimen name="hair_view_height">150dp</dimen>
     <dimen name="hair_margin_left">35dp</dimen>

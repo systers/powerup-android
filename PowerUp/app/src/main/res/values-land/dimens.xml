@@ -46,4 +46,7 @@
     <dimen name="gameActivity_iv_height">300dp</dimen>
     <dimen name="questionview_tv_width">400dp</dimen>
     <dimen name="gameActivity_rl_marginTop">10dp</dimen>
+    <dimen name="avatar_container_margin_top">65dp</dimen>
+    <dimen name="back_button_margin_bottom">15dp</dimen>
+    <dimen name="continue_button_margin_right_end">40dp</dimen>
 </resources>
