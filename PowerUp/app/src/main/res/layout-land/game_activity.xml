@@ -108,6 +108,37 @@
             android:layout_alignTop="@+id/eyeImageView"
             android:layout_centerHorizontal="true"
             android:src="@drawable/cloth1" />
+
+        <ImageView
+            android:id="@+id/bagImageView"
+            android:layout_width="@dimen/select_feature_bag_view_width"
+            android:layout_height="@dimen/select_feature_bag_view_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/faceImageView" />
+
+        <ImageView
+            android:id="@+id/glassesImageView"
+            android:layout_width="@dimen/select_feature_glasses_view_width"
+            android:layout_height="@dimen/select_feature_glasses_view_height_landscape"
+            android:layout_alignBottom="@+id/eyeImageView"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/hatImageView"
+            android:layout_width="@dimen/select_feature_hat_view_width"
+            android:layout_height="@dimen/select_feature_hat_view_height"
+            android:layout_above="@+id/eyeImageView"
+            android:layout_alignLeft="@+id/faceImageView"
+            android:layout_alignStart="@+id/faceImageView" />
+
+        <ImageView
+            android:id="@+id/necklaceImageView"
+            android:layout_width="@dimen/select_feature_necklace_view_width"
+            android:layout_height="@dimen/select_feature_necklace_view_height"
+            android:layout_above="@+id/bagImageView"
+            android:layout_alignEnd="@+id/clothImageView"
+            android:layout_alignRight="@+id/clothImageView" />
     </RelativeLayout>
 
     <RelativeLayout

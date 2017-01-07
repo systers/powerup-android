@@ -54,6 +54,11 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         final ImageView hairView = (ImageView) findViewById(R.id.hairView);
         final ImageView clothView = (ImageView) findViewById(R.id.clothView);
+        final ImageView bagView = (ImageView) findViewById(R.id.bagView);
+        final ImageView glassesView = (ImageView) findViewById(R.id.glassesView);
+        final ImageView hatView = (ImageView) findViewById(R.id.hatView);
+        final ImageView necklaceView = (ImageView) findViewById(R.id.necklaceView);
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -94,6 +99,54 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
+        }
+
+        if (getmDbHandler().getAvatarBag() != 0) {
+            String bagImageName = getResources().getString(R.string.bag);
+            bagImageName = bagImageName + getmDbHandler().getAvatarBag();
+            try {
+                photoNameField = ourRID.getClass().getField(bagImageName);
+                bagView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarGlasses() != 0) {
+            String glassesImageName = getResources().getString(R.string.glasses);
+            glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
+            try {
+                photoNameField = ourRID.getClass().getField(glassesImageName);
+                glassesView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarHat() != 0) {
+            String hatImageName = getResources().getString(R.string.hat);
+            hatImageName = hatImageName + getmDbHandler().getAvatarHat();
+            try {
+                photoNameField = ourRID.getClass().getField(hatImageName);
+                hatView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarNeckalce() != 0) {
+            String necklaceImageName = getResources().getString(R.string.necklace);
+            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
+            try {
+                photoNameField = ourRID.getClass().getField(necklaceImageName);
+                necklaceView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         }
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
@@ -281,10 +334,6 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             ImageButton leftNecklace = (ImageButton) findViewById(R.id.leftNecklace);
             ImageButton rightNecklace = (ImageButton) findViewById(R.id.rightNecklace);
 
-            final ImageView bagView = (ImageView) findViewById(R.id.bagView);
-            final ImageView glassesView = (ImageView) findViewById(R.id.glassesView);
-            final ImageView hatView = (ImageView) findViewById(R.id.hatView);
-            final ImageView necklaceView = (ImageView) findViewById(R.id.necklaceView);
             final ImageView imageViewhandbag = (ImageView) findViewById(R.id.imageViewhandbag);
             final ImageView imageViewGlasses = (ImageView) findViewById(R.id.imageViewGlasses);
             final ImageView imageViewHat = (ImageView) findViewById(R.id.imageViewHat);
