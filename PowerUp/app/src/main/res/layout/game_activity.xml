@@ -158,9 +158,7 @@
             android:id="@+id/faceImageView"
             android:layout_width="@dimen/face_view_width"
             android:layout_height="@dimen/face_view_height"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/pgame_face_image_view_margin_top"
             android:src="@drawable/face1" />
 
         <ImageView
@@ -176,10 +174,8 @@
             android:id="@+id/hairImageView"
             android:layout_width="@dimen/hair_view_width"
             android:layout_height="@dimen/hair_view_height"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/faceImageView"
-            android:src="@drawable/hair1" />
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/hair2" />
 
         <ImageView
             android:id="@+id/clothImageView"
@@ -193,9 +189,9 @@
             android:id="@+id/bagImageView"
             android:layout_width="@dimen/select_feature_bag_view_width"
             android:layout_height="@dimen/select_feature_bag_view_height"
-            android:layout_alignLeft="@+id/hairImageView"
-            android:layout_alignStart="@+id/hairImageView"
-            android:layout_below="@+id/glassesImageView" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/eyeImageView" />
 
         <ImageView
             android:id="@+id/glassesImageView"
@@ -210,14 +206,6 @@
             android:layout_height="@dimen/select_feature_hat_view_height"
             android:layout_above="@+id/eyeImageView"
             android:layout_centerHorizontal="true" />
-
-        <ImageView
-            android:id="@+id/necklaceImageView"
-            android:layout_width="@dimen/select_feature_necklace_view_width"
-            android:layout_height="@dimen/select_feature_necklace_view_height"
-            android:layout_alignBottom="@+id/faceImageView"
-            android:layout_alignLeft="@+id/clothImageView"
-            android:layout_alignStart="@+id/clothImageView" />
 
     </RelativeLayout>
 </RelativeLayout>
