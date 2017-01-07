@@ -35,6 +35,7 @@
             android:layout_height="@dimen/hair_view_height"
             android:layout_centerHorizontal="true"
             android:src="@drawable/hair2" />
+<<<<<<< HEAD
 
         <ImageView
             android:id="@+id/clothView"
@@ -74,6 +75,39 @@
             android:layout_alignEnd="@+id/clothView"
             android:layout_alignRight="@+id/clothView" />
 
+=======
+
+        <ImageView
+            android:id="@+id/clothView"
+            android:layout_width="@dimen/cloth_view_width"
+            android:layout_height="@dimen/cloth_view_height"
+            android:layout_alignTop="@+id/eyeView"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/cloth1" />
+
+        <ImageView
+            android:id="@+id/bagView"
+            android:layout_width="@dimen/select_feature_bag_view_width"
+            android:layout_height="@dimen/select_feature_bag_view_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/eyeView" />
+
+        <ImageView
+            android:id="@+id/glassesView"
+            android:layout_width="@dimen/select_feature_glasses_view_width"
+            android:layout_height="@dimen/select_feature_glasses_view_height"
+            android:layout_alignBottom="@+id/eyeView"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/hatView"
+            android:layout_width="@dimen/select_feature_hat_view_width"
+            android:layout_height="@dimen/select_feature_hat_view_height"
+            android:layout_above="@+id/eyeView"
+            android:layout_centerHorizontal="true" />
+
+>>>>>>> 6e47fa83e4dfd769df79f1e0c63a1fc0577a0505
     </RelativeLayout>
 
     <Button

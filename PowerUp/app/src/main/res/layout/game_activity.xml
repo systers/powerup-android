@@ -207,6 +207,7 @@
             android:layout_above="@+id/eyeImageView"
             android:layout_centerHorizontal="true" />
 
+<<<<<<< HEAD
         <ImageView
             android:id="@+id/necklaceImageView"
             android:layout_width="@dimen/select_feature_necklace_view_width"
@@ -215,5 +216,7 @@
             android:layout_alignEnd="@+id/clothImageView"
             android:layout_alignRight="@+id/clothImageView" />
 
+=======
+>>>>>>> 6e47fa83e4dfd769df79f1e0c63a1fc0577a0505
     </RelativeLayout>
 </RelativeLayout>
