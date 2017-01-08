@@ -1,3 +1,7 @@
+/**
+ * @desc sets up the map screen.
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -14,8 +18,8 @@ public class MapActivity extends Activity {
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            Button b = (Button) v;
-            if (getmDbHandler().setSessionId(b.getText().toString())) {
+            Button scenarioChooser = (Button) v;
+            if (getmDbHandler().setSessionId(scenarioChooser.getText().toString())) {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
             } else {
                 startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
@@ -58,7 +62,7 @@ public class MapActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(MapActivity.this, StartActivity.class));
+                
             }
         });
 

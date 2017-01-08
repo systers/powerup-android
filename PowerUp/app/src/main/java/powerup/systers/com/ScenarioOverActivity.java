@@ -1,3 +1,9 @@
+/**
+ * @desc finishes dialogue situation when the “continue” or “back” button is pressed.
+ * Brings user to ending screen displaying current progress of power/health
+ * bars and karma points.
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -45,6 +51,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         ImageView faceImageView = (ImageView) findViewById(R.id.faceView);
         ImageView hairImageView = (ImageView) findViewById(R.id.hairView);
         ImageView clothImageView = (ImageView) findViewById(R.id.clothView);
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -53,9 +60,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(eyeImageName);
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String faceImageName = getResources().getString(R.string.face);
@@ -64,9 +70,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
@@ -75,9 +80,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String hairImageName = getResources().getString(R.string.hair);
@@ -86,9 +90,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
@@ -107,6 +110,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         IconRoundCornerProgressBar powerbarTelepathy = (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
         powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
         powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
+
         scenarioTextView.setText("Current Scene: " + getIntent().getExtras().getString(String.valueOf(R.string.scene)));
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         continueButton.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +139,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

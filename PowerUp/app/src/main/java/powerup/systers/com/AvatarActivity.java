@@ -1,3 +1,8 @@
+/**
+ * @desc displays avatar features, sets hasPreviouslyStarted to true, and
+ * returns the user to map after clicking “continue”.
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -29,10 +34,9 @@ public class AvatarActivity extends Activity {
         ImageView glassesView = (ImageView) findViewById(R.id.glassesView);
         ImageView hatView = (ImageView) findViewById(R.id.hatView);
         ImageView necklaceView = (ImageView) findViewById(R.id.necklaceView);
-
         Button continueButton = (Button) findViewById(R.id.continueButton);
         Button backButton = (Button) findViewById(R.id.backButton);
-        String eyeImageName =getResources().getString(R.string.eye);
+        String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
         java.lang.reflect.Field photoNameField;
@@ -41,7 +45,6 @@ public class AvatarActivity extends Activity {
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -52,7 +55,6 @@ public class AvatarActivity extends Activity {
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -63,7 +65,6 @@ public class AvatarActivity extends Activity {
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -74,11 +75,10 @@ public class AvatarActivity extends Activity {
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        if(getmDbHandler().getAvatarBag()!= 0){
+        if (getmDbHandler().getAvatarBag() != 0) {
             String bagImageName = getResources().getString(R.string.bag);
             bagImageName = bagImageName + getmDbHandler().getAvatarBag();
             try {
@@ -86,12 +86,11 @@ public class AvatarActivity extends Activity {
                 bagView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        if(getmDbHandler().getAvatarGlasses()!= 0){
+        if (getmDbHandler().getAvatarGlasses() != 0) {
             String glassesImageName = getResources().getString(R.string.glasses);
             glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
             try {
@@ -99,12 +98,11 @@ public class AvatarActivity extends Activity {
                 glassesView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        if(getmDbHandler().getAvatarHat()!= 0){
+        if (getmDbHandler().getAvatarHat() != 0) {
             String hatImageName = getResources().getString(R.string.hat);
             hatImageName = hatImageName + getmDbHandler().getAvatarHat();
             try {
@@ -112,12 +110,11 @@ public class AvatarActivity extends Activity {
                 hatView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        if(getmDbHandler().getAvatarNeckalce()!= 0){
+        if (getmDbHandler().getAvatarNeckalce() != 0) {
             String necklaceImageName = getResources().getString(R.string.necklace);
             necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
             try {
@@ -125,7 +122,6 @@ public class AvatarActivity extends Activity {
                 necklaceView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

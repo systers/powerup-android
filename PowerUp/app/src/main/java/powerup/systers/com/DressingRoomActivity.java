@@ -1,3 +1,7 @@
+/**
+ * @desc displays avatar features in dressing room and updates power/health bars.
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -37,9 +41,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(eyeImageName);
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String faceImageName = getResources().getString(R.string.face);
@@ -48,9 +51,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
@@ -59,9 +61,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String hairImageName = getResources().getString(R.string.hair);
@@ -70,9 +71,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
