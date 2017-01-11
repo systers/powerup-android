@@ -1,0 +1,65 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.powerup.aboutActivity"
+    android:weightSum="1"
+    android:scrollbarStyle="insideOverlay"
+    style="@android:style/Widget.ScrollView"
+    android:fillViewport="false">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="398dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/about"
+            android:textAlignment="center"
+            android:textSize="@dimen/powerup_size"
+            android:typeface="serif"
+            android:textStyle="bold"
+            android:foregroundGravity="bottom"/>
+
+        <TextView
+            android:text="Powerup focuses and strive to help the teen girls to make mature decisions about their reproductive health.While you enjoy the game, It will let you choose your course of action through a series of scenes and questions.
+
+We came up with PowerUp to fill the gap created by the society and schools regarding sex education and its importance.Since this game can be downloaded and is available world wide, It will help us eliminate the limitation of reach of sexual education to just developed nation and societies.
+
+This mini game help young girls to stimulate thinking towards a healthy sexual decesion. PowerUp is a good to learn about the reproductive health in a better,safe and interactive way."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textView"
+            android:typeface="serif"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:textStyle="normal|italic"
+            android:paddingBottom="50dp"
+            android:paddingRight="20dp"
+            android:layout_weight="0.98" />
+
+
+    </LinearLayout>
+
+    </ScrollView>
