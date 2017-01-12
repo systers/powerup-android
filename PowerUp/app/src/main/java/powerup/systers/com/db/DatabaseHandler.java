@@ -650,8 +650,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
     /**
     * @desc sets scenarios back to default (not complete).
     */
-    public void updateComplete()
-    {
+    public void updateComplete() {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0";
         sDb.execSQL(query);
@@ -660,8 +659,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
     /**
     * @desc sets scenarios back so that they can be replayed.
     */
-    public void updateReplayed()
-    {
+    public void updateReplayed() {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0";
         sDb.execSQL(query);
@@ -670,8 +668,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
     /**
     * @desc sets purchases to default so that nothing has been bought.
     */
-    public void resetPurchase()
-    {
+    public void resetPurchase() {
         String query = "UPDATE " + PowerUpContract.ClothesEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ClothesEntry.COLUMN_PURCHASED + " = 0";
         sDb.execSQL(query);
