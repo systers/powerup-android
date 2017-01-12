@@ -1,19 +1,25 @@
+/**
+ * @desc this class holds getter and setter methods for each question/answer pair
+ * each answer has a specific point value
+ * examples include setAnswerID() and getPoints()
+ */
+
 package powerup.systers.com.datamodel;
 
 public class Answer {
 
-    private Integer answerID;
+    private int answerId;
     private String answerDescription;
-    private Integer questionID;
-    private Integer nextQuestionID;
-    private Integer points;
+    private int questionId;
+    private int nextQuestionId;
+    private int points;
 
-    public Integer getAnswerID() {
-        return answerID;
+    public int getAnswerId() {
+        return answerId;
     }
 
-    public void setAnswerID(Integer aId) {
-        this.answerID = aId;
+    public void setAnswerId(int aId) {
+        this.answerId = aId;
     }
 
     public String getAnswerDescription() {
@@ -24,27 +30,27 @@ public class Answer {
         this.answerDescription = aDes;
     }
 
-    public Integer getQuestionID() {
-        return questionID;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestionID(Integer qId) {
-        this.questionID = qId;
+    public void setQuestionId(int qId) {
+        this.questionId = qId;
     }
 
-    public Integer getNextQuestionID() {
-        return nextQuestionID;
+    public int getNextQuestionId() {
+        return nextQuestionId;
     }
 
-    public void setNextQuestionID(Integer nextQuestionID) {
-        this.nextQuestionID = nextQuestionID;
+    public void setNextQuestionId(int nextQuestionId) {
+        this.nextQuestionId = nextQuestionId;
     }
 
-    public Integer getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(Integer points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 
