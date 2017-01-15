@@ -257,7 +257,7 @@ public abstract class AbstractDbAdapter {
         }
 
 	/**
-	* @desc read CSV file and insert the clotes it contains into database.
+	* @desc read CSV file and insert the clothes it contains into database.
 	* @param db - the database the clothes will be put into
 	* @param filename - the file to extract clothing information from
 	*/
@@ -287,7 +287,7 @@ public abstract class AbstractDbAdapter {
         }
 
 	/**
-	* @desc read CSV file and insert the accessores it contains into database.
+	* @desc read CSV file and insert the accessories it contains into database.
 	* @param db - the database the accessories will be put into
 	* @param filename - the file to extract accessory information from
 	*/
