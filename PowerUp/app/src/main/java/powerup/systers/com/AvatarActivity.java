@@ -114,9 +114,9 @@ public class AvatarActivity extends Activity {
             }
         }
 
-        if (getmDbHandler().getAvatarNeckalce() != 0) {
+        if (getmDbHandler().getAvatarNecklace() != 0) {
             String necklaceImageName = getResources().getString(R.string.necklace);
-            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
+            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNecklace();
             try {
                 photoNameField = ourRID.getClass().getField(necklaceImageName);
                 necklaceView.setImageResource(photoNameField.getInt(ourRID));

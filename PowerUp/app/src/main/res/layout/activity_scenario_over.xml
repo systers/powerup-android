@@ -182,7 +182,7 @@
         android:id="@+id/karmaImageView"
         android:layout_width="@dimen/karma_iv_width"
         android:layout_height="@dimen/karma_iv_height"
-        android:src="@drawable/karma_box" />
+        android:src="@drawable/karma_text" />
 
     <TextView
         android:id="@+id/karmaPoints"

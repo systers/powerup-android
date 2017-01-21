@@ -390,7 +390,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
     * @desc get the current necklace to display.
     * @return int - the number of the current necklace. Default is 0.
     */
-    public int getAvatarNeckalce() {
+    public int getAvatarNecklace() {
         String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
