@@ -12,7 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 public class StartActivity extends Activity implements View.OnClickListener {
 
@@ -29,6 +29,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         findViewById(R.id.newUserButtonFirstPage).setOnClickListener(this);
         findViewById(R.id.startButtonMain).setOnClickListener(this);
+        findViewById(R.id.aboutButtonMain).setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +51,10 @@ public class StartActivity extends Activity implements View.OnClickListener {
                     startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));
                 }
                 break;
+            case R.id.aboutButtonMain:
+                startActivity(new Intent(StartActivity.this, AboutActivity.class));
+                break;
         }
     }
+  
 }
