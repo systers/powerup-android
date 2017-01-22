@@ -63,6 +63,8 @@ public class GameActivity extends Activity {
 
         UiUtils.setupEyesFaceClothesHair(this, mDbHandler);
 
+        mListAdapter = new ArrayAdapter<>(this, R.layout.simplerow, new ArrayList<String>());
+
         // Update scene
         updateScenario();
         if (mScene.getReplayed() == 1) {
@@ -70,17 +72,15 @@ public class GameActivity extends Activity {
             mReplay.setAlpha((float) 0.0);
         }
 
-        setupListView();
+        ListView mainListView = (ListView) findViewById(R.id.mainListView);
+        setupListView(mainListView);
 
         UiUtils.setupProgressBars(this, mDbHandler);
     }
 
-    private void setupListView() {
-        mListAdapter = new ArrayAdapter<>(this, R.layout.simplerow, new ArrayList<String>());
-
-        ListView mainListView = (ListView) findViewById(R.id.mainListView);
-        mainListView.setAdapter(mListAdapter);
-        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    private void setupListView(ListView listView) {
+        listView.setAdapter(mListAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
                         if (mAnswers.get(position).getNextQuestionId() > 0) {
