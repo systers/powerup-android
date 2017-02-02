@@ -9,35 +9,33 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-public class CompletedSceneActivity extends Activity {
+public class CompletedSceneActivity extends Activity implements View.OnClickListener {
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_scene);
-        Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
-        backToMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CompletedSceneActivity.this,
+
+        findViewById(R.id.ContinueButtonMap).setOnClickListener(this);
+        findViewById(R.id.store_button).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ContinueButtonMap:
+                Intent myIntent = new Intent(CompletedSceneActivity.this,
                         MapActivity.class);
                 finish();
-                startActivityForResult(intent, 0);
-            }
-        });
-        Button storeButton = (Button) findViewById(R.id.store_button);
-        storeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                startActivityForResult(myIntent, 0);
+                break;
+
+            case R.id.store_button:
                 Intent intent = new Intent(CompletedSceneActivity.this, DressingRoomActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
 }

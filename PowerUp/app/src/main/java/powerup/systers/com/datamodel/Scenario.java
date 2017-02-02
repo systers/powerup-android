@@ -12,10 +12,10 @@ public class Scenario {
     private String timestamp;
     private String asker;
     private int avatar;
-    private int firstQuestionID;
-    private int completed;  // If equal to 1, the scenario is already completed
-    private int nextScenarioID;
-    private int replayed;   // If equal to 0, the scenario can be replayed
+    private int firstQuestionId;
+    private int completed;
+    private int nextScenarioId;
+    private int replayed;
 
     public int getId() {
         return id;
@@ -57,20 +57,20 @@ public class Scenario {
         this.avatar = avatar;
     }
 
-    public int getFirstQuestionID() {
-        return firstQuestionID;
+    public int getFirstQuestionId() {
+        return firstQuestionId;
     }
 
-    public void setFirstQuestionID(int firstQuestionID) {
-        this.firstQuestionID = firstQuestionID;
+    public void setFirstQuestionId(int firstQuestionId) {
+        this.firstQuestionId = firstQuestionId;
     }
 
-    public int getNextScenarioID() {
-        return nextScenarioID;
+    public int getNextScenarioId() {
+        return nextScenarioId;
     }
 
-    public void setNextScenarioID(int nextScenarioID) {
-        this.nextScenarioID = nextScenarioID;
+    public void setNextScenarioId(int nextScenarioId) {
+        this.nextScenarioId = nextScenarioId;
     }
 
     public int getCompleted() {

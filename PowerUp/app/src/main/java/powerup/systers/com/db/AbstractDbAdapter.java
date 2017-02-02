@@ -19,20 +19,22 @@ public abstract class AbstractDbAdapter {
 
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "PowerUpDB";
-    protected static SQLiteDatabase mDb;
-    private static BufferedReader in;
-    private static AssetManager assetManager;
-    protected final Context mCtx;
+
+    protected static SQLiteDatabase sDb;
+    private static BufferedReader sIn;
+    private static AssetManager sAssetManager;
+
+    protected final Context mContext;
     protected DatabaseHelper mDbHelper;
 
     public AbstractDbAdapter(Context ctx) {
-        this.mCtx = ctx;
-        assetManager = ctx.getAssets();
-        mDbHelper = new DatabaseHelper(mCtx);
+        mContext = ctx;
+        sAssetManager = ctx.getAssets();
+        mDbHelper = new DatabaseHelper(mContext);
     }
 
     public AbstractDbAdapter open() throws SQLException {
-        mDb = mDbHelper.getWritableDatabase();
+        sDb = mDbHelper.getWritableDatabase();
         return this;
     }
 
@@ -212,14 +214,14 @@ public abstract class AbstractDbAdapter {
 	*/
         public void readCSVQuestion(SQLiteDatabase db, String filename)
                 throws IOException {
-            in = new BufferedReader(new InputStreamReader(
-                    assetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(
+                    sAssetManager.open(filename)));
             String reader;
-            while ((reader = in.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBQuestion(db, RowData);
             }
-            in.close();
+            sIn.close();
         }
 
 	/**
@@ -229,14 +231,14 @@ public abstract class AbstractDbAdapter {
 	*/
         public void readCSVAnswer(SQLiteDatabase db, String filename)
                 throws IOException {
-            in = new BufferedReader(new InputStreamReader(
-                    assetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(
+                    sAssetManager.open(filename)));
             String reader;
-            while ((reader = in.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBAnswer(db, RowData);
             }
-            in.close();
+            sIn.close();
         }
 
 	/**
@@ -246,14 +248,14 @@ public abstract class AbstractDbAdapter {
 	*/
         public void readCSVScenario(SQLiteDatabase db, String filename)
                 throws IOException {
-            in = new BufferedReader(new InputStreamReader(
-                    assetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(
+                    sAssetManager.open(filename)));
             String reader;
-            while ((reader = in.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBScenario(db, RowData);
             }
-            in.close();
+            sIn.close();
         }
 
 	/**
@@ -262,13 +264,13 @@ public abstract class AbstractDbAdapter {
 	* @param filename - the file to extract clothing information from
 	*/
         public void readCSVClothes(SQLiteDatabase db, String filename) throws IOException {
-            in = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(sAssetManager.open(filename)));
             String reader;
-            while ((reader = in.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBClothes(db, RowData);
             }
-            in.close();
+            sIn.close();
         }
 
 	/**
@@ -277,13 +279,13 @@ public abstract class AbstractDbAdapter {
 	* @param filename - the file to extract hair information from
 	*/
         public void readCSVHair(SQLiteDatabase db, String filename) throws IOException {
-            in = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(sAssetManager.open(filename)));
             String reader;
-            while ((reader = in.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBHair(db, RowData);
             }
-            in.close();
+            sIn.close();
         }
 
 	/**
@@ -292,13 +294,13 @@ public abstract class AbstractDbAdapter {
 	* @param filename - the file to extract accessory information from
 	*/
         public void readCSVAccessories(SQLiteDatabase db, String filename) throws IOException {
-            in = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(sAssetManager.open(filename)));
             String reader;
-            while ((reader = in.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBAccessories(db, RowData);
             }
-            in.close();
+            sIn.close();
         }
 
         @Override

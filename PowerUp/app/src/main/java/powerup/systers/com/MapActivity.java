@@ -12,67 +12,54 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import powerup.systers.com.db.DatabaseHandler;
 
-public class MapActivity extends Activity {
+public class MapActivity extends Activity implements OnClickListener {
 
     private DatabaseHandler mDbHandler;
-    private OnClickListener onClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Button scenarioChooser = (Button) v;
-            if (getmDbHandler().setSessionId(scenarioChooser.getText().toString())) {
-                startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
-            } else {
-                startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
-            }
-        }
-    };
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
         setContentView(R.layout.gamemap);
 
-        Button house = (Button) findViewById(R.id.HouseButton);
-        house.setOnClickListener(onClickListener);
+        mDbHandler = new DatabaseHandler(this);
+        mDbHandler.open();
 
-        Button boyfriend = (Button) findViewById(R.id.BoyfriendButton);
-        boyfriend.setOnClickListener(onClickListener);
+        setClickListeners();
+    }
 
-        Button hospital = (Button) findViewById(R.id.HospitalButton);
-        hospital.setOnClickListener(onClickListener);
+    private void setClickListeners() {
+        findViewById(R.id.HouseButton).setOnClickListener(this);
+        findViewById(R.id.BoyfriendButton).setOnClickListener(this);
+        findViewById(R.id.HospitalButton).setOnClickListener(this);
+        findViewById(R.id.SchoolButton).setOnClickListener(this);
+        findViewById(R.id.storeButton).setOnClickListener(this);
+        findViewById(R.id.homeButton).setOnClickListener(this);
+    }
 
-        Button school = (Button) findViewById(R.id.SchoolButton);
-        school.setOnClickListener(onClickListener);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.HouseButton:
+            case R.id.BoyfriendButton:
+            case R.id.HospitalButton:
+            case R.id.SchoolButton:
+                Button b = (Button) v;
+                if (mDbHandler.setSessionId(b.getText().toString())) {
+                    startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
+                } else {
+                    startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
+                }
+                break;
 
-        Button storeButton = (Button) findViewById(R.id.storeButton);
-        storeButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.storeButton:
                 startActivity(new Intent(MapActivity.this, DressingRoomActivity.class));
-            }
-        });
+                break;
 
-        Button homeButton = (Button) findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.homeButton:
                 finish();
-                
-            }
-        });
-
+                startActivity(new Intent(MapActivity.this, StartActivity.class));
+                break;
+        }
     }
 
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
-    }
 }

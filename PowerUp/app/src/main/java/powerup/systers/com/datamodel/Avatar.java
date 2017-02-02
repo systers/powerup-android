@@ -6,49 +6,50 @@
 package powerup.systers.com.datamodel;
 
 public class Avatar {
-    private Integer id;
-    private Integer face;
-    private Integer eyes;
-    private Integer hair;
-    private Integer clothes;
 
-    public Integer getId() {
+    private int id;
+    private int face;
+    private int eyes;
+    private int hair;
+    private int clothes;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer iD) {
+    public void setId(int iD) {
         id = iD;
     }
 
-    public Integer getFace() {
+    public int getFace() {
         return face;
     }
 
-    public void setFace(Integer face) {
+    public void setFace(int face) {
         this.face = face;
     }
 
-    public Integer getEyes() {
+    public int getEyes() {
         return eyes;
     }
 
-    public void setEyes(Integer eyes) {
+    public void setEyes(int eyes) {
         this.eyes = eyes;
     }
 
-    public Integer getHair() {
+    public int getHair() {
         return hair;
     }
 
-    public void setHair(Integer hair) {
+    public void setHair(int hair) {
         this.hair = hair;
     }
 
-    public Integer getClothes() {
+    public int getClothes() {
         return clothes;
     }
 
-    public void setClothes(Integer clothes) {
+    public void setClothes(int clothes) {
         this.clothes = clothes;
     }
 }
