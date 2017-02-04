@@ -59,4 +59,6 @@
     <string name="about_text"><b>About</b></string>
     <string name="continue_text"><b>Continue</b></string>
     <string name="replay"><b>Replay</b></string>
+    <string name="snackbar_inappropriate_choice_selected">Are you sure this is the right decision to take?</string>
+    <string name="return_home_answer">Returns Home</string>
 </resources>
