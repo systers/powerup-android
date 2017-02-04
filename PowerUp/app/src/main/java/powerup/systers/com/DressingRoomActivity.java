@@ -19,6 +19,7 @@ public class DressingRoomActivity extends AppCompatActivity {
 
     public static Activity dressingRoomInstance;
     private DatabaseHandler mDbHandler;
+    private TextView karmaPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
         ImageView clothView = (ImageView) findViewById(R.id.clothView);
-        TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
+        karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
@@ -130,5 +131,10 @@ public class DressingRoomActivity extends AppCompatActivity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
     }
 }
