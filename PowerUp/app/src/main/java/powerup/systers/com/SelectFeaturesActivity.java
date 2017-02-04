@@ -608,7 +608,9 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
                 intent.putExtra(getResources().getString(R.string.feature), 2);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
                 getmDbHandler().close();
             }
         });
