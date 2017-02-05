@@ -666,10 +666,27 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0";
         mDb.execSQL(query);
     }
+
+    public void resetComplete(int id)
+    {
+        String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
+                " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0" +
+                " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = " + id;
+        mDb.execSQL(query);
+    }
+
+    public void resetReplayed(int id)
+    {
+        String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
+                " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0" +
+                " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = " + id;
+        mDb.execSQL(query);
+    }
     
     /**
     * @desc sets purchases to default so that nothing has been bought.
     */
+  
     public void resetPurchase()
     {
         String query = "UPDATE " + PowerUpContract.ClothesEntry.TABLE_NAME +
