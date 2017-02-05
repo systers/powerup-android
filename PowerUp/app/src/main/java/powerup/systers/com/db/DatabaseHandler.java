@@ -317,7 +317,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            return cursor.getInt(5);
+            return cursor.getInt(6);    // column 6 in AvatarEntry table
         }
         cursor.close();
         return 0;
@@ -343,7 +343,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            return cursor.getInt(6);
+            return cursor.getInt(7);    // column 7 in AvatarEntry table
         }
         cursor.close();
         return 0;
@@ -369,7 +369,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            return cursor.getInt(7);
+            return cursor.getInt(5);    // column 5 in AvatarEntry table
         }
         cursor.close();
         return 0;
