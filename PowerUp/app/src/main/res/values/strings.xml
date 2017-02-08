@@ -13,6 +13,8 @@
     <string name="completed_game">Wow! You are brilliant. Game completed \n \n \n
         Wait till we upload new scenarios</string>
     <string name="map">Map</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="store">Store</string>
     <string name="enter">Continue..</string>
     <string name="back_to_map">Back to Map</string>
