@@ -161,7 +161,7 @@
     <dimen name="about_section_title_top_margin">15dp</dimen>
     <dimen name="about_section_title_bottom_margin">5dp</dimen>
     <dimen name="about_home_logo_size">100dp</dimen>
-    <dimen name="button_font">18sp</dimen>
+    <dimen name="button_font">20sp</dimen>
     <dimen name="margin_left_continue_button">45dp</dimen>
     <dimen name="button_layout_width">160dp</dimen>
     <dimen name="replay_layout_marginTop">365dp</dimen>
@@ -172,4 +172,5 @@
     <dimen name="store_button_margin_right">60dp</dimen>
     <dimen name="continue_map_button_text_size">18sp</dimen>
     <dimen name="store_map_button_text_size">18sp</dimen>
+    <dimen name="margin_right_continue_button">90dp</dimen>
 </resources>
