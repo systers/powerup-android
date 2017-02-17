@@ -70,7 +70,10 @@
         android:layout_marginTop="@dimen/questionview_tv_margin_top"
         android:hint="@string/question"
         android:textColor="#4e4d40"
-        android:textSize="@dimen/game_text_size" />
+        android:textSize="@dimen/game_text_size"
+        android:layout_toLeftOf="@id/askerImageView"
+        android:layout_marginBottom="@dimen/question_marginBottom"
+        android:layout_toEndOf="@+id/relativeLayout" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

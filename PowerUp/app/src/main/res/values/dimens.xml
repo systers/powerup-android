@@ -184,4 +184,5 @@
     <dimen name="karma_points_marginLeft">20dp</dimen>
     <dimen name="karma_point_marginTop">20dp</dimen>
     <dimen name="health_power_bar_margin_right">20dp</dimen>
+    <dimen name="question_marginBottom">10dp</dimen>
 </resources>
