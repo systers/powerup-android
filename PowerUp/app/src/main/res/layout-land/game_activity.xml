@@ -26,9 +26,9 @@
     <ListView
         android:id="@+id/mainListView"
         android:layout_width="@dimen/gameActivity_lv_width"
-        android:layout_height="@dimen/main_list_view_height"
         android:layout_below="@+id/questionView"
         android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:background="@android:color/white"
         android:clickable="true" />
@@ -63,7 +63,6 @@
         android:layout_width="@dimen/questionview_tv_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scenarioNameEditText"
-        android:layout_toRightOf="@+id/faceImageView"
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:ems="@integer/text_view_ems"

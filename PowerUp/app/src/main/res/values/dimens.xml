@@ -67,7 +67,6 @@
     <dimen name="map_boyfriend_click_height">100dp</dimen>
     <dimen name="map_boyfriend_click_width">75dp</dimen>
     <dimen name="main_list_view_width">200dp</dimen>
-    <dimen name="main_list_view_height">200dp</dimen>
     <dimen name="question_view_margin_top">40dp</dimen>
     <dimen name="question_view_width">200dp</dimen>
     <dimen name="redo_button_width">30dp</dimen>
@@ -175,6 +174,14 @@
     <dimen name="continue_button_margin_left">30dp</dimen>
     <dimen name="scenario_description_margin_top">40dp</dimen>
     <dimen name="karma_imageview_margin_top">5dp</dimen>
-    <dimen name="health_power_bar_margin_right">20dp</dimen>
     <dimen name="scenarioNameEditText_margin_top">-4dp</dimen>
+    <dimen name="avatar_hair_marginTop">95dp</dimen>
+    <dimen name="replay_button_height">45dp</dimen>
+    <dimen name="scenario_text_land_width">150dp</dimen>
+    <dimen name="scenario_text_land_height">80dp</dimen>
+    <dimen name="karma_image_width">80dp</dimen>
+    <dimen name="karma_image_height">50dp</dimen>
+    <dimen name="karma_points_marginLeft">20dp</dimen>
+    <dimen name="karma_point_marginTop">20dp</dimen>
+    <dimen name="health_power_bar_margin_right">20dp</dimen>
 </resources>
