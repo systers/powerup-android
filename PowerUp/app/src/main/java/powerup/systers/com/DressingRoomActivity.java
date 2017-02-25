@@ -27,6 +27,7 @@ public class DressingRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
+        getWindow().setBackgroundDrawable(null);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);

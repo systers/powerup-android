@@ -52,6 +52,8 @@ public class GameActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.game_activity);
+        getWindow().setBackgroundDrawable(null);
+        gameActivityInstance = this;
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
         questionTextView = (TextView) findViewById(R.id.questionView);

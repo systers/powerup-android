@@ -17,5 +17,6 @@ public class GameOverActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_game);
+        getWindow().setBackgroundDrawable(null);
     }
 }
