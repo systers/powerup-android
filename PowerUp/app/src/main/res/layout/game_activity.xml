@@ -28,6 +28,7 @@
         android:layout_width="@dimen/main_list_view_width"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/mainlistview_margin_right"
         android:layout_below="@+id/askerImageView"
         android:background="@android:color/white"
         android:clickable="true" />
