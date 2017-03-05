@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:gravity="fill"
-    tools:context="com.example.powerup.Game">
+    android:gravity="fill">
 
     <TextView
         android:id="@+id/scenarioNameEditText"
