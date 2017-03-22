@@ -33,6 +33,10 @@ public class DressingRoomActivity extends AppCompatActivity {
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);
         ImageView clothView = (ImageView) findViewById(R.id.clothView);
+        ImageView bagView = (ImageView) findViewById(R.id.bagView);
+        ImageView glassesView = (ImageView) findViewById(R.id.glassesView);
+        ImageView hatView = (ImageView) findViewById(R.id.hatView);
+        ImageView necklaceView = (ImageView) findViewById(R.id.necklaceView);
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         String eyeImageName = getResources().getString(R.string.eye);
@@ -75,6 +79,54 @@ public class DressingRoomActivity extends AppCompatActivity {
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
+        }
+
+        if (getmDbHandler().getAvatarBag() != 0) {
+            String bagImageName = getResources().getString(R.string.bag);
+            bagImageName = bagImageName + getmDbHandler().getAvatarBag();
+            try {
+                photoNameField = ourRID.getClass().getField(bagImageName);
+                bagView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarGlasses() != 0) {
+            String glassesImageName = getResources().getString(R.string.glasses);
+            glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
+            try {
+                photoNameField = ourRID.getClass().getField(glassesImageName);
+                glassesView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarHat() != 0) {
+            String hatImageName = getResources().getString(R.string.hat);
+            hatImageName = hatImageName + getmDbHandler().getAvatarHat();
+            try {
+                photoNameField = ourRID.getClass().getField(hatImageName);
+                hatView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getmDbHandler().getAvatarNeckalce() != 0) {
+            String necklaceImageName = getResources().getString(R.string.necklace);
+            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
+            try {
+                photoNameField = ourRID.getClass().getField(necklaceImageName);
+                necklaceView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         }
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
