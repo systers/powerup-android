@@ -7,8 +7,8 @@
     <dimen name="avatar_view_height">200dp</dimen>
     <dimen name="asker_image_view_width">150dp</dimen>
     <dimen name="asker_image_view_height">200dp</dimen>
-    <dimen name="about_button_width">150dp</dimen>
-    <dimen name="about_button_height">50dp</dimen>
+    <dimen name="button_width">150dp</dimen>
+    <dimen name="button_height">50dp</dimen>
     <dimen name="avatar_room_width">100dp</dimen>
     <dimen name="avatar_room_height">100dp</dimen>
     <dimen name="cloth_view_width">75dp</dimen>
@@ -164,17 +164,19 @@
     <dimen name="button_font">18sp</dimen>
     <dimen name="margin_left_continue_button">45dp</dimen>
     <dimen name="button_layout_width">160dp</dimen>
-    <dimen name="replay_layout_marginTop">365dp</dimen>
+    <dimen name="replay_layout_marginTop">400dp</dimen>
     <dimen name="margin_left_replay_button">30dp</dimen>
     <dimen name="continue_buttonmap_width">100dp</dimen>
     <dimen name="store_button_map_width">100dp</dimen>
     <dimen name="continue_button_map_margin_bottom">80dp</dimen>
     <dimen name="store_button_margin_right">60dp</dimen>
-    <dimen name="continue_map_button_text_size">18sp</dimen>
     <dimen name="store_map_button_text_size">18sp</dimen>
     <dimen name="continue_button_margin_left">30dp</dimen>
     <dimen name="scenario_description_margin_top">40dp</dimen>
     <dimen name="karma_imageview_margin_top">5dp</dimen>
     <dimen name="health_power_bar_margin_right">20dp</dimen>
     <dimen name="scenarioNameEditText_margin_top">-4dp</dimen>
+    <dimen name="button_marginTop">410dp</dimen>
+    <dimen name="leftButton_leftMargin">45dp</dimen>
+    <dimen name="rightButton_leftMargin">210dp</dimen>
 </resources>
