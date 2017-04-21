@@ -15,6 +15,18 @@
         android:alpha="@dimen/map_alpha"
         android:text="@string/house" />
 
+    <TextView
+        android:id="@+id/houset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/HouseButton"
+        android:layout_alignLeft="@id/HouseButton"
+        android:layout_alignRight="@id/HouseButton"
+        android:gravity="center"
+        android:textColor="@color/background_floating_material_light"
+        android:textSize="20sp"
+        android:text="@string/house" />
+
     <Button
         android:id="@+id/HospitalButton"
         android:layout_width="@dimen/map_hospital_click_width"
@@ -24,6 +36,18 @@
         android:layout_marginRight="@dimen/hospital_button_margin_right"
         android:alpha="@dimen/map_alpha"
         android:text="@string/hospital" />
+
+    <TextView
+        android:id="@+id/hospitalt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hospital"
+        android:layout_below="@id/HospitalButton"
+        android:layout_alignLeft="@id/HospitalButton"
+        android:layout_alignRight="@id/HospitalButton"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/background_floating_material_light" />
 
     <Button
         android:id="@+id/SchoolButton"
@@ -36,6 +60,19 @@
         android:alpha="@dimen/map_alpha"
         android:text="@string/school" />
 
+    <TextView
+        android:id="@+id/schoolt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/school"
+        android:layout_alignRight="@id/SchoolButton"
+        android:layout_alignLeft="@id/SchoolButton"
+        android:layout_above="@id/SchoolButton"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/background_floating_material_light"
+        android:layout_marginBottom="10sp" />
+
     <Button
         android:id="@+id/BoyfriendButton"
         android:layout_width="@dimen/map_boyfriend_click_width"
@@ -46,6 +83,16 @@
         android:alpha="@dimen/map_alpha"
         android:text="@string/boyfriend" />
 
+    <TextView
+        android:id="@+id/boyfriendt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/boyfriend"
+        android:layout_alignLeft="@id/BoyfriendButton"
+        android:layout_above="@id/BoyfriendButton"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/background_floating_material_light" />
+
     <Button
         android:id="@+id/storeButton"
         android:layout_width="@dimen/store_width"
@@ -55,6 +102,18 @@
         android:alpha="@dimen/map_alpha"
         android:text="@string/store" />
 
+    <TextView
+        android:id="@+id/storet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/store"
+        android:layout_alignLeft="@id/storeButton"
+        android:layout_alignRight="@id/storeButton"
+        android:layout_below="@id/storeButton"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/background_floating_material_light" />
+
     <Button
         android:id="@+id/homeButton"
         android:layout_width="@dimen/gamemap_homeButton_width"
@@ -63,5 +122,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:alpha="@dimen/map_alpha" />
+
+    <Button
+        android:id="@+id/nameButtonToggle"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/help"
+        android:onClick="showText"/>
 
 </RelativeLayout>
