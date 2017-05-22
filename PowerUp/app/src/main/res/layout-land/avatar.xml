@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/faceView"
         android:layout_width="@dimen/face_view_width"
@@ -26,7 +30,7 @@
         android:id="@+id/hairView"
         android:layout_width="@dimen/hair_view_width"
         android:layout_height="@dimen/hair_view_height"
-        android:layout_alignTop="@+id/faceView"
+        android:layout_marginTop="@dimen/avatar_hair_marginTop"
         android:layout_centerHorizontal="true"
         android:src="@drawable/hair1" />
 
@@ -34,9 +38,8 @@
         android:id="@+id/clothView"
         android:layout_width="@dimen/cloth_view_width"
         android:layout_height="@dimen/cloth_view_height"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@id/eyeView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/avatar_cloth_view_land_margin_top"
         android:src="@drawable/cloth1" />
 
     <ImageView
@@ -102,3 +105,4 @@
         android:textSize="@dimen/back_button_textsize" />
 
 </RelativeLayout>
+</ScrollView>
