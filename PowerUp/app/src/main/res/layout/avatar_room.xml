@@ -228,8 +228,8 @@
 
     <Button
         android:id="@+id/continueButtonAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:layout_alignEnd="@+id/relativeLayout2"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/relativeLayout2"
@@ -237,6 +237,7 @@
         android:layout_marginLeft="@dimen/margin_left_continue_button"
         android:background="@drawable/brown_button_background"
         android:text="@string/continue_text"
+        android:textStyle="bold"
         android:textSize="@dimen/button_font"/>
 
 </RelativeLayout>

@@ -157,26 +157,27 @@
 
     <Button
         android:id="@+id/replayButton"
-        android:layout_width="@dimen/button_layout_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/replay_layout_marginTop"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/button_marginTop"
         android:background="@drawable/brown_button_background"
         android:text="@string/replay"
         android:textAllCaps="false"
         android:textSize="@dimen/button_font"
-        android:layout_marginLeft="@dimen/margin_left_replay_button"/>
+        android:layout_marginLeft="@dimen/leftButton_leftMargin"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/continueButton"
-        android:layout_width="@dimen/button_layout_width"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/replayButton"
-        android:layout_toEndOf="@+id/replayButton"
-        android:layout_toRightOf="@+id/replayButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginLeft="@dimen/rightButton_leftMargin"
+        android:layout_marginTop="@dimen/button_marginTop"
         android:background="@drawable/brown_button_background"
         android:text="@string/continue_text"
         android:textAllCaps="false"
-        android:textSize="@dimen/button_font"/>
+        android:textSize="@dimen/button_font"
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/karmaImageView"

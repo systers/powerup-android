@@ -71,14 +71,15 @@
 
     <Button
         android:id="@+id/continueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:layout_alignTop="@+id/backButton"
         android:layout_marginRight="@dimen/avatar_button_margin"
         android:layout_toEndOf="@+id/eyeView"
         android:layout_toRightOf="@+id/eyeView"
         android:background="@drawable/brown_button_background"
         android:text="@string/continue_text"
+        android:textStyle="bold"
         android:textSize="@dimen/button_font"/>
 
     <TextView
@@ -95,8 +96,8 @@
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:layout_below="@+id/clothView"
         android:layout_marginLeft="@dimen/avatar_button_margin"
         android:layout_toLeftOf="@+id/clothView"
@@ -104,6 +105,7 @@
         android:background="@drawable/brown_button_background"
         android:text="@string/back_button"
         android:textAllCaps="false"
-        android:textSize="@dimen/back_button_textsize" />
+        android:textSize="@dimen/button_font"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

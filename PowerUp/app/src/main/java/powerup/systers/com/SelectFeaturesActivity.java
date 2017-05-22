@@ -159,7 +159,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         tvPaidHat = (TextView) findViewById(R.id.tvPaidHat);
         tvPaidNecklace = (TextView) findViewById(R.id.tvPaidNecklace);
 
-        if (value != null ? value.equalsIgnoreCase(getResources().getString(R.string.cloth)) : false) {
+        if (value != null && value.equalsIgnoreCase(getResources().getString(R.string.cloth))) {
             linearLayout.setVisibility(View.VISIBLE);
             linearLayoutGlasses.setVisibility(View.GONE);
             linearLayouthandbag.setVisibility(View.GONE);
