@@ -30,6 +30,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/askerImageView"
         android:background="@android:color/white"
+        android:layout_marginRight="@dimen/pgame_mainlistview_margin_right"
         android:clickable="true" />
 
     <Button

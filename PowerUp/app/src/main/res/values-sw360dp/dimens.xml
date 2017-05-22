@@ -10,4 +10,6 @@
     <dimen name="questionview_tv_margin_top">22dp</dimen>
     <dimen name="questionview_tv_margin_left">20dp</dimen>
     <dimen name="scenarioNameEditText_margin_top">-4dp</dimen>
+    <dimen name="mainlistview_margin_right">20dp</dimen>
+    <dimen name="pgame_mainlistview_margin_right">20dp</dimen>
 </resources>
