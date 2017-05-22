@@ -77,7 +77,8 @@
         android:layout_alignTop="@+id/backButton"
         android:layout_toEndOf="@+id/hairView"
         android:layout_toRightOf="@+id/hairView"
-        android:background="@drawable/brown_button_background" />
+        android:background="@drawable/brown_button_background"
+        android:text="@string/continue_text" />
 
     <TextView
         android:id="@+id/finalAvatarTextViewLand"

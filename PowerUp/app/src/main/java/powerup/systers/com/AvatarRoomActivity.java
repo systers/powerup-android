@@ -6,7 +6,9 @@
 package powerup.systers.com;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +18,13 @@ import java.util.Random;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
+import static powerup.systers.com.R.string.continue_text;
+
 public class AvatarRoomActivity extends Activity {
 
     public Activity avatarRoomInstance;
     private DatabaseHandler mDbHandler;
+    private Button continueButton;
     private ImageView eyeView;
     private ImageView faceView;
     private ImageView clothView;
@@ -57,7 +62,7 @@ public class AvatarRoomActivity extends Activity {
         ImageButton clothRight = (ImageButton) findViewById(R.id.clotheRight);
         ImageButton hairLeft = (ImageButton) findViewById(R.id.hairLeft);
         ImageButton hairRight = (ImageButton) findViewById(R.id.hairRight);
-        Button continueButton = (Button) findViewById(R.id.continueButtonAvatar);
+        continueButton = (Button) findViewById(R.id.continueButtonAvatar);
 
         eyeLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,18 +71,7 @@ public class AvatarRoomActivity extends Activity {
                 if (eye == 0) {
                     eye = SessionHistory.eyesTotalNo;
                 }
-                String eyeImageName = getResources().getString(R.string.eye);
-                eyeImageName = eyeImageName + eye.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(eyeImageName);
-                    eyeView.setImageResource(photoNameField.getInt(ourRID));
-                    eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(eye,getResources().getString(R.string.eye));
             }
         });
 
@@ -86,18 +80,8 @@ public class AvatarRoomActivity extends Activity {
             public void onClick(View v) {
                 eye = (eye + SessionHistory.eyesTotalNo)
                         % SessionHistory.eyesTotalNo + 1;
-                String eyeImageName = getResources().getString(R.string.eye);
-                eyeImageName = eyeImageName + eye.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(eyeImageName);
-                    eyeView.setImageResource(photoNameField.getInt(ourRID));
-                    eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(eye,getResources().getString(R.string.eye));
+
             }
         });
 
@@ -108,18 +92,7 @@ public class AvatarRoomActivity extends Activity {
                 if (face == 0) {
                     face = SessionHistory.faceTotalNo;
                 }
-                String faceImageName = getResources().getString(R.string.face);
-                faceImageName = faceImageName + face.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(faceImageName);
-                    faceView.setImageResource(photoNameField.getInt(ourRID));
-                    faceAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(face,getResources().getString(R.string.face));
             }
         });
 
@@ -128,18 +101,7 @@ public class AvatarRoomActivity extends Activity {
             public void onClick(View v) {
                 face = (face + SessionHistory.faceTotalNo)
                         % SessionHistory.faceTotalNo + 1;
-                String faceImageName = getResources().getString(R.string.face);
-                faceImageName = faceImageName + face.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(faceImageName);
-                    faceView.setImageResource(photoNameField.getInt(ourRID));
-                    faceAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(face,getResources().getString(R.string.face));
             }
         });
 
@@ -150,18 +112,7 @@ public class AvatarRoomActivity extends Activity {
                 if (cloth == 0) {
                     cloth = SessionHistory.clothTotalNo;
                 }
-                String clothImageName = getResources().getString(R.string.cloth);
-                clothImageName = clothImageName + cloth.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(clothImageName);
-                    clothView.setImageResource(photoNameField.getInt(ourRID));
-                    clothAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(cloth,getResources().getString(R.string.cloth));
             }
         });
 
@@ -170,18 +121,7 @@ public class AvatarRoomActivity extends Activity {
             public void onClick(View v) {
                 cloth = (cloth + SessionHistory.clothTotalNo)
                         % SessionHistory.clothTotalNo + 1;
-                String clothImageName = getResources().getString(R.string.cloth);
-                clothImageName = clothImageName + cloth.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(clothImageName);
-                    clothView.setImageResource(photoNameField.getInt(ourRID));
-                    clothAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(cloth,getResources().getString(R.string.cloth));
             }
         });
 
@@ -192,18 +132,7 @@ public class AvatarRoomActivity extends Activity {
                 if (hair == 0) {
                     hair = SessionHistory.hairTotalNo;
                 }
-                String hairImageName = getResources().getString(R.string.hair);
-                hairImageName = hairImageName + hair.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(hairImageName);
-                    hairView.setImageResource(photoNameField.getInt(ourRID));
-                    hairAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(hair,getResources().getString(R.string.hair));
             }
         });
 
@@ -212,18 +141,7 @@ public class AvatarRoomActivity extends Activity {
             public void onClick(View v) {
                 hair = (hair + SessionHistory.hairTotalNo)
                         % SessionHistory.hairTotalNo + 1;
-                String hairImageName = getResources().getString(R.string.hair);
-                hairImageName = hairImageName + hair.toString();
-                R.drawable ourRID = new R.drawable();
-                java.lang.reflect.Field photoNameField;
-                try {
-                    photoNameField = ourRID.getClass().getField(hairImageName);
-                    hairView.setImageResource(photoNameField.getInt(ourRID));
-                    hairAvatar.setImageResource(photoNameField.getInt(ourRID));
-                } catch (NoSuchFieldException | IllegalAccessException
-                        | IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                resourceSetter(hair,getResources().getString(R.string.hair));
             }
         });
 
@@ -268,6 +186,55 @@ public class AvatarRoomActivity extends Activity {
             }
         });
         getmDbHandler().close();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("eyeNum", eye);
+        savedInstanceState.putInt("faceNum", face);
+        savedInstanceState.putInt("hairNum", hair);
+        savedInstanceState.putInt("clothNum", cloth);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        eye = savedInstanceState.getInt("eyeNum");
+        face = savedInstanceState.getInt("faceNum");
+        cloth = savedInstanceState.getInt("clothNum");;
+        hair = savedInstanceState.getInt("hairNum");
+        resourceSetter(eye,getResources().getString(R.string.eye));
+        resourceSetter(face,getResources().getString(R.string.face));
+        resourceSetter(hair,getResources().getString(R.string.hair));
+        resourceSetter(cloth,getResources().getString(R.string.cloth));
+    }
+
+    public void resourceSetter(int value,String type){
+        String imageName=type;
+        imageName+=value;
+        R.drawable ourRID = new R.drawable();
+        java.lang.reflect.Field photoNameField;
+        try {
+            photoNameField = ourRID.getClass().getField(imageName);
+            if(type.equalsIgnoreCase(getResources().getString(R.string.face))){
+                faceView.setImageResource(photoNameField.getInt(ourRID));
+                faceAvatar.setImageResource(photoNameField.getInt(ourRID));
+            }else if(type.equalsIgnoreCase(getResources().getString(R.string.eye))){
+                eyeView.setImageResource(photoNameField.getInt(ourRID));
+                eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
+            }else if(type.equalsIgnoreCase(getResources().getString(R.string.cloth))){
+                clothView.setImageResource(photoNameField.getInt(ourRID));
+                clothAvatar.setImageResource(photoNameField.getInt(ourRID));
+            }else if(type.equalsIgnoreCase(getResources().getString(R.string.hair))){
+                hairView.setImageResource(photoNameField.getInt(ourRID));
+                hairAvatar.setImageResource(photoNameField.getInt(ourRID));
+            }
+
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     public DatabaseHandler getmDbHandler() {
