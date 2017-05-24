@@ -177,4 +177,9 @@
     <dimen name="karma_imageview_margin_top">5dp</dimen>
     <dimen name="health_power_bar_margin_right">20dp</dimen>
     <dimen name="scenarioNameEditText_margin_top">-4dp</dimen>
+    <dimen name="tutorial_desc_text_size">15sp</dimen>
+    <dimen name="tutorial_title_size">20sp</dimen>
+    <dimen name="tut_title_padding">16dp</dimen>
+    <dimen name="tut_desc_marginTop">5dp</dimen>
+    <dimen name="tut_skip_marginBottom">20dp</dimen>
 </resources>

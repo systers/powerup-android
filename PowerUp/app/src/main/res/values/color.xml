@@ -6,4 +6,6 @@
     <color name="powerup_blue_green">#12bea2</color>
     <color name="powerup_black">#000000</color>
     <color name="about_background">#c8ffffff</color>
+    <color name="selected_dot">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>

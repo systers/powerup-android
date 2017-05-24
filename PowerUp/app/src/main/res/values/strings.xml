@@ -60,4 +60,18 @@
     <string name="about_text"><b>About</b></string>
     <string name="continue_text"><b>Continue</b></string>
     <string name="replay"><b>Replay</b></string>
+    <string name="screen_1_title">Welcome to PowerUp Game</string>
+    <string name="screen_1_desc">Press Start Button to play the game</string>
+    <string name="screen_2_title">Customize your Avatar Look</string>
+    <string name="screen_2_desc">Press Continue to see your final Avatar</string>
+    <string name="screen_3_title">Choose from different scenarios like House, School,etc</string>
+    <string name="screen_3_desc">Tap to enter Store or any scenario</string>
+    <string name="screen_4_title">Answer questions to enhance your knowledge in scenarios</string>
+    <string name="screen_4_desc">Earn Karma Points for your answers</string>
+    <string name="screen_5_title">Spend your Karma points in Store to equip you with a new Avatar</string>
+    <string name="screen_5_desc">Check your Health and Powers status here</string>
+    <string name="skip_tutorial">Skip</string>
+    <string name="done">   Done&#8594;</string>
+    <string name="already_visited">already_visited</string>
 </resources>
+
