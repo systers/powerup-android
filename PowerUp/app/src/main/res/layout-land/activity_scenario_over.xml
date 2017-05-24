@@ -182,15 +182,15 @@
         android:id="@+id/karmaImageView"
         android:layout_width="@dimen/karma_iv_width"
         android:layout_height="@dimen/karma_iv_height"
-        android:layout_marginTop="@dimen/karma_imageview_margin_top"
+        android:layout_marginTop="@dimen/karmaimageview_margin_top"
         android:src="@drawable/karma_box" />
 
     <TextView
         android:id="@+id/karmaPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/scenario_tv_margin"
-        android:layout_marginTop="@dimen/scenario_tv_margin"
+        android:layout_marginLeft="@dimen/scenario_tv_margin_left"
+        android:layout_marginTop="@dimen/scenario_tv_margin_top"
         android:hint="@string/points"
         android:textColor="@color/powerup_black"
         android:textSize="@dimen/back_button_textsize" />
