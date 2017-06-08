@@ -41,6 +41,7 @@ public class AvatarRoomActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.avatar_room);
+        getWindow().setBackgroundDrawable(null);
         eyeView = (ImageView) findViewById(R.id.eyes);
         faceView = (ImageView) findViewById(R.id.face);
         clothView = (ImageView) findViewById(R.id.clothes);

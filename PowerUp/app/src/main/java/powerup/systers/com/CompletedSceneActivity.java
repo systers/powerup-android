@@ -20,6 +20,7 @@ public class CompletedSceneActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_scene);
+        getWindow().setBackgroundDrawable(null);
         Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override

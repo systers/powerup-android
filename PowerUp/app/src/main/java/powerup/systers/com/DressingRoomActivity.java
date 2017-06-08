@@ -31,6 +31,7 @@ public class DressingRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
+        getWindow().setBackgroundDrawable(null);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         karmaPoints = (TextView) findViewById(R.id.karmaPoints);

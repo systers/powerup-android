@@ -34,6 +34,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.activity_scenario_over);
+        getWindow().setBackgroundDrawable(null);
+        scenarioOverActivityInstance = this;
         scenarioActivityDone = 1;
         Button replayButton = (Button) findViewById(R.id.replayButton);
         Button continueButton = (Button) findViewById(R.id.continueButton);

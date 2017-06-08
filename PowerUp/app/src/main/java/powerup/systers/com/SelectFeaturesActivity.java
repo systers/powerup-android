@@ -77,6 +77,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_features);
+        getWindow().setBackgroundDrawable(null);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);

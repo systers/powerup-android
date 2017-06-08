@@ -23,6 +23,7 @@ public class AvatarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avatar);
+        getWindow().setBackgroundDrawable(null);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         fromActivity = getIntent().getExtras().getInt(getResources().getString(R.string.from_activity));
