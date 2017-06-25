@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import powerup.systers.com.GameActivity;
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.MinesweeperGameActivity;
 import powerup.systers.com.PowerUpUtils;
 import powerup.systers.com.R;
+import powerup.systers.com.ScenarioOverActivity;
 
 public class ProsAndConsActivity extends AppCompatActivity {
 
@@ -36,7 +38,9 @@ public class ProsAndConsActivity extends AppCompatActivity {
         }
         else {
             new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(false);
-            startActivity(new Intent(ProsAndConsActivity.this,MapActivity.class));
+            Intent intent = new Intent(ProsAndConsActivity.this, ScenarioOverActivity.class);
+            intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
+            startActivity(intent);
         }
 
 

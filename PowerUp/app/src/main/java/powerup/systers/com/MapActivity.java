@@ -10,7 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import java.util.Map;
+
 import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.powerup.MinesweeperSessionManager;
 
 public class MapActivity extends Activity {
 
@@ -21,6 +25,8 @@ public class MapActivity extends Activity {
             Button scenarioChooser = (Button) v;
             if (getmDbHandler().setSessionId(scenarioChooser.getText().toString())) {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
+            }else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()){
+                startActivity(new Intent(MapActivity.this,MinesweeperGameActivity.class));
             } else {
                 startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);
             }

@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ import powerup.systers.com.datamodel.Question;
 import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.powerup.MinesweeperSessionManager;
 
 @SuppressLint("NewApi")
 public class GameActivity extends Activity {
@@ -45,6 +47,10 @@ public class GameActivity extends Activity {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if(new MinesweeperSessionManager(this).isMinesweeperOpened())
+        {
+            startActivity(new Intent(GameActivity.this,MinesweeperGameActivity.class));
+        }
         if(savedInstanceState != null){
             isStateChanged = true;
         }
@@ -109,7 +115,7 @@ public class GameActivity extends Activity {
         }
 
         // Update Scene
-        updateScenario();
+        updateScenario(0);
         if (scene.getReplayed() == 1) {
             goToMap.setAlpha((float) 0.0);
             replay.setAlpha((float) 0.0);
@@ -127,15 +133,19 @@ public class GameActivity extends Activity {
                                     .getNextQuestionID();
                             updatePoints(position);
                             updateQA();
-                        } else {
+                        } else if (answers.get(position).getNextQuestionID() == -1){
+                            updatePoints(position);
+                            getmDbHandler().setCompletedScenario(scene.getId());
+                            updateScenario(-1);
+                        }
+                        else {
                             if (SessionHistory.currSessionID == -1) {
                                 // Check to make sure all scenes are completed
                                 SessionHistory.currSessionID = 1;
                             }
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(
-                                    scene.getId());
-                            updateScenario();
+                            getmDbHandler().setCompletedScenario(scene.getId());
+                            updateScenario(0);
                         }
                     }
                 });
@@ -173,7 +183,7 @@ public class GameActivity extends Activity {
      * Finish, replay, or go to another scenario as needed. Updates the
      * question and answer if the last scenario has not yet been reached.
      */
-    private void updateScenario() {
+    private void updateScenario(int type) {
         if (ScenarioOverActivity.scenarioActivityDone == 1)
             new ScenarioOverActivity().scenarioOverActivityInstance.finish();
         if (scene != null)
@@ -228,15 +238,15 @@ public class GameActivity extends Activity {
             } else {
                 SessionHistory.prevSessionID = scene.getId();
                 SessionHistory.currSessionID = scene.getNextScenarioID();
-                Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
-                intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
-                startActivity(intent);
+                if (type == 0){
+                    Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
+                    intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
+                    startActivity(intent);
+                }else if (type == -1){
+                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true);
+                    startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY,true));
+                }
             }
-        }
-        if (isStateChanged == false){
-            SessionHistory.currQID = scene.getFirstQuestionID();
-        } else {
-            isStateChanged = false;
         }
         scenarioNameTextView.setText(scene.getScenarioName());
         updateQA();

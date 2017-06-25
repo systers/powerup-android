@@ -67,7 +67,6 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         if(!calledByGameActivity){
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
         score = session.getScore();
-            Log.e("sachin",""+session.getScore()+" "+session.getCompletedRounds());
         scoreTextView.setText("Score: "+score);
         gameRound = session.getCompletedRounds();
            ImageView background = (ImageView) findViewById(R.id.mine_background);
@@ -138,10 +137,10 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     public void showBanner(int type){
 
         banner = (ImageView) findViewById(R.id.banner);
-
         Drawable drawable = type == 1 ? getResources().getDrawable(R.drawable.failure_banner):getResources().getDrawable(R.drawable.success_banner);
         banner.setImageDrawable(drawable);
         banner.animate().setDuration(1500).alpha(0.95f).setListener(new Animator.AnimatorListener() {
+
             @Override
             public void onAnimationStart(Animator animator) {
 
@@ -151,8 +150,6 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             public void onAnimationEnd(Animator animator) {
                 continueButton.setAlpha(1f);
                 continueButton.setClickable(true);
-
-
             }
 
             @Override
@@ -195,10 +192,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
 
     public void continuePressed(View view){
 
-
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
         session.saveData(score,gameRound);
-        Log.e("sachin",""+session.getScore()+" "+session.getCompletedRounds());
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this,ProsAndConsActivity.class));
         overridePendingTransition(R.animator.fade_in,R.animator.fade_out);

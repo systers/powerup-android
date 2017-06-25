@@ -20,4 +20,5 @@ public class PowerUpUtils {
     public static final String[][] ROUNDS_PROS_CONS = {{"=> Better Success Rate ","=> Cheapest Contraceptive","=> No protection against STDs"},
             {"=> Better Success Rate2","=> Cheapest Contraceptive","=> No protection against STDs"},
             {"=> Better Success Rate3","=> Cheapest Contraceptive","=> No protection against STDs"}};
+    public static final String MINESWEEP_PREVIOUS_SCENARIO = "School";
 }
