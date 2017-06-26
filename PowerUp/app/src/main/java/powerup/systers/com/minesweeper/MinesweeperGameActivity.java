@@ -20,6 +20,9 @@ import java.util.Random;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
+/**
+ * Created by sachinaggarwal on 25/06/17.
+ */
 
 public class MinesweeperGameActivity extends AppCompatActivity {
 
@@ -43,28 +46,45 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         setUpGame();
     }
 
+    /**
+     * @desc
+     * set up the score and number of completed rounds
+     * sets the background image corresponding to contraceptive method for current round
+     * sets red mines at random positions in board based on success percentage of contraceptive method of current round
+     */
     private void setUpGame() {
-        boolean calledByGameActivity = getIntent().getBooleanExtra(PowerUpUtils.CALLED_BY, false);
+        boolean calledByGameActivity = getIntent().getBooleanExtra(PowerUpUtils.CALLED_BY, false); //tells if game is called for the first time
         numSelectionsLeft = PowerUpUtils.MAXIMUM_FLIPS_ALLOWED;
-        if (!calledByGameActivity) {
+
+        if (!calledByGameActivity) { //if called by previous round of minesweeper game
+
+            //fetch previous round score and rounds completed from session database
             MinesweeperSessionManager session = new MinesweeperSessionManager(this);
             score = session.getScore();
             scoreTextView.setText("Score: " + score);
             gameRound = session.getCompletedRounds();
-            ImageView background = (ImageView) findViewById(R.id.mine_background);
+            ImageView background = (ImageView) findViewById(R.id.mine_background); //set background according to current contracpetive method
             background.setImageDrawable(getResources().getDrawable(PowerUpUtils.ROUND_BACKGROUNDS[gameRound]));
             mines.clear();
         }
         gameRound++;
         numRedMines = (PowerUpUtils.ROUNDS_FAILURE_PERCENTAGES[gameRound - 1] * PowerUpUtils.NUMBER_OF_CELLS) / 100;
-        while (mines.size() != numRedMines) {
+        while (mines.size() != numRedMines) { //add red mines randomly and store them in mines
             Random random = new Random();
             mines.add(PowerUpUtils.ID_REFERENCE + Math.abs(random.nextInt() % 25));
         }
     }
 
+    /**
+     * @desc
+     * called when user opens any mine from the board
+     * flips animation on the opened mine
+     * @param view mine which is opened
+     */
     public void openMine(final View view) {
         final ImageView imageView = (ImageView) view;
+
+        //flip animation
         imageView.setRotationY(0f);
         imageView.animate().setDuration(100).rotationY(90f).setListener(new Animator.AnimatorListener() {
 
@@ -75,7 +95,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (mines.contains(view.getResources().getResourceName(view.getId()))) {
+                if (mines.contains(view.getResources().getResourceName(view.getId()))) { //red mine is opened
                     imageView.setImageDrawable(getResources().getDrawable(R.drawable.red_star));
                     openedRedMine();
                 } else {
@@ -99,10 +119,18 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * @desc the opened mine is red, show failure banner
+     */
     private void openedRedMine() {
         showBanner(1);
     }
 
+    /**
+     * @desc
+     * opened mine is green, increment the score
+     * includes zoom in and out bounce animation on score
+     */
     private void openedGreenMine() {
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
         scoreTextView.startAnimation(animation);
@@ -110,12 +138,19 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         scoreTextView.setText("Score: " + score);
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_out);
         scoreTextView.startAnimation(animation);
-        numSelectionsLeft--;
+        numSelectionsLeft--; //decrement the number of selection left
         if (numSelectionsLeft == 0) {
-            showBanner(0);
+            showBanner(0); //if no more selections left, round completes, show success banner
         }
     }
 
+    /**
+     * @desc
+     * shows the failure or success banner based on last selection
+     * includes fade in animation on the banner and continue button
+     * shows the original placement of red mines and green mines to user
+     * @param type type of banner, 1 signify failure, 0 signify success
+     */
     public void showBanner(int type) {
         banner = (ImageView) findViewById(R.id.banner);
         Drawable drawable = type == 1 ? getResources().getDrawable(R.drawable.failure_banner) : getResources().getDrawable(R.drawable.success_banner);
@@ -144,6 +179,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             }
         });
 
+        //shows original placement of red and green mines to user with grey out animation
         ImageView mine;
         for (int id : PowerUpUtils.minesViews) {
             mine = (ImageView) findViewById(id);
@@ -151,13 +187,19 @@ public class MinesweeperGameActivity extends AppCompatActivity {
                 drawable = getResources().getDrawable(R.drawable.red_star);
             } else {
                 drawable = getResources().getDrawable(R.drawable.green_star);
-                setImageButtonEnabled(this, false, mine, drawable);
+                setImageButtonEnabled(this, false, mine, drawable); //calls grey out animation on all green mines
             }
             mine.setImageDrawable(drawable);
             mine.setEnabled(false);
         }
     }
 
+    /**
+     * @desc Adds a greying out animation on the green mines when round completes
+     * reduces the alpha value and multiplies RGB components of image colors with grey color
+     * @param enabled false if mine is disabled i.e. greyed out animation
+     * @param item mine imageview which has to be greyed out
+     */
     public static void setImageButtonEnabled(Context ctxt, boolean enabled, ImageView item, Drawable originalIcon) {
         item.setAlpha(0.8f);
         Drawable res = originalIcon.mutate();
@@ -168,6 +210,12 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * @desc
+     * called when continue button is pressed in minesweeper game
+     * updated the data from this round into session database and opens pros and cons screen
+     * includes fade in and fade out activity transition
+     */
     public void continuePressed(View view) {
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
         session.saveData(score, gameRound);

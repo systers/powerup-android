@@ -21,19 +21,24 @@ public class ProsAndConsActivity extends AppCompatActivity {
         setContentView(R.layout.minesweeper_pros_cons);
         TextView proOne = (TextView) findViewById(R.id.pro_one);
         TextView proTwo = (TextView) findViewById(R.id.pro_two);
-        TextView conThree = (TextView) findViewById(R.id.con_one);
+        TextView conOne = (TextView) findViewById(R.id.con_one);
+        //get the current round from session to fetch it's pros and cons from PowerUtils
         MinesweeperSessionManager sessionManager = new MinesweeperSessionManager(this);
         completedRounds = sessionManager.getCompletedRounds();
         proOne.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][0]);
         proTwo.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][1]);
-        conThree.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][2]);
+        conOne.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][2]);
     }
 
+    /**
+     * @desc called when current round of minesweeper game is completed
+     * @param v view object of continue button
+     */
     public void continuePressedProsAndCons(View v) {
-        if (completedRounds < PowerUpUtils.NUMBER_OF_ROUNDS) {
+        if (completedRounds < PowerUpUtils.NUMBER_OF_ROUNDS) { //calls next round if true
             startActivity(new Intent(ProsAndConsActivity.this, MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, false));
         } else {
-            new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(false);
+            new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(false); //marks minesweeper game as finished
             Intent intent = new Intent(ProsAndConsActivity.this, ScenarioOverActivity.class);
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
             startActivity(intent);

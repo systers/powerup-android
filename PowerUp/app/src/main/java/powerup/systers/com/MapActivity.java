@@ -25,7 +25,7 @@ public class MapActivity extends Activity {
             Button scenarioChooser = (Button) v;
             if (getmDbHandler().setSessionId(scenarioChooser.getText().toString())) {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
-            } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) {
+            } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
                 startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
             } else {
                 startActivityForResult(new Intent(MapActivity.this, CompletedSceneActivity.class), 0);

@@ -19,12 +19,21 @@ public class MinesweeperSessionManager {
     Context context;
     SharedPreferences.Editor editor;
 
+    /**
+     * @desc Returns the object of SessionManager through which session changes can be made
+     * @param context - context of the calling activity
+     */
     public MinesweeperSessionManager(Context context) {
         this.context = context;
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
+    /**
+     * @desc updates the score and roundsCompleted in the session database
+     * @param roundsCompleted - number of rounds completed till now
+     * @param score - total current score
+     */
     public void saveData(int score, int roundsCompleted) {
         editor.putInt(SCORE, score);
         editor.putInt(ROUNDS_COMPLETED, roundsCompleted);
@@ -39,6 +48,10 @@ public class MinesweeperSessionManager {
         return pref.getInt(ROUNDS_COMPLETED, 0);
     }
 
+    /**
+     * @desc used to know if minesweeper game was being played when user last left the app
+     * @return true if app was closed without completing the minesweeper game
+     */
     public boolean isMinesweeperOpened() {
         return pref.getBoolean(GAME_OPENED, false);
     }

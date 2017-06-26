@@ -188,6 +188,7 @@ public class GameActivity extends Activity {
     /**
      * Finish, replay, or go to another scenario as needed. Updates the
      * question and answer if the last scenario has not yet been reached.
+     * @param type coding scheme for .csv files, -1 means minesweeper game, 0 means scenario completion
      */
     private void updateScenario(int type) {
         if (ScenarioOverActivity.scenarioActivityDone == 1)
@@ -249,7 +250,7 @@ public class GameActivity extends Activity {
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
                 } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true);
+                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                     startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, true));
                 }
             }
