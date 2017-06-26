@@ -122,6 +122,7 @@ public class GameActivity extends Activity {
 
         // Update Scene
         updateScenario(0);
+        updateQA();
         if (scene.getReplayed() == 1) {
             goToMap.setAlpha((float) 0.0);
             replay.setAlpha((float) 0.0);
@@ -236,6 +237,8 @@ public class GameActivity extends Activity {
                 }
             });
         }
+        SessionHistory.currQID = scene.getFirstQuestionID();
+        scenarioNameTextView.setText(scene.getScenarioName());
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
             if (scene.getNextScenarioID() == -1) {
@@ -255,8 +258,7 @@ public class GameActivity extends Activity {
                 }
             }
         }
-        scenarioNameTextView.setText(scene.getScenarioName());
-        updateQA();
+
     }
 
     /**
