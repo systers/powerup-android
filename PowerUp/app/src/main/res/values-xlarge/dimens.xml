@@ -28,4 +28,5 @@
     <dimen name="select_feature_tv_paid_size_small">46sp</dimen>
     <dimen name="text_view_necklace">27sp</dimen>
     <dimen name="final_avatar_text_size">34sp</dimen>
+    <dimen name="banner_height">300dp</dimen>
 </resources>

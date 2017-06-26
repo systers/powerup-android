@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/minesweeper_pros_cons"
+    android:scaleType="fitXY"
+    />
+    <ImageView
+        android:id="@+id/continue_button"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:background="@drawable/continue_button"
+        android:onClick="continuePressedProsAndCons"
+        android:alpha="1"
+        android:scaleType="fitXY"
+        android:clickable="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@id/continue_button"
+        android:layout_alignParentRight="true"
+        android:paddingRight="20dp">
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="=> Better Success Rate "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/powerup_blue_green"
+        android:layout_weight="10"
+        android:gravity="bottom"
+        android:id="@+id/pro_one"
+
+     />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="=> Cheapest Contraceptive"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/powerup_blue_green"
+        android:layout_weight="14"
+        android:gravity="top"
+        android:paddingTop="10dp"
+        android:id="@+id/pro_two"
+    />
+        <TextView
+            android:id="@+id/con_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=> No protection against STDs"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/cons_text"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            />
+
+    </LinearLayout>
+</RelativeLayout>
