@@ -168,6 +168,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animator) {
                 continueButton.setAlpha(1f);
+                PowerUpUtils.sPauseTest = false;
             }
 
             @Override
@@ -179,7 +180,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             public void onAnimationRepeat(Animator animator) {
 
             }
-        });
+        }).start();
         continueButton.setClickable(true);
         showOriginalMines();//shows original placement of red and green mines to user with grey out animation
     }
