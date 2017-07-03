@@ -223,46 +223,11 @@ public class MinesweeperGameTests {
         assertEquals(sampleScore,activity.score);
     }
 
-
-
-        @Test
-    public void shouldShowRedMineCorrectly() throws Exception{
-        activity.setUpGame(); //call this function to initialise mines Hashset
-        String idOfRedMine = Collections.enumeration(activity.mines).nextElement(); //get id of any red mine i.e. any element of Hashset
-        int positionOfRedMine = Integer.parseInt(idOfRedMine.substring(40));
-        int clickedImageViewId =  activity.getResources().getIdentifier("imageView"+positionOfRedMine,"id",activity.getPackageName()); //find ImageView object corresponding to id
-        ImageView clickedImageView = (ImageView) activity.findViewById(clickedImageViewId);
-        System.out.print(clickedImageView);
-
-
-        int expectedDrawable = R.drawable.red_star; //since this imageview have red mine
-
-//         //perform onClick on this imageview to flip it
-
-//        ShadowDrawable shadowDrawable = Shadows.shadowOf(clickedImageView.getDrawable());
-            PowerUpUtils.sPauseTest = true;
-        clickedImageView.callOnClick();
-            while ((PowerUpUtils.sPauseTest == true) && (activity.pause== true)){
-                Thread.sleep(100);
-            }
-
-//        ShadowActivity shadowActivity = Shadows.shadowOf(activity);
-//        shadowActivity.findViewById(clickedImageViewId).callOnClick();
-//        Robolectric.getForegroundThreadScheduler().advanceBy(200);
-//        activity.openMine(clickedImageView);
-        int drawableResId = Shadows.shadowOf(clickedImageView.getDrawable()).getCreatedFromResId();
-        assertEquals(expectedDrawable,drawableResId);
-
-
-    }
-
     @Test
     public void shouldShowRedMineCorrectly1() throws Exception{
         activity.setUpGame(); //call this function to initialise mines Hashset
         ImageView RedMineImageView = (ImageView) activity.findViewById(R.id.imageView5);
         activity.mines.add(PowerUpUtils.ID_REFERENCE + 5);
-
-
         int expectedDrawable = R.drawable.red_star; //since this imageview have red mine
 
         PowerUpUtils.sPauseTest = true;
@@ -274,6 +239,8 @@ public class MinesweeperGameTests {
         int drawableResId = Shadows.shadowOf(RedMineImageView.getDrawable()).getCreatedFromResId();
         assertEquals(expectedDrawable,drawableResId);
     }
+
+
 
 
 }

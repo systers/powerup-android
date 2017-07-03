@@ -35,9 +35,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     public TextView scoreTextView;
     public ImageView banner;
     public ImageView continueButton;
-    public ImageView imageView;
     public PorterDuffColorFilter filter;
-    public boolean pause = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +85,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * @param view mine which is opened
      */
     public void openMine(final View view) {
-        imageView = (ImageView) view;
+        final ImageView imageView = (ImageView) view;
 
         //flip animation
         imageView.setRotationY(0f);
@@ -100,24 +98,17 @@ public class MinesweeperGameActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                for (String str:mines)
-                    System.out.print(str);
-                System.out.print(view.getResources().getResourceName(view.getId()));
-                if (mines.contains(view.getResources().getResourceName(view.getId()).toString())) { //red mine is opened
-                    System.out.print("testgo");
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.green_star));
-                    //openedRedMine();
+                if (mines.contains(view.getResources().getResourceName(view.getId()))) { //red mine is opened
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.red_star));
+                    openedRedMine();
                 } else {
                     imageView.setImageDrawable(getResources().getDrawable(R.drawable.green_star));
-                    System.out.print("testgo123");
-                  //  openedGreenMine();
+                    openedGreenMine();
                 }
                 imageView.setRotationY(270f);
                 imageView.animate().rotationY(360f).setListener(null);
                 imageView.setClickable(false);
                 PowerUpUtils.sPauseTest = false;
-                //pause = false;
-
             }
 
             @Override
@@ -130,8 +121,6 @@ public class MinesweeperGameActivity extends AppCompatActivity {
 
             }
         }).start();
-
-
     }
 
     /**
@@ -191,10 +180,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
 
             }
         });
-
         continueButton.setClickable(true);
         showOriginalMines();//shows original placement of red and green mines to user with grey out animation
-
     }
 
     /**

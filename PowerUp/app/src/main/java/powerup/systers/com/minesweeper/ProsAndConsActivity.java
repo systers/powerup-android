@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -15,8 +13,8 @@ import powerup.systers.com.powerup.PowerUpUtils;
 public class ProsAndConsActivity extends AppCompatActivity {
 
     public int completedRounds;
-    int score;
-    TextView proOne, proTwo, conOne;
+    public int score;
+    public TextView proOne, proTwo, conOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +27,9 @@ public class ProsAndConsActivity extends AppCompatActivity {
         MinesweeperSessionManager sessionManager = new MinesweeperSessionManager(this);
         completedRounds = sessionManager.getCompletedRounds();
         setTexts();
-
     }
 
     public void setTexts(){
-        System.out.print(completedRounds);
         proOne.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][0]);
         proTwo.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][1]);
         conOne.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][2]);
