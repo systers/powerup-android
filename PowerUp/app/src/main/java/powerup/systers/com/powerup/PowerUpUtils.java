@@ -11,9 +11,12 @@ public class PowerUpUtils {
     public static final int NUMBER_OF_ROUNDS = 3;
     public static final int NUMBER_OF_CELLS = 25;
     public static final int MAXIMUM_FLIPS_ALLOWED = 5;
+    public static final int RED_BANNER = 1;
+    public static final int GREEN_BANNER = 0;
+
 
     public static final String CALLED_BY = "GAME_ACTIVITY";
-    public static final String ID_REFERENCE = "powerup.systers.com.powerup:id/imageView";
+    public static final String ID_REFERENCE = "powerup.systers.com:id/imageView";
     public static final String MINESWEEP_PREVIOUS_SCENARIO = "School";
 
     public static final int[] ROUNDS_FAILURE_PERCENTAGES = {18, 20, 25};
@@ -26,4 +29,5 @@ public class PowerUpUtils {
             {"=> Better Success Rate2", "=> Cheapest Contraceptive", "=> No protection against STDs"},
             {"=> Better Success Rate3", "=> Cheapest Contraceptive", "=> No protection against STDs"}};
 
+    public static volatile boolean sPauseTest = true;
 }

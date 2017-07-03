@@ -6,25 +6,34 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class ProsAndConsActivity extends AppCompatActivity {
 
-    int completedRounds;
+    public int completedRounds;
     int score;
+    TextView proOne, proTwo, conOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.minesweeper_pros_cons);
-        TextView proOne = (TextView) findViewById(R.id.pro_one);
-        TextView proTwo = (TextView) findViewById(R.id.pro_two);
-        TextView conOne = (TextView) findViewById(R.id.con_one);
+        proOne = (TextView) findViewById(R.id.pro_one);
+        proTwo = (TextView) findViewById(R.id.pro_two);
+        conOne = (TextView) findViewById(R.id.con_one);
         //get the current round from session to fetch it's pros and cons from PowerUtils
         MinesweeperSessionManager sessionManager = new MinesweeperSessionManager(this);
         completedRounds = sessionManager.getCompletedRounds();
+        setTexts();
+
+    }
+
+    public void setTexts(){
+        System.out.print(completedRounds);
         proOne.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][0]);
         proTwo.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][1]);
         conOne.setText(PowerUpUtils.ROUNDS_PROS_CONS[completedRounds - 1][2]);
