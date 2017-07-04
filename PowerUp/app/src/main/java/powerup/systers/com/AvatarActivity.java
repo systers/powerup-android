@@ -41,7 +41,6 @@ public class AvatarActivity extends Activity {
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -52,7 +51,6 @@ public class AvatarActivity extends Activity {
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -63,7 +61,6 @@ public class AvatarActivity extends Activity {
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -74,7 +71,6 @@ public class AvatarActivity extends Activity {
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -86,7 +82,6 @@ public class AvatarActivity extends Activity {
                 bagView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -99,7 +94,6 @@ public class AvatarActivity extends Activity {
                 glassesView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -112,7 +106,6 @@ public class AvatarActivity extends Activity {
                 hatView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -125,7 +118,6 @@ public class AvatarActivity extends Activity {
                 necklaceView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
