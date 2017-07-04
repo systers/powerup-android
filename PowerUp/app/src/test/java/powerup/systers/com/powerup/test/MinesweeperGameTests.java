@@ -55,12 +55,12 @@ public class MinesweeperGameTests {
 
     @Test
     public void shouldNotBeNull() throws Exception {
-        assertNotNull( activity );
+        assertNotNull(activity);
     }
 
 
     @Test
-    public void continueButtonShouldLaunchProsAndCons() throws Exception{
+    public void continueButtonShouldLaunchProsAndCons() throws Exception {
         Class ProsAndCons = ProsAndConsActivity.class;
         Intent expectedIntent = new Intent(activity, ProsAndCons);
 
@@ -72,7 +72,7 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void showsCorrectRedBanner() throws Exception{
+    public void showsCorrectRedBanner() throws Exception {
         int type = PowerUpUtils.RED_BANNER;
         ImageView imageView = (ImageView) activity.findViewById(R.id.banner);
         int expected = R.drawable.failure_banner;
@@ -84,7 +84,7 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void showsCorrectGreenBanner() throws Exception{
+    public void showsCorrectGreenBanner() throws Exception {
         int type = PowerUpUtils.GREEN_BANNER;
         ImageView imageView = (ImageView) activity.findViewById(R.id.banner);
         int expected = R.drawable.success_banner;
@@ -96,7 +96,7 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void minesDisabledAfterBannerAppearance1() throws Exception{
+    public void minesDisabledAfterBannerAppearance1() throws Exception {
         int type = PowerUpUtils.GREEN_BANNER;
 
         activity.showBanner(type);
@@ -106,7 +106,7 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void minesDisabledAfterBannerAppearance2() throws Exception{
+    public void minesDisabledAfterBannerAppearance2() throws Exception {
         int type = PowerUpUtils.RED_BANNER;
 
         activity.showBanner(type);
@@ -116,31 +116,31 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void scoreGetsUpdated() throws Exception{
+    public void scoreGetsUpdated() throws Exception {
         int sampleScore = 3;
-        activity.score =sampleScore;
+        activity.score = sampleScore;
         int expectedScore = 4;
-        String expectedText = "Score: "+expectedScore;
+        String expectedText = "Score: " + expectedScore;
 
         activity.openedGreenMine();
 
         String actualText = activity.scoreTextView.getText().toString();
-        assertEquals(expectedText,actualText);
+        assertEquals(expectedText, actualText);
     }
 
     @Test
-    public void chacesNumberDecrementsCorrectly() throws Exception{
+    public void chacesNumberDecrementsCorrectly() throws Exception {
         int sampleChancesLeft = 3;
         activity.numSelectionsLeft = sampleChancesLeft;
         int expectedChances = 2;
 
         activity.openedGreenMine();
 
-        assertEquals(expectedChances,activity.numSelectionsLeft);
+        assertEquals(expectedChances, activity.numSelectionsLeft);
     }
 
     @Test
-    public void minesEnabledOnGameStart() throws Exception{
+    public void minesEnabledOnGameStart() throws Exception {
         activity.setUpGame();
 
         for (int id : PowerUpUtils.minesViews)
@@ -149,7 +149,7 @@ public class MinesweeperGameTests {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Test
-    public void greyOutMines() throws Exception{
+    public void greyOutMines() throws Exception {
         activity.setUpGame();
         ImageView greenMineImageView = (ImageView) activity.findViewById(R.id.imageView5);
         activity.mines.remove(PowerUpUtils.ID_REFERENCE + 5);
@@ -157,36 +157,36 @@ public class MinesweeperGameTests {
         activity.showOriginalMines();
 
         ShadowDrawable shadowDrawable = Shadows.shadowOf(greenMineImageView.getDrawable());
-        assertEquals(R.drawable.green_star,shadowDrawable.getCreatedFromResId());
-        assertEquals(0.8f,greenMineImageView.getAlpha(),0.005f);
+        assertEquals(R.drawable.green_star, shadowDrawable.getCreatedFromResId());
+        assertEquals(0.8f, greenMineImageView.getAlpha(), 0.005f);
         ShadowPorterDuffColorFilter actualColor = Shadows.shadowOf(activity.filter);
-        assertEquals(Color.GRAY,actualColor.getColor());
-        assertEquals(PorterDuff.Mode.MULTIPLY,actualColor.getMode());
+        assertEquals(Color.GRAY, actualColor.getColor());
+        assertEquals(PorterDuff.Mode.MULTIPLY, actualColor.getMode());
     }
 
     @Test
-    public void continueHiddenOnRoundStart() throws Exception{
+    public void continueHiddenOnRoundStart() throws Exception {
         ImageView continueButton = (ImageView) activity.findViewById(R.id.continue_button);
         float expectedAplha = 0f;
 
         activity.setUpGame();
 
 
-        assertEquals(expectedAplha,continueButton.getAlpha(),0.005);
+        assertEquals(expectedAplha, continueButton.getAlpha(), 0.005);
     }
 
     @Test
-    public void bannerHiddenOnRoundStart() throws Exception{
+    public void bannerHiddenOnRoundStart() throws Exception {
         ImageView banner = (ImageView) activity.findViewById(R.id.banner);
         float expectedAplha = 0f;
 
         activity.setUpGame();
 
-        assertEquals(expectedAplha,banner.getAlpha(),0.005);
+        assertEquals(expectedAplha, banner.getAlpha(), 0.005);
     }
 
     @Test
-    public  void continueButtonNotClickableOnGameStart() throws Exception{
+    public void continueButtonNotClickableOnGameStart() throws Exception {
         ImageView continueButton = (ImageView) activity.findViewById(R.id.continue_button);
 
         activity.setUpGame();
@@ -195,7 +195,7 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void continueButtonClickableAfterBanner(){
+    public void continueButtonClickableAfterBanner() {
         ImageView continueButton = (ImageView) activity.findViewById(R.id.continue_button);
 
         activity.showBanner(PowerUpUtils.RED_BANNER);
@@ -204,27 +204,27 @@ public class MinesweeperGameTests {
     }
 
     @Test
-    public void scoreIncrementCorrectly1(){
+    public void scoreIncrementCorrectly1() {
         int sampleScore = 4;
         activity.score = sampleScore;
 
         activity.openedGreenMine();
 
-        assertEquals(sampleScore+1,activity.score);
+        assertEquals(sampleScore + 1, activity.score);
     }
 
     @Test
-    public void scoreIncrementCorrectly2(){
+    public void scoreIncrementCorrectly2() {
         int sampleScore = 4;
         activity.score = sampleScore;
 
         activity.openedRedMine();
 
-        assertEquals(sampleScore,activity.score);
+        assertEquals(sampleScore, activity.score);
     }
 
     @Test
-    public void shouldShowRedMineCorrectly() throws Exception{
+    public void shouldShowRedMineCorrectly() throws Exception {
         activity.setUpGame(); //call this function to initialise mines Hashset
         ImageView redMineImageView = (ImageView) activity.findViewById(R.id.imageView5);
         activity.mines.add(PowerUpUtils.ID_REF + 5);
@@ -232,16 +232,16 @@ public class MinesweeperGameTests {
 
         PowerUpUtils.sPauseTest = true;
         redMineImageView.callOnClick();
-        while ((PowerUpUtils.sPauseTest == true)){
+        while ((PowerUpUtils.sPauseTest == true)) {
             Thread.sleep(100);
         }
 
         int drawableResId = Shadows.shadowOf(redMineImageView.getDrawable()).getCreatedFromResId();
-        assertEquals(expectedDrawable,drawableResId);
+        assertEquals(expectedDrawable, drawableResId);
     }
 
     @Test
-    public void shouldShowGreenMineCorrectly() throws Exception{
+    public void shouldShowGreenMineCorrectly() throws Exception {
         activity.setUpGame(); //call this function to initialise mines Hashset
         ImageView greenMineImageView = (ImageView) activity.findViewById(R.id.imageView6);
         activity.mines.remove(PowerUpUtils.ID_REF + 6);
@@ -249,12 +249,12 @@ public class MinesweeperGameTests {
 
         PowerUpUtils.sPauseTest = true;
         greenMineImageView.callOnClick();
-        while ((PowerUpUtils.sPauseTest == true)){
+        while ((PowerUpUtils.sPauseTest == true)) {
             Thread.sleep(100);
         }
 
         int drawableResId = Shadows.shadowOf(greenMineImageView.getDrawable()).getCreatedFromResId();
-        assertEquals(expectedDrawable,drawableResId);
+        assertEquals(expectedDrawable, drawableResId);
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -264,13 +264,13 @@ public class MinesweeperGameTests {
         PowerUpUtils.sPauseTest = true;
 
         activity.openedGreenMine();
-        while ((PowerUpUtils.sPauseTest == true)){
+        while ((PowerUpUtils.sPauseTest == true)) {
             Thread.sleep(100);
         }
 
         assertTrue(activity.continueButton.isClickable());
-        assertEquals(0.95f,activity.banner.getAlpha(),0.005f);
-        assertEquals(1f,activity.continueButton.getAlpha(),0.005f);
+        assertEquals(0.95f, activity.banner.getAlpha(), 0.005f);
+        assertEquals(1f, activity.continueButton.getAlpha(), 0.005f);
 
     }
 
@@ -281,47 +281,47 @@ public class MinesweeperGameTests {
         PowerUpUtils.sPauseTest = true;
 
         activity.openedRedMine();
-        while ((PowerUpUtils.sPauseTest == true)){
+        while ((PowerUpUtils.sPauseTest == true)) {
             Thread.sleep(100);
         }
 
         assertTrue(activity.continueButton.isClickable());
-        assertEquals(0.95f,activity.banner.getAlpha(),0.005f);
-        assertEquals(1f,activity.continueButton.getAlpha(),0.005f);
+        assertEquals(0.95f, activity.banner.getAlpha(), 0.005f);
+        assertEquals(1f, activity.continueButton.getAlpha(), 0.005f);
     }
 
     @Test
-    public void testSessionManagerScore(){
+    public void testSessionManagerScore() {
         sessionManager = new MinesweeperSessionManager(activity);
         int expectedScore = 5;
 
-        sessionManager.saveData(expectedScore,PowerUpUtils.NUMBER_OF_ROUNDS);
+        sessionManager.saveData(expectedScore, PowerUpUtils.NUMBER_OF_ROUNDS);
 
-        assertEquals(expectedScore,sessionManager.getScore());
+        assertEquals(expectedScore, sessionManager.getScore());
     }
 
     @Test
-    public void testSessionManagerCompletedRounds(){
+    public void testSessionManagerCompletedRounds() {
         sessionManager = new MinesweeperSessionManager(activity);
-        int expectedRounds = PowerUpUtils.NUMBER_OF_ROUNDS -1;
+        int expectedRounds = PowerUpUtils.NUMBER_OF_ROUNDS - 1;
 
-        sessionManager.saveData(5,expectedRounds);
+        sessionManager.saveData(5, expectedRounds);
 
-        assertEquals(expectedRounds,sessionManager.getCompletedRounds());
+        assertEquals(expectedRounds, sessionManager.getCompletedRounds());
     }
 
     @Test
-    public void scoreNotNegative(){
+    public void scoreNotNegative() {
         sessionManager = new MinesweeperSessionManager(activity);
 
-        assertTrue(sessionManager.getScore() >=0);
+        assertTrue(sessionManager.getScore() >= 0);
     }
 
     @Test
-    public void roundsCompletedNotNegative(){
+    public void roundsCompletedNotNegative() {
         sessionManager = new MinesweeperSessionManager(activity);
 
-        assertTrue(sessionManager.getCompletedRounds() >=0);
+        assertTrue(sessionManager.getCompletedRounds() >= 0);
     }
 
 }

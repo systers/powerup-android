@@ -44,36 +44,36 @@ public class ProsConsTests {
 
     @Test
     public void shouldNotBeNull() throws Exception {
-        assertNotNull( activity );
+        assertNotNull(activity);
     }
 
     @Test
-    public void setPro1TextProperly(){
+    public void setPro1TextProperly() {
         activity.completedRounds = 2;
         activity.setTexts();
-        TextView textView = (TextView)activity.findViewById(R.id.pro_one);
+        TextView textView = (TextView) activity.findViewById(R.id.pro_one);
         assertEquals(textView.getText().toString(), PowerUpUtils.ROUNDS_PROS_CONS[1][0]);
     }
 
     @Test
-    public void setCon1TextProperly(){
+    public void setCon1TextProperly() {
         activity.completedRounds = 2;
         activity.setTexts();
-        TextView textView = (TextView)activity.findViewById(R.id.con_one);
+        TextView textView = (TextView) activity.findViewById(R.id.con_one);
         assertEquals(textView.getText().toString(), PowerUpUtils.ROUNDS_PROS_CONS[1][2]);
     }
 
     @Test
-    public void setPro2TextProperly(){
+    public void setPro2TextProperly() {
         activity.completedRounds = 2;
         activity.setTexts();
-        TextView textView = (TextView)activity.findViewById(R.id.pro_two);
+        TextView textView = (TextView) activity.findViewById(R.id.pro_two);
         assertEquals(textView.getText().toString(), PowerUpUtils.ROUNDS_PROS_CONS[1][1]);
     }
 
     @Test
-    public void continueshouldLaunchMineActivity(){
-        activity.completedRounds = PowerUpUtils.NUMBER_OF_ROUNDS-1;
+    public void continueshouldLaunchMineActivity() {
+        activity.completedRounds = PowerUpUtils.NUMBER_OF_ROUNDS - 1;
         Class Minesweeper = MinesweeperGameActivity.class;
         Intent expectedIntent = new Intent(activity, Minesweeper);
 
@@ -103,11 +103,11 @@ public class ProsConsTests {
 
         activity.findViewById(R.id.continue_button).callOnClick();
 
-        assertEquals(false,new MinesweeperSessionManager(activity).isMinesweeperOpened());
+        assertEquals(false, new MinesweeperSessionManager(activity).isMinesweeperOpened());
     }
 
     @Test
-    public void checkCompletedRounds(){
+    public void checkCompletedRounds() {
         activity.completedRounds = PowerUpUtils.NUMBER_OF_ROUNDS; //should fail for PowerUpUtils.NUMBER_OF_ROUNDS + 1
 
         assertTrue(activity.completedRounds <= PowerUpUtils.NUMBER_OF_ROUNDS);
