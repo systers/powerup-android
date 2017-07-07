@@ -3,17 +3,10 @@
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
     android:fromDegrees="5"
     android:toDegrees="-5"
-    android:pivotX="50%"
+    android:pivotX="29%"
     android:pivotY="50%"
-    android:duration="10"
-    android:repeatCount="infinite"
+    android:duration="2000"
+    android:repeatCount="-1"
 />
-    <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-        android:fromDegrees="-5"
-        android:toDegrees="5"
-        android:pivotX="50%"
-        android:pivotY="50%"
-        android:duration="10"
-        android:repeatCount="infinite"
-        />
+
 </set>
