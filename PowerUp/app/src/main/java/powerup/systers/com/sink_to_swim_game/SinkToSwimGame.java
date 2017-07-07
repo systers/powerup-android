@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 
 import powerup.systers.com.GameActivity;
 import powerup.systers.com.R;
-import powerup.systers.com.datamodel.Score;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimGame extends AppCompatActivity {
@@ -30,6 +28,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     //add tests + other Power Up work like setting up scenarios
     //make the sceanrio content flowcharts
     //include this mini game into the main power up game
+    //boat animation make better, reduce extra code + refract + proper names, score textview improve, sometimes upward not work + downward motion not completely smooth , checkmark, fade animations, score animation
 
     FrameLayout.LayoutParams lp;
     ImageView pointer, boat;
@@ -51,36 +50,39 @@ public class SinkToSwimGame extends AppCompatActivity {
         mAnimation = AnimationUtils.loadAnimation(this, R.animator.boat_animation); // Now it should work smoothy as hanging problem is solved now
         mAnimation.setInterpolator(new LinearInterpolator());
         boat = (ImageView) findViewById(R.id.boat);
-        boat.startAnimation(mAnimation);
         trueOption = (Button) findViewById(R.id.true_option);
         skipOption = (Button) findViewById(R.id.skip_option);
         falseOption = (Button) findViewById(R.id.false_option);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
 
         questionView = (TextView) findViewById(R.id.questionView);
         scoreView = (TextView) findViewById(R.id.swim_score);
         timer = (TextView) findViewById(R.id.time);
+
+        pointer = (ImageView) findViewById(R.id.pointer);
         initialSetUp();
     }
 
     public void initialSetUp() {
-        bringPointerToCenter();
+        bringPointerToTop();
+        boat.startAnimation(mAnimation);
         score = 0;
         speed = 2;
         curQuestion = -1;
         millisleft = 60000; //=30 sec
         questionStartTime = millisleft;
-        trueOption.setClickable(false);
-        falseOption.setClickable(false);
-        skipOption.setClickable(false);
+        setButtonsEnabled(false);
         boat.setTranslationY(-height*0.05f);
+        bringPointerAndAvatarDownContinously();
         showNextQuestion();
         countDownTimer = new CountDownTimer(millisleft, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 millisleft = millisUntilFinished;
                 timer.setText("" + millisleft / 1000);
-                bringPointerAndAvatarDown();
-                if (getMargin() > height * 0.75){ // edit this with actual value
+                if (pointer.getTranslationY() > height * 0.75){ // edit this with actual value
                     gameEnd();
                 }
             }
@@ -97,6 +99,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     private void gameEnd() {
         countDownTimer.cancel();
         startActivity(new Intent(SinkToSwimGame.this, GameActivity.class));
+        finish();
     }
 
     private void showNextQuestion() {
@@ -110,16 +113,11 @@ public class SinkToSwimGame extends AppCompatActivity {
                 questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
             }
         }.run();
-
-        trueOption.setClickable(true);
-        falseOption.setClickable(true);
-        skipOption.setClickable(true);
+setButtonsEnabled(true);
     }
 
     public void answerChosen(View view) {
-        trueOption.setClickable(false);
-        falseOption.setClickable(false);
-        skipOption.setClickable(false);
+        setButtonsEnabled(false);
         //replace this by switch case and ?: ternary operator
         if (view == findViewById(R.id.true_option)) {
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
@@ -141,43 +139,28 @@ public class SinkToSwimGame extends AppCompatActivity {
         scoreView.setText("Score: " + score);
     }
 
-    private void bringPointerToCenter() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        height = displayMetrics.heightPixels;
-        pointer = (ImageView) findViewById(R.id.pointer);
-
-        lp = new FrameLayout.LayoutParams(pointer.getLayoutParams());
-//        double initial_height = height * 0.50;
-        double initial_height = height * 0.10;
-        lp.setMargins(0, (int) initial_height, 0, 0);
-        pointer.setLayoutParams(lp);
+    private void bringPointerToTop() {
+        float initial_height = height * 0.10f;
+       pointer.setTranslationY(initial_height);
     }
 
     public void increaseonePointerAvatarUpOneLevel() {
-        if (getMargin() < height * 0.19)
+        Log.e("sachin",""+pointer.getTranslationY());
+        if (pointer.getTranslationY() < height * 0.2)
             return;
-        lp = new FrameLayout.LayoutParams(pointer.getLayoutParams());
-        double pixels = height * 0.1;
-        int total = getMargin() - (int) pixels;
-        lp.setMargins(0, total, 0, 0);
-        pointer.setLayoutParams(lp);
+        float pixels = height * 0.1f;
+        pointer.animate().translationYBy(-pixels).start();
         boat.animate().translationYBy(-(height*0.1f*0.66f));
 
     }
-    public void bringPointerAndAvatarDown() {
-        lp = new FrameLayout.LayoutParams(pointer.getLayoutParams());
-        double pixels = height * 0.01 * speed;
-        int total = getMargin() + (int) pixels;
-        lp.setMargins(0, total, 0, 0);
-        pointer.setLayoutParams(lp);
-        boat.animate().translationYBy(height*0.01f*speed*0.66f);
+    public void bringPointerAndAvatarDownContinously() {
+        float pixels = height * 0.01f * speed;
+        pointer.animate().translationYBy(pixels).setDuration(1000).start();
+        boat.animate().translationYBy(height* 0.01f* speed* 0.66f).setDuration(1000);
     }
-
-    public int getMargin() {
-        FrameLayout.LayoutParams newparams = (FrameLayout.LayoutParams) pointer.getLayoutParams();
-        return newparams.topMargin;
+    public void setButtonsEnabled(boolean bool){
+        trueOption.setClickable(bool);
+        falseOption.setClickable(bool);
+        skipOption.setClickable(bool);
     }
-
-
 }
