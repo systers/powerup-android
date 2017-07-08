@@ -1,13 +1,16 @@
 package powerup.systers.com.sink_to_swim_game;
 
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -23,12 +26,11 @@ import powerup.systers.com.powerup.PowerUpUtils;
 public class SinkToSwimGame extends AppCompatActivity {
     //make session manager for this
     //handle case of interruption..timer lifecycle
-    //addd animations at last - score, boat, fade in, checkmark, timer,
     //do formatting
     //add tests + other Power Up work like setting up scenarios
     //make the sceanrio content flowcharts
     //include this mini game into the main power up game
-    //boat animation make better, reduce extra code + refract + proper names, score textview improve, sometimes upward not work + downward motion not completely smooth , checkmark, fade animations, score animation
+    //boat animation make better, reduce extra code + refract + proper names, score textview improve, sometimes upward not work + downward motion not completely smooth , score animation
 
     FrameLayout.LayoutParams lp;
     ImageView pointer, boat;
@@ -49,6 +51,27 @@ public class SinkToSwimGame extends AppCompatActivity {
 
         mAnimation = AnimationUtils.loadAnimation(this, R.animator.boat_animation); // Now it should work smoothy as hanging problem is solved now
         mAnimation.setInterpolator(new LinearInterpolator());
+        mAnimation.setFillEnabled(true);
+        mAnimation.setFillAfter(true);
+
+        mAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                boat.startAnimation(mAnimation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         boat = (ImageView) findViewById(R.id.boat);
         trueOption = (Button) findViewById(R.id.true_option);
         skipOption = (Button) findViewById(R.id.skip_option);
@@ -70,19 +93,19 @@ public class SinkToSwimGame extends AppCompatActivity {
         boat.startAnimation(mAnimation);
         score = 0;
         speed = 2;
-        curQuestion = -1;
+        curQuestion = 0;
         millisleft = 60000; //=30 sec
         questionStartTime = millisleft;
-        setButtonsEnabled(false);
-        boat.setTranslationY(-height*0.05f);
-        bringPointerAndAvatarDownContinously();
-        showNextQuestion();
+        setButtonsEnabled(true);
+        boat.setTranslationY(-height * 0.05f);
+        questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
         countDownTimer = new CountDownTimer(millisleft, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 millisleft = millisUntilFinished;
                 timer.setText("" + millisleft / 1000);
-                if (pointer.getTranslationY() > height * 0.75){ // edit this with actual value
+                bringPointerAndAvatarDownContinously();
+                if (pointer.getTranslationY() > height * 0.75) { // edit this with actual value
                     gameEnd();
                 }
             }
@@ -102,20 +125,63 @@ public class SinkToSwimGame extends AppCompatActivity {
         finish();
     }
 
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void showNextQuestion() {
         questionStartTime = millisleft;
         curQuestion++;
         if (curQuestion == PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS.length)
             curQuestion = 0;
-        new Runnable() {
+
+
+        final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+        AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
+        fadeOut.setFillAfter(true);
+        fadeIn.setDuration(800);
+        fadeOut.setDuration(800);
+        fadeIn.setFillAfter(true);
+        fadeIn.setStartOffset(500);
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void run() {
-                questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
+            public void onAnimationStart(Animation animation) {
+
             }
-        }.run();
-setButtonsEnabled(true);
+
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
+                questionView.setBackground(null);
+                questionView.startAnimation(fadeIn);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        questionView.startAnimation(fadeOut);
+        fadeIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                setButtonsEnabled(true);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void answerChosen(View view) {
         setButtonsEnabled(false);
         //replace this by switch case and ?: ternary operator
@@ -123,42 +189,56 @@ setButtonsEnabled(true);
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
                 score += 1 + questionStartTime / 1000 - millisleft / 1000;
                 increaseonePointerAvatarUpOneLevel();
+                questionView.setBackground(getResources().getDrawable(R.drawable.swim_right));
+                questionView.setText("");
+                showNextQuestion();
             } else {
                 score += questionStartTime / 1000 - millisleft / 1000 - 1;
+                questionView.setBackground(getResources().getDrawable(R.drawable.swim_cross));
+                questionView.setText("");
+                showNextQuestion();
             }
         } else if (view == findViewById(R.id.false_option)) {
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "F") {
                 score += 1 + questionStartTime / 1000 - millisleft / 1000;
                 increaseonePointerAvatarUpOneLevel();
+                questionView.setBackground(getResources().getDrawable(R.drawable.swim_right));
+                questionView.setText("");
+                showNextQuestion();
             } else {
                 score += questionStartTime / 1000 - millisleft / 1000 - 1;
+                questionView.setBackground(getResources().getDrawable(R.drawable.swim_cross));
+                questionView.setText("");
+                showNextQuestion();
             }
         } else {
+            showNextQuestion();
         }
-        showNextQuestion();
         scoreView.setText("Score: " + score);
     }
 
     private void bringPointerToTop() {
         float initial_height = height * 0.10f;
-       pointer.setTranslationY(initial_height);
+        pointer.setTranslationY(initial_height);
     }
 
     public void increaseonePointerAvatarUpOneLevel() {
-        Log.e("sachin",""+pointer.getTranslationY());
+        Log.e("sachin", "" + pointer.getTranslationY());
         if (pointer.getTranslationY() < height * 0.2)
             return;
         float pixels = height * 0.1f;
         pointer.animate().translationYBy(-pixels).start();
-        boat.animate().translationYBy(-(height*0.1f*0.66f));
+        boat.animate().translationYBy(-(height * 0.1f * 0.66f));
 
     }
+
     public void bringPointerAndAvatarDownContinously() {
         float pixels = height * 0.01f * speed;
         pointer.animate().translationYBy(pixels).setDuration(1000).start();
-        boat.animate().translationYBy(height* 0.01f* speed* 0.66f).setDuration(1000);
+        boat.animate().translationYBy(height * 0.01f * speed * 0.66f).setDuration(1000);
     }
-    public void setButtonsEnabled(boolean bool){
+
+    public void setButtonsEnabled(boolean bool) {
         trueOption.setClickable(bool);
         falseOption.setClickable(bool);
         skipOption.setClickable(bool);
