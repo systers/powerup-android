@@ -15,4 +15,5 @@
     <dimen name="swim_game_paddingLeft">26dp</dimen>
     <dimen name="swim_score_textSize">13sp</dimen>
     <dimen name="swim_button_textSize">60sp</dimen>
+    <dimen name="question_textSize">15sp</dimen>
 </resources>

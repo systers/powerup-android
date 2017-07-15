@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import powerup.systers.com.GameActivity;
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -35,7 +34,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public int score, curQuestion, speed;
     public Button trueOption, falseOption, skipOption;
     public TextView questionView, timer, scoreView;
-    public long questionStartTime, millisLeft;
+    public long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
 
@@ -89,7 +88,6 @@ public class SinkToSwimGame extends AppCompatActivity {
         speed = 2; // speed with which boat and pointer will come down
         curQuestion = 0;
         millisLeft = 40000; //=40 sec //time left before game is over
-        questionStartTime = millisLeft; //millisLeft when current question is displayed to the user
 
         questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
         bringPointerAndBoatToInitial(); //brings the pointer of scale and boat to their initial positions
@@ -139,7 +137,6 @@ public class SinkToSwimGame extends AppCompatActivity {
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void showNextQuestion() {
-        questionStartTime = millisLeft;
         curQuestion++;
         if (curQuestion == PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS.length) //if last question in database, 
             curQuestion = 0;
@@ -201,20 +198,18 @@ public class SinkToSwimGame extends AppCompatActivity {
         setButtonsEnabled(false);
         if (view == findViewById(R.id.true_option)) {
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
-                score += 1 + questionStartTime / 1000 - millisLeft / 1000;
+                score += 1;
                 bringPointerAndAvatarUp();
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_right));
             } else {
-                score += questionStartTime / 1000 - millisLeft / 1000 - 1;
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_cross));
             }
         } else if (view == findViewById(R.id.false_option)) {
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "F") {
-                score += 1 + questionStartTime / 1000 - millisLeft / 1000;
+                score += 1;
                 bringPointerAndAvatarUp();
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_right));
             } else {
-                score += questionStartTime / 1000 - millisLeft / 1000 - 1;
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_cross));
                 showNextQuestion();
             }
@@ -257,9 +252,13 @@ public class SinkToSwimGame extends AppCompatActivity {
         skipOption.setClickable(isEnabled);
     }
 
+    /**
+     * Since app is coming back to active state, start the timer from same time
+     * Create a new timer with counter starting from last time
+     */
     @Override
     public void onResume() {
-        if (countDownTimer == null)
+        if (countDownTimer == null) //to ensure that there is no counter already running
             countDownTimer = new CountDownTimer(millisLeft, 1000) {
 
                 public void onTick(long millisUntilFinished) {
@@ -280,6 +279,10 @@ public class SinkToSwimGame extends AppCompatActivity {
         super.onResume();
     }
 
+    /**
+     * When app is paused, stop the timer
+     * CountDown Timer can't be paused. It has to be canceled.
+     */
     @Override
     public void onPause() {
         countDownTimer.cancel();
