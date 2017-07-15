@@ -8,7 +8,6 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AlphaAnimation;
@@ -20,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import powerup.systers.com.GameActivity;
+import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -37,7 +37,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public TextView questionView, timer, scoreView;
     public long questionStartTime, millisLeft;
     public CountDownTimer countDownTimer;
-    ViewPropertyAnimator animator;
+    public ViewPropertyAnimator animator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +82,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * sets up the initial setting of the game
+     * @desc sets up the initial setting of the game
      */
     public void initialSetUp() {
         score = 0;
@@ -117,8 +116,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * brings the pointer and avatar to their initial position
+     * @desc brings the pointer and avatar to their initial position
      */
     public void bringPointerAndBoatToInitial() {
         float initial_height = height * 0.10f;
@@ -127,18 +125,17 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * ends the game 
+     * @desc ends the game
      */
     public void gameEnd() {
         countDownTimer.cancel();
-        startActivity(new Intent(SinkToSwimGame.this, GameActivity.class));
+        Intent intent = new Intent(SinkToSwimGame.this, GameOverActivity.class);
         finish();
+        startActivityForResult(intent, 0);
     }
 
     /**
-     * @desc
-     * shows the next question which a fade in and out animation
+     * @desc shows the next question which a fade in and out animation
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void showNextQuestion() {
@@ -146,7 +143,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         curQuestion++;
         if (curQuestion == PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS.length) //if last question in database, 
             curQuestion = 0;
-        
+
         final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
         final AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
         fadeOut.setFillAfter(true);
@@ -159,7 +156,7 @@ public class SinkToSwimGame extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
 
             }
-            
+
             @Override
             public void onAnimationEnd(Animation animation) {
 
@@ -189,16 +186,15 @@ public class SinkToSwimGame extends AppCompatActivity {
 
             }
         });
-        
+
         questionView.startAnimation(fadeOut);
     }
 
     /**
-     * @desc
-     * shows right or wrong cross according to answer 
-     * updates the score according to the answer chosen 
-     * brings the avatar and pointer up for correct answer 
      * @param view the button view which is chosen i.e true, false or skip
+     * @desc shows right or wrong cross according to answer
+     * updates the score according to the answer chosen
+     * brings the avatar and pointer up for correct answer
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void answerChosen(View view) {
@@ -229,37 +225,65 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * brings avatar and pointer up by one unit 
+     * @desc brings avatar and pointer up by one unit
      * called for correct answer
      */
     public void bringPointerAndAvatarUp() {
+        animator.cancel();
         if (pointer.getTranslationY() < height * 0.2) //if pointer already at the topmost position, return
             return;
         float pixels = height * 0.1f;
-        pointer.animate().translationYBy(-pixels).start();
+        pointer.animate().translationYBy(-pixels).setDuration(10).setInterpolator(new LinearInterpolator());
         boat.animate().translationYBy(-(height * 0.1f * 0.66f));
     }
 
     /**
-     * @desc
-     * brings avatar and pointer down smoothly
-     * called continously inside timer 
+     * @desc brings avatar and pointer down smoothly
+     * called continously inside timer
      */
     public void bringPointerAndAvatarDown() {
         float pixels = height * 0.01f * speed;
-        animator = pointer.animate().translationYBy(pixels).setDuration(1000);
+        animator = pointer.animate().translationYBy(pixels).setDuration(1010).setInterpolator(new LinearInterpolator());
         boat.animate().translationYBy(height * 0.01f * speed * 0.66f).setDuration(1000);
     }
 
     /**
-     * @desc
-     * enables all buttons for clicking i.e. true,false,skip
      * @param isEnabled mine which is opened
+     * @desc enables all buttons for clicking i.e. true,false,skip
      */
     public void setButtonsEnabled(boolean isEnabled) {
         trueOption.setClickable(isEnabled);
         falseOption.setClickable(isEnabled);
         skipOption.setClickable(isEnabled);
+    }
+
+    @Override
+    public void onResume() {
+        if (countDownTimer == null)
+            countDownTimer = new CountDownTimer(millisLeft, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    millisLeft = millisUntilFinished;
+                    long secLeft = millisLeft / 1000;
+                    timer.setText("" + secLeft); //set the new time in timer textView
+                    bringPointerAndAvatarDown(); //every second, pointer and avatar are brought down by some amount
+                    float pointerBottomPoint = height * 0.75f;
+                    if (pointer.getTranslationY() > pointerBottomPoint) {
+                        gameEnd(); //game ends if pointer reaches bottom i.e. boat drowns
+                    }
+                }
+
+                public void onFinish() {
+                    gameEnd(); //game ends when time finishes
+                }
+            }.start();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        countDownTimer.cancel();
+        countDownTimer = null;
+        super.onPause();
     }
 }
