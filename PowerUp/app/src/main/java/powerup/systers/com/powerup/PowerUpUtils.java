@@ -14,6 +14,10 @@ public class PowerUpUtils {
     public static final int RED_BANNER = 1;
     public static final int GREEN_BANNER = 0;
 
+    public static final String SCORE = "score";
+    public static final String CORRECT_ANSWERS = "correct";
+    public static final String WRONG_ANSWER = "wrong";
+
 
     public static final String CALLED_BY = "GAME_ACTIVITY";
     public static final String ID_REFERENCE = "powerup.systers.com.powerup:id/imageView";

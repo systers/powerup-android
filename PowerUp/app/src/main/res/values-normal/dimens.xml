@@ -16,4 +16,6 @@
     <dimen name="swim_score_textSize">14sp</dimen>
     <dimen name="swim_button_textSize">22sp</dimen>
     <dimen name="question_textSize">17sp</dimen>
+    <dimen name="swim_score_text_size">74sp</dimen>
+    <dimen name="swim_answer_textSize">38sp</dimen>
 </resources>
