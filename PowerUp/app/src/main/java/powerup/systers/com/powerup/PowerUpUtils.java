@@ -36,4 +36,5 @@ public class PowerUpUtils {
 
     public static volatile boolean sPauseTest = true;
     public static final String[][] SWIM_SINK_QUESTION_ANSWERS = {{"Sex is good","F"},{"We should use condom","T"},{"Sachin designed this game","T"},{"Sachin is working on Conference Android Project","F"},{"Google is future's past","F"}};
+    public static final int[] SWIM_TUTS = {R.drawable.swim_tut1,R.drawable.swim_tut2,R.drawable.swim_tut3};
 }

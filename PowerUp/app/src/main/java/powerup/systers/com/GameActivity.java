@@ -32,6 +32,7 @@ import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
 
 @SuppressLint("NewApi")
 public class GameActivity extends Activity {
@@ -257,7 +258,7 @@ public class GameActivity extends Activity {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                     startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, true));
                 } else if (type == -2) {
-                startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
+                startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
             }
         }
 
