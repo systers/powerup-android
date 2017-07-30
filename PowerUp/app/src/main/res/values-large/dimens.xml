@@ -57,4 +57,11 @@
     <dimen name="karma_points_textSize">30sp</dimen>
     <dimen name="skills_bar_width">450dp</dimen>
     <dimen name="skills_bar_height">150dp</dimen>
+    <dimen name="conversation_margin">21dp</dimen>
+    <dimen name="questionview_tv_width">270dp</dimen>
+    <dimen name="game_text_size">24sp</dimen>
+    <dimen name="game_padding_left">50dp</dimen>
+    <dimen name="answer_listview_width">345dp</dimen>
+    <dimen name="asker_width">165dp</dimen>
+    <dimen name="asker_height">210dp</dimen>
 </resources>
