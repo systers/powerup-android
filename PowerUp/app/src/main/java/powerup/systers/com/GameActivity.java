@@ -94,7 +94,7 @@ public class GameActivity extends Activity {
         }
 
         String skinImageName = getResources().getString(R.string.skin);
-        skinImageName = skinImageName + getmDbHandler().getAvatarFace();
+        skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
         try {
             photoNameField = ourRID.getClass().getField(skinImageName);
             skinImageView.setImageResource(photoNameField.getInt(ourRID));
