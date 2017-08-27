@@ -80,6 +80,7 @@ public class GameActivity extends Activity {
         ImageView skinImageView = (ImageView) findViewById(R.id.skin_view);
         ImageView hairImageView = (ImageView) findViewById(R.id.hair_view);
         ImageView clothImageView = (ImageView) findViewById(R.id.dress_view);
+        ImageView accessoryImageView = (ImageView) findViewById(R.id.accessory_view);
 
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
@@ -118,6 +119,17 @@ public class GameActivity extends Activity {
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException error) {
+            error.printStackTrace();
+        }
+
+        getmDbHandler().setAvatarAccessory(getmDbHandler().getAvatarAccessory());
+        String accessoryImageName = getResources().getString(R.string.accessories);
+        accessoryImageName = accessoryImageName + getmDbHandler().getAvatarAccessory();
+        try {
+            photoNameField = ourRID.getClass().getField(accessoryImageName);
+            accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
