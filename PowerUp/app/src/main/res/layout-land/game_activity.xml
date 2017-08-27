@@ -78,31 +78,12 @@
             android:src="@drawable/eyes3" />
 
         <ImageView
-            android:id="@+id/bag_view"
+            android:id="@+id/accessory_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             />
 
-        <ImageView
-            android:id="@+id/glass_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            />
-
-        <ImageView
-            android:id="@+id/hat_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            />
-        <ImageView
-            android:id="@+id/necklace_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            />
     </FrameLayout>
 
     <ListView
