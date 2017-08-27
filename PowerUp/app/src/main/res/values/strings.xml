@@ -10,8 +10,7 @@
     <string name="powerup">"PowerUp"</string>
     <string name="completed_scene">This scene is completed Darling.\n\n
         Please go back to the map or buy exciting things from the store</string>
-    <string name="completed_game">Wow! You are brilliant. Game completed \n \n \n
-        Wait till we upload new scenarios</string>
+    <string name="completed_game">Wow! You are brilliant.\n\nGame completed !!</string>
     <string name="map">Map</string>
     <string name="store">Store</string>
     <string name="enter">Continue..</string>
@@ -26,10 +25,11 @@
     <string name="from_activity">"fromActivity"</string>
     <string name="eye">"eyes"</string>
     <string name="hair">"hair"</string>
-    <string name="cloth">"dress"</string>
+    <string name="cloth">"dress_avatar"</string>
     <string name="skin">"skin"</string>
     <string name="face">"face"</string>
     <string name="accessory">"accessory"</string>
+    <string name="accessories">"acc_avatar"</string>
     <string name="bag">"bag"</string>
     <string name="hat">"hat"</string>
     <string name="necklace">"necklace"</string>
