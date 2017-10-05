@@ -54,7 +54,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(ScenarioOverActivity.this, StartActivity.class));
+                startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
             }
         });
         TextView scenarioTextView = (TextView) findViewById(R.id.scenarioTextView);
