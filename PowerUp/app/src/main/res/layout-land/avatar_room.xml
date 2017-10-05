@@ -162,7 +162,7 @@
                     android:id="@+id/eye_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/eyes3"
+                    android:src="@drawable/eyes1"
                     android:scaleType="fitXY"/>
 
             </FrameLayout>
