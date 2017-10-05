@@ -115,6 +115,15 @@ public class MapActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this,
+                StartActivity.class);
+        new GameActivity().gameActivityInstance.finish();
+        startActivity(intent);
+    }
+
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
