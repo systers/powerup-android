@@ -34,6 +34,7 @@ public class MapActivity extends Activity {
             } else {
                 Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
                 intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
+                intent.putExtra(PowerUpUtils.SCENARIO_NAME,getScenarioName(scenarioChooser.getId()));
                 startActivityForResult(intent, 0);
             }
             finish();

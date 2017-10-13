@@ -66,7 +66,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
-        if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
+        if ((getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE)))||(SessionHistory.sceneIsReplayed)){
             continueButton.setVisibility(View.GONE);
             continueButton.setOnClickListener(null);
         }
@@ -75,10 +75,35 @@ public class ScenarioOverActivity extends AppCompatActivity {
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))) {
+                    String scenario = getIntent().getStringExtra(PowerUpUtils.SCENARIO_NAME);
+                    int id;
+                    switch (scenario) {
+                        case "Home":
+                            id = 4;
+                            break;
+                        case "School":
+                            id = 5;
+                            break;
+                        case "Hospital":
+                            id = 6;
+                            break;
+                        case "Library":
+                            id = 7;
+                            break;
+                        default:
+                            id = 4;
+                    }
+                    SessionHistory.currSessionID = id;
+                    scenarioActivityDone = 1;
+                    SessionHistory.sceneIsReplayed = true;
+                }
+                else{
+                    SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                    scenarioActivityDone = 0;
+                }
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 SessionHistory.currScenePoints = 0;
-                scenarioActivityDone = 0;
                 DatabaseHandler dbHandler = new DatabaseHandler(ScenarioOverActivity.this);
                 dbHandler.resetCompleted(SessionHistory.currSessionID);
                 dbHandler.resetReplayed(SessionHistory.currSessionID);
