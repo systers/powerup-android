@@ -40,29 +40,39 @@ public class StartActivity extends Activity {
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
         newUserButton = (Button) findViewById(R.id.newUserButtonFirstPage);
-        newUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
-                builder.setTitle(context.getResources().getString(R.string.start_title_message))
-                        .setMessage(getResources().getString(R.string.start_dialog_message));
-                builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                ColorDrawable drawable = new ColorDrawable(Color.WHITE);
-                drawable.setAlpha(200);
-                dialog.getWindow().setBackgroundDrawable(drawable);
-                dialog.show();
-            }
-        });
+        if(hasPreviouslyStarted) {
+            newUserButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
+                    builder.setTitle(context.getResources().getString(R.string.start_title_message))
+                            .setMessage(getResources().getString(R.string.start_dialog_message));
+                    builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+                    drawable.setAlpha(200);
+                    dialog.getWindow().setBackgroundDrawable(drawable);
+                    dialog.show();
+                }
+            });
+        }
+        else{
+            newUserButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(StartActivity.this,AvatarRoomActivity.class));
+                }
+            });
+        }
 
 
         startButton = (Button) findViewById(R.id.startButtonMain);
