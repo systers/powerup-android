@@ -60,7 +60,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/avatar_room_eye"
-            android:textColor="@color/powerup_black" />
+            android:textColor="@color/powerup_black"
+            android:textSize="@dimen/hair_eyes_face_clothes"/>
 
         <ImageView
             android:id="@+id/eyes"
@@ -106,7 +107,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/avatar_room_hair"
-            android:textColor="@color/powerup_black" />
+            android:textColor="@color/powerup_black"
+            android:textSize="@dimen/hair_eyes_face_clothes"/>
 
         <ImageView
             android:id="@+id/hair"
@@ -151,7 +153,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/avatar_room_face"
-            android:textColor="@color/powerup_black" />
+            android:textColor="@color/powerup_black"
+            android:textSize="@dimen/hair_eyes_face_clothes"/>
 
         <ImageView
             android:id="@+id/face"
@@ -194,7 +197,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/avatar_room_cloth"
-            android:textColor="@color/powerup_black" />
+            android:textColor="@color/powerup_black"
+            android:textSize="@dimen/hair_eyes_face_clothes"/>
 
         <ImageView
             android:id="@+id/clothes"
@@ -230,6 +234,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/relativeLayout2"
         android:layout_marginBottom="@dimen/continue_margin"
-        android:background="@drawable/endingscreen6" />
+        android:layout_marginLeft="@dimen/margin_left_continue_button"
+        android:background="@drawable/brown_button_background"
+        android:text="@string/continue_text"
+        android:textSize="@dimen/button_font"/>
 
 </RelativeLayout>

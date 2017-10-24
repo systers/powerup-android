@@ -1,3 +1,7 @@
+/**
+ * @desc displays avatar features in dressing room and updates power/health bars.
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -13,33 +17,43 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class DressingRoomActivity extends AppCompatActivity {
 
-    public static Activity dressingRoomInstance;
+    public Activity dressingRoomInstance;
     private DatabaseHandler mDbHandler;
+    private TextView karmaPoints;
+    ImageView clothView,eyeView,faceView,hairView,bagView,glassesView,hatView,necklaceView;
+    java.lang.reflect.Field photoNameField;
+    R.drawable ourRID;
 
+    public DressingRoomActivity() {
+        dressingRoomInstance = this;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dressing_room);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
+        karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         dressingRoomInstance = this;
-        ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
-        ImageView faceView = (ImageView) findViewById(R.id.faceView);
-        ImageView hairView = (ImageView) findViewById(R.id.hairView);
-        ImageView clothView = (ImageView) findViewById(R.id.clothView);
+        eyeView = (ImageView) findViewById(R.id.eyeView);
+        faceView = (ImageView) findViewById(R.id.faceView);
+        hairView = (ImageView) findViewById(R.id.hairView);
+        clothView = (ImageView) findViewById(R.id.clothView);
+        bagView = (ImageView) findViewById(R.id.bagView);
+        glassesView = (ImageView) findViewById(R.id.glassesView);
+        hatView = (ImageView) findViewById(R.id.hatView);
+        necklaceView = (ImageView) findViewById(R.id.necklaceView);
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
-        R.drawable ourRID = new R.drawable();
-        java.lang.reflect.Field photoNameField;
+        ourRID = new R.drawable();
         try {
             photoNameField = ourRID.getClass().getField(eyeImageName);
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String faceImageName = getResources().getString(R.string.face);
@@ -48,9 +62,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(faceImageName);
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String clothImageName = getResources().getString(R.string.cloth);
@@ -59,9 +72,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(clothImageName);
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         String hairImageName = getResources().getString(R.string.hair);
@@ -70,9 +82,8 @@ public class DressingRoomActivity extends AppCompatActivity {
             photoNameField = ourRID.getClass().getField(hairImageName);
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                | IllegalArgumentException error) {
+            error.printStackTrace();
         }
 
         IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
@@ -124,6 +135,74 @@ public class DressingRoomActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String clothImageName = getResources().getString(R.string.cloth);
+        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+        try {
+            photoNameField = ourRID.getClass().getField(clothImageName);
+            clothView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        String hairImageName = getResources().getString(R.string.hair);
+        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+        try {
+            photoNameField = ourRID.getClass().getField(hairImageName);
+            hairView.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        if (getmDbHandler().getAvatarBag() != 0) {
+            String bagImageName = getResources().getString(R.string.bag);
+            bagImageName = bagImageName + getmDbHandler().getAvatarBag();
+            try {
+                photoNameField = ourRID.getClass().getField(bagImageName);
+                bagView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        if (getmDbHandler().getAvatarGlasses() != 0) {
+            String glassesImageName = getResources().getString(R.string.glasses);
+            glassesImageName = glassesImageName + getmDbHandler().getAvatarGlasses();
+            try {
+                photoNameField = ourRID.getClass().getField(glassesImageName);
+                glassesView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        if (getmDbHandler().getAvatarHat() != 0) {
+            String hatImageName = getResources().getString(R.string.hat);
+            hatImageName = hatImageName + getmDbHandler().getAvatarHat();
+            try {
+                photoNameField = ourRID.getClass().getField(hatImageName);
+                hatView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        if (getmDbHandler().getAvatarNeckalce() != 0) {
+            String necklaceImageName = getResources().getString(R.string.necklace);
+            necklaceImageName = necklaceImageName + getmDbHandler().getAvatarNeckalce();
+            try {
+                photoNameField = ourRID.getClass().getField(necklaceImageName);
+                necklaceView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+
+    }
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }

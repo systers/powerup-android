@@ -1,8 +1,13 @@
+/**
+ * @desc sets up the default avatar features and scenario points upon beginning the app.
+ */
+
 package powerup.systers.com.datamodel;
 
 public class SessionHistory {
     public static int currQID = 1;
     public static int currSessionID = 1;
+    public static int prevSessionID = -1;
     public static int totalPoints = 0;
     public static int currScenePoints = 0;
     public static int eyesTotalNo = 9;

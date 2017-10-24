@@ -1,3 +1,8 @@
+/**
+ * @desc if the user has already completed a scenario, she can go
+ * to the store or go back to the map.
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -19,10 +24,10 @@ public class CompletedSceneActivity extends Activity {
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(CompletedSceneActivity.this,
+                Intent intent = new Intent(CompletedSceneActivity.this,
                         MapActivity.class);
                 finish();
-                startActivityForResult(myIntent, 0);
+                startActivityForResult(intent, 0);
             }
         });
         Button storeButton = (Button) findViewById(R.id.store_button);
