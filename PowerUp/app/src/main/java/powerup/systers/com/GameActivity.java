@@ -267,4 +267,11 @@ public class GameActivity extends Activity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
+    
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SessionHistory.totalPoints-=SessionHistory.currScenePoints;
+        startActivity(new Intent(GameActivity.this,MapActivity.class));
+    }
 }
