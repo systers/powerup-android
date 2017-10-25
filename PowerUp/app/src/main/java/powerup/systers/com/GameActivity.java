@@ -272,6 +272,7 @@ public class GameActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         SessionHistory.totalPoints-=SessionHistory.currScenePoints;
+        new GameActivity().gameActivityInstance.finish();
         startActivity(new Intent(GameActivity.this,MapActivity.class));
     }
 }
