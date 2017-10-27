@@ -76,6 +76,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                if((SessionHistory.totalPoints - SessionHistory.currScenePoints) >= 0)
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 SessionHistory.currScenePoints = 0;
                 scenarioActivityDone = 0;
