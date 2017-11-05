@@ -132,25 +132,9 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             error.printStackTrace();
         }
 
-        IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
-        powerBarHealing.setIconImageResource(R.drawable.icon_healing);
-        powerBarHealing.setProgress(mDbHandler.getHealing());
-
-        IconRoundCornerProgressBar powerbarInvisibility = (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
-        powerbarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
-        powerbarInvisibility.setProgress(mDbHandler.getInvisibility());
-
-        IconRoundCornerProgressBar powerbarStrength = (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
-        powerbarStrength.setIconImageResource(R.drawable.icon_strength);
-        powerbarStrength.setProgress(mDbHandler.getStrength());
-
-        IconRoundCornerProgressBar powerbarTelepathy = (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
-        powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
-        powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
-
         value = getIntent().getExtras().getString(getResources().getString(R.string.feature));
 
-        Button continueButton = (Button) findViewById(R.id.continueButton);
+        ImageView continueButton = (ImageView) findViewById(R.id.continueButton);
 
         imageViewSelectFeature = (ImageView) findViewById(R.id.imageViewSelectFeature);
         tvPaidSelectFeature = (TextView) findViewById(R.id.tvPaidSelectFeature);
@@ -423,7 +407,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
                         }
                     }
                 }
-                Intent intent = new Intent(SelectFeaturesActivity.this, AvatarActivity.class);
+                Intent intent = new Intent(SelectFeaturesActivity.this, AvatarRoomActivity.class);
                 intent.putExtra(getResources().getString(R.string.feature), 2);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
