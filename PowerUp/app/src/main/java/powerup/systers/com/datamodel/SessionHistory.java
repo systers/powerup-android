@@ -16,7 +16,7 @@ public class SessionHistory {
     public static int skinTotalNo = 16;
     public static int glassesTotalNo = 3;
     public static int bagTotalNo = 3;
-    public static int hatTotalNo = 4;
+    public static int hatTotalNo = 5;
     public static int necklaceTotalNo = 4;
-    public static int accessoryTotalNo = 14;
+    public static int accessoryTotalNo = 15;
 }
