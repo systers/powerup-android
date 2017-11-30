@@ -6,6 +6,7 @@
 
 package powerup.systers.com;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,8 +23,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class StartActivity extends Activity{
-
+public class StartActivity extends Activity {
+    private static long time;
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
     private Button startButton;
@@ -87,7 +88,6 @@ public class StartActivity extends Activity{
 
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -95,7 +95,14 @@ public class StartActivity extends Activity{
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }
-
     }
-
+    @Override
+    public void onBackPressed(){
+        if(time+2000>System.currentTimeMillis()){
+            super.onBackPressed();
+        }else{
+            Toast.makeText(this.getApplicationContext(),R.string.press_once_more_to_exit,Toast.LENGTH_SHORT).show();
+        }
+        time=System.currentTimeMillis();
+    }
 }
