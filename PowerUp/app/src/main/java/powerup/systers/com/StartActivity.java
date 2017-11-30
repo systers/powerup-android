@@ -24,7 +24,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class StartActivity extends Activity {
-
+    private static long time;
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
     private Button startButton;
@@ -95,5 +95,14 @@ public class StartActivity extends Activity {
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }
+    }
+    @Override
+    public void onBackPressed(){
+        if(time+2000>System.currentTimeMillis()){
+            super.onBackPressed();
+        }else{
+            Toast.makeText(this.getApplicationContext(),R.string.press_once_more_to_exit,Toast.LENGTH_SHORT).show();
+        }
+        time=System.currentTimeMillis();
     }
 }
