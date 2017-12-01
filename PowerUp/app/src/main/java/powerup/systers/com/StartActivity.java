@@ -11,14 +11,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
+    private boolean doubleBackToExitPressedOnce = false;
     private Button startButton;
     private Button newUserButton;
     private Button aboutButton;
@@ -67,5 +70,23 @@ public class StartActivity extends Activity {
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, getString(R.string.press_one_more_to_exit), Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

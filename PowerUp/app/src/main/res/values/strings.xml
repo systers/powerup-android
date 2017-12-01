@@ -60,4 +60,5 @@
     <string name="about_text"><b>About</b></string>
     <string name="continue_text"><b>Continue</b></string>
     <string name="replay"><b>Replay</b></string>
+    <string name="press_one_more_to_exit"><b>Press once more to exit</b></string>
 </resources>
