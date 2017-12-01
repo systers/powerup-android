@@ -123,6 +123,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
         intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
         SessionHistory.totalPoints += score;
+        SessionHistory.currScenePoints += score;
         finish();
         startActivity(intent);
     }
