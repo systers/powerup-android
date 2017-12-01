@@ -143,6 +143,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
                     intent.putExtra(PowerUpUtils.SCORE,score);
                     SessionHistory.totalPoints += score;
+                    SessionHistory.currScenePoints += score;
                     finish();
                     startActivity(intent);
                 }
