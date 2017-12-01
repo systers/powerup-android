@@ -270,7 +270,7 @@ public class GameActivity extends Activity {
 
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(GameActivity.this, StartActivity.class);
+        Intent intent = new Intent(GameActivity.this, MapActivity.class);
         startActivity(intent);
     }
 }
