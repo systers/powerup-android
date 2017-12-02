@@ -6,6 +6,7 @@
 
 package powerup.systers.com;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,6 +30,7 @@ public class StartActivity extends Activity {
     private Button newUserButton;
     private Button aboutButton;
     Context context;
+    int doubleBackToExitPressed = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,25 +96,24 @@ public class StartActivity extends Activity {
             startButton.setText(getString(R.string.resume_text));
         }
     }
-
-    private boolean exit = false;
+    @TargetApi(16)
     @Override
     public void onBackPressed() {
-        if (exit)
-            StartActivity.this.finish();
+        if (doubleBackToExitPressed == 2) {
+            finishAffinity();
+            System.exit(0);
+        }
         else {
-            Toast.makeText(this, "Press once more to exit.",
-                    Toast.LENGTH_SHORT).show();
-            exit = true;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    exit = false;
-                }
-            }, 2 * 1000);
-
+            doubleBackToExitPressed++;
+            Toast.makeText(this, "Please press Back again to exit", Toast.LENGTH_SHORT).show();
         }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressed=1;
+            }
+        }, 2000);
     }
 
 }
