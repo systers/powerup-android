@@ -4,11 +4,11 @@ PowerUp is a female empowerment educational mobile game app that will allow youn
 and self-esteem by navigating the life of their avatar!
 
 ## Setup for Developers
-1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS.
-1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork". 
-1. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality.
+1. Make sure you have downloaded the [latest version](/ReadmeScreenshots/DownloadAndroid.jpg) of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS.
+1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking ["Fork"](/ReadmeScreenshots/fork.jpg). 
+1. If you are working on Windows, [download](/ReadmeScreenshots/Gitdesktop.jpg) [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality.
 1. Clone the repo to your desktop. `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
-1. Initialize Git. `git init`
+1. [Initialize Git](/ReadmeScreenshots/gitinit.jpg). `git init`
 1. Open the project with Android Studio. 
 
 ## Configure remotes
@@ -55,10 +55,10 @@ When a repository is cloned, it has a default remote called `origin` that points
 1. You will need to add a message on the pull request notifying your changes to your reviewer.
 
 ## Contributing Guidelines 
-[Click](https://github.com/systers/powerup-android/wiki/How-to-Contribute) here to find the contributing guidelines for the project and follow them before sending a contribution.
+[Click](https://github.com/systers/powerup-android/wiki/How-to-Contribute) here to find the [contributing guidelines](/ReadmeScreenshots/Contribution.png) for the project and follow them before sending a contribution.
 
 ## Documentation of PowerUp (Android)
-Here's the link to the official documentation:
+Here's the link to the official [documentation](/ReadmeScreenshots/Documentation.png):
 [Visit Documentation!](http://chetnagsocpowerupandroid.blogspot.in/2015/05/database-design.html)
 
 ## Coding Guidelines
