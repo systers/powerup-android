@@ -57,7 +57,12 @@ public class StoreActivity extends AppCompatActivity {
                       .getDisplayMetrics()
                       .heightPixels;
         karmaPoints = (TextView) findViewById(R.id.karma_points);
-        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        karmaPoints
+                .setText
+                (String
+                .valueOf
+                (SessionHistory
+                .totalPoints));
         Button mapButton = (Button) findViewById(R.id.map_button);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
