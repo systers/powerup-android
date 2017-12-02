@@ -20,6 +20,8 @@ public class GameOverActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_game);
+        TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
+        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override
