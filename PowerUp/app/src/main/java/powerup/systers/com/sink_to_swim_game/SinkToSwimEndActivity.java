@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.StartActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimEndActivity extends AppCompatActivity {
@@ -33,4 +34,9 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         finish();
         startActivityForResult(intent, 0);
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, StartActivity.class));
+    }
+
 }
