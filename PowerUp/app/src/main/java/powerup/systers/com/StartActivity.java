@@ -13,12 +13,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -64,7 +67,6 @@ public class StartActivity extends Activity {
             }
         });
 
-
         startButton = (Button) findViewById(R.id.startButtonMain);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +76,6 @@ public class StartActivity extends Activity {
                 } else {
                     startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));
                 }
-
             }
         });
 
@@ -85,7 +86,6 @@ public class StartActivity extends Activity {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
             }
         });
-
     }
 
     @Override
@@ -107,7 +107,6 @@ public class StartActivity extends Activity {
             doubleBackToExitPressed++;
             Toast.makeText(this, R.string.press_once_more_to_exit, Toast.LENGTH_SHORT).show();
         }
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -115,5 +114,4 @@ public class StartActivity extends Activity {
             }
         }, 2000);
     }
-
 }
