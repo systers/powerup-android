@@ -125,4 +125,11 @@ public class MapActivity extends Activity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        new GameActivity().gameActivityInstance.finish();
+        startActivity(new Intent(this, StartActivity.class));
+    }
 }
