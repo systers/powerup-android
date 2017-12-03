@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
+import powerup.systers.com.StartActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
@@ -36,4 +37,9 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, StartActivity.class));
+    }
+
 }

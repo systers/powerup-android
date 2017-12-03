@@ -383,8 +383,10 @@ public class StoreActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+        startActivity(new Intent(this, MapActivity.class));
         super.onBackPressed();
+        }
     }
-}
+
 
 

@@ -1,6 +1,7 @@
 package powerup.systers.com;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -71,6 +72,7 @@ public class AboutActivity extends Activity {
         finish();
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -78,4 +80,9 @@ public class AboutActivity extends Activity {
         outState.putBoolean(isHelpingOpen,isAboutHelpingOpen);
         outState.putBoolean(isUrgencyOpen,isAboutUrgencyOpen);
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, StartActivity.class));
+    }
+
 }

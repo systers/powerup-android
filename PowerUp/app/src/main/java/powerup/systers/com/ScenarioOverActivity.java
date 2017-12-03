@@ -96,7 +96,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         new GameActivity().gameActivityInstance.finish();
+        startActivity(new Intent(this, MapActivity.class));
     }
+
 
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;
