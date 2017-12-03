@@ -12,6 +12,8 @@
         android:id="@+id/scenarioNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
         android:layout_alignBottom="@+id/redoButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
