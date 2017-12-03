@@ -6,6 +6,7 @@
 
 package powerup.systers.com;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -31,6 +33,7 @@ public class StartActivity extends Activity {
     private Button newUserButton;
     private Button aboutButton;
     Context context;
+    int doubleBackToExitPressed = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,6 @@ public class StartActivity extends Activity {
             }
         });
 
-
         startButton = (Button) findViewById(R.id.startButtonMain);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +87,6 @@ public class StartActivity extends Activity {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
             }
         });
-
     }
 
     @Override
@@ -95,5 +96,23 @@ public class StartActivity extends Activity {
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }
+    }
+    @TargetApi(16)
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressed == 2) {
+            finishAffinity();
+            System.exit(0);
+        }
+        else {
+            doubleBackToExitPressed++;
+            Toast.makeText(this, R.string.press_once_more_to_exit, Toast.LENGTH_SHORT).show();
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressed=1;
+            }
+        }, 2000);
     }
 }
