@@ -90,7 +90,7 @@ public class MapActivity extends Activity {
         storeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MapActivity.this, SelectFeaturesActivity.class));
+                startActivity(new Intent(MapActivity.this, StoreActivity.class));
             }
         });
 
@@ -125,4 +125,12 @@ public class MapActivity extends Activity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        new GameActivity().gameActivityInstance.finish();
+        startActivity(new Intent(this, StartActivity.class));
+    }
+
 }
