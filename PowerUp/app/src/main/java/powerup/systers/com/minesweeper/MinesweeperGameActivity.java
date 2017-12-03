@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -234,6 +235,11 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
         overridePendingTransition(R.animator.fade_in, R.animator.fade_out);
+    }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(MinesweeperGameActivity.this, MapActivity.class);
+        startActivity(intent);
     }
 
 }
