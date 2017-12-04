@@ -1,17 +1,16 @@
 package powerup.systers.com.vocab_match_game;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-
+import powerup.systers.com.BaseActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
-public class VocabMatchEndActivity extends AppCompatActivity {
+public class VocabMatchEndActivity extends BaseActivity {
 
     public TextView scoreView, correctView, wrongView;
 
@@ -35,5 +34,10 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
         finish();
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        backToHome();
     }
 }
