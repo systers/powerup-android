@@ -16,6 +16,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
@@ -31,6 +32,7 @@ public class StartActivity extends Activity {
     private Button newUserButton;
     private Button aboutButton;
     Context context;
+    private long mLastBackPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,17 @@ public class StartActivity extends Activity {
         hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - mLastBackPress <= 2000) {
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            mLastBackPress = currentTime;
+            Toast.makeText(this, getString(R.string.exit_message), Toast.LENGTH_SHORT).show();
         }
     }
 }
