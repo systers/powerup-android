@@ -31,4 +31,9 @@ public class GameOverActivity extends Activity {
             }
         });
     }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(GameOverActivity.this, MapActivity.class);
+        startActivity(intent);
+    }
 }
