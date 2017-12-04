@@ -18,8 +18,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -67,6 +69,7 @@ public class StartActivity extends Activity {
             }
         });
 
+
         startButton = (Button) findViewById(R.id.startButtonMain);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +90,7 @@ public class StartActivity extends Activity {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
             }
         });
+
     }
 
     @Override
@@ -97,21 +101,20 @@ public class StartActivity extends Activity {
             startButton.setText(getString(R.string.resume_text));
         }
     }
-    @TargetApi(16)
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressed == 2) {
-            finishAffinity();
+            ActivityCompat.finishAffinity(this);
             System.exit(0);
-        }
-        else {
+        } else {
             doubleBackToExitPressed++;
             Toast.makeText(this, R.string.press_once_more_to_exit, Toast.LENGTH_SHORT).show();
         }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doubleBackToExitPressed=1;
+                doubleBackToExitPressed = 1;
             }
         }, 2000);
     }
