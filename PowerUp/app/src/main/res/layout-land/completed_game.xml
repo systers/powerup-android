@@ -22,8 +22,22 @@
         android:layout_height="@dimen/continue_height"
         android:background="@drawable/map_button"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerVertical="true" />
 
-        />
+    <ImageView
+         android:id="@+id/karma_star"
+         android:layout_width="@dimen/karma_star_width"
+         android:layout_height="@dimen/karma_star_height"
+         android:src="@drawable/karma"/>
+
+    <TextView
+         android:id="@+id/karmaPoints"
+         android:layout_width="wrap_content"
+         android:layout_height="@dimen/karma_star_height"
+         android:layout_toRightOf="@id/karma_star"
+         android:gravity="center"
+         android:text="0"
+         android:textSize="@dimen/karma_points_textSize"
+         android:textColor="@color/powerup_black"/>
 
 </RelativeLayout>
