@@ -33,7 +33,7 @@ public class StartActivity extends Activity {
     private Button newUserButton;
     private Button aboutButton;
     Context context;
-    int doubleBackToExitPressed = 1;
+    int doubleBackPressedToExit = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +101,17 @@ public class StartActivity extends Activity {
     }
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressed == 2) {
+        if (doubleBackPressedToExit == 2) {
             ActivityCompat.finishAffinity(this);
             System.exit(0);
         } else {
-            doubleBackToExitPressed++;
+            doubleBackPressedToExit++;
             Toast.makeText(this, R.string.press_once_more_to_exit, Toast.LENGTH_SHORT).show();
         }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doubleBackToExitPressed = 1;
+                doubleBackPressedToExit = 1;
             }
         }, 2000);
     }
