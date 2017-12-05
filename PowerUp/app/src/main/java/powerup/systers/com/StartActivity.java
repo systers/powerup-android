@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -95,5 +96,25 @@ public class StartActivity extends Activity {
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }
+    }
+    boolean backAlreadyPressed = false;
+
+    @Override
+    public void onBackPressed() {
+        if (backAlreadyPressed) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.backAlreadyPressed = true;
+        Toast.makeText(this, getResources().getString(R.string.toast_confirm_exit_message), Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                backAlreadyPressed=false;
+            }
+        }, 2000);
     }
 }
