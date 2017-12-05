@@ -21,7 +21,9 @@
         android:hint="@string/pgame_scenario_hint"
         android:textColor="@color/powerup_black"
         android:gravity="top"
-        android:textSize="@dimen/game_text_size" />
+        android:textSize="@dimen/game_text_size"
+        android:paddingTop="@dimen/scenerio_name_margin"
+        android:paddingLeft="@dimen/scenerio_name_margin" />
 
     <ListView
         android:id="@+id/mainListView"

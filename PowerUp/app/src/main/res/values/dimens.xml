@@ -182,4 +182,5 @@
     <dimen name="hat_marginRight">20dp</dimen>
     <dimen name="relative2_marginLeft">10dp</dimen>
     <dimen name="final_avatar_text_size">18sp</dimen>
+    <dimen name="scenerio_name_margin">8dp</dimen>
 </resources>

@@ -24,7 +24,7 @@
         android:textSize="@dimen/game_text_size"
         android:layout_marginLeft="@dimen/pgame_quesitionView_marginLeft"
         android:layout_marginStart="@dimen/pgame_quesitionView_marginLeft"
-        android:paddingTop="5dp"/>
+        android:paddingTop="@dimen/scenerio_name_margin"/>
 
     <ListView
         android:id="@+id/mainListView"
@@ -191,5 +191,7 @@
             android:layout_alignTop="@+id/eyeImageView"
             android:layout_centerHorizontal="true"
             android:src="@drawable/cloth1" />
+
+
     </RelativeLayout>
 </RelativeLayout>
