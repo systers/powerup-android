@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import powerup.systers.com.datamodel.SessionHistory;
 
 public class GameOverActivity extends Activity {
 
@@ -21,6 +23,8 @@ public class GameOverActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_game);
         Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
+        TextView karmaPoints = (TextView) findViewById(R.id.karma_points);
+        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
