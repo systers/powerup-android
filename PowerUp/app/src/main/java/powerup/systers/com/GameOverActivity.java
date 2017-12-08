@@ -5,13 +5,13 @@
 
 package powerup.systers.com;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class GameOverActivity extends Activity {
+public class GameOverActivity extends AppCompatActivity {
 
     /**
      * Called when the activity is first created.
@@ -30,5 +30,17 @@ public class GameOverActivity extends Activity {
                 startActivityForResult(intent, 0);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        backToHome();
+    }
+
+    private void backToHome() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 }
