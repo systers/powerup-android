@@ -2,11 +2,12 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 public class AboutActivity extends Activity {
-
+    private static final String Tag=AboutActivity.class.getSimpleName();
     private boolean isAboutGameOpen = false;
     private boolean isAboutUrgencyOpen = false;
     private boolean isAboutHelpingOpen = false;
@@ -35,7 +36,7 @@ public class AboutActivity extends Activity {
         if (isAboutHelpingOpen){
             aboutHelpingSection.setVisibility(View.VISIBLE);
         }
-
+        Log.d(Tag,"On Create Executed");
     }
     public void aboutGamePressed(View view){
         if (aboutGameSection.getVisibility() == View.GONE){
@@ -45,6 +46,7 @@ public class AboutActivity extends Activity {
             aboutGameSection.setVisibility(View.GONE);
             isAboutGameOpen = false;
         }
+        Log.d(Tag,"aboutGamePressed Executed");
     }
 
     public void aboutUrgencyPressed(View view){
@@ -55,6 +57,7 @@ public class AboutActivity extends Activity {
             aboutUrgencySection.setVisibility(View.GONE);
             isAboutUrgencyOpen = false;
         }
+        Log.d(Tag,"aboutUrgencyPressed executed");
     }
 
     public void aboutHelpingByPressed(View view){
@@ -65,10 +68,12 @@ public class AboutActivity extends Activity {
             aboutHelpingSection.setVisibility(View.GONE);
             isAboutHelpingOpen = false;
         }
+        Log.d(Tag,"aboutHelpingByPressed executed");
     }
 
     public void pressHomeButton(View view){
         finish();
+        Log.d(Tag,"Home button executed");
     }
 
     @Override
@@ -77,5 +82,7 @@ public class AboutActivity extends Activity {
         outState.putBoolean(isGameOpen,isAboutGameOpen);
         outState.putBoolean(isHelpingOpen,isAboutHelpingOpen);
         outState.putBoolean(isUrgencyOpen,isAboutUrgencyOpen);
+
     }
+
 }
