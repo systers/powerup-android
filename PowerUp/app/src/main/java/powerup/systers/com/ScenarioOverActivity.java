@@ -14,17 +14,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
-
-import static powerup.systers.com.R.string.scene;
 
 public class ScenarioOverActivity extends AppCompatActivity {
 
@@ -94,8 +90,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        new GameActivity().gameActivityInstance.finish();
+        startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
     }
 
     public DatabaseHandler getmDbHandler() {

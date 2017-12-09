@@ -36,4 +36,9 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
+    }
 }

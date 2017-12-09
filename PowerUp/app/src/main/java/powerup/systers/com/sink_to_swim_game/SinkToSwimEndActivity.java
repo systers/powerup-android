@@ -33,4 +33,9 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         finish();
         startActivityForResult(intent, 0);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
+    }
 }
