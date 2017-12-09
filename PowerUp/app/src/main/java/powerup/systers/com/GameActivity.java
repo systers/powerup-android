@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +29,6 @@ import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
-import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
@@ -266,5 +263,10 @@ public class GameActivity extends Activity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
     }
 }

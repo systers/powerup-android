@@ -31,4 +31,9 @@ public class GameOverActivity extends Activity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
+    }
 }
