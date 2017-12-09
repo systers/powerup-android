@@ -16,10 +16,15 @@ public class GameOverActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
+    
+    TextView karmaPoints;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_game);
+        karmaPoints = (TextView) findViewById(R.id.karma_points);
+        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override
