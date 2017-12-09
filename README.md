@@ -4,12 +4,12 @@ PowerUp is a female empowerment educational mobile game app that will allow youn
 and self-esteem by navigating the life of their avatar!
 
 ## Setup for Developers
-1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS
-1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" 
-1. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality
-1. Clone the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
+1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on [Linux, Windows and Mac.](/READMEscreenshots/itWorksOn.png) Download the correct version for your OS
+1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking ["Fork"](/READMEscreenshots/fork.png) 
+1. If you are working on Windows, [download](/READMEscreenshots/GitBash.png) [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality
+1. [Clone](/READMEscreenshots/clone.png) the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
 1. Initialize Git. `git init`
-1. Open the project with Android Studio 
+1. Open the project with [Android Studio](/READMEscreenshots/AndroidStudio.png) 
 
 ## Configure remotes
 When a repository is cloned, it has a default remote called `origin` that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you should add another remote named `upstream`:
@@ -22,7 +22,7 @@ When a repository is cloned, it has a default remote called `origin` that points
 
    `git remote add upstream https://github.com/systers/powerup-android.git`
   
-1. Run `git remote -v` to check the status, you should see something like the following:
+1. Run `git remote -v` to check the status, you should see something like the [following:](/READMEscreenshots/following.png)
 
   > origin    https://github.com/YOUR_USERNAME/powerup-android.git (fetch)
   
