@@ -21,7 +21,9 @@
         android:textColor="@color/powerup_black"
         android:gravity="top"
         android:textSize="@dimen/game_text_size"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/game_title_margin"
+        android:layout_marginTop="@dimen/game_title_margin"/>
 
 
     <Button
