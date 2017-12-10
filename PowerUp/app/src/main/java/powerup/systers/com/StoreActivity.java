@@ -21,6 +21,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import powerup.systers.com.datamodel.SessionHistory;
@@ -217,23 +218,25 @@ public class StoreActivity extends AppCompatActivity {
         List<StoreItem> storeClothes = new ArrayList<>();
         List<StoreItem> storeAccessories = new ArrayList<>();
 
+        for (int i = 0; i < PowerUpUtils.HAIR_IMAGES.length; i++) {
+            StoreItem item = new StoreItem(PowerUpUtils.HAIR_POINTS_TEXTS[i], PowerUpUtils.HAIR_IMAGES[i]);
+            storeHair.add(item);
+        }
+        Collections.sort(storeHair);
+        for (int i = 0; i < PowerUpUtils.CLOTHES_IMAGES.length; i++) {
+            StoreItem item = new StoreItem(PowerUpUtils.CLOTHES_POINTS_TEXTS[i], PowerUpUtils.CLOTHES_IMAGES[i]);
+            storeClothes.add(item);
+        }
+        Collections.sort(storeClothes);
+        for (int i = 0; i < PowerUpUtils.ACCESSORIES_IMAGES.length; i++) {
+            StoreItem item = new StoreItem(PowerUpUtils.ACCESSORIES_POINTS_TEXTS[i], PowerUpUtils.ACCESSORIES_IMAGES[i]);
+            storeAccessories.add(item);
+        }
+        Collections.sort(storeAccessories);
+        
         allDataSet.add(storeHair);
         allDataSet.add(storeClothes);
         allDataSet.add(storeAccessories);
-
-
-        for (int i = 0; i < PowerUpUtils.HAIR_IMAGES.length; i++) {
-            StoreItem item = new StoreItem(PowerUpUtils.HAIR_POINTS_TEXTS[i], PowerUpUtils.HAIR_IMAGES[i]);
-            allDataSet.get(0).add(item);
-        }
-        for (int i = 0; i < PowerUpUtils.CLOTHES_IMAGES.length; i++) {
-            StoreItem item = new StoreItem(PowerUpUtils.CLOTHES_POINTS_TEXTS[i], PowerUpUtils.CLOTHES_IMAGES[i]);
-            allDataSet.get(1).add(item);
-        }
-        for (int i = 0; i < PowerUpUtils.ACCESSORIES_IMAGES.length; i++) {
-            StoreItem item = new StoreItem(PowerUpUtils.ACCESSORIES_POINTS_TEXTS[i], PowerUpUtils.ACCESSORIES_IMAGES[i]);
-            allDataSet.get(2).add(item);
-        }
     }
 
     public int calculatePosition(int position) {
