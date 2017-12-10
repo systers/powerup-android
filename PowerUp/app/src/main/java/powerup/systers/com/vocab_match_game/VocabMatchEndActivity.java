@@ -40,6 +40,7 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         getmDbHandler().setCompletedScenario(-3);
+        MapActivity.librarySetEnabled = true;
     }
     
     public DatabaseHandler getmDbHandler() {

@@ -52,6 +52,7 @@ public class ProsAndConsActivity extends AppCompatActivity {
             setmDbHandler(new DatabaseHandler(this));
             getmDbHandler().open();
             getmDbHandler().setCompletedScenario(-1);
+            MapActivity.hospitalSetEnabled = true;
         }
     }
     
