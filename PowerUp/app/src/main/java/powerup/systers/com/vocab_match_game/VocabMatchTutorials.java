@@ -7,16 +7,21 @@ import android.view.View;
 import android.widget.ImageView;
 
 import powerup.systers.com.R;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class VocabMatchTutorials extends AppCompatActivity {
 
     ImageView tutorialView;
     int curTutorialImage;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setmDbHandler(new DatabaseHandler(this));
+        getmDbHandler().open();
+        getmDbHandler().resetCompleted(6);
         setContentView(R.layout.activity_vocab_match_tutorials);
         tutorialView = (ImageView) findViewById(R.id.tut);
         curTutorialImage = 1;
@@ -33,5 +38,13 @@ public class VocabMatchTutorials extends AppCompatActivity {
                 }
             }
         });
+    }
+    
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }

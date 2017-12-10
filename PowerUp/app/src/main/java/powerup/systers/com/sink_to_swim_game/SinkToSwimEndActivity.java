@@ -8,10 +8,13 @@ import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimEndActivity extends AppCompatActivity {
 
+    private DatabaseHandler mDbHandler;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +35,16 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         Intent intent = new Intent(SinkToSwimEndActivity.this, GameOverActivity.class);
         finish();
         startActivityForResult(intent, 0);
+        setmDbHandler(new DatabaseHandler(this));
+        getmDbHandler().open();
+        getmDbHandler().setCompletedScenario(-2);
+    }
+    
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }
