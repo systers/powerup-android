@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
 
     public TextView scoreView, correctView, wrongView;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +37,16 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
         finish();
         startActivity(intent);
+        setmDbHandler(new DatabaseHandler(this));
+        getmDbHandler().open();
+        getmDbHandler().setCompletedScenario(-3);
+    }
+    
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }

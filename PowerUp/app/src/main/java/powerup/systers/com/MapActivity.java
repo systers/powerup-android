@@ -22,6 +22,10 @@ import powerup.systers.com.powerup.PowerUpUtils;
 public class MapActivity extends Activity {
 
     private DatabaseHandler mDbHandler;
+    public static boolean schoolSetEnabled = false;
+    public static boolean hospitalSetEnabled = false;
+    public static boolean librarySetEnabled = false;
+    
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -103,15 +107,15 @@ public class MapActivity extends Activity {
         });
 
         //changes the Map building's greyscale color and locks according to the scenarios completions
-        if (getmDbHandler().getScenarioFromID(4).getCompleted() == 1){
+        if (getmDbHandler().getScenarioFromID(4).getCompleted() == 1 || schoolSetEnabled){
             schoolBuilding.setImageDrawable(getResources().getDrawable(R.drawable.school_colored));
             school.setEnabled(true);
         }
-        if (getmDbHandler().getScenarioFromID(5).getCompleted() == 1){
+        if (getmDbHandler().getScenarioFromID(5).getCompleted() == 1 || hospitalSetEnabled){
             hospitalBuilding.setImageDrawable(getResources().getDrawable(R.drawable.hospital_colored));
             hospital.setEnabled(true);
         }
-        if (getmDbHandler().getScenarioFromID(6).getCompleted() == 1){
+        if (getmDbHandler().getScenarioFromID(6).getCompleted() == 1 || librarySetEnabled){
             libraryBuilding.setImageDrawable(getResources().getDrawable(R.drawable.library_colored));
             library.setEnabled(true);
         }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class ProsAndConsActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class ProsAndConsActivity extends AppCompatActivity {
     public int completedRounds;
     public int score;
     public TextView proOne, proTwo, conOne;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,17 @@ public class ProsAndConsActivity extends AppCompatActivity {
             Intent intent = new Intent(ProsAndConsActivity.this, ScenarioOverActivity.class);
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
             startActivity(intent);
+            setmDbHandler(new DatabaseHandler(this));
+            getmDbHandler().open();
+            getmDbHandler().setCompletedScenario(-1);
         }
     }
+    
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
 
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
+    }
 }
