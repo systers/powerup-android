@@ -130,7 +130,7 @@
 
     <TextView
         android:id="@+id/questionView"
-        android:hint="Question"
+        android:hint="@string/question"
         android:layout_marginLeft="20dp"
         android:layout_width="@dimen/question_view_width"
         android:layout_height="wrap_content"

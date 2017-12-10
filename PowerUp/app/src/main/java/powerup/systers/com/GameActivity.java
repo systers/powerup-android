@@ -20,7 +20,7 @@ import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
-@SuppressLint("NewApi")
+@SuppressLint(getResources().getString(R.string.supress_name))
 public class GameActivity extends Activity {
 
     public static Activity gameActivityInstance;

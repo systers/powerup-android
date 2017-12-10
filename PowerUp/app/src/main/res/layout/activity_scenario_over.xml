@@ -151,7 +151,7 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/relativeLayout3"
         android:layout_toRightOf="@+id/relativeLayout3"
-        android:text="Scenario description"
+        android:text="@string/scenario_description"
         android:textColor="@color/powerup_black"
         android:textSize="@dimen/back_button_textsize" />
 
@@ -184,7 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:hint="points"
+        android:hint="@string/points"
         android:textColor="@color/powerup_black"
         android:textSize="@dimen/back_button_textsize" />
 

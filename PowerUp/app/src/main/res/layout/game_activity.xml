@@ -143,7 +143,7 @@
         android:layout_marginTop="@dimen/question_view_margin_top"
         android:background="@android:color/transparent"
         android:ems="@integer/text_view_ems"
-        android:hint="Question"
+        android:hint="@string/question"
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
 
