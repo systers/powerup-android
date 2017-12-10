@@ -4,7 +4,7 @@ package powerup.systers.com.datamodel;
  * Created by sachinaggarwal on 20/08/17.
  */
 
-public class StoreItem {
+public class StoreItem implements Comparable<StoreItem>{
 
     public String points;
     public int imageId;
@@ -12,5 +12,9 @@ public class StoreItem {
     public StoreItem(String points, int imageId){
         this.points = points;
         this.imageId = imageId;
+    }
+
+    public int compareTo(StoreItem other){
+        return Integer.parseInt(points) - Integer.parseInt(other.points);
     }
 }
