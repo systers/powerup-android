@@ -157,16 +157,22 @@ public class GameActivity extends Activity {
                             updateQA();
                         } else if (answers.get(position).getNextQuestionID() == -1) {
                             updatePoints(position);
+                            startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-1);
+                            MapActivity.schoolSetEnabled = true; //so that the location is unlocked on the map if user leaves before playing minigame
                         } else if (answers.get(position).getNextQuestionID() == -2) {
                             updatePoints(position);
+                            startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-2);
+                            MapActivity.librarySetEnabled = true;
                         } else if (answers.get(position).getNextQuestionID() == -3){
                             updatePoints(position);
+                            startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-3);
+                            MapActivity.hospitalSetEnabled = true;
                         }
                         else {
                             if (SessionHistory.currSessionID == -1) {
@@ -234,15 +240,7 @@ public class GameActivity extends Activity {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
-                } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
-
         }
 
     }

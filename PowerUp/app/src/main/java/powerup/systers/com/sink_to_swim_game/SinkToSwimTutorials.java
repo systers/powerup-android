@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import powerup.systers.com.R;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimTutorials extends AppCompatActivity {
@@ -14,10 +15,14 @@ public class SinkToSwimTutorials extends AppCompatActivity {
     ImageView tutorialView;
     int curTutorialImage;
     ImageView startButton;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setmDbHandler(new DatabaseHandler(this));
+        getmDbHandler().open();
+        getmDbHandler().resetCompleted(7);
         setContentView(R.layout.activity_sink_to_swim_tutorials);
         tutorialView = (ImageView) findViewById(R.id.tut);
         startButton = (ImageView) findViewById(R.id.start_button);
@@ -49,5 +54,13 @@ public class SinkToSwimTutorials extends AppCompatActivity {
                 }
             }
         });
+    }
+    
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }
