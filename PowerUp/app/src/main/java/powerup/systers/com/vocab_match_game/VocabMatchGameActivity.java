@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 
@@ -141,6 +142,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
                     Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
                     intent.putExtra(PowerUpUtils.SCORE,score);
+                    SessionHistory.totalPoints += score;
                     finish();
                     startActivity(intent);
                 }
