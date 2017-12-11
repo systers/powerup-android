@@ -230,6 +230,9 @@ public class AvatarRoomActivity extends Activity {
                 SessionHistory.totalPoints = 0;    //reset the points stored
                 SessionHistory.currSessionID = 1;
                 SessionHistory.currScenePoints = 0;
+                MapActivity.schoolSetEnabled = false;
+                MapActivity.hospitalSetEnabled = false;
+                MapActivity.librarySetEnabled = false;
 
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarRoomActivity.this);
                 boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
