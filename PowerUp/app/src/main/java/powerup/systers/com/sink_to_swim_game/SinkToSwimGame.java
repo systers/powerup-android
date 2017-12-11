@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -191,6 +192,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         if (view == findViewById(R.id.true_option)) {
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
                 score += 1;
+                SessionHistory.currScenePoints ++;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_right));
@@ -201,6 +203,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         } else if (view == findViewById(R.id.false_option)) {
             if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "F") {
                 score += 1;
+                SessionHistory.currScenePoints ++;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_right));

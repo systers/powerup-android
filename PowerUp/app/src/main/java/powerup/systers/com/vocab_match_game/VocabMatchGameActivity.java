@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 
@@ -116,6 +117,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     String tileText = PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile];
                     if (tileText.equals(boardText)) {
                         score++;
+                        SessionHistory.currScenePoints ++;
                         scoreView.setText("" + score);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {
