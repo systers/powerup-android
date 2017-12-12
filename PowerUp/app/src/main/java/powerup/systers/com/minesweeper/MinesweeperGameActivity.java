@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.media.tv.TvInputService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -230,6 +232,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      */
     public void continuePressed(View view) {
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
+        SessionHistory.totalPoints += score;
         session.saveData(score, gameRound);
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
