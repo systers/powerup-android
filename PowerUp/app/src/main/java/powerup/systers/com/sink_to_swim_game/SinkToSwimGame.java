@@ -118,6 +118,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void gameEnd() {
         countDownTimer.cancel();
         Intent intent = new Intent(SinkToSwimGame.this, SinkToSwimEndActivity.class);
+        SessionHistory.totalPoints += score;
         intent.putExtra(PowerUpUtils.SCORE,score);
         intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
         intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
