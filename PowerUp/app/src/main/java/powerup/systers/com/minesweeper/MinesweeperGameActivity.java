@@ -230,6 +230,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      */
     public void continuePressed(View view) {
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
+        SessionHistory.totalPoints += score;
         session.saveData(score, gameRound);
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
