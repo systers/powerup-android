@@ -60,4 +60,7 @@
     <string name="about_text"><b>About</b></string>
     <string name="continue_text"><b>Continue</b></string>
     <string name="replay"><b>Replay</b></string>
+
+    <string name="supress_name">"NewApi"</string>
+    <string name="current_scene">"Current Scene: "</string>
 </resources>
