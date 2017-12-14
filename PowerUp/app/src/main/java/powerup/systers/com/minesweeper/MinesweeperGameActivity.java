@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -139,6 +140,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
+        SessionHistory.currScenePoints ++;
         scoreTextView.setText("Score: " + score);
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_out);
         scoreTextView.startAnimation(animation);
