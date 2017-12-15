@@ -6,14 +6,19 @@ and self-esteem by navigating the life of their avatar!
 ## Setup for Developers
 1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS. If you are using Android Studio 3.0 use these resources(https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html / https://developer.android.com/studio/releases/gradle-plugin.html) 
 2. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" 
+
 [Forking instructions](https://github.com/Rosemarievandeven/powerup-android/blob/develop/screenshots/Forking.png)
 3. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality
+
 [Git Bash download instructions](https://github.com/Rosemarievandeven/powerup-android/blob/develop/screenshots/DownloadGitBash.png)
 4. Clone the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
+
 [Cloning instructions](https://github.com/Rosemarievandeven/powerup-android/blob/develop/screenshots/Cloning%26init.png)
 5. Initialize Git. `git init`
+
 [Initializing instructions](https://github.com/Rosemarievandeven/powerup-android/blob/develop/screenshots/Cloning%26init.png)
 6. Open the project with Android Studio 
+
 [Opening in Android Studio instructions](https://github.com/Rosemarievandeven/powerup-android/blob/develop/screenshots/OpenAndroidstudio.png)
 7. Fetch the latest version of code from branch "GSoC17".
 
