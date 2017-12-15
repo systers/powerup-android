@@ -36,6 +36,7 @@ public class MapActivity extends Activity {
                 intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
                 startActivityForResult(intent, 0);
             }
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         }}
     };
@@ -91,6 +92,7 @@ public class MapActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MapActivity.this, StoreActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -99,6 +101,7 @@ public class MapActivity extends Activity {
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(MapActivity.this,StartActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 

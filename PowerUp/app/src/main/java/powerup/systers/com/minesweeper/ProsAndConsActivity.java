@@ -48,6 +48,7 @@ public class ProsAndConsActivity extends AppCompatActivity {
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
             startActivity(intent);
         }
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
 }

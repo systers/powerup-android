@@ -49,6 +49,7 @@ public class StartActivity extends Activity {
                 builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -74,7 +75,7 @@ public class StartActivity extends Activity {
                 } else {
                     startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));
                 }
-
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -83,6 +84,7 @@ public class StartActivity extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
