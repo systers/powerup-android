@@ -27,6 +27,7 @@ public class VocabMatchTutorials extends AppCompatActivity {
                     Intent intent = new Intent(VocabMatchTutorials.this,VocabMatchGameActivity.class);
                     finish();
                     startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_MATCH_TUTS[curTutorialImage]));
                     curTutorialImage++;
