@@ -21,6 +21,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import powerup.systers.com.datamodel.SessionHistory;
@@ -234,6 +236,20 @@ public class StoreActivity extends AppCompatActivity {
             StoreItem item = new StoreItem(PowerUpUtils.ACCESSORIES_POINTS_TEXTS[i], PowerUpUtils.ACCESSORIES_IMAGES[i]);
             allDataSet.get(2).add(item);
         }
+
+        sortStoreItem(storeHair);
+        sortStoreItem(storeClothes);
+        sortStoreItem(storeAccessories);
+    }
+
+    private void sortStoreItem(List<StoreItem> list) {
+        Collections.sort(list, new Comparator<StoreItem>() {
+            public int compare(StoreItem storeItem1, StoreItem storeItem2) {
+                Long idea1 = Long.valueOf(storeItem1.points);
+                Long idea2 = Long.valueOf(storeItem2.points);
+                return idea1.compareTo(idea2);
+            }
+        });
     }
 
     public int calculatePosition(int position) {
