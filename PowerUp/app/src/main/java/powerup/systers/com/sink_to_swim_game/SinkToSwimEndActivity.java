@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -28,6 +29,13 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         wrongView.setText(""+wrongAnswers);
     }
 
+    @Override
+     public void onBackPressed() {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
     public void continuePressed(View view){
         Intent intent = new Intent(SinkToSwimEndActivity.this, GameOverActivity.class);
         finish();

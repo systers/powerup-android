@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -50,4 +51,11 @@ public class ProsAndConsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+     public void onBackPressed() {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -286,5 +286,12 @@ public class SinkToSwimGame extends AppCompatActivity {
         countDownTimer.cancel();
         countDownTimer = null;
         super.onPause();
+    }
+    @Override
+     public void onBackPressed() {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

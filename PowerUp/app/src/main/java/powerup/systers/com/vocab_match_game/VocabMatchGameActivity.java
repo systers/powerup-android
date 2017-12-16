@@ -7,9 +7,9 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -61,6 +62,13 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         initialSetUp();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
     public void initialSetUp() {
         tv1.setText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[0]);
         tv1.setPosition(0);
