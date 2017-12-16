@@ -61,6 +61,7 @@ public class StoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(StoreActivity.this,MapActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 

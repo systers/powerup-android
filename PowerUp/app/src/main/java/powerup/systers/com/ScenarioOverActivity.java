@@ -53,6 +53,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -64,6 +65,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new GameActivity().gameActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
@@ -85,6 +87,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 new GameActivity().gameActivityInstance.finish();
                 scenarioOverActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
