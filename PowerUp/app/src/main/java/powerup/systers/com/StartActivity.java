@@ -16,6 +16,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
@@ -88,6 +89,11 @@ public class StartActivity extends Activity {
 
     }
 
+    @Override
+     public void onBackPressed() {
+        ActivityCompat.finishAffinity(this);
+        System.exit(0);
+    }
     @Override
     protected void onResume() {
         super.onResume();

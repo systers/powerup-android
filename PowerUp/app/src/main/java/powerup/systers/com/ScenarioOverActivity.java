@@ -62,8 +62,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GameActivity().gameActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                finish();
             }
         });
         if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
@@ -82,9 +82,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 DatabaseHandler dbHandler = new DatabaseHandler(ScenarioOverActivity.this);
                 dbHandler.resetCompleted(SessionHistory.currSessionID);
                 dbHandler.resetReplayed(SessionHistory.currSessionID);
-                new GameActivity().gameActivityInstance.finish();
                 scenarioOverActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                finish();
             }
         });
     }
@@ -94,8 +94,10 @@ public class ScenarioOverActivity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        new GameActivity().gameActivityInstance.finish();
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     public DatabaseHandler getmDbHandler() {
