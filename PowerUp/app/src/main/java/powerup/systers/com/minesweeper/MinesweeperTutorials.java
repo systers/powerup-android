@@ -27,6 +27,7 @@ public class MinesweeperTutorials extends AppCompatActivity {
                     Intent intent = new Intent(MinesweeperTutorials.this,MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, true);
                     finish();
                     startActivity(intent);
+                    overridePendingTransition(R.animator.intent_fade_in, R.animator.intent_fade_out);
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.MINES_TUTS[curTutorialImage]));
                     curTutorialImage++;
