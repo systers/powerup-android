@@ -212,7 +212,7 @@ public class SinkToSwimGame extends AppCompatActivity {
 
         questionView.setText("");
         showNextQuestion();
-        scoreView.setText("Score: " + score);
+        scoreView.setText(getString(R.string.score) + score);
     }
 
     /**
