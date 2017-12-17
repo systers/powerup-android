@@ -58,6 +58,7 @@ public class GameActivity extends Activity {
 
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+            overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
@@ -218,6 +219,7 @@ public class GameActivity extends Activity {
                     Intent intent = new Intent(GameActivity.this, MapActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, 0);
+                    overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
                     getmDbHandler()
                             .setReplayedScenario(scene.getScenarioName());
                     goToMap.setAlpha((float) 0.0);
@@ -234,13 +236,17 @@ public class GameActivity extends Activity {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
+                    overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
                 } else if (type == -1) {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
+                    overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
                 } else if (type == -2) {
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
+                    overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
                 } else if (type == -3) {
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
+                    overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
                 }
 
         }
