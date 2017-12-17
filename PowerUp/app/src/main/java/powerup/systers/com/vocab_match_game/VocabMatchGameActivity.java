@@ -143,6 +143,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     intent.putExtra(PowerUpUtils.SCORE,score);
                     finish();
                     startActivity(intent);
+                    overridePendingTransition(R.animator.custom_transition_fade_in, R.animator.custom_transition_fade_out);
                 }
 
             }
