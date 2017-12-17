@@ -123,6 +123,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
         finish();
         startActivity(intent);
+        overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
     }
 
     /**

@@ -29,12 +29,15 @@ public class MapActivity extends Activity {
             if (v.isEnabled()){
             if (getmDbHandler().setSessionId(getScenarioName(scenarioChooser.getId()))) {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
+                overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
             } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
                 startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
+                overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
             } else {
                 Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
                 intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
                 startActivityForResult(intent, 0);
+                overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
             }
             finish();
         }}
@@ -91,6 +94,7 @@ public class MapActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MapActivity.this, StoreActivity.class));
+                overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
             }
         });
 
@@ -99,6 +103,7 @@ public class MapActivity extends Activity {
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(MapActivity.this,StartActivity.class));
+                overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
             }
         });
 
