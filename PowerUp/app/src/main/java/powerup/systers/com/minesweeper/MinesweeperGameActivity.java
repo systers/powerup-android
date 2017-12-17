@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -230,6 +231,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      */
     public void continuePressed(View view) {
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
+        SessionHistory.totalPoints += score;
+        SessionHistory.currScenePoints += score;
         session.saveData(score, gameRound);
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
