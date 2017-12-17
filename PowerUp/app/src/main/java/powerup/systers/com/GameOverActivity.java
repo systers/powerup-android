@@ -31,4 +31,18 @@ public class GameOverActivity extends Activity {
             }
         });
     }
+
+    /**
+     * Goes back to the map when user presses back button
+     */
+    @Override
+    public void onBackPressed(){
+        // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
+        // clears the activities that were created after the found instance of the required activity
+        startActivity(
+                new Intent(GameOverActivity.this, MapActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        );
+        finish();
+    }
 }
