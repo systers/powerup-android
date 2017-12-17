@@ -35,5 +35,6 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
         finish();
         startActivity(intent);
+        overridePendingTransition(R.animator.intent_fade_in, R.animator.intent_fade_out);
     }
 }
