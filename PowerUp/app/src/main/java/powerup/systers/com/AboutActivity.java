@@ -2,6 +2,8 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.transition.ChangeBounds;
 import android.view.View;
 import android.widget.TextView;
 
@@ -69,6 +71,7 @@ public class AboutActivity extends Activity {
 
     public void pressHomeButton(View view){
         finish();
+        overridePendingTransition(R.animator.custom_transition_fade_in, R.animator.custom_transition_fade_out);
     }
 
     @Override
