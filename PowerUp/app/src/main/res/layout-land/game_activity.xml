@@ -20,6 +20,8 @@
         android:hint="@string/pgame_scenario_hint"
         android:textColor="@color/powerup_black"
         android:gravity="top"
+        android:layout_marginTop="@dimen/scenario_description_topMargin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:textSize="@dimen/game_text_size"/>
 
 
