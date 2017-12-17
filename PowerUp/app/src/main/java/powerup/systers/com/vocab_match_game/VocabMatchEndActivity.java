@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
 
@@ -35,5 +37,19 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
         finish();
         startActivity(intent);
+    }
+
+    /**
+     * Goes back to the map when user presses back button
+     */
+    @Override
+    public void onBackPressed(){
+        // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
+        // clears the activities that were created after the found instance of the required activity
+        startActivity(
+                new Intent(VocabMatchEndActivity.this, MapActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        );
+        finish();
     }
 }
