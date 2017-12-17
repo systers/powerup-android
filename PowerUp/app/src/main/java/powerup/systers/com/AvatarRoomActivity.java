@@ -240,7 +240,7 @@ public class AvatarRoomActivity extends Activity {
                 }
                 finish();
                 startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
-
+                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
             }
         });
         getmDbHandler().close();
