@@ -19,7 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -275,6 +277,19 @@ public class SinkToSwimGame extends AppCompatActivity {
                 }
             }.start();
         super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goHome();
+    }
+
+    public void goHome(){
+        Intent intent =  new Intent(SinkToSwimGame.this, MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     /**

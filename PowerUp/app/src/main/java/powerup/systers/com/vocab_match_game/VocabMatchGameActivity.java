@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 
@@ -216,5 +218,18 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 return false;
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goHome();
+    }
+
+    public void goHome(){
+        Intent intent =  new Intent(VocabMatchGameActivity.this, MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

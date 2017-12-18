@@ -382,8 +382,15 @@ public class StoreActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
+        goHome();
+    }
+
+    public void goHome(){
+        Intent intent =  new Intent(StoreActivity.this, MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }
 

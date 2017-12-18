@@ -247,6 +247,19 @@ public class GameActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goHome();
+    }
+
+    public void goHome(){
+        Intent intent =  new Intent(GameActivity.this, MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
     /**
      * Replace the current scenario with another question/answer.
      */

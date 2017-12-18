@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimTutorials extends AppCompatActivity {
@@ -49,5 +51,18 @@ public class SinkToSwimTutorials extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goHome();
+    }
+
+    public void goHome(){
+        Intent intent =  new Intent(SinkToSwimTutorials.this, MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }
