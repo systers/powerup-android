@@ -4,4 +4,5 @@
     <integer name="half_progress">50</integer>
     <integer name="text_view_ems">10</integer>
     <integer name="text_view_rotation">-45</integer>
+    <integer name="text_view_zero">0</integer>
 </resources>
