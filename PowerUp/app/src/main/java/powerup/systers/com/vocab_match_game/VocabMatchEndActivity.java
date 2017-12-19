@@ -10,7 +10,6 @@ import android.widget.TextView;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
-import powerup.systers.com.datamodel.SessionHistory;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
 
@@ -30,8 +29,6 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         scoreView.setText(""+score);
         correctView.setText(""+correctAnswers);
         wrongView.setText(""+wrongAnswers);
-        SessionHistory.totalPoints+=score;
-        SessionHistory.currScenePoints+=score;
     }
 
     public void continuePressed(View view){
