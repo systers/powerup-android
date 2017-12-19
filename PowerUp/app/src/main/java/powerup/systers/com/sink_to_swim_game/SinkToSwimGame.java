@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -118,6 +119,8 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void gameEnd() {
         countDownTimer.cancel();
         Intent intent = new Intent(SinkToSwimGame.this, SinkToSwimEndActivity.class);
+        SessionHistory.totalPoints += score;
+        SessionHistory.currScenePoints += score;
         intent.putExtra(PowerUpUtils.SCORE,score);
         intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
         intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
