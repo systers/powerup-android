@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import powerup.systers.com.powerup.PowerUpUtils;
+
 public class AboutActivity extends Activity {
 
     private boolean isAboutGameOpen = false;
@@ -68,7 +70,7 @@ public class AboutActivity extends Activity {
     }
 
     public void pressHomeButton(View view){
-        finish();
+        PowerUpUtils.animateActivity(this, true);
     }
 
     @Override

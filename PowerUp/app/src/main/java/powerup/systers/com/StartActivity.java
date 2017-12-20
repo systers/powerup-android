@@ -23,6 +23,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import powerup.systers.com.powerup.PowerUpUtils;
+
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
@@ -49,6 +51,7 @@ public class StartActivity extends Activity {
                 builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
+                        PowerUpUtils.animateActivity(StartActivity.this, false);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -74,7 +77,7 @@ public class StartActivity extends Activity {
                 } else {
                     startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));
                 }
-
+                PowerUpUtils.animateActivity(StartActivity.this, false);
             }
         });
 
@@ -83,6 +86,7 @@ public class StartActivity extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
+                PowerUpUtils.animateActivity(StartActivity.this, false);
             }
         });
 

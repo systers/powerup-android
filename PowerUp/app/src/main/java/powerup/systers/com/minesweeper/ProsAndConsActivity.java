@@ -48,6 +48,7 @@ public class ProsAndConsActivity extends AppCompatActivity {
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
             startActivity(intent);
         }
+        PowerUpUtils.animateActivity(this, false);
     }
 
 }

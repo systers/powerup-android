@@ -25,8 +25,8 @@ public class VocabMatchTutorials extends AppCompatActivity {
             public void onClick(View v) {
                 if(curTutorialImage == PowerUpUtils.VOCAB_MATCH_TUTS.length){
                     Intent intent = new Intent(VocabMatchTutorials.this,VocabMatchGameActivity.class);
-                    finish();
                     startActivity(intent);
+                    PowerUpUtils.animateActivity(VocabMatchTutorials.this, true);
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_MATCH_TUTS[curTutorialImage]));
                     curTutorialImage++;

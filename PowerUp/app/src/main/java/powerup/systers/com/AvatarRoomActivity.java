@@ -17,6 +17,7 @@ import java.util.Random;
 
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.powerup.PowerUpUtils;
 
 public class AvatarRoomActivity extends Activity {
 
@@ -238,9 +239,8 @@ public class AvatarRoomActivity extends Activity {
                     edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
                     edit.apply();
                 }
-                finish();
                 startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
-
+                PowerUpUtils.animateActivity(AvatarRoomActivity.this, true);
             }
         });
         getmDbHandler().close();

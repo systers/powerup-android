@@ -121,8 +121,8 @@ public class SinkToSwimGame extends AppCompatActivity {
         intent.putExtra(PowerUpUtils.SCORE,score);
         intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
         intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
-        finish();
         startActivity(intent);
+        PowerUpUtils.animateActivity(this, true);
     }
 
     /**
