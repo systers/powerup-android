@@ -82,7 +82,21 @@ public class GameActivity extends Activity {
         ImageView hairImageView = (ImageView) findViewById(R.id.hair_view);
         ImageView clothImageView = (ImageView) findViewById(R.id.dress_view);
         ImageView accessoryImageView = (ImageView) findViewById(R.id.accessory_view);
-
+        goToMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Incase the user move back to map in between a running
+                // Scenario.
+                SessionHistory.totalPoints -= SessionHistory.currScenePoints;
+                // goToMap.setClickable(false);
+                Intent intent = new Intent(GameActivity.this, MapActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(intent, 0);
+                getmDbHandler()
+                        .setReplayedScenario(scene.getScenarioName());
+                goToMap.setAlpha((float) 0.0);
+            }
+        });
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -140,7 +154,7 @@ public class GameActivity extends Activity {
         updateScenario(0);
         updateQA();
         if (scene.getReplayed() == 1) {
-            goToMap.setAlpha((float) 0.0);
+         //   goToMap.setAlpha((float) 0.0);
         }
         // Set the ArrayAdapter as the ListView's adapter.
         mainListView.setAdapter(listAdapter);
@@ -214,7 +228,7 @@ public class GameActivity extends Activity {
                     // Incase the user move back to map in between a running
                     // Scenario.
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                    goToMap.setClickable(false);
+                   // goToMap.setClickable(false);
                     Intent intent = new Intent(GameActivity.this, MapActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, 0);
