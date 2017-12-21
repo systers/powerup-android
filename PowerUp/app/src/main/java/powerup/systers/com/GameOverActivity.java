@@ -28,6 +28,7 @@ public class GameOverActivity extends Activity {
                         MapActivity.class);
                 finish();
                 startActivityForResult(intent, 0);
+                overridePendingTransition(R.animator.fade_in_fast, R.animator.fade_out_fast);
             }
         });
     }
