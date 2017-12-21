@@ -47,6 +47,8 @@
     <string name="points_check">"Not enough points"</string>
     <string name="scenario_description">Scenario description</string>
     <string name="points">points</string>
+    <string name="titlemsg">Alert</string>
+    <string name="alerthometext">If you migrate to map, current scene karma points will be lost</string>
     <string name="question">Question</string>
     <string name="about_title">About</string>
     <string name="about_game_section_title"><![CDATA[> The Game]]></string>
@@ -67,4 +69,5 @@
     <string name="start_dialog_message">If you start a new game, previous data and all karma points will be lost !</string>
     <string name="start_title_message">Are you Sure ?</string>
     <string name="start_confirm_message">Create new Avatar</string>
+    <string name="go2map">Go to map</string>
 </resources>
