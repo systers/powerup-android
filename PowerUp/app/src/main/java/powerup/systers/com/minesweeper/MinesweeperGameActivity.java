@@ -231,9 +231,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     public void continuePressed(View view) {
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
         session.saveData(score, gameRound);
-        finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
-        overridePendingTransition(R.animator.fade_in, R.animator.fade_out);
+        PowerUpUtils.animateActivity(MinesweeperGameActivity.this, true);
     }
 
 }

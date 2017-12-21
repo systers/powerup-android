@@ -25,8 +25,8 @@ public class MinesweeperTutorials extends AppCompatActivity {
             public void onClick(View v) {
                 if(curTutorialImage == PowerUpUtils.MINES_TUTS.length){
                     Intent intent = new Intent(MinesweeperTutorials.this,MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, true);
-                    finish();
                     startActivity(intent);
+                    PowerUpUtils.animateActivity(MinesweeperTutorials.this, true);
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.MINES_TUTS[curTutorialImage]));
                     curTutorialImage++;

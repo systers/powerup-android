@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import powerup.systers.com.powerup.PowerUpUtils;
+
 public class GameOverActivity extends Activity {
 
     /**
@@ -26,8 +28,8 @@ public class GameOverActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(GameOverActivity.this,
                         MapActivity.class);
-                finish();
                 startActivityForResult(intent, 0);
+                PowerUpUtils.animateActivity(GameOverActivity.this, true);
             }
         });
     }

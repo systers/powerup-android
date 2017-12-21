@@ -58,6 +58,7 @@ public class GameActivity extends Activity {
 
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+            PowerUpUtils.animateActivity(this, false);
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
@@ -218,6 +219,7 @@ public class GameActivity extends Activity {
                     Intent intent = new Intent(GameActivity.this, MapActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, 0);
+                    PowerUpUtils.animateActivity(GameActivity.this, false);
                     getmDbHandler()
                             .setReplayedScenario(scene.getScenarioName());
                     goToMap.setAlpha((float) 0.0);
@@ -242,7 +244,7 @@ public class GameActivity extends Activity {
                 } else if (type == -3) {
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
-
+                PowerUpUtils.animateActivity(this, false);
         }
 
     }

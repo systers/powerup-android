@@ -1,5 +1,7 @@
 package powerup.systers.com.powerup;
 
+import android.app.Activity;
+
 import powerup.systers.com.R;
 
 /**
@@ -55,5 +57,17 @@ public class PowerUpUtils {
 
     public static final int[] ACCESSORIES_IMAGES = {R.drawable.acc1,R.drawable.acc2,R.drawable.acc3,R.drawable.acc4};
     public static final String[] ACCESSORIES_POINTS_TEXTS = {"10","5","5","10"};
+
+    /**
+     * This method helps reduce redundancy by packaging the animations of transitions between activities and the
+     * finish() method. It also saves debug time since one has to update the animations at a single location.
+     * @param activity Activity transition to be animated
+     * @param close Should we close the activity or not
+     */
+    public static void animateActivity(Activity activity, boolean close){
+        if(close)
+            activity.finish();
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 }
 

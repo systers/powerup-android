@@ -44,8 +44,8 @@ public class SinkToSwimTutorials extends AppCompatActivity {
             public void onClick(View v) {
                 if (startButton.isEnabled()){
                     Intent intent = new Intent(SinkToSwimTutorials.this,SinkToSwimGame.class);
-                    finish();
                     startActivity(intent);
+                    PowerUpUtils.animateActivity(SinkToSwimTutorials.this, true);
                 }
             }
         });

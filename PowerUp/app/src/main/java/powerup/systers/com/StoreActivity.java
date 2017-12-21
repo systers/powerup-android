@@ -59,8 +59,8 @@ public class StoreActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 startActivity(new Intent(StoreActivity.this,MapActivity.class));
+                PowerUpUtils.animateActivity(StoreActivity.this, true);
             }
         });
 

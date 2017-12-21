@@ -33,7 +33,7 @@ public class VocabMatchEndActivity extends AppCompatActivity {
 
     public void continuePressed(View view){
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
-        finish();
         startActivity(intent);
+        PowerUpUtils.animateActivity(this, true);
     }
 }

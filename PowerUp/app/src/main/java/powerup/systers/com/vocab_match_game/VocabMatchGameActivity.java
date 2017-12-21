@@ -141,8 +141,8 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
                     Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
                     intent.putExtra(PowerUpUtils.SCORE,score);
-                    finish();
                     startActivity(intent);
+                    PowerUpUtils.animateActivity(VocabMatchGameActivity.this, true);
                 }
 
             }
