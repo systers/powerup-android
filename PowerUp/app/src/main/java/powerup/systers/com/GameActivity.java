@@ -7,8 +7,12 @@ package powerup.systers.com;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import java.util.ArrayList;
@@ -87,14 +92,32 @@ public class GameActivity extends Activity {
             public void onClick(View v) {
                 // Incase the user move back to map in between a running
                 // Scenario.
-                SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                // goToMap.setClickable(false);
-                Intent intent = new Intent(GameActivity.this, MapActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivityForResult(intent, 0);
-                getmDbHandler()
-                        .setReplayedScenario(scene.getScenarioName());
-                goToMap.setAlpha((float) 0.0);
+                AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+                builder.setTitle(GameActivity.this.getResources().getString(R.string.start_title_message))
+                        .setMessage(getResources().getString(R.string.alerthometext));
+                builder.setPositiveButton(getString(R.string.go2map), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SessionHistory.totalPoints -= SessionHistory.currScenePoints;
+                        // goToMap.setClickable(false);
+                        Intent intent = new Intent(GameActivity.this, MapActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivityForResult(intent, 0);
+                        getmDbHandler()
+                                .setReplayedScenario(scene.getScenarioName());
+                        goToMap.setAlpha((float) 0.0);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+                drawable.setAlpha(200);
+                dialog.getWindow().setBackgroundDrawable(drawable);
+                dialog.show();
+
             }
         });
         String eyeImageName = getResources().getString(R.string.eye);
@@ -222,21 +245,7 @@ public class GameActivity extends Activity {
         if (scene.getReplayed() == 0) {
             // goToMap Mechanics
             goToMap.setAlpha((float) 1.0);
-            goToMap.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Incase the user move back to map in between a running
-                    // Scenario.
-                    SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                   // goToMap.setClickable(false);
-                    Intent intent = new Intent(GameActivity.this, MapActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivityForResult(intent, 0);
-                    getmDbHandler()
-                            .setReplayedScenario(scene.getScenarioName());
-                    goToMap.setAlpha((float) 0.0);
-                }
-            });
+
         }
         SessionHistory.currQID = scene.getFirstQuestionID();
         scenarioNameTextView.setText(scene.getScenarioName());
