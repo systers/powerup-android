@@ -267,4 +267,18 @@ public class GameActivity extends Activity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
+
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToHome();
+    }
+
+    public void goToHome(){
+        startActivity(new Intent(GameActivity.this, MapActivity.class));
+    }
+
 }

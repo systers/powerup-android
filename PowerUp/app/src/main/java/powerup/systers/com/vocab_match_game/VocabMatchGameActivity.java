@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -216,5 +217,17 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 return false;
             }
         }
+    }
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToHome();
+    }
+
+    public void goToHome(){
+        startActivity(new Intent(VocabMatchGameActivity.this, MapActivity.class));
     }
 }
