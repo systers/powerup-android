@@ -100,6 +100,12 @@ public class ScenarioOverActivity extends AppCompatActivity {
 
     public void goToHome(){
         startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
+        goToHomeScreen();
+//        new GameActivity().gameActivityInstance.finish();
+    }
+
+    private void goToHomeScreen(){
+        startActivity(new Intent(ScenarioOverActivity.this, StartActivity.class));
     }
 
     public DatabaseHandler getmDbHandler() {
