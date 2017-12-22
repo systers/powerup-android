@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -35,5 +36,17 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
         finish();
         startActivity(intent);
+    }
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToHome();
+    }
+
+    public void goToHome(){
+        startActivity(new Intent(VocabMatchEndActivity.this, MapActivity.class));
     }
 }

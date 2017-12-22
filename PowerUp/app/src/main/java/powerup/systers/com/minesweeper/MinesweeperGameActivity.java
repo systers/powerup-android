@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -234,6 +235,18 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
         overridePendingTransition(R.animator.fade_in, R.animator.fade_out);
+    }
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToHome();
+    }
+
+    public void goToHome(){
+        startActivity(new Intent(MinesweeperGameActivity.this, MapActivity.class));
     }
 
 }

@@ -31,4 +31,16 @@ public class GameOverActivity extends Activity {
             }
         });
     }
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToHome();
+    }
+
+    public void goToHome(){
+        startActivity(new Intent(GameOverActivity.this, MapActivity.class));
+    }
 }

@@ -18,8 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -286,5 +287,18 @@ public class SinkToSwimGame extends AppCompatActivity {
         countDownTimer.cancel();
         countDownTimer = null;
         super.onPause();
+    }
+
+    /**
+     * If the "back" button is pressed, the current situation closes itself.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToHome();
+    }
+
+    public void goToHome(){
+        startActivity(new Intent(SinkToSwimGame.this, MapActivity.class));
     }
 }
