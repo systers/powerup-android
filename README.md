@@ -1,8 +1,6 @@
 # PowerUp - Android
-
 PowerUp is a female empowerment educational mobile game app that will allow young girls to learn about reproductive health 
 and self-esteem by navigating the life of their avatar!
-
 ## Setup for Developers
 1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS
 1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" 
@@ -24,13 +22,13 @@ When a repository is cloned, it has a default remote called `origin` that points
   
 1. Run `git remote -v` to check the status, you should see something like the following:
 
-  > origin    https://github.com/YOUR_USERNAME/powerup-android.git (fetch)
+  	> origin    https://github.com/YOUR_USERNAME/powerup-android.git (fetch)
   
-  > origin    https://github.com/YOUR_USERNAME/powerup-android.git (push)
+  	> origin    https://github.com/YOUR_USERNAME/powerup-android.git (push)
   
-  > upstream  https://github.com/systers/powerup-android.git (fetch)
+  	> upstream  https://github.com/systers/powerup-android.git (fetch)
   
-  > upstream  https://github.com/systers/powerup-android.git (push)
+  	> upstream  https://github.com/systers/powerup-android.git (push)
 
 1. To update your local copy with remote changes, run the following:
 
@@ -61,7 +59,7 @@ When a repository is cloned, it has a default remote called `origin` that points
 Here's the link to the official documentation:
 [Visit Documentation!](http://chetnagsocpowerupandroid.blogspot.in/2015/05/database-design.html)
 
-##Coding Guidelines
+## Coding Guidelines
 1. Don't use magic numbers or hard-coded strings. Put them in dimens.xml or strings.xml
 1. Class names should be in CamelCase. Name activities with names including Activity so it's easier to know what they are.
 1. Include spaces between parameters when you call a method for example: `Intent(MainActivity.this, GameActivity.class)`.
