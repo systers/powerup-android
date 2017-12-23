@@ -33,17 +33,20 @@ public class VocabMatchTests {
 
     VocabMatchGameActivity activity;
 
+    //Setting Up VocabMatchGameActivity
     @Before
     public void setUp() throws Exception {
         activity = Robolectric.setupActivity(VocabMatchGameActivity.class);
     }
 
+    //Checking for Null Exceptions in VocabMatchGameActivity
     @Test
     public void shouldNotBeNull() throws Exception {
 
         assertNotNull(activity);
     }
 
+    //Testing the end of VocabMatchGame when tiles finish
     @Test
     public void vocabEndActivityOnTilesFinished() {
 
@@ -55,9 +58,11 @@ public class VocabMatchTests {
 
         ShadowActivity shadowActivity = Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
+        //Comparing the expected vs the actual Intent
         assertTrue(expectedIntent.filterEquals(actualIntent));
     }
 
+    //Testing the correct position of the text
     @Test
     public void getPositionFromText(){
 
@@ -67,9 +72,11 @@ public class VocabMatchTests {
 
         TextView actual = activity.getPositionFromText("test2");
 
+        //Comparing the expected vs the actual position
         assertEquals(activity.tv2,actual);
     }
 
+    //Testing the Board from the position of the text
     @Test
     public void getBoardFromPosition(){
 
@@ -79,6 +86,7 @@ public class VocabMatchTests {
 
         TextView actual = activity.getBoardFromPosition(2);
 
+        //Comparing the expected vs the actual Board
         assertEquals(activity.tv2,actual);
     }
 }
