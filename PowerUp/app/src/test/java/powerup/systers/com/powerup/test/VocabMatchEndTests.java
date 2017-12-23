@@ -40,6 +40,7 @@ public class VocabMatchEndTests {
     private ActivityController<VocabMatchEndActivity> controller;
     private VocabMatchEndActivity activity;
 
+    //Setting Up VocabMatchEndActivity
     @Before
     public void setUp() {
         controller = Robolectric.buildActivity(VocabMatchEndActivity.class);
@@ -59,12 +60,14 @@ public class VocabMatchEndTests {
     }
 
 
+    //Testing the correct Intent at creat and destroy of the activity
     @Test
     public void createsAndDestroysActivity() {
         createWithIntent(12);
     }
 
 
+    //Testing the correct finish of the activity
     @After
     public void tearDown() {
         controller
@@ -73,6 +76,7 @@ public class VocabMatchEndTests {
                 .destroy();
     }
 
+    //Checking for Null Exceptions in VocabMatchEndActivity
     @Test
     public void shouldNotBeNull() throws Exception {
 
@@ -81,6 +85,7 @@ public class VocabMatchEndTests {
         assertNotNull(activity);
     }
 
+    //Testing the correct score display
     @Test
     public void scoreDisplayedCorrectly(){
 
@@ -88,9 +93,11 @@ public class VocabMatchEndTests {
         createWithIntent(expectedScore);
 
         String actualScore = activity.scoreView.getText().toString();
+        //Comparing the expected vs the actual score
         assertEquals("10",actualScore);
     }
 
+    //Testing the display of the correct answer
     @Test
     public void correctAnswerDisplayedCorrectly(){
 
@@ -98,9 +105,11 @@ public class VocabMatchEndTests {
         createWithIntent(expectedCorrect);
 
         String actualCorrect = activity.correctView.getText().toString();
+        //Comparing the expected vs the actual displayed correct answer
         assertEquals("5",actualCorrect);
     }
 
+    //Testing the display of the wrong answer
     @Test
     public void wrongAnswerDisplayedCorrectly(){
 
@@ -110,9 +119,11 @@ public class VocabMatchEndTests {
         createWithIntent(expectedScore);
 
         String actualWrong = activity.wrongView.getText().toString();
+        //Comparing the expected vs the actual displayed wrong answer
         assertEquals(""+expectedWrong,actualWrong);
     }
 
+    //Testing the launch of the next Activity correctly
     @Test
     public void launchesNextActivityCorrectly(){
         createWithIntent(5);
@@ -124,6 +135,7 @@ public class VocabMatchEndTests {
 
         ShadowActivity shadowActivity = Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
+        //Comparing the expected vs the actual Intent
         assertTrue(expectedIntent.filterEquals(actualIntent));
     }
 }
