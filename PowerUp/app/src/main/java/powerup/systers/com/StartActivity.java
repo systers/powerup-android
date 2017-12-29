@@ -43,24 +43,28 @@ public class StartActivity extends Activity {
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
-                builder.setTitle(context.getResources().getString(R.string.start_title_message))
-                        .setMessage(getResources().getString(R.string.start_dialog_message));
-                builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                ColorDrawable drawable = new ColorDrawable(Color.WHITE);
-                drawable.setAlpha(200);
-                dialog.getWindow().setBackgroundDrawable(drawable);
-                dialog.show();
+                if(hasPreviouslyStarted){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
+                    builder.setTitle(context.getResources().getString(R.string.start_title_message))
+                            .setMessage(getResources().getString(R.string.start_dialog_message));
+                    builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+                    drawable.setAlpha(200);
+                    dialog.getWindow().setBackgroundDrawable(drawable);
+                    dialog.show();
+                } else {
+                    startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
+                }
             }
         });
 
@@ -72,7 +76,19 @@ public class StartActivity extends Activity {
                 if (hasPreviouslyStarted) {
                     startActivity(new Intent(StartActivity.this, MapActivity.class));
                 } else {
-                    startActivity(new Intent(StartActivity.this, AvatarRoomActivity.class));
+                    AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
+                    builder.setTitle(context.getResources().getString(R.string.load_game_first_time_title))
+                            .setMessage(getResources().getString(R.string.load_game_first_time_message));
+                    builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+                    drawable.setAlpha(200);
+                    dialog.getWindow().setBackgroundDrawable(drawable);
+                    dialog.show();
                 }
 
             }
