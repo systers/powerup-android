@@ -238,8 +238,7 @@ public class AvatarRoomActivity extends Activity {
                     edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
                     edit.apply();
                 }
-                finish();
-                startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
+                startActivityForResult(new Intent(AvatarRoomActivity.this, FinalAvatarActivity.class), 0);
 
             }
         });
