@@ -67,4 +67,9 @@
     <string name="start_dialog_message">If you start a new game, previous data and all karma points will be lost !</string>
     <string name="start_title_message">Are you Sure ?</string>
     <string name="start_confirm_message">Create new Avatar</string>
+    <string name="eye_view_description">Eyes of your Avatar</string>
+    <string name="hair_view_description">Hair of your Avatar</string>
+    <string name="skin_view_description">Skin of your Avatar</string>
+    <string name="cloth_view_description">Cloths of your Avatar</string>
+    <string name="accessory_view_description">Accessory of your Avatar</string>
 </resources>

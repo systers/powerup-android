@@ -239,7 +239,7 @@ public class AvatarRoomActivity extends Activity {
                     edit.apply();
                 }
                 finish();
-                startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
+                startActivityForResult(new Intent(AvatarRoomActivity.this, FinalAvatarActivity.class), 0);
 
             }
         });
