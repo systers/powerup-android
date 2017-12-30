@@ -67,4 +67,19 @@
     <string name="start_dialog_message">If you start a new game, previous data and all karma points will be lost !</string>
     <string name="start_title_message">Are you Sure ?</string>
     <string name="start_confirm_message">Create new Avatar</string>
+    <string name="final_avatar_confirm">This is your final avatar! Press continue to start your Journey...</string>
+    <string name="continue_desc">Continue button</string>
+    <string name="back_desc">Back button</string>
+    <string name="skin_left_button">Left arrow button for skin</string>
+    <string name="skin_right_button">Right arrow button for skin</string>
+    <string name="eye_left_button">Left arrow button for eye</string>
+    <string name="eye_right_button">Right arrow button for eye</string>
+    <string name="cloth_left_button">Left arrow button for cloth</string>
+    <string name="cloth_right_button">Right arrow button for cloth</string>
+    <string name="hair_left_button">Left arrow button for hair</string>
+    <string name="hair_right_button">Right arrow button for hair</string>
+    <string name="skin_text">Skin</string>
+    <string name="eye_text">Eyes</string>
+    <string name="cloth_text">Clothes</string>
+    <string name="hair_text">Hair</string>
 </resources>
