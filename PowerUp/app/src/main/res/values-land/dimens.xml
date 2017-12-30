@@ -238,4 +238,8 @@
     <dimen name="replay_marginTop">400dp</dimen>
     <dimen name="replay_marginLeft">180dp</dimen>
     <dimen name="hair_button_marginLeft">100dp</dimen>
+    <dimen name="final_back_button_marginTop">16dp</dimen>
+    <dimen name="final_button_marginLeft">24dp</dimen>
+    <dimen name="final_back_button_length">35dp</dimen>
+    <dimen name="final_title_marginLeft">-50dp</dimen>
 </resources>

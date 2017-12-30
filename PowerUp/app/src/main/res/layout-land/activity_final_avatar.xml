@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/store"
+    tools:context="powerup.systers.com.FinalAvatarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_weight="10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:onClick="goToStart"
+                android:layout_marginStart="@dimen/final_button_marginLeft"
+                android:layout_marginLeft="@dimen/final_button_marginLeft"
+                android:layout_marginTop="@dimen/final_back_button_marginTop"
+                android:layout_width="@dimen/final_back_button_length"
+                android:layout_height="@dimen/final_back_button_length"
+                android:src="@drawable/arrow_left"/>
+
+            <ImageView
+                android:id="@+id/title"
+                android:src="@drawable/final_avatar_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/final_title_marginLeft"
+                android:layout_marginStart="@dimen/final_title_marginLeft"
+                android:layout_toRightOf="@id/back_button"
+                android:layout_toEndOf="@id/back_button"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:baselineAligned="true"
+            android:layout_weight="5.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.3"/>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:contentDescription="@string/skin_view_description"
+                    android:id="@+id/skin_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:contentDescription="@string/cloth_view_description"
+                    android:id="@+id/dress_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:contentDescription="@string/hair"
+                    android:id="@+id/hair_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:contentDescription="@string/eye_view_description"
+                    android:id="@+id/eye_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:contentDescription="@string/accessory_view_description"
+                    android:id="@+id/acc_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.3"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:onClick="goToMap"
+        android:id="@+id/continueButton"
+        android:layout_width="@dimen/continue_width"
+        android:layout_height="@dimen/continue_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/continue_marginBottom"
+        android:alpha="0.9"
+        android:background="@drawable/continue_button"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>
