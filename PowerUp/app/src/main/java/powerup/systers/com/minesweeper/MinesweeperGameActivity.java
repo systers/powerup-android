@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -221,7 +222,18 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             res.setColorFilter(filter);
         }
     }
+    public void goToMap(){
 
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    //function to execute when back button is pressed
+    @Override
+    public void onBackPressed() {
+        goToMap();
+    }
     /**
      * @desc
      * called when continue button is pressed in minesweeper game
