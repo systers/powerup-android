@@ -21,6 +21,7 @@ import powerup.systers.com.db.DatabaseHandler;
 public class AvatarRoomActivity extends Activity {
 
     public Activity avatarRoomInstance;
+    public static boolean newAvatar = true;
     private DatabaseHandler mDbHandler;
     private ImageView eyeAvatar;
     private ImageView skinAvatar;
@@ -54,6 +55,54 @@ public class AvatarRoomActivity extends Activity {
         ImageView hairRight = (ImageView) findViewById(R.id.hair_right);
         ImageView continueButton = (ImageView) findViewById(R.id.continueButtonAvatar);
 
+        if (!newAvatar) {
+            eye = getmDbHandler().getAvatarEye();
+            String eyeImageName = getResources().getString(R.string.eye);
+            eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+            R.drawable ourRID = new R.drawable();
+            java.lang.reflect.Field photoNameField;
+            try {
+                photoNameField = ourRID.getClass().getField(eyeImageName);
+                eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException error) {
+                error.printStackTrace();
+            }
+
+            skin = getmDbHandler().getAvatarSkin();
+            String skinImageName = getResources().getString(R.string.skin);
+            skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
+            try {
+                photoNameField = ourRID.getClass().getField(skinImageName);
+                skinAvatar.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException error) {
+                error.printStackTrace();
+            }
+
+            cloth = getmDbHandler().getAvatarCloth();
+            String clothImageName = getResources().getString(R.string.cloth);
+            clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+            try {
+                photoNameField = ourRID.getClass().getField(clothImageName);
+                clothAvatar.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException error) {
+                error.printStackTrace();
+            }
+
+            hair = getmDbHandler().getAvatarHair();
+            String hairImageName = getResources().getString(R.string.hair);
+            hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+            try {
+                photoNameField = ourRID.getClass().getField(hairImageName);
+                hairAvatar.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException error) {
+                error.printStackTrace();
+            }
+        }
+        
         eyeLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,21 +274,10 @@ public class AvatarRoomActivity extends Activity {
                 getmDbHandler().setAvatarCloth(cloth);
                 getmDbHandler().setPurchasedHair(hair);
                 getmDbHandler().setPurchasedClothes(cloth);
-                getmDbHandler().updateComplete();//set all the complete fields back to 0
-                getmDbHandler().updateReplayed();//set all the replayed fields back to 0
-                SessionHistory.totalPoints = 0;    //reset the points stored
-                SessionHistory.currSessionID = 1;
-                SessionHistory.currScenePoints = 0;
+                newAvatar = false;
 
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarRoomActivity.this);
-                boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
-                if (!hasPreviouslyStarted) {
-                    SharedPreferences.Editor edit = prefs.edit();
-                    edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
-                    edit.apply();
-                }
                 finish();
-                startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
+                startActivity(new Intent(AvatarRoomActivity.this, FinalAvatarActivity.class));
 
             }
         });
