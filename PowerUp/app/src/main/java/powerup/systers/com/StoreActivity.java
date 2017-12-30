@@ -380,10 +380,17 @@ public class StoreActivity extends AppCompatActivity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
+    public void goToMap(){
 
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
     @Override
     public void onBackPressed() {
         finish();
+        goToMap();
         super.onBackPressed();
     }
 }
