@@ -11,4 +11,5 @@
     <color name="correct_answer">#69FF6E</color>
     <color name="wrong_answer">#FF6969</color>
     <color name="score_text">#6EBFE1</color>
+    <color name="final_avatar_text">#5E95AD</color>
 </resources>

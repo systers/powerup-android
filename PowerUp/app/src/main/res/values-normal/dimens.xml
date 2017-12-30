@@ -60,4 +60,10 @@
     <dimen name="replay_marginTop">180dp</dimen>
     <dimen name="replay_marginLeft">110dp</dimen>
     <dimen name="hair_button_marginLeft">100dp</dimen>
+    <dimen name="final_avatar_marginTop">60dp</dimen>
+    <dimen name="final_avatar_textSize">20sp</dimen>
+    <dimen name="back_width">36dp</dimen>
+    <dimen name="back_height">36dp</dimen>
+    <dimen name="back_marginTop">10dp</dimen>
+    <dimen name="back_marginLeft">10dp</dimen>
 </resources>
