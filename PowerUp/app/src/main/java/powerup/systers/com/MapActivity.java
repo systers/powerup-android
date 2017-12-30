@@ -117,7 +117,17 @@ public class MapActivity extends Activity {
         }
 
     }
-
+public void goToStart(){
+        Intent intent = new Intent(this, StartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    //function to execute when back button is pressed
+    @Override
+    public void onBackPressed() {
+goToStart();
+    }
     public DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
