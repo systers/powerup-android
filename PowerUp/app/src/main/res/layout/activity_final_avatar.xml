@@ -12,11 +12,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="10"
             android:orientation="horizontal">
 
@@ -27,7 +22,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/final_avatar_textSize"
                 android:textStyle="bold"
-                android:textColor="@color/final_avatar_text"
+                android:textColor="@color/powerup_blue_green"
                 android:text="@string/final_avatar_confirm"
                 />
 
@@ -37,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="20"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -51,6 +47,7 @@
 
                 <ImageView
                     android:id="@+id/skin_view"
+                    android:contentDescription="@string/skin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/skin1"
@@ -58,12 +55,14 @@
 
                 <ImageView
                     android:id="@+id/dress_view"
+                    android:contentDescription="@string/cloth"
                     android:src="@drawable/dress_avatar1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <ImageView
                     android:id="@+id/hair_view"
+                    android:contentDescription="@string/hair"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/hair1"
@@ -71,6 +70,7 @@
 
                 <ImageView
                     android:id="@+id/eye_view"
+                    android:contentDescription="@string/eye"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/eyes1"
@@ -89,9 +89,11 @@
 
     <ImageView
         android:id="@+id/continueButton"
+        android:contentDescription="@string/continue_desc"
         android:layout_width="@dimen/continue_width"
         android:layout_height="@dimen/continue_height"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/continue_marginBottom"
         android:alpha="0.9"
@@ -100,12 +102,15 @@
 
     <ImageView
         android:id="@+id/backButton"
+        android:contentDescription="@string/back_desc"
         android:layout_width="@dimen/back_width"
         android:layout_height="@dimen/back_height"
         android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="@dimen/back_marginTop"
         android:layout_marginLeft="@dimen/back_marginLeft"
+        android:layout_marginStart="@dimen/back_marginLeft"
         android:alpha="0.9"
         android:background="@drawable/arrow_left"
         android:scaleType="fitXY" />
