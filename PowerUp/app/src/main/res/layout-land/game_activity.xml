@@ -111,4 +111,13 @@
         android:layout_toLeftOf="@id/askerImageView"
         android:gravity="center"/>
 
+    <TextView
+        android:id="@+id/askerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/askerImageView"
+        android:layout_toLeftOf="@+id/continueButtonGoesToMap"
+        android:layout_toStartOf="@+id/continueButtonGoesToMap"
+        android:text="@string/marcello_text"
+        android:textColor="@color/powerup_black" />
 </RelativeLayout>
