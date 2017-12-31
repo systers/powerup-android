@@ -31,4 +31,16 @@ public class GameOverActivity extends Activity {
             }
         });
     }
+    public void goToMap(){
+
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    //function to execute when back button is pressed
+    @Override
+    public void onBackPressed() {
+  goToMap();
+    }
 }
