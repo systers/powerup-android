@@ -17,7 +17,13 @@ import android.widget.ImageView;
 import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
+import powerup.systers.com.powerup.MiniGameSessionManager;
 import powerup.systers.com.powerup.PowerUpUtils;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
+
+import static powerup.systers.com.powerup.MiniGameSessionManager.SINK_TO_SWIM;
+import static powerup.systers.com.powerup.MiniGameSessionManager.VOCAB_MATCH;
 
 public class MapActivity extends Activity {
 
@@ -31,6 +37,10 @@ public class MapActivity extends Activity {
                 startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
             } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
                 startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
+            }  else if (new MiniGameSessionManager(MapActivity.this).isSessionStarted(SINK_TO_SWIM)) {
+               startActivity(new Intent(MapActivity.this, SinkToSwimGame.class));
+            }  else if (new MiniGameSessionManager(MapActivity.this).isSessionStarted(VOCAB_MATCH)) {
+                startActivity(new Intent(MapActivity.this, VocabMatchGameActivity.class));
             } else {
                 Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
                 intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
