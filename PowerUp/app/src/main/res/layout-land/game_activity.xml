@@ -39,7 +39,6 @@
         android:layout_width="@dimen/asker_width"
         android:layout_height="@dimen/asker_height"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:src="@drawable/marco" />
 
 
@@ -88,11 +87,11 @@
 
     <ListView
         android:paddingBottom="@dimen/conversation_margin"
-        android:paddingLeft="@dimen/game_padding_left"
+        android:paddingLeft="20dp"
         android:paddingRight="@dimen/conversation_margin"
         android:id="@+id/mainListView"
-        android:layout_width="@dimen/answer_listview_width"
-        android:layout_height="@dimen/main_list_view_height"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_toRightOf="@id/relativeLayout"
         android:layout_centerVertical="true"
         android:background="@drawable/left_conversation"
@@ -100,15 +99,15 @@
     <TextView
         android:textColor="@color/powerup_black"
         android:id="@+id/questionView"
-        android:layout_width="@dimen/questionview_tv_width"
-        android:textSize="@dimen/game_text_size"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:textSize="15sp"
+        android:layout_height="300dp"
         android:background="@drawable/right_conversation"
         android:hint="@string/question"
-        android:layout_above="@id/mainListView"
-        android:layout_marginTop="@dimen/conversation_margin"
-        android:layout_marginBottom="@dimen/conversation_margin"
         android:layout_toLeftOf="@id/askerImageView"
-        android:gravity="center"/>
+        android:paddingRight="30dp"
+        android:layout_above="@id/mainListView"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"/>
 
 </RelativeLayout>
