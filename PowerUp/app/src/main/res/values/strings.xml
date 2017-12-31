@@ -67,4 +67,21 @@
     <string name="start_dialog_message">If you start a new game, previous data and all karma points will be lost !</string>
     <string name="start_title_message">Are you Sure ?</string>
     <string name="start_confirm_message">Create new Avatar</string>
+    <string name="score_0">Score: 0</string>
+    <string name="text_equal_0">0</string>
+    <string name="t_true">T</string>
+    <string name="q_question">Q</string>
+    <string name="f_false">F</string>
+    <string name="score_00">Score: 00</string>
+    <string name="text_upper_case_pimples">Pimples</string>
+    <string name="text_upper_case_bra">Bra</string>
+    <string name="text_upper_case_periods">Periods</string>
+    <string name="text_upper_case_skin">Skin</string>
+    <string name="text_upper_case_eye">Eyes</string>
+    <string name="text_upper_case_clothes">Clothes</string>
+    <string name="text_upper_case_hair">Hair</string>
+    <string name="upper_case_better_success_rate"><![CDATA[=> Better Success Rate]]></string>
+    <string name="upper_case_cheapest_contraceptive"><![CDATA[=> Cheapest Contraceptive]]></string>
+    <string name="upper_case_no_protection_against_stds"><![CDATA[=> No protection against STDs]]></string>
+    <string name="text_5">5</string>
 </resources>

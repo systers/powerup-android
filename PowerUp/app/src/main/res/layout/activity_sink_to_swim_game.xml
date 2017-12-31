@@ -88,7 +88,7 @@
                         android:layout_weight="0.8"
                         android:alpha="0"
                         android:onClick="answerChosen"
-                        android:text="T"
+                        android:text="@string/t_true"
                         android:textSize="@dimen/swim_button_textSize" />
 
                     <Button
@@ -98,7 +98,7 @@
                         android:layout_weight="0.3"
                         android:alpha="0"
                         android:onClick="answerChosen"
-                        android:text="Q"
+                        android:text="@string/q_question"
                         android:textSize="@dimen/swim_button_textSize" />
 
                     <Button
@@ -108,7 +108,7 @@
                         android:layout_weight="0.9"
                         android:alpha="0"
                         android:onClick="answerChosen"
-                        android:text="F"
+                        android:text="@string/f_false"
                         android:textSize="@dimen/swim_button_textSize" />
                 </LinearLayout>
             </LinearLayout>
@@ -119,7 +119,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center|top"
-                android:text="Score: 00"
+                android:text="@string/score_00"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/question_textSize"
                 android:textStyle="bold" />
