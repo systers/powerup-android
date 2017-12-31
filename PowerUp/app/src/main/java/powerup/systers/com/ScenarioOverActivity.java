@@ -88,14 +88,20 @@ public class ScenarioOverActivity extends AppCompatActivity {
             }
         });
     }
-
+public void goToMap(){
+    new GameActivity().gameActivityInstance.finish();
+          Intent intent = new Intent(this, MapActivity.class);
+           intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+           startActivity(intent);
+           finish();
+}
     /**
      * If the "back" button is pressed, the current situation closes itself.
      */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        new GameActivity().gameActivityInstance.finish();
+     goToMap();
     }
 
     public DatabaseHandler getmDbHandler() {

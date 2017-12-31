@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -60,7 +61,18 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         img3.getLayoutParams().height = height / 4;
         initialSetUp();
     }
+    public void goToMap(){
 
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    //function to execute when back button is pressed
+    @Override
+    public void onBackPressed() {
+        goToMap();
+    }
     public void initialSetUp() {
         tv1.setText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[0]);
         tv1.setPosition(0);
