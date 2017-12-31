@@ -23,6 +23,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import powerup.systers.com.minesweeper.MinesweeperSessionManager;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
+import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
+
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
@@ -48,6 +52,12 @@ public class StartActivity extends Activity {
                         .setMessage(getResources().getString(R.string.start_dialog_message));
                 builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        new MinesweeperSessionManager(StartActivity.this)
+                                .saveMinesweeperOpenedStatus(false);
+                        new SinkToSwimSessionManager(StartActivity.this)
+                                .saveSinkToSwimOpenedStatus(false);
+                        new VocabMatchSessionManager(StartActivity.this)
+                                .saveVocabMatchOpenedStatus(false);
                         startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
                     }
                 });

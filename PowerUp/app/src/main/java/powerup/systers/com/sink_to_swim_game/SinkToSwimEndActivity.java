@@ -29,7 +29,9 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
     }
 
     public void continuePressed(View view){
+        SinkToSwimSessionManager session = new SinkToSwimSessionManager(this);
         Intent intent = new Intent(SinkToSwimEndActivity.this, GameOverActivity.class);
+        session.saveSinkToSwimOpenedStatus(false);
         finish();
         startActivityForResult(intent, 0);
     }

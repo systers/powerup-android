@@ -10,6 +10,7 @@ import android.widget.TextView;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
+import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
 
@@ -32,7 +33,9 @@ public class VocabMatchEndActivity extends AppCompatActivity {
     }
 
     public void continuePressed(View view){
+        VocabMatchSessionManager session = new VocabMatchSessionManager(this);
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
+        session.saveVocabMatchOpenedStatus(false);
         finish();
         startActivity(intent);
     }

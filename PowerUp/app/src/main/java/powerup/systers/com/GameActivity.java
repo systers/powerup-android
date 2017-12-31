@@ -32,7 +32,10 @@ import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
+import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
@@ -58,6 +61,12 @@ public class GameActivity extends Activity {
 
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+        }
+        if(new SinkToSwimSessionManager(this).isSinkToSwimOpened()) {
+            startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
+        }
+        if(new VocabMatchSessionManager(this).isVocabMatchOpened()) {
+            startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
@@ -238,8 +247,10 @@ public class GameActivity extends Activity {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
                 } else if (type == -2) {
+                    new SinkToSwimSessionManager(this).saveSinkToSwimOpenedStatus(true);
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
                 } else if (type == -3) {
+                    new VocabMatchSessionManager(this).saveVocabMatchOpenedStatus(true);
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
 

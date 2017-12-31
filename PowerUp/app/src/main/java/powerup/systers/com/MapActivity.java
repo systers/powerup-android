@@ -18,6 +18,10 @@ import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.powerup.PowerUpUtils;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
+import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
+import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
 
 public class MapActivity extends Activity {
 
@@ -27,17 +31,21 @@ public class MapActivity extends Activity {
         public void onClick(View v) {
             ImageView scenarioChooser = (ImageView) v;
             if (v.isEnabled()){
-            if (getmDbHandler().setSessionId(getScenarioName(scenarioChooser.getId()))) {
-                startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
-            } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
-                startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
-            } else {
-                Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
-                intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
-                startActivityForResult(intent, 0);
-            }
-            finish();
-        }}
+                if (getmDbHandler().setSessionId(getScenarioName(scenarioChooser.getId()))) {
+                    startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
+                } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
+                    startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
+                } else if (new SinkToSwimSessionManager(MapActivity.this).isSinkToSwimOpened()) {
+                    startActivity(new Intent(MapActivity.this, SinkToSwimGame.class));
+                } else if (new VocabMatchSessionManager(MapActivity.this).isVocabMatchOpened()) {
+                    startActivity(new Intent(MapActivity.this, VocabMatchGameActivity.class));
+                } else {
+                    Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
+                    intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
+                    startActivityForResult(intent, 0);
+                }
+                finish();
+            }}
     };
 
     private String getScenarioName(int id) {
