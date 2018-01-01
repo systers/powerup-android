@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/store"
+    android:orientation="vertical"
+    tools:context="powerup.systers.com.FinalAvatarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/avatar"
+            android:textColor="@color/final_avatar_light_blue"
+            android:textSize="@dimen/final_avatar_text_size"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.3"
+                tools:ignore="NestedWeights,UselessLeaf" />
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/skin_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/skin1"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/dress_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dress_avatar1"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/hair_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hair1"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/eye_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/eyes1"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.3"
+                tools:ignore="UselessLeaf"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/continueButton"
+        android:layout_width="@dimen/continue_width"
+        android:layout_height="@dimen/continue_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/continue_marginBottom"
+        android:alpha="0.9"
+        android:background="@drawable/continue_button"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription" />
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/final_avatar_back_button_margin_bottom"
+        android:background="@color/final_avatar_light_blue"
+        android:text="@string/back_button"
+        android:textColor="@color/final_avatar_dark_blue"
+        android:textSize="@dimen/final_avatar_text_size"
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
+</RelativeLayout>

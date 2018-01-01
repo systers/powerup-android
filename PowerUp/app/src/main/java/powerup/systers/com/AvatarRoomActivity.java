@@ -30,6 +30,8 @@ public class AvatarRoomActivity extends Activity {
     private Integer hair = 1;
     private Integer skin = 1;
     private Integer cloth = 1;
+    java.lang.reflect.Field photoNameField;
+    R.drawable ourRID;
 
     public AvatarRoomActivity() {
         avatarRoomInstance = this;
@@ -53,6 +55,41 @@ public class AvatarRoomActivity extends Activity {
         final ImageView hairLeft = (ImageView) findViewById(R.id.hair_left);
         ImageView hairRight = (ImageView) findViewById(R.id.hair_right);
         ImageView continueButton = (ImageView) findViewById(R.id.continueButtonAvatar);
+
+        Intent previousIntent = getIntent();
+        try {
+            if (previousIntent.getStringExtra("previousActivity").equals("FinalAvatarActivity")){
+                String eyeImageName = getResources().getString(R.string.eye);
+                eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+                ourRID = new R.drawable();
+                try {
+                    photoNameField = ourRID.getClass().getField(eyeImageName);
+                    eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
+                    eye = getmDbHandler().getAvatarEye();
+                } catch (NoSuchFieldException | IllegalAccessException
+                        | IllegalArgumentException error) {
+                    error.printStackTrace();
+                }
+
+                String skinImageName = getResources().getString(R.string.skin);
+                skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
+                try {
+                    photoNameField = ourRID.getClass().getField(skinImageName);
+                    skinAvatar.setImageResource(photoNameField.getInt(ourRID));
+                    skin = getmDbHandler().getAvatarSkin();
+                } catch (NoSuchFieldException | IllegalAccessException
+                        | IllegalArgumentException error) {
+                    error.printStackTrace();
+                }
+
+                setAvatarClothes(getmDbHandler().getAvatarCloth());
+                cloth = getmDbHandler().getAvatarCloth();
+                setAvatarHair(getmDbHandler().getAvatarHair());
+                hair = getmDbHandler().getAvatarHair();
+            }
+        }catch (NullPointerException ne){
+            ne.printStackTrace();
+        }
 
         eyeLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,11 +276,35 @@ public class AvatarRoomActivity extends Activity {
                     edit.apply();
                 }
                 finish();
-                startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
-
+                startActivity(new Intent(AvatarRoomActivity.this, FinalAvatarActivity.class));
             }
         });
         getmDbHandler().close();
+    }
+    public void setAvatarHair(int index){
+        getmDbHandler().setAvatarHair(index);
+        String hairImageName = getResources().getString(R.string.hair);
+        hairImageName = hairImageName + index;
+        try {
+            photoNameField = ourRID.getClass().getField(hairImageName);
+            hairAvatar.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException error) {
+            error.printStackTrace();
+        }
+    }
+
+    public void setAvatarClothes(int index){
+        getmDbHandler().setAvatarCloth(index);
+        String clothImageName = getResources().getString(R.string.cloth);
+        clothImageName = clothImageName + index;
+        try {
+            photoNameField = ourRID.getClass().getField(clothImageName);
+            clothAvatar.setImageResource(photoNameField.getInt(ourRID));
+        } catch (NoSuchFieldException | IllegalAccessException
+                | IllegalArgumentException error) {
+            error.printStackTrace();
+        }
     }
 
     public DatabaseHandler getmDbHandler() {
