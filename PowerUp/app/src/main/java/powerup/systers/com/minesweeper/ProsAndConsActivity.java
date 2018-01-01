@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import powerup.systers.com.datamodel.MinigamesSessionManager;
 import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -43,7 +44,7 @@ public class ProsAndConsActivity extends AppCompatActivity {
         if (completedRounds < PowerUpUtils.NUMBER_OF_ROUNDS) { //calls next round if true
             startActivity(new Intent(ProsAndConsActivity.this, MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, false));
         } else {
-            new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(false); //marks minesweeper game as finished
+            new MinigamesSessionManager(this).finish(MinigamesSessionManager.MINESWEEPER);
             Intent intent = new Intent(ProsAndConsActivity.this, ScenarioOverActivity.class);
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
             startActivity(intent);
