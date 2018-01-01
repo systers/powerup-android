@@ -13,7 +13,6 @@ public class MinesweeperSessionManager {
     private final String ROUNDS_COMPLETED = "MINESWEEPER_ROUND_COMPLETED";
     private final String PREF_NAME = "MINESWEEPER_PREFERENCE";
     private final int PRIVATE_MODE = 0;
-    private final String GAME_OPENED = "IS_MINESWEEPER_OPENED";
 
     SharedPreferences pref;
     Context context;
@@ -46,19 +45,5 @@ public class MinesweeperSessionManager {
 
     public int getCompletedRounds() {
         return pref.getInt(ROUNDS_COMPLETED, 1);
-    }
-
-    /**
-     * @desc used to know if minesweeper game was being played when user last left the app
-     * @return true if app was closed without completing the minesweeper game
-     */
-    public boolean isMinesweeperOpened() {
-        return pref.getBoolean(GAME_OPENED, false);
-    }
-
-    public void saveMinesweeperOpenedStatus(boolean isOpened) {
-        editor.putBoolean(GAME_OPENED, isOpened);
-        editor.clear();
-        editor.commit();
     }
 }
