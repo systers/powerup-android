@@ -19,6 +19,7 @@ public class VocabMatchEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocab_match_end);
+        new VocabMatchSessionManager(this).saveVocabMatchOpenedStatus(false);
         Intent intent = getIntent();
         int score = intent.getExtras().getInt(PowerUpUtils.SCORE);
         int correctAnswers= score;
