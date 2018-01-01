@@ -42,6 +42,17 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/marco" />
 
+    <TextView
+        android:id="@+id/character_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/character_description_text_size"
+        android:textColor="@color/powerup_black"
+        android:text="@string/character_description_text"
+        android:textStyle="bold"
+        android:layout_below="@id/askerImageView"
+        android:layout_toLeftOf="@id/continueButtonGoesToMap"
+        android:layout_toStartOf="@id/continueButtonGoesToMap"/>
 
 
     <FrameLayout
