@@ -2,6 +2,7 @@ package powerup.systers.com.minesweeper;
 
 import android.content.SharedPreferences;
 import android.content.Context;
+import android.preference.PreferenceManager;
 
 /**
  * Created by sachinaggarwal on 25/06/17.
@@ -11,9 +12,6 @@ public class MinesweeperSessionManager {
 
     private final String SCORE = "MINESWEEPER_SCORE";
     private final String ROUNDS_COMPLETED = "MINESWEEPER_ROUND_COMPLETED";
-    private final String PREF_NAME = "MINESWEEPER_PREFERENCE";
-    private final int PRIVATE_MODE = 0;
-    private final String GAME_OPENED = "IS_MINESWEEPER_OPENED";
 
     SharedPreferences pref;
     Context context;
@@ -25,7 +23,7 @@ public class MinesweeperSessionManager {
      */
     public MinesweeperSessionManager(Context context) {
         this.context = context;
-        pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        pref = PreferenceManager.getDefaultSharedPreferences(context);
         editor = pref.edit();
     }
 
@@ -46,19 +44,5 @@ public class MinesweeperSessionManager {
 
     public int getCompletedRounds() {
         return pref.getInt(ROUNDS_COMPLETED, 1);
-    }
-
-    /**
-     * @desc used to know if minesweeper game was being played when user last left the app
-     * @return true if app was closed without completing the minesweeper game
-     */
-    public boolean isMinesweeperOpened() {
-        return pref.getBoolean(GAME_OPENED, false);
-    }
-
-    public void saveMinesweeperOpenedStatus(boolean isOpened) {
-        editor.putBoolean(GAME_OPENED, isOpened);
-        editor.clear();
-        editor.commit();
     }
 }
