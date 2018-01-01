@@ -2,7 +2,6 @@ package powerup.systers.com.minesweeper;
 
 import android.content.SharedPreferences;
 import android.content.Context;
-import android.preference.PreferenceManager;
 
 /**
  * Created by sachinaggarwal on 25/06/17.
@@ -12,6 +11,8 @@ public class MinesweeperSessionManager {
 
     private final String SCORE = "MINESWEEPER_SCORE";
     private final String ROUNDS_COMPLETED = "MINESWEEPER_ROUND_COMPLETED";
+    private final String PREF_NAME = "MINESWEEPER_PREFERENCE";
+    private final int PRIVATE_MODE = 0;
 
     SharedPreferences pref;
     Context context;
@@ -23,7 +24,7 @@ public class MinesweeperSessionManager {
      */
     public MinesweeperSessionManager(Context context) {
         this.context = context;
-        pref = PreferenceManager.getDefaultSharedPreferences(context);
+        pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
