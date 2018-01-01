@@ -16,6 +16,7 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sink_to_swim_end);
+        new SinkToSwimSessionManager(this).saveSinkToSwimOpenedStatus(false);
         Intent intent = getIntent();
         int wrongAnswers= intent.getExtras().getInt(PowerUpUtils.WRONG_ANSWER);
         int correctAnswers= intent.getExtras().getInt(PowerUpUtils.CORRECT_ANSWERS);
