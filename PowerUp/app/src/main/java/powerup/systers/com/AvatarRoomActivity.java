@@ -7,13 +7,9 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.util.Random;
 
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
@@ -231,15 +227,7 @@ public class AvatarRoomActivity extends Activity {
                 SessionHistory.currSessionID = 1;
                 SessionHistory.currScenePoints = 0;
 
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AvatarRoomActivity.this);
-                boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
-                if (!hasPreviouslyStarted) {
-                    SharedPreferences.Editor edit = prefs.edit();
-                    edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
-                    edit.apply();
-                }
-                finish();
-                startActivityForResult(new Intent(AvatarRoomActivity.this, MapActivity.class), 0);
+                startActivity(new Intent(AvatarRoomActivity.this, FinalAvatarActivity.class));
 
             }
         });
