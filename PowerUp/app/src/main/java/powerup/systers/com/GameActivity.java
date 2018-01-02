@@ -33,6 +33,7 @@ import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
@@ -55,6 +56,15 @@ public class GameActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.MINESWEEPER)) {
+            startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.VOCAB_MATCH)) {
+            startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.SINK_TO_SWIM)) {
+            startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
+        }
         if (savedInstanceState != null) {
             isStateChanged = true;
         }
