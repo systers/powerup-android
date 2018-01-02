@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Random;
 
+import powerup.systers.com.MiniGameSessionManager;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -229,8 +230,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * includes fade in and fade out activity transition
      */
     public void continuePressed(View view) {
-        MinesweeperSessionManager session = new MinesweeperSessionManager(this);
-        session.saveData(score, gameRound);
+        new MiniGameSessionManager(this).Complete(MiniGameSessionManager.MINESWEEPER);
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
         overridePendingTransition(R.animator.fade_in, R.animator.fade_out);
