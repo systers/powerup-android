@@ -97,18 +97,26 @@
         android:layout_centerVertical="true"
         android:background="@drawable/left_conversation"
         android:clickable="true"/>
-    <TextView
-        android:textColor="@color/powerup_black"
-        android:id="@+id/questionView"
-        android:layout_width="@dimen/questionview_tv_width"
-        android:textSize="@dimen/game_text_size"
+    <ScrollView
         android:layout_height="wrap_content"
-        android:background="@drawable/right_conversation"
-        android:hint="@string/question"
+        android:layout_width="@dimen/questionview_tv_width"
         android:layout_above="@id/mainListView"
         android:layout_marginTop="@dimen/conversation_margin"
         android:layout_marginBottom="@dimen/conversation_margin"
         android:layout_toLeftOf="@id/askerImageView"
-        android:gravity="center"/>
-
+        android:layout_toStartOf="@id/askerImageView"
+        android:background="@drawable/right_conversation">
+    <TextView
+        android:textColor="@color/powerup_black"
+        android:id="@+id/questionView"
+        android:textSize="@dimen/game_text_size"
+        android:hint="@string/question"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/question_view_paddingRight"
+        android:layout_marginLeft="@dimen/question_view_paddingLeft"
+        android:layout_marginRight="@dimen/question_view_paddingRight"
+        android:layout_marginStart="@dimen/question_view_paddingLeft"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    </ScrollView>
 </RelativeLayout>
