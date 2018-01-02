@@ -23,6 +23,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import powerup.systers.com.datamodel.MinigamesSessionManager;
+
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
@@ -48,6 +50,9 @@ public class StartActivity extends Activity {
                         .setMessage(getResources().getString(R.string.start_dialog_message));
                 builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        new MinigamesSessionManager(StartActivity.this).reset(MinigamesSessionManager.MINESWEEPER);
+                        new MinigamesSessionManager(StartActivity.this).reset(MinigamesSessionManager.SINK_TO_SWIM);
+                        new MinigamesSessionManager(StartActivity.this).reset(MinigamesSessionManager.VOCAB_MATCH);
                         startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
                     }
                 });

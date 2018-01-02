@@ -23,16 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import powerup.systers.com.datamodel.Answer;
+import powerup.systers.com.datamodel.MinigamesSessionManager;
 import powerup.systers.com.datamodel.Question;
 import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
-import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
@@ -55,9 +56,23 @@ public class GameActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
-        if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.MINESWEEPER)) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+            finish();
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.VOCAB_MATCH)) {
+            startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
+            finish();
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.SINK_TO_SWIM)) {
+            startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
+            finish();
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.VOCAB_MATCH)) {
+            startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.SINK_TO_SWIM)) {
+            startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
@@ -235,11 +250,13 @@ public class GameActivity extends Activity {
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
                 } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
+                    new MinigamesSessionManager(this).start(MinigamesSessionManager.MINESWEEPER);
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
                 } else if (type == -2) {
+                    new MinigamesSessionManager(this).start(MinigamesSessionManager.SINK_TO_SWIM);
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
                 } else if (type == -3) {
+                    new MinigamesSessionManager(this).start(MinigamesSessionManager.VOCAB_MATCH);
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
 
