@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -157,15 +158,15 @@ public class GameActivity extends Activity {
                             updateQA();
                         } else if (answers.get(position).getNextQuestionID() == -1) {
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            //getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-1);
                         } else if (answers.get(position).getNextQuestionID() == -2) {
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            //getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-2);
                         } else if (answers.get(position).getNextQuestionID() == -3){
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            //getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-3);
                         }
                         else {
@@ -199,15 +200,16 @@ public class GameActivity extends Activity {
      * @param type coding scheme for .csv files, -1 means minesweeper game, 0 means scenario completion
      */
     private void updateScenario(int type) {
+        Log.i("scenariotag", "starting updateScenario");
         if (ScenarioOverActivity.scenarioActivityDone == 1)
-            new ScenarioOverActivity().scenarioOverActivityInstance.finish();
+            new ScenarioOverActivity().scenarioOverActivityInstance.finish(); Log.i("scenariotag", "line 205");
         if (scene != null)
-            prevScene = getmDbHandler().getScenarioFromID(scene.getId());
-        scene = getmDbHandler().getScenario();
+            prevScene = getmDbHandler().getScenarioFromID(scene.getId()); Log.i("scenariotag", "line 207");
+        scene = getmDbHandler().getScenario(); Log.i("scenariotag", "line 208");
         // Replay a scenario
         if (scene.getReplayed() == 0) {
             // goToMap Mechanics
-            goToMap.setAlpha((float) 1.0);
+            goToMap.setAlpha((float) 1.0); Log.i("scenariotag", "line 212");
             goToMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -224,25 +226,26 @@ public class GameActivity extends Activity {
                 }
             });
         }
-        SessionHistory.currQID = scene.getFirstQuestionID();
+        SessionHistory.currQID = scene.getFirstQuestionID(); Log.i("scenariotag", "line 229");
         scenarioNameTextView.setText(scene.getScenarioName());
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
-                SessionHistory.prevSessionID = scene.getId();
+                SessionHistory.prevSessionID = scene.getId(); Log.i("scenariotag", "line 233");
                 SessionHistory.currSessionID = scene.getNextScenarioID();
                 if (type == 0) {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
-                } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
-
+        }else{
+            if (type == -1) {
+                new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
+                startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class)); Log.i("scenariotag", "line 241");
+            } else if (type == -2) {
+                startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
+            } else if (type == -3) {
+                startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
+            }
         }
 
     }
