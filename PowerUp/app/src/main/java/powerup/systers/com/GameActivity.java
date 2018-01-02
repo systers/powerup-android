@@ -58,12 +58,15 @@ public class GameActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.MINESWEEPER)) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+            finish();
         }
         if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.VOCAB_MATCH)) {
             startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
+            finish();
         }
         if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.SINK_TO_SWIM)) {
             startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
+            finish();
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
