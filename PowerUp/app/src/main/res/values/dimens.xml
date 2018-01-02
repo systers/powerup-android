@@ -1,4 +1,5 @@
 <resources>
     <dimen name="banner_height">30dp</dimen>
+    <dimen name="character_name_size">18sp</dimen>
 </resources>
 

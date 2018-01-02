@@ -34,7 +34,6 @@
 
     <ImageView
         android:id="@+id/askerImageView"
-
         android:layout_marginRight="@dimen/conversation_margin"
         android:layout_width="@dimen/asker_width"
         android:layout_height="@dimen/asker_height"
@@ -42,7 +41,20 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/marco" />
 
-
+    <TextView
+        android:id="@+id/character_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/askerImageView"
+        android:layout_alignLeft="@id/askerImageView"
+        android:layout_alignRight="@id/askerImageView"
+        android:layout_alignStart="@id/askerImageView"
+        android:layout_below="@id/askerImageView"
+        android:gravity="center"
+        android:text="@string/character_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="@dimen/character_name_size"
+        android:textStyle="bold" />
 
     <FrameLayout
         android:id="@+id/relativeLayout"
