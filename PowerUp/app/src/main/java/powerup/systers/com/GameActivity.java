@@ -30,10 +30,15 @@ import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
+import powerup.systers.com.powerup.MiniGameSessionManager;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
+
+import static powerup.systers.com.powerup.MiniGameSessionManager.SINK_TO_SWIM;
+import static powerup.systers.com.powerup.MiniGameSessionManager.VOCAB_MATCH;
 
 @SuppressLint("NewApi")
 public class GameActivity extends Activity {
@@ -55,9 +60,15 @@ public class GameActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
-        if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
-            startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
+        if (new MinesweeperSessionManager(this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
+            startActivity(new Intent(this, MinesweeperGameActivity.class));
+            finish();
+        }  else if (new MiniGameSessionManager(this).isSessionStarted(SINK_TO_SWIM)) {
+            startActivity(new Intent(this, SinkToSwimGame.class));
+            finish();
+        }  else if (new MiniGameSessionManager(this).isSessionStarted(VOCAB_MATCH)) {
+            startActivity(new Intent(this, VocabMatchGameActivity.class));
+            finish();
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
@@ -238,8 +249,10 @@ public class GameActivity extends Activity {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
                 } else if (type == -2) {
+                    new MiniGameSessionManager(this).startSession(SINK_TO_SWIM);
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
                 } else if (type == -3) {
+                    new MiniGameSessionManager(this).startSession(VOCAB_MATCH);
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
 
