@@ -56,9 +56,6 @@ public class GameActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
-            startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
-        }
         if (savedInstanceState != null) {
             isStateChanged = true;
         }
@@ -235,11 +232,13 @@ public class GameActivity extends Activity {
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
                 } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
+                    new MiniGameSessionManager(this).startSession(MiniGameSessionManager.MINESWEEPER);
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
                 } else if (type == -2) {
+                    new MiniGameSessionManager(this).startSession(MiniGameSessionManager.SINK_TO_SWIM);
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
                 } else if (type == -3) {
+                    new MiniGameSessionManager(this).startSession(MiniGameSessionManager.VOCAB_MATCH);
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
 
