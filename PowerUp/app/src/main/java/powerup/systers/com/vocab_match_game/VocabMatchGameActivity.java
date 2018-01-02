@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.GameActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 
@@ -30,6 +32,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public int height, width, oldestTile, score, latestTile;
     public TextView scoreView;
     Random r;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         img3.getLayoutParams().width = height / 4;
         img3.getLayoutParams().height = height / 4;
         initialSetUp();
+        setmDbHandler(new DatabaseHandler(this));
     }
 
     public void initialSetUp() {
@@ -139,6 +143,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
+                    getmDbHandler().setCompletedScenario(6);
                     Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
                     intent.putExtra(PowerUpUtils.SCORE,score);
                     finish();
@@ -216,5 +221,13 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 return false;
             }
         }
+    }
+
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }

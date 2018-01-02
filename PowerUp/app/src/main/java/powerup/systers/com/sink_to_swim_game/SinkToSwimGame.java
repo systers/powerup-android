@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 /**
@@ -37,6 +38,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
+    private DatabaseHandler mDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         initialSetUp();
+        setmDbHandler(new DatabaseHandler(this));
     }
 
     /**
@@ -117,6 +120,7 @@ public class SinkToSwimGame extends AppCompatActivity {
      */
     public void gameEnd() {
         countDownTimer.cancel();
+        getmDbHandler().setCompletedScenario(7);
         Intent intent = new Intent(SinkToSwimGame.this, SinkToSwimEndActivity.class);
         intent.putExtra(PowerUpUtils.SCORE,score);
         intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
@@ -286,5 +290,13 @@ public class SinkToSwimGame extends AppCompatActivity {
         countDownTimer.cancel();
         countDownTimer = null;
         super.onPause();
+    }
+
+    public DatabaseHandler getmDbHandler() {
+        return mDbHandler;
+    }
+
+    public void setmDbHandler(DatabaseHandler mDbHandler) {
+        this.mDbHandler = mDbHandler;
     }
 }
