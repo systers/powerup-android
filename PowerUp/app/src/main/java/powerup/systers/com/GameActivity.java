@@ -68,6 +68,12 @@ public class GameActivity extends Activity {
             startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
             finish();
         }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.VOCAB_MATCH)) {
+            startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
+        }
+        if(new MinigamesSessionManager(this).hasStarted(MinigamesSessionManager.SINK_TO_SWIM)) {
+            startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
+        }
         if (savedInstanceState != null) {
             isStateChanged = true;
         }
