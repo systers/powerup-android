@@ -16,6 +16,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import powerup.systers.com.R;
+
 public abstract class AbstractDbAdapter {
 
     private static final int DATABASE_VERSION = 2;

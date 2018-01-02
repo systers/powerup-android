@@ -51,7 +51,7 @@ public class StartActivity extends Activity {
                         startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.cancel_text), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                     }

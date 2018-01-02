@@ -355,7 +355,7 @@
                 android:layout_gravity="right"
                 android:layout_weight="1.5"
                 android:paddingRight="@dimen/score_padding_right"
-                android:text="Score: 0"
+                android:text="@string/score_text"
                 android:textColor="@color/score_color"
                 android:textSize="@dimen/score_text_size"
                 android:textStyle="bold" />
@@ -368,7 +368,6 @@
         </LinearLayout>
 
     </LinearLayout>
-    />
 
     <ImageView
         android:id="@+id/banner"

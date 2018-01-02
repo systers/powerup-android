@@ -42,12 +42,12 @@ public class MapActivity extends Activity {
 
     private String getScenarioName(int id) {
         switch (id){
-            case R.id.school : return "School";
-            case R.id.library : return "Library";
-            case R.id.house : return "Home";
-            case R.id.hospital : return "Hospital";
+            case R.id.school : return getString(R.string.school);
+            case R.id.library : return getString(R.string.library);
+            case R.id.house : return getString(R.string.house);
+            case R.id.hospital : return getString(R.string.hospital);
 
-            default: return "Home";
+            default: return getString(R.string.boyfriend);
         }
     }
 
