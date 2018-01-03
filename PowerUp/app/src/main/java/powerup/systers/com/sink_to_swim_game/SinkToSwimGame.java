@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MiniGameSessionManager;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -116,6 +117,7 @@ public class SinkToSwimGame extends AppCompatActivity {
      * @desc ends the game
      */
     public void gameEnd() {
+        new MiniGameSessionManager(getApplicationContext()).complete(MiniGameSessionManager.SINK_TO_SWIM);
         countDownTimer.cancel();
         Intent intent = new Intent(SinkToSwimGame.this, SinkToSwimEndActivity.class);
         intent.putExtra(PowerUpUtils.SCORE,score);
