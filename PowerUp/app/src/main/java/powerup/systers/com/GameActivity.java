@@ -235,11 +235,13 @@ public class GameActivity extends Activity {
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
                 } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
+                    new MiniGameSessionManager(getApplicationContext()).start(MiniGameSessionManager.MINESWEEPER);
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
                 } else if (type == -2) {
+                    new MiniGameSessionManager(getApplicationContext()).start(MiniGameSessionManager.SINK_TO_SWIM);
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
                 } else if (type == -3) {
+                    new MiniGameSessionManager(getApplicationContext()).start(MiniGameSessionManager.VOCAB_MATCH);
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
                 }
 

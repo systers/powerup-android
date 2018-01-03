@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.MiniGameSessionManager;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -139,6 +140,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
+                    new MiniGameSessionManager(getApplicationContext()).complete(MiniGameSessionManager.VOCAB_MATCH);
                     Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
                     intent.putExtra(PowerUpUtils.SCORE,score);
                     finish();
