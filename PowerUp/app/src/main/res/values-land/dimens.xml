@@ -238,4 +238,7 @@
     <dimen name="replay_marginTop">400dp</dimen>
     <dimen name="replay_marginLeft">180dp</dimen>
     <dimen name="hair_button_marginLeft">100dp</dimen>
+    <dimen name="question_text_size">15dp</dimen>
+    <dimen name="question_text_padding_right">25dp</dimen>
+    <dimen name="question_text_padding_left">10dp</dimen>
 </resources>

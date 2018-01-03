@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -70,6 +71,7 @@ public class GameActivity extends Activity {
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
         questionTextView = (TextView) findViewById(R.id.questionView);
+        questionTextView.setMovementMethod(new ScrollingMovementMethod());
         scenarioNameTextView = (TextView) findViewById(R.id.scenarioNameEditText);
         listAdapter = new ArrayAdapter<>(this, R.layout.simplerow, new ArrayList<String>());
         answers = new ArrayList<>();
