@@ -1,5 +1,9 @@
-package powerup.systers.com.db;
+/**
+* @desc this class holds functions for updating answers, questions, and avatar
+* features. Examples include getAvatarFace() and setCompletedScenario()
+*/
 
+package powerup.systers.com.db;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -17,17 +21,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         ctx.getAssets();
     }
 
-    public boolean gameOver() {
-        String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0";
-        Cursor cursor = mDb.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            return false;
-        }
-        cursor.close();
-        return true;
-    }
-
+    /**
+    * @desc adds all answer options to an ArrayList.
+    * @param answers - the ArrayList to add answers to
+    * @param qId - the question ID
+    */
     public void getAllAnswer(List<Answer> answers, Integer qId) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.AnswerEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AnswerEntry.COLUMN_QUESTION_ID + " = " + qId;
@@ -47,6 +45,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         cursor.close();
     }
 
+    /**
+    * @desc as long as the game is not over, the current question will be returned 
+    * (otherwise return null)
+    * @return Question - the question of the current session
+    */
     public Question getCurrentQuestion() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.QuestionEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.QuestionEntry.COLUMN_QUESTION_ID + " = "
@@ -63,6 +66,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return null;
     }
 
+    /** 
+    * @desc as long as the game is not over, the current scenario will be returned 
+    * (otherwise return null)
+    * @return Scenario - the scenario of the current session
+    */
     public Scenario getScenario() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = "
@@ -85,6 +93,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return null;
     }
 
+    /**
+    * @desc simply get a scenario by searching with its ID.
+    * @param id - the ID of the scenario you are looking for
+    * @return Scenario - the scenario of the passed ID
+    */
     public Scenario getScenarioFromID(int id) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = "
@@ -107,6 +120,12 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return null;
     }
 
+    /** 
+    * @desc prevents a previously completed scenario from being repeated again. Sets
+    * scene ID to the scenario name being passed.
+    * @param ScenarioName - the scenario being checked for completion
+    * @return boolean - if the scenario has been completed or not
+    */
     public boolean setSessionId(CharSequence ScenarioName) {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_SCENARIO_NAME + " = "
@@ -126,6 +145,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return false;
     }
 
+    /**
+    * @desc records completed scenarios in the database.
+    * @param id - the scenario ID to record completion
+    */
     public void setCompletedScenario(int id) {
         String updateQuery = "UPDATE  " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + "=1" +
@@ -141,14 +164,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         cursor.close();
     }
 
-    public void setCompletedScenario(CharSequence ScenarioName) {
-        String updateQuery = "UPDATE  " + PowerUpContract.ScenarioEntry.TABLE_NAME +
-                " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + "=1" +
-                " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_SCENARIO_NAME + " = " +
-                "\"" + ScenarioName + "\"";
-        mDb.execSQL(updateQuery);
-    }
-
+    /**
+    * @desc records "replayed" variable for a scenario into the database.
+    * @param ScenarioName - the name of scenario to record "replayed"
+    */
     public void setReplayedScenario(CharSequence ScenarioName) {
         String updateQuery = "UPDATE  " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + "=1" +
@@ -157,7 +176,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(updateQuery);
     }
 
-    public Integer getAvatarFace() {
+    /**
+    * @desc get the current avatar face to display.
+    * @return Integer - the number of the current face. Default is 1.
+    */
+    public Integer getAvatarSkin() {
         String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         Cursor cursor = mDb.rawQuery(query, null);
@@ -168,13 +191,21 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
-    public void setAvatarFace(Integer face) {
+    /**
+    * @desc change the avatar's face.
+    * @param face - the number of the requested face
+    */
+    public void setAvatarSkin(Integer face) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_FACE + " = " + face +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc get the current avatar eye to display.
+    * @return int - the number of the current eye. Default is 1.
+    */
     public int getAvatarEye() {
         String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -186,6 +217,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
+    /** 
+    * @desc change the avatar's eyes.
+    * @param eye - the number of the requested eye
+    */
     public void setAvatarEye(Integer eye) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_EYES + " = " + eye +
@@ -193,6 +228,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc get the current avatar clothing to display.
+    * @return int - the number of the current clothes. Default is 1.
+    */
     public int getAvatarCloth() {
         String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -204,6 +243,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
+    /**
+    * @desc change the avatar's clothes.
+    * @param cloth - the number of the requested clothing
+    */
     public void setAvatarCloth(Integer cloth) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_CLOTHES + " = " + cloth +
@@ -211,6 +254,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc get the current avatar hair to display.
+    * @return int - the number of the current hair. Default is 1.
+    */
     public int getAvatarHair() {
         String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
@@ -222,6 +269,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         return 1;
     }
 
+    /**
+    * @desc change the avatar's hair.
+    * @param hair - the number of the requested hair
+    */
     public void setAvatarHair(Integer hair) {
         String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AvatarEntry.COLUMN_HAIR + " = " + hair +
@@ -229,184 +280,13 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
-    public int getAvatarBag() {
-        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(5);
-        }
-        cursor.close();
-        return 0;
-    }
 
-    public void setAvatarBag(Integer bag) {
-        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " SET " + PowerUpContract.AvatarEntry.COLUMN_BAG + " = " + bag +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getAvatarGlasses() {
-        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(6);
-        }
-        cursor.close();
-        return 0;
-    }
-
-    public void setAvatarGlasses(Integer glasses) {
-        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " SET " + PowerUpContract.AvatarEntry.COLUMN_GLASSES + " = " + glasses +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getAvatarHat() {
-        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(7);
-        }
-        cursor.close();
-        return 0;
-    }
-
-    public void setAvatarHat(Integer hat) {
-        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " SET " + PowerUpContract.AvatarEntry.COLUMN_HAT + " = " + hat +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getAvatarNeckalce() {
-        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(8);
-        }
-        cursor.close();
-        return 0;
-    }
-
-    public void setAvatarNecklace(Integer necklace) {
-        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
-                " SET " + PowerUpContract.AvatarEntry.COLUMN_NECKLACE + " = " + necklace +
-                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getHealing() {
-        String query = "Select * from " + PowerUpContract.PointEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(3);
-        }
-        cursor.close();
-        return 1;
-    }
-
-    public void setHealing(Integer healing) {
-        String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
-                " SET " + PowerUpContract.PointEntry.COLUMN_HEALING + " = " + healing +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-        Log.i("heal", getHealing() + " ");
-    }
-
-    public int getStrength() {
-        String query = "Select * from " + PowerUpContract.PointEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(1);
-        }
-        cursor.close();
-        return 1;
-    }
-
-    public void setStrength(Integer strength) {
-        String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
-                " SET " + PowerUpContract.PointEntry.COLUMN_STRENGTH + " = " + strength +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getTelepathy() {
-        String query = "Select * from " + PowerUpContract.PointEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(4);
-        }
-        cursor.close();
-        return 1;
-    }
-
-    public void setTelepathy(Integer telepathy) {
-        String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
-                " SET " + PowerUpContract.PointEntry.COLUMN_TELEPATHY + " = " + telepathy +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getInvisibility() {
-        String query = "Select * from " + PowerUpContract.PointEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(2);
-        }
-        cursor.close();
-        return 1;
-    }
-
-    public void setInvisibility(Integer invisibility) {
-        String query = "UPDATE " + PowerUpContract.PointEntry.TABLE_NAME +
-                " SET " + PowerUpContract.PointEntry.COLUMN_INVISIBILITY + " = " + invisibility +
-                " WHERE " + PowerUpContract.PointEntry.COLUMN_ID + " = 1";
-        mDb.execSQL(query);
-    }
-
-    public int getPointsClothes(int id) {
-        String query = "Select * from " + PowerUpContract.ClothesEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.ClothesEntry.COLUMN_ID + " = " + id;
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(2);
-        }
-        cursor.close();
-        return 1;
-    }
-
-    public int getPointsHair(int id) {
-        String query = "Select * from " + PowerUpContract.HairEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.HairEntry.COLUMN_ID + " = " + id;
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(2);
-        }
-        cursor.close();
-        return 1;
-    }
-
-    public int getPointsAccessories(int id) {
-        String query = "Select * from " + PowerUpContract.AccessoryEntry.TABLE_NAME +
-                " WHERE " + PowerUpContract.AccessoryEntry.COLUMN_ID + " = " + id;
-        Cursor cursor = mDb.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getInt(2);
-        }
-        cursor.close();
-        return 1;
-    }
-
+    /**
+    * @desc confirms that a piece of clothing has been bought to lay "purchased" text
+    * on top.
+    * @param id - the ID of the clothing to check
+    * @return int - if the clothes have been purchased or not (return 1 if purchased)
+    */
     public int getPurchasedClothes(int id) {
         String query = "Select * from " + PowerUpContract.ClothesEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ClothesEntry.COLUMN_ID + " = " + id;
@@ -415,9 +295,13 @@ public class DatabaseHandler extends AbstractDbAdapter {
             return cursor.getInt(3);
         }
         cursor.close();
-        return 1;
+        return 0;
     }
 
+    /**
+    * @desc updates a piece of clothing to know that it has been purchased.
+    * @param id - the ID of the clothing to record purchased status
+    */
     public void setPurchasedClothes(int id) {
         String query = "UPDATE " + PowerUpContract.ClothesEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ClothesEntry.COLUMN_PURCHASED + " = 1"  +
@@ -425,6 +309,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc confirms that a hair has been bought to lay "purchased" text on top.
+    * @param id - the ID of the hair to check
+    * @return int - if the hair been purchased or not (return 1 if purchased)
+    */
     public int getPurchasedHair(int id) {
         String query = "Select * from " + PowerUpContract.HairEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.HairEntry.COLUMN_ID + " = " + id;
@@ -433,9 +322,13 @@ public class DatabaseHandler extends AbstractDbAdapter {
             return cursor.getInt(3);
         }
         cursor.close();
-        return 1;
+        return 0;
     }
 
+    /**
+    * @desc updates a hair to know that it has been purchased.
+    * @param id - the ID of the hair to record purchased status
+    */
     public void setPurchasedHair(int id) {
         String query = "UPDATE " + PowerUpContract.HairEntry.TABLE_NAME +
                 " SET " + PowerUpContract.HairEntry.COLUMN_PURCHASED + " = 1"  +
@@ -443,6 +336,11 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc confirms that an accessory has been bought to lay "purchased" text on top.
+    * @param id - the ID of the accessory to check
+    * @return int - if the accessory been purchased or not (return 1 if purchased)
+    */
     public int getPurchasedAccessories(int id) {
         String query = "Select * from " + PowerUpContract.AccessoryEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.AccessoryEntry.COLUMN_ID + " = " + id;
@@ -451,9 +349,13 @@ public class DatabaseHandler extends AbstractDbAdapter {
             return cursor.getInt(3);
         }
         cursor.close();
-        return 1;
+        return 0;
     }
 
+    /**
+    * @desc updates an accessory to know that it has been purchased.
+    * @param id - the ID of the accessory to record purchased status
+    */
     public void setPurchasedAccessories(int id) {
         String query = "UPDATE " + PowerUpContract.AccessoryEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AccessoryEntry.COLUMN_PURCHASED + " = 1"  +
@@ -461,6 +363,9 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc sets scenarios back to default (not complete).
+    */
     public void updateComplete()
     {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
@@ -468,12 +373,19 @@ public class DatabaseHandler extends AbstractDbAdapter {
         mDb.execSQL(query);
     }
 
+    /**
+    * @desc sets scenarios back so that they can be replayed.
+    */
     public void updateReplayed()
     {
         String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0";
         mDb.execSQL(query);
     }
+    
+    /**
+    * @desc sets purchases to default so that nothing has been bought.
+    */
     public void resetPurchase()
     {
         String query = "UPDATE " + PowerUpContract.ClothesEntry.TABLE_NAME +
@@ -487,5 +399,48 @@ public class DatabaseHandler extends AbstractDbAdapter {
         String query3 = "UPDATE " + PowerUpContract.AccessoryEntry.TABLE_NAME +
                 " SET " + PowerUpContract.AccessoryEntry.COLUMN_PURCHASED + " = 0";
         mDb.execSQL(query3);
+
+        String query4 = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
+                " SET " + PowerUpContract.AvatarEntry.COLUMN_ACCESSORY + " = 0";
+        mDb.execSQL(query4);
+    }
+
+    public void resetReplayed(int id){
+        String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME
+                + " SET " + PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " = 0"
+                + " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = " + id;
+        mDb.execSQL(query);
+    }
+
+    public void resetCompleted(int id){
+        String query = "UPDATE " + PowerUpContract.ScenarioEntry.TABLE_NAME
+                + " SET " + PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " = 0"
+                + " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = " + id;
+        mDb.execSQL(query);
+    }
+
+    /**
+     * @desc returns the id of current accessory assigned to avatar
+     */
+    public int getAvatarAccessory() {
+        String query = "Select * from " + PowerUpContract.AvatarEntry.TABLE_NAME +
+                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
+        Cursor cursor = mDb.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            return cursor.getInt(6); //i think it should be different
+        }
+        cursor.close();
+        return 0;
+    }
+
+    /**
+     * @desc changes the current accessory assigned to avatar to given accessoryId
+     * @param accessoryId - the id of accessory to be set
+     */
+    public void setAvatarAccessory(Integer accessoryId) {
+        String query = "UPDATE " + PowerUpContract.AvatarEntry.TABLE_NAME +
+                " SET " + PowerUpContract.AvatarEntry.COLUMN_ACCESSORY + " = " + accessoryId +
+                " WHERE " + PowerUpContract.AvatarEntry.COLUMN_ID + " = 1";
+        mDb.execSQL(query);
     }
 }

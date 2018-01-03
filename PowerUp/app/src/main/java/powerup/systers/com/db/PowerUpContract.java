@@ -1,3 +1,7 @@
+/**
+* @desc creates directories for scenarios, avatar features, questions, answers, and points
+*/
+
 package powerup.systers.com.db;
 
 import android.provider.BaseColumns;
@@ -42,7 +46,7 @@ public class PowerUpContract {
 
         public static final String COLUMN_EYES = "Eyes";
 
-        public static final String COLUMN_BAG = "Bag";
+        public static final String COLUMN_ACCESSORY = "Bag";
 
         public static final String COLUMN_GLASSES = "Glasses";
 
