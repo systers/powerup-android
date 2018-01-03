@@ -102,7 +102,6 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
 
-
     /**
      * @desc brings the pointer and avatar to their initial position
      */
@@ -118,9 +117,9 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void gameEnd() {
         countDownTimer.cancel();
         Intent intent = new Intent(SinkToSwimGame.this, SinkToSwimEndActivity.class);
-        intent.putExtra(PowerUpUtils.SCORE,score);
-        intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
-        intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
+        intent.putExtra(PowerUpUtils.SCORE, score);
+        intent.putExtra(PowerUpUtils.CORRECT_ANSWERS, correctAnswers);
+        intent.putExtra(PowerUpUtils.WRONG_ANSWER, wrongAnswers);
         finish();
         startActivity(intent);
     }
@@ -189,7 +188,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void answerChosen(View view) {
         setButtonsEnabled(false);
         if (view == findViewById(R.id.true_option)) {
-            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
+            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == getString(R.string.true_button)) {
                 score += 1;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
@@ -199,7 +198,7 @@ public class SinkToSwimGame extends AppCompatActivity {
                 wrongAnswers++;
             }
         } else if (view == findViewById(R.id.false_option)) {
-            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "F") {
+            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == getString(R.string.false_button)) {
                 score += 1;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
@@ -212,7 +211,7 @@ public class SinkToSwimGame extends AppCompatActivity {
 
         questionView.setText("");
         showNextQuestion();
-        scoreView.setText("Score: " + score);
+        scoreView.setText(getString(R.string.score_text) + score);
     }
 
     /**
