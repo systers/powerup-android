@@ -101,13 +101,15 @@
         android:textColor="@color/powerup_black"
         android:id="@+id/questionView"
         android:layout_width="@dimen/questionview_tv_width"
-        android:textSize="@dimen/game_text_size"
+        android:textSize="@dimen/question_text_size"
         android:layout_height="wrap_content"
         android:background="@drawable/right_conversation"
         android:hint="@string/question"
         android:layout_above="@id/mainListView"
         android:layout_marginTop="@dimen/conversation_margin"
         android:layout_marginBottom="@dimen/conversation_margin"
+        android:paddingRight="@dimen/question_padding"
+        android:paddingEnd="@dimen/question_padding"
         android:layout_toLeftOf="@id/askerImageView"
         android:gravity="center"/>
 
