@@ -73,4 +73,5 @@
     <dimen name="replay_marginTop">270dp</dimen>
     <dimen name="replay_marginLeft">180dp</dimen>
     <dimen name="hair_button_marginLeft">150dp</dimen>
+    <dimen name="question_text_size">14sp</dimen>
 </resources>
