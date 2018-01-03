@@ -36,6 +36,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     public ImageView banner;
     public ImageView continueButton;
     public PorterDuffColorFilter filter;
+    final String MINE_TYPE = "MINE_TYPE";
+    final int GREEN_MINE = 0;
+    final int RED_MINE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +130,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * @desc the opened mine is red, show failure banner
      */
     public void openedRedMine() {
+        startService(new Intent(MinesweeperGameActivity.this, MinesweeperSound.class)
+                .putExtra(MINE_TYPE, RED_MINE));
         showBanner(1);
     }
 
@@ -136,6 +141,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * includes zoom in and out bounce animation on score
      */
     public void openedGreenMine() {
+        startService(new Intent(MinesweeperGameActivity.this, MinesweeperSound.class)
+                .putExtra(MINE_TYPE, GREEN_MINE));
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
