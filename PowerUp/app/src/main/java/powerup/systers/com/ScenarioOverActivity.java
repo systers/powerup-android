@@ -8,10 +8,14 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -43,6 +47,10 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.activity_scenario_over);
+
+        // Karma Points Alert
+        showAlert();
+
         scene = getmDbHandler().getScenario();
         scenarioActivityDone = 1;
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
@@ -96,6 +104,27 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         new GameActivity().gameActivityInstance.finish();
+    }
+
+    public void showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ScenarioOverActivity.this);
+        TextView title = new TextView(this);
+        title.setText(getString(R.string.alert_dialog_title));
+        title.setPadding(0, 20, 0, 10);
+        title.setGravity(Gravity.CENTER_HORIZONTAL);
+        title.setTextSize(20);
+        String msg = (getString(R.string.alert_dialog_start) + String.valueOf(SessionHistory.totalPoints) + getString(R.string.alert_dialog_end));
+        builder.setCustomTitle(title);
+        builder.setMessage(msg);
+        AlertDialog alert = builder.create();
+        alert.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.alert_dialog_ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alert.show();
     }
 
     public DatabaseHandler getmDbHandler() {
