@@ -17,7 +17,8 @@
             android:id="@+id/karma_star"
             android:layout_width="@dimen/karma_star_width"
             android:layout_height="@dimen/karma_star_height"
-            android:src="@drawable/karma" />
+            android:src="@drawable/karma"
+            android:contentDescription="@string/default_content_description" />
 
         <TextView
             android:id="@+id/karma_points"
@@ -33,20 +34,23 @@
             android:layout_weight="1.7"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/hair_store_button"/>
+            android:src="@drawable/hair_store_button"
+            android:contentDescription="@string/default_content_description"/>
         <ImageView
             android:id="@+id/clothes_button"
             android:layout_weight="2.1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/clothes_store_button"/>
+            android:src="@drawable/clothes_store_button"
+            android:contentDescription="@string/default_content_description"/>
         <ImageView
             android:id="@+id/accessories_button"
             android:layout_marginRight="@dimen/hair_button_marginLeft"
             android:layout_weight="2.8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/accessories_store_button"/>
+            android:src="@drawable/accessories_store_button"
+            android:contentDescription="@string/default_content_description"/>
         <Button
             android:id="@+id/map_button"
             android:layout_width="@dimen/home_button_height"
@@ -69,30 +73,35 @@
                 android:id="@+id/skin_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:contentDescription="@string/default_content_description"/>
 
             <ImageView
                 android:id="@+id/dress_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:contentDescription="@string/default_content_description" />
 
             <ImageView
                 android:id="@+id/hair_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:contentDescription="@string/default_content_description"/>
 
             <ImageView
                 android:id="@+id/eye_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:contentDescription="@string/default_content_description"/>
 
             <ImageView
                 android:id="@+id/acc_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
+                android:contentDescription="@string/default_content_description"
                 />
 
         </FrameLayout>
@@ -107,6 +116,7 @@
                 android:layout_width="@dimen/home_button_height"
                 android:layout_height="@dimen/home_button_height"
                 android:src="@drawable/arrow_left"
+                android:contentDescription="@string/default_content_description"
                 />
         </LinearLayout>
 
@@ -131,6 +141,7 @@
                 android:layout_width="@dimen/home_button_height"
                 android:layout_height="@dimen/home_button_height"
                 android:src="@drawable/arrow_right"
+                android:contentDescription="@string/default_content_description"
                 />
         </LinearLayout>
     </LinearLayout>

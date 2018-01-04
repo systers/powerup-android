@@ -40,7 +40,8 @@
         android:layout_height="@dimen/asker_height"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/marco" />
+        android:src="@drawable/marco"
+        android:contentDescription="@string/default_content_description"/>
 
 
 
@@ -55,33 +56,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/skin1" />
+            android:src="@drawable/skin1"
+            android:contentDescription="@string/default_content_description"/>
 
         <ImageView
             android:id="@+id/dress_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/dress_avatar1" />
+            android:src="@drawable/dress_avatar1"
+            android:contentDescription="@string/default_content_description"/>
 
         <ImageView
             android:id="@+id/hair_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/hair1" />
+            android:src="@drawable/hair1"
+            android:contentDescription="@string/default_content_description"/>
 
         <ImageView
             android:id="@+id/eye_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/eyes3" />
+            android:src="@drawable/eyes3"
+            android:contentDescription="@string/default_content_description"/>
 
         <ImageView
             android:id="@+id/accessory_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
+            android:contentDescription="@string/default_content_description"
             />
 
     </FrameLayout>

@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/minesweeper_pros_cons" />
+        android:src="@drawable/minesweeper_pros_cons"
+        android:contentDescription="@string/default_content_description"/>
 
     <ImageView
         android:id="@+id/continue_button"
@@ -20,7 +21,8 @@
         android:background="@drawable/continue_button"
         android:clickable="false"
         android:onClick="continuePressedProsAndCons"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        android:contentDescription="@string/default_content_description"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
