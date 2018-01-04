@@ -3,6 +3,7 @@ package powerup.systers.com.sink_to_swim_game;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,29 @@ public class SinkToSwimGame extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         initialSetUp();
+        player =  MediaPlayer.create(this, R.raw.sink_to_swim_background);
+        player.setLooping(true);
+        player.start();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!player.isPlaying())
+            player.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (player.isPlaying())
+            player.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        player.release();
+        super.onDestroy();
     }
 
     /**
