@@ -8,20 +8,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/swim_game_wave1" />
+        android:src="@drawable/swim_game_wave1"
+        android:contentDescription="@string/default_content_description" />
 
     <ImageView
         android:id="@+id/boat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/swim_game_boat" />
+        android:src="@drawable/swim_game_boat"
+        android:contentDescription="@string/default_content_description" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/swim_game_wave2" />
+        android:src="@drawable/swim_game_wave2"
+        android:contentDescription="@string/default_content_description" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,12 +36,14 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:scaleType="fitXY"
-            android:src="@drawable/swim_game_gauge" />
+            android:src="@drawable/swim_game_gauge"
+            android:contentDescription="@string/default_content_description" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="10"></LinearLayout>
+            android:layout_weight="10"
+            android:contentDescription="@string/default_content_description"></LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -131,6 +136,7 @@
         android:id="@+id/pointer"
         android:layout_width="@dimen/pointer_width"
         android:layout_height="@dimen/pointer_height"
-        android:src="@drawable/swim_game_pointer" />
+        android:src="@drawable/swim_game_pointer"
+        android:contentDescription="@string/default_content_description" />
 
 </FrameLayout>

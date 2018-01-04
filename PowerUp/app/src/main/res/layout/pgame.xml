@@ -54,7 +54,8 @@
         android:layout_height="@dimen/asker_image_view_height"
         android:layout_alignParentRight="true"
         android:layout_below="@id/scenarioNameEditText"
-        android:src="@drawable/marco" />
+        android:src="@drawable/marco"
+        android:contentDescription="@string/default_content_description"/>
 
     <RelativeLayout
         android:id="@+id/power_bar"
@@ -70,7 +71,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/power_status_bar" />
+            android:background="@drawable/power_status_bar"
+            android:contentDescription="@string/default_content_description"/>
 
         <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
             android:id="@+id/powerbarHealing"
@@ -161,7 +163,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/pgame_face_image_view_margin_top"
-            android:src="@drawable/face1" />
+            android:src="@drawable/face1"
+            android:contentDescription="@string/default_content_description" />
 
         <ImageView
             android:id="@+id/eyeImageView"
@@ -170,7 +173,8 @@
             android:layout_alignBottom="@id/faceImageView"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/eye_view_margin_bottom"
-            android:src="@drawable/eye1" />
+            android:src="@drawable/eye1"
+            android:contentDescription="@string/default_content_description" />
 
         <ImageView
             android:id="@+id/hairImageView"
@@ -179,7 +183,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/faceImageView"
-            android:src="@drawable/hair1" />
+            android:src="@drawable/hair1"
+            android:contentDescription="@string/default_content_description" />
 
         <ImageView
             android:id="@+id/clothImageView"
@@ -187,7 +192,8 @@
             android:layout_height="@dimen/cloth_view_height"
             android:layout_alignTop="@+id/eyeImageView"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/cloth1" />
+            android:src="@drawable/cloth1"
+            android:contentDescription="@string/default_content_description"/>
 
 
     </RelativeLayout>

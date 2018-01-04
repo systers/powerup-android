@@ -15,7 +15,8 @@
         android:background="@drawable/continue_button"
         android:onClick="continuePressed"
         android:scaleType="fitXY"
-        android:alpha="0.9"/>
+        android:alpha="0.9"
+        android:contentDescription="@string/default_content_description"/>
 
     <LinearLayout
         android:layout_width="match_parent"
