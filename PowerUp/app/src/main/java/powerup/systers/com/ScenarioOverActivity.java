@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -79,7 +80,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             continueButton.setOnClickListener(null);
         }
 
-
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,23 +108,21 @@ public class ScenarioOverActivity extends AppCompatActivity {
 
     public void showAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ScenarioOverActivity.this);
-        TextView title = new TextView(this);
-        title.setText(getString(R.string.alert_dialog_title));
-        title.setPadding(0, 20, 0, 10);
-        title.setGravity(Gravity.CENTER_HORIZONTAL);
-        title.setTextSize(20);
         String msg = (getString(R.string.alert_dialog_start) + String.valueOf(SessionHistory.totalPoints) + getString(R.string.alert_dialog_end));
-        builder.setCustomTitle(title);
-        builder.setMessage(msg);
-        AlertDialog alert = builder.create();
-        alert.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.alert_dialog_ok),
+        builder.setTitle(getString(R.string.alert_dialog_title))
+                .setMessage(msg);
+        AlertDialog dialog = builder.create();
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.alert_dialog_ok),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
-        alert.show();
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.show();
     }
 
     public DatabaseHandler getmDbHandler() {
