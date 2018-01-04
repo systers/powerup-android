@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/swim_tut1" />
+        android:src="@drawable/swim_tut1"
+        android:contentDescription="@string/default_content_description" />
 
     <ImageView
         android:id="@+id/start_button"
@@ -25,6 +26,6 @@
         android:onClick="startPressed"
         android:scaleType="fitXY"
         android:visibility="gone"
-        />
+        android:contentDescription="@string/default_content_description" />
 
 </FrameLayout>
