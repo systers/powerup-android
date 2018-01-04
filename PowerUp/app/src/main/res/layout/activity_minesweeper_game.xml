@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/minesweeper_condom_background" />
+        android:src="@drawable/minesweeper_condom_background"
+        android:contentDescription="@string/default_content_description" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         <LinearLayout
             android:layout_width="@dimen/adjustable"
             android:layout_height="match_parent"
-            android:layout_weight="4"></LinearLayout>
+            android:layout_weight="4"/>
 
         <LinearLayout
             android:layout_width="@dimen/adjustable"
@@ -33,7 +34,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/adjustable"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/board"
@@ -57,7 +58,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView1"
@@ -67,7 +69,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -77,7 +80,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView3"
@@ -87,7 +91,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView4"
@@ -97,7 +102,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                 </LinearLayout>
 
@@ -115,7 +121,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView6"
@@ -125,7 +132,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView7"
@@ -135,7 +143,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView8"
@@ -145,7 +154,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView9"
@@ -155,7 +165,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                 </LinearLayout>
 
@@ -173,7 +184,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView11"
@@ -183,7 +195,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView12"
@@ -193,7 +206,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView13"
@@ -203,7 +217,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView14"
@@ -213,7 +228,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -230,7 +246,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView16"
@@ -240,7 +257,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView17"
@@ -250,7 +268,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView18"
@@ -260,7 +279,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView19"
@@ -270,7 +290,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,7 +308,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView21"
@@ -297,7 +319,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView22"
@@ -307,7 +330,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView23"
@@ -317,7 +341,8 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
 
                     <ImageView
                         android:id="@+id/imageView24"
@@ -327,14 +352,15 @@
                         android:clickable="true"
                         android:onClick="openMine"
                         android:scaleType="fitXY"
-                        android:src="@drawable/yellow_star" />
+                        android:src="@drawable/yellow_star"
+                        android:contentDescription="@string/default_content_description" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/adjustable"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -368,7 +394,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    />
+
 
     <ImageView
         android:id="@+id/banner"
@@ -377,7 +403,8 @@
         android:layout_gravity="center_vertical"
         android:alpha="0"
         android:scaleType="fitXY"
-        android:src="@drawable/failure_banner" />
+        android:src="@drawable/failure_banner"
+        android:contentDescription="@string/default_content_description" />
 
     <ImageView
         android:id="@+id/continue_button"
@@ -389,6 +416,7 @@
         android:background="@drawable/continue_button"
         android:clickable="false"
         android:onClick="continuePressed"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        android:contentDescription="@string/default_content_description" />
 
 </FrameLayout>

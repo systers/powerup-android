@@ -16,7 +16,8 @@
         android:scaleType="fitXY"
         android:layout_marginTop="@dimen/replay_marginTop"
         android:layout_marginLeft="@dimen/replay_marginLeft"
-        android:alpha="0"/>
+        android:alpha="0"
+        android:contentDescription="@string/default_content_description"/>
 
     <Button
         android:layout_toRightOf="@id/replayButton"
@@ -35,13 +36,15 @@
         android:layout_marginBottom="@dimen/continue_marginBottom"
         android:background="@drawable/continue_button"
         android:scaleType="fitXY"
-        android:alpha="0.9"/>
+        android:alpha="0.9"
+        android:contentDescription="@string/default_content_description"/>
 
     <ImageView
         android:id="@+id/karma_star"
         android:layout_width="@dimen/karma_star_width"
         android:layout_height="@dimen/karma_star_height"
-        android:src="@drawable/karma"/>
+        android:src="@drawable/karma"
+        android:contentDescription="@string/default_content_description"/>
 
     <TextView
         android:id="@+id/karmaPoints"
