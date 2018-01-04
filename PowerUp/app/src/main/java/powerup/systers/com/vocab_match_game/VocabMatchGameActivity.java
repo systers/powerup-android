@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 import powerup.systers.com.R;
+import powerup.systers.com.VocabMatchSound;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 
@@ -115,10 +116,12 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (oldestTile < PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS.length){
                     String tileText = PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile];
                     if (tileText.equals(boardText)) {
+                        playSound(VocabMatchSound.TYPE_CORRECT);
                         score++;
                         scoreView.setText("" + score);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {
+                        playSound(VocabMatchSound.TYPE_INCORRECT);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_red));
                     }
                 }
@@ -216,5 +219,11 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 return false;
             }
         }
+    }
+
+    private void playSound(int sound) {
+        Intent intent = new Intent(this, VocabMatchSound.class)
+                .putExtra(VocabMatchSound.SOUND_TYPE_EXTRA, sound);
+        startService(intent);
     }
 }
