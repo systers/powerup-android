@@ -22,6 +22,11 @@ import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
+import static powerup.systers.com.powerup.PowerUpUtils.SWIM_SINK_SOUND_ACTION;
+import static powerup.systers.com.powerup.PowerUpUtils.SWIM_SINK_SOUND_EXTRA;
+import static powerup.systers.com.powerup.PowerUpUtils.SWIM_SINK_SOUND_PAUSE;
+import static powerup.systers.com.powerup.PowerUpUtils.SWIM_SINK_SOUND_RESUME;
+
 /**
  * Created by sachinaggarwal on 7/07/17.
  */
@@ -37,11 +42,15 @@ public class SinkToSwimGame extends AppCompatActivity {
     public long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
+    private Intent soundServiceIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sink_to_swim_game);
+        soundServiceIntent = new Intent(this, SinkToSwimSound.class);
+        startService(soundServiceIntent);
+
         boat = (ImageView) findViewById(R.id.boat);
         trueOption = (Button) findViewById(R.id.true_option);
         skipOption = (Button) findViewById(R.id.skip_option);
@@ -253,6 +262,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     /**
      * Since app is coming back to active state, start the timer from same time
      * Create a new timer with counter starting from last time
+     * Send broadcast to the sound service to resume the background sound
      */
     @Override
     public void onResume() {
@@ -274,17 +284,44 @@ public class SinkToSwimGame extends AppCompatActivity {
                     gameEnd(); //game ends when time finishes
                 }
             }.start();
+
+        sendBroadcastToSoundService(SWIM_SINK_SOUND_RESUME); //sends broadcast to resume background sound
         super.onResume();
     }
 
     /**
      * When app is paused, stop the timer
      * CountDown Timer can't be paused. It has to be canceled.
+     * Send broadcast to the sound service to pause the background sound
      */
     @Override
     public void onPause() {
         countDownTimer.cancel();
         countDownTimer = null;
+
+        sendBroadcastToSoundService(SWIM_SINK_SOUND_PAUSE); //sends broadcast to pause background sound
         super.onPause();
+    }
+
+    /**
+     * When the activity is destroyed, stop the service (that internally stops and releases all
+     * media player resources)
+     */
+    @Override
+    protected void onDestroy() {
+        stopService(soundServiceIntent);  //stops service
+        super.onDestroy();
+    }
+
+    /**
+     * Sends a broadcast to the sound service telling it to either pause or resume the background
+     * sound
+     * @param soundOptionExtra Option whether to pause or resume the background sounds
+     */
+    private void sendBroadcastToSoundService(String soundOptionExtra) {
+        Intent intent = new Intent();
+        intent.setAction(SWIM_SINK_SOUND_ACTION);
+        intent.putExtra(SWIM_SINK_SOUND_EXTRA, soundOptionExtra);
+        sendBroadcast(intent); //sends the broadcast
     }
 }
