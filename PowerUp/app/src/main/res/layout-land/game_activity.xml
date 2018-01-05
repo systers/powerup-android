@@ -98,6 +98,8 @@
         android:background="@drawable/left_conversation"
         android:clickable="true"/>
     <TextView
+        android:paddingLeft="@dimen/conversation_margin"
+        android:paddingRight="@dimen/game_padding_left"
         android:textColor="@color/powerup_black"
         android:id="@+id/questionView"
         android:layout_width="@dimen/questionview_tv_width"
