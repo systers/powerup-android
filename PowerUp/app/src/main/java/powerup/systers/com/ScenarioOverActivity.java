@@ -8,9 +8,13 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -87,6 +91,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
+        showDialog();
     }
 
     /**
@@ -104,5 +109,23 @@ public class ScenarioOverActivity extends AppCompatActivity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
+    }
+
+    private void showDialog() {
+        int points = SessionHistory.currScenePoints;
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.round_points_title)
+                .setMessage(getString(R.string.round_points_message, points))
+                .setPositiveButton(R.string.dialog_submit, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.show();
     }
 }
