@@ -121,8 +121,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 });
         ColorDrawable drawable = new ColorDrawable(Color.WHITE);
         drawable.setAlpha(200);
-        dialog.getWindow().setBackgroundDrawable(drawable);
         dialog.show();
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.getWindow().setLayout(800,450);
     }
 
     public DatabaseHandler getmDbHandler() {
