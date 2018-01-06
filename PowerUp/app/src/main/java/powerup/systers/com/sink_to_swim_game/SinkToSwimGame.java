@@ -3,8 +3,11 @@ package powerup.systers.com.sink_to_swim_game;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -37,6 +41,9 @@ public class SinkToSwimGame extends AppCompatActivity {
     public long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
+    public SinkToSwimSound backSound;
+    public MediaPlayer mediaPlayer;
+    public AssetFileDescriptor afd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,18 @@ public class SinkToSwimGame extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         initialSetUp();
+        mediaPlayer = new MediaPlayer();  //Initializing MediaPlayer Object
+        try {
+            afd = getAssets().openFd("background_music.mp3");
+            mediaPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+            afd.close();
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        backSound = new SinkToSwimSound(mediaPlayer);   //Initializing SinkToSwimSound instance associated to mediaPlayer
+        backSound.onCreate();   //Calling OnCreate Method to set the initial conditions for the instance
+        backSound.Start();  //Calling Start Method to start playback
     }
 
     /**
@@ -116,6 +135,7 @@ public class SinkToSwimGame extends AppCompatActivity {
      * @desc ends the game
      */
     public void gameEnd() {
+        backSound.Pause();  //Pausing sound playback at Activity Stop
         countDownTimer.cancel();
         Intent intent = new Intent(SinkToSwimGame.this, SinkToSwimEndActivity.class);
         intent.putExtra(PowerUpUtils.SCORE,score);
@@ -256,6 +276,7 @@ public class SinkToSwimGame extends AppCompatActivity {
      */
     @Override
     public void onResume() {
+        backSound.Start(); //Starting sound playback at Activity Resume
         if (countDownTimer == null) //to ensure that there is no counter already running
             countDownTimer = new CountDownTimer(millisLeft, 1000) {
 
@@ -283,8 +304,18 @@ public class SinkToSwimGame extends AppCompatActivity {
      */
     @Override
     public void onPause() {
+        backSound.Pause();  //Pausing sound playback at Activity Pause
         countDownTimer.cancel();
         countDownTimer = null;
         super.onPause();
+    }
+
+    /**
+     * Handling Activity destruction to release MediaPlayer from cache
+     */
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        backSound.Stop();
     }
 }

@@ -121,6 +121,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <service android:name=".sink_to_swim_game.SinkToSwimSound" android:enabled="true" />
     </application>
 
 </manifest>
