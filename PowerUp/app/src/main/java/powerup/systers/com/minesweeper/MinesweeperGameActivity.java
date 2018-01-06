@@ -1,3 +1,8 @@
+/**
+ * @desc sets up the board with mines and handles game functionalities such as animations
+ * and incrementing the score
+ */
+
 package powerup.systers.com.minesweeper;
 
 import android.animation.Animator;
@@ -50,8 +55,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * set up the score and number of completed rounds
+     * @desc set up the score and number of completed rounds
      * sets the background image corresponding to contraceptive method for current round
      * sets red mines at random positions in board based on success percentage of contraceptive method of current round
      */
@@ -79,8 +83,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * called when user opens any mine from the board
+     * @desc called when user opens any mine from the board
      * flips animation on the opened mine
      * @param view mine which is opened
      */
@@ -131,8 +134,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * opened mine is green, increment the score
+     * @desc opened mine is green, increment the score
      * includes zoom in and out bounce animation on score
      */
     public void openedGreenMine() {
@@ -149,8 +151,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * shows the failure or success banner based on last selection
+     * @desc shows the failure or success banner based on last selection
      * includes fade in animation on the banner and continue button
      * @param type type of banner, 1 signify failure, 0 signify success
      */
@@ -186,8 +187,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * shows the original placement of red mines and green mines to user
+     * @desc shows the original placement of red mines and green mines to user
      */
     public void showOriginalMines() {
         ImageView mine;
@@ -223,9 +223,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * called when continue button is pressed in minesweeper game
-     * updated the data from this round into session database and opens pros and cons screen
+     * @desc called when continue button is pressed in minesweeper game
+     * updates the data from this round into session database and opens pros and cons screen
      * includes fade in and fade out activity transition
      */
     public void continuePressed(View view) {

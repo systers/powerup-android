@@ -1,3 +1,7 @@
+/**
+ * @desc creates a splash screen showing the Systers logo and transitions into the main menu
+ */
+
 package powerup.systers.com;
 
 import android.content.Intent;

@@ -1,3 +1,7 @@
+/**
+ * @desc provides information about the game, why it is needed, and how it helps teenagers
+ */
+
 package powerup.systers.com;
 
 import android.app.Activity;
@@ -14,6 +18,7 @@ public class AboutActivity extends Activity {
     private static String isUrgencyOpen = "ABOUT_URGENCY_OPEN";
     private static String isHelpingOpen = "ABOUT_HELPING_OPEN";
     private TextView aboutGameSection, aboutUrgencySection, aboutHelpingSection;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,7 @@ public class AboutActivity extends Activity {
         }
 
     }
+    
     public void aboutGamePressed(View view){
         if (aboutGameSection.getVisibility() == View.GONE){
             aboutGameSection.setVisibility(View.VISIBLE);

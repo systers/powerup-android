@@ -1,3 +1,7 @@
+/**
+ * @desc instruct the user on how to play Vocab Match before starting the mini game
+ */
+
 package powerup.systers.com.vocab_match_game;
 
 import android.content.Intent;
@@ -27,7 +31,7 @@ public class VocabMatchTutorials extends AppCompatActivity {
                     Intent intent = new Intent(VocabMatchTutorials.this,VocabMatchGameActivity.class);
                     finish();
                     startActivity(intent);
-                }else {
+                } else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_MATCH_TUTS[curTutorialImage]));
                     curTutorialImage++;
                 }

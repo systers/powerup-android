@@ -1,3 +1,7 @@
+/**
+ * @desc handles the creation and animation of vocab tiles during the Vocab Match mini game
+ */
+
 package powerup.systers.com.vocab_match_game;
 
 import android.animation.Animator;
@@ -61,6 +65,9 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         initialSetUp();
     }
 
+    /**
+     * @desc generate and randomly place the initial tiles when the game starts
+     */
     public void initialSetUp() {
         tv1.setText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[0]);
         tv1.setPosition(0);
@@ -88,6 +95,12 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         }, 4000);
     }
 
+    /**
+     * @desc updates the game by creating new tiles until all of the available vocab terms have been used
+     * increments score correspondingly
+     * @param position location of the tile to be created
+     * @param imageview resource to set the new tile's image
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void startNewTile(final int position, final VocabTileImageView imageview) {
 
@@ -150,6 +163,12 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         animation.start();
     }
 
+    /**
+     * @desc finds and returns one of three TextViews that are
+     * currently on the screen from a given position
+     * @param position the coordinate of the desired TextView
+     * @return the TextView at the indicated position
+     */
     public TextView getBoardFromPosition(int position) {
         if (tv1.getPosition() == position)
             return tv1;
@@ -158,7 +177,13 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         else
             return tv3;
     }
-
+    
+    /**
+     * @desc finds and returns one of three TextViews that are
+     * currently on the screen from a given phrase
+     * @param text the content of the desired TextView
+     * @return the TextView with the indicated content
+     */
     public VocabBoardTextView getPositionFromText(String text) {
         if (tv1.getText().equals(text))
             return tv1;

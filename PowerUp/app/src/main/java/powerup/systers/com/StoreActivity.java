@@ -1,3 +1,8 @@
+/**
+ * @desc sets up the store for the user to look through different skin/hair/clothing options.
+ * The user may purchase new items with karma points.
+ */
+
 package powerup.systers.com;
 
 import android.annotation.TargetApi;

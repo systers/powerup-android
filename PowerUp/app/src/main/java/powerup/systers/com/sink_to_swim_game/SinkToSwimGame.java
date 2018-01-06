@@ -1,5 +1,8 @@
-package powerup.systers.com.sink_to_swim_game;
+/**
+ * @desc displays questions and handles the boat and timer animations during the Sink To Swim mini game
+ */
 
+package powerup.systers.com.sink_to_swim_game;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -126,7 +129,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
     /**
-     * @desc shows the next question which a fade in and out animation
+     * @desc shows the next question with a fade in and out animation
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void showNextQuestion() {

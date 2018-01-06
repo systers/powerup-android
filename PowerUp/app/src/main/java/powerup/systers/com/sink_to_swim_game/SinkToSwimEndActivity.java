@@ -1,3 +1,8 @@
+/**
+ * @desc creates an ending screen showing user's score upon completion
+ * of the Sink To Swim mini game
+ */
+
 package powerup.systers.com.sink_to_swim_game;
 
 import android.content.Intent;
