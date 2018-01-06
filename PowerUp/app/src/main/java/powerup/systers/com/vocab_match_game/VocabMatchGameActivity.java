@@ -7,9 +7,9 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -71,7 +71,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         latestTile = 0;
         oldestTile = 0;
         r = new Random();
+        // Start a new tile after an interval of 2 seconds
+        // Starts first tile
         startNewTile(Math.abs(r.nextInt() % 3), img1);
+        // Starts second tile after 2 seconds
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -79,6 +82,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 startNewTile(Math.abs(r.nextInt() % 3), img2);
             }
         }, 2000);
+        // Starts third tile after 4 seconds
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -94,6 +98,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         if(latestTile<PowerUpUtils.VOCAB_TILES_IMAGES.length){
             imageview.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_TILES_IMAGES[latestTile]));
         }
+        /*
+        Set the position of the tile which is an ImageView and a tile takes 6 seconds to reach
+        the board.
+        */
         imageview.setX(0);
         imageview.setPosition(position);
         imageview.setY(position * (height / 3));
@@ -107,22 +115,28 @@ public class VocabMatchGameActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
 
+                // Making the tile invisible when it reaches the board
                 imageview.setLayerType(View.LAYER_TYPE_NONE, null);
                 imageview.setVisibility(View.GONE);
+                // Getting the text of the board which collected the tile
                 final TextView boardView = getBoardFromPosition(imageview.getPosition());
                 String boardText = getBoardFromPosition(imageview.getPosition()).getText().toString();
 
                 if (oldestTile < PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS.length){
                     String tileText = PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile];
+                    // Increasing the score if a tile matches the correct board
                     if (tileText.equals(boardText)) {
                         score++;
                         scoreView.setText("" + score);
+                        // Making the star of the board green if match is correct
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {
+                        // Making the star of the board red if match is incorrect
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_red));
                     }
                 }
 
+                // Changing the color of the star of the board to yellow after 2 milliseconds
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -136,6 +150,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     getPositionFromText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile]).setText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[latestTile]);
                 }
                 oldestTile++;
+                /*
+                If tiles are not finished then start new a new tile else launch the
+                VocabMatchEndActivity.
+                */
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
@@ -168,6 +186,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
             return tv3;
     }
 
+    // Listener for handling the drag event of the board
     View.OnDragListener listenDrag = new View.OnDragListener() {
 
         @Override
@@ -189,14 +208,15 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     });
                     break;
 
+                // Swiping the positions of the boards on drop event of the board dragged
                 case DragEvent.ACTION_DROP:
                     VocabBoardTextView source = (VocabBoardTextView) view;
                     VocabBoardTextView target = (VocabBoardTextView) v;
-                    float sourceX = source.getY();
+                    float sourceY = source.getY();
                     int sourcePosition = source.getPosition();
                     source.setY(target.getY());
                     source.setPosition(target.getPosition());
-                    target.setY(sourceX);
+                    target.setY(sourceY);
                     target.setPosition(sourcePosition);
                     break;
             }
