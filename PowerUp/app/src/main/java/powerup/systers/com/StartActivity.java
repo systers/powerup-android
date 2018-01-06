@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Debug;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -43,6 +44,7 @@ public class StartActivity extends Activity {
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Debug.startMethodTracing("start-activity-dialog");
                 AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
                 builder.setTitle(context.getResources().getString(R.string.start_title_message))
                         .setMessage(getResources().getString(R.string.start_dialog_message));
@@ -61,6 +63,7 @@ public class StartActivity extends Activity {
                 drawable.setAlpha(200);
                 dialog.getWindow().setBackgroundDrawable(drawable);
                 dialog.show();
+                Debug.stopMethodTracing();
             }
         });
 
