@@ -22,6 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "default"
+    productFlavors {
+        free {
+            applicationIdSuffix '.free'
+            versionNameSuffix '-free'
+        }
+        paid {
+            applicationIdSuffix '.paid'
+            versionNameSuffix '-paid'
+        }
+    }
 }
 
 dependencies {

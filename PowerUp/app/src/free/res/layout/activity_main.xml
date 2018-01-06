@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/start_screen_background"
+    android:orientation="vertical"
+    tools:context="powerup.systers.com.StartActivity">
+
+    <Button
+        android:layout_weight="0.8"
+        android:id="@+id/aboutButtonMain"
+        android:layout_width="@dimen/about_button_width"
+        android:layout_height="0dp"
+        android:alpha="1"
+        android:stateListAnimator="@null"
+        android:background="@android:color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.6"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/newUserButtonFirstPage"
+            android:layout_width="@dimen/new_user_button_width"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:alpha="0"/>
+        <Button
+            android:id="@+id/startButtonMain"
+            android:layout_width="@dimen/start_button_width"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:alpha="0"/>
+    </LinearLayout>
+</LinearLayout>
