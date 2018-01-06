@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/start_screen_background"
     android:orientation="vertical"
+    android:id="@+id/background"
     tools:context="powerup.systers.com.StartActivity">
 
     <Button

@@ -21,6 +21,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class StartActivity extends Activity {
@@ -78,13 +79,19 @@ public class StartActivity extends Activity {
             }
         });
 
-        aboutButton = (Button) findViewById(R.id.aboutButtonMain);
-        aboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(StartActivity.this, AboutActivity.class));
-            }
-        });
+        if (BuildConfig.FLAVOR.equals("free")) {
+            // use the background without the about button
+            LinearLayout layout = (LinearLayout) findViewById(R.id.background);
+            layout.setBackgroundResource(R.drawable.start_screen_free);
+        } else {
+            aboutButton = (Button) findViewById(R.id.aboutButtonMain);
+            aboutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(StartActivity.this, AboutActivity.class));
+                }
+            });
+        }
 
     }
 
