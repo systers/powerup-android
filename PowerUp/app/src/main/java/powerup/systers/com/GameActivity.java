@@ -213,6 +213,7 @@ public class GameActivity extends Activity {
                 public void onClick(View v) {
                     // Incase the user move back to map in between a running
                     // Scenario.
+                    PowerUpUtils.SHOW_DIALOG=false;
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                     goToMap.setClickable(false);
                     Intent intent = new Intent(GameActivity.this, MapActivity.class);
