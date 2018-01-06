@@ -13,6 +13,7 @@ public class PowerUpUtils {
     public static final int MAXIMUM_FLIPS_ALLOWED = 5;
     public static final int RED_BANNER = 1;
     public static final int GREEN_BANNER = 0;
+    public static boolean SHOW_DIALOG = true;
 
     public static final String SCORE = "score";
     public static final String CORRECT_ANSWERS = "correct";
