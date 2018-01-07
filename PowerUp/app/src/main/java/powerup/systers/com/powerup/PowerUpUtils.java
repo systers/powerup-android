@@ -20,6 +20,9 @@ public class PowerUpUtils {
     public static final String MAP = "map";
     public static final String SOURCE = "source";
 
+    public static final String MINESWEEPER_TILE_RESULT = "MINESWEEPER_TILE_RESULT";
+    public static final String MINESWEEPER_TILE_CORRECT = "correct.mp3";
+    public static final String MINESWEEPER_TILE_INCORRECT = "incorrect.mp3";
 
     public static final String CALLED_BY = "TUTORIALS_ACTIVITY";
     public static final String ID_REFERENCE = "powerup.systers.com.powerup:id/imageView";

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Random;
 
+import powerup.systers.com.MinesweeperSound;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -101,9 +102,15 @@ public class MinesweeperGameActivity extends AppCompatActivity {
                 if (mines.contains(view.getResources().getResourceName(view.getId()))) { //red mine is opened
                     imageView.setImageDrawable(getResources().getDrawable(R.drawable.red_star));
                     openedRedMine();
+                    Intent intent = new Intent(MinesweeperGameActivity.this, MinesweeperSound.class);
+                    intent.putExtra(PowerUpUtils.MINESWEEPER_TILE_RESULT, PowerUpUtils.MINESWEEPER_TILE_CORRECT);
+                    startService(intent);
                 } else {
                     imageView.setImageDrawable(getResources().getDrawable(R.drawable.green_star));
                     openedGreenMine();
+                    Intent intent = new Intent(MinesweeperGameActivity.this, MinesweeperSound.class);
+                    intent.putExtra(PowerUpUtils.MINESWEEPER_TILE_RESULT, PowerUpUtils.MINESWEEPER_TILE_INCORRECT);
+                    startService(intent);
                 }
                 imageView.setRotationY(270f);
                 imageView.animate().rotationY(360f).setListener(null);
