@@ -367,8 +367,8 @@ public class StoreActivity extends AppCompatActivity {
                             } else {
                                 builder = new AlertDialog.Builder(context);
                             }
-                            builder.setTitle("Unable to buy this item")
-                            .setMessage("Earn more points in the game to be able to buy hair, clothes and accessoires")
+                            builder.setTitle("Oops!")
+                            .setMessage("You don't have enough points to buy that!")
                             .setNegativeButton("dismiss", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // do nothing
