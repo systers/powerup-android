@@ -8,9 +8,13 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +36,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public static int scenarioActivityDone;
     private DatabaseHandler mDbHandler;
     public Scenario scene;
+    public static boolean showKarmaPoints;
 
     public ScenarioOverActivity() {
         scenarioOverActivityInstance = this;
@@ -43,6 +48,10 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.activity_scenario_over);
+        // Karma Points Alert
+        if (showKarmaPoints) {
+            showAlert();
+        }
         scene = getmDbHandler().getScenario();
         scenarioActivityDone = 1;
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
@@ -51,6 +60,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showKarmaPoints = false;
                 finish();
                 startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
             }
@@ -62,6 +72,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showKarmaPoints = false;
                 new GameActivity().gameActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
@@ -75,6 +86,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showKarmaPoints = false;
                 SessionHistory.currSessionID = SessionHistory.prevSessionID;
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 SessionHistory.currScenePoints = 0;
@@ -96,6 +108,26 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         new GameActivity().gameActivityInstance.finish();
+    }
+
+    public void showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ScenarioOverActivity.this);
+        String msg = (getString(R.string.alert_dialog_start) + String.valueOf(SessionHistory.currScenePoints) + getString(R.string.alert_dialog_end));
+        builder.setTitle(getString(R.string.alert_dialog_title))
+                .setMessage(msg);
+        AlertDialog dialog = builder.create();
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.alert_dialog_ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.getWindow().setLayout(800,450);
     }
 
     public DatabaseHandler getmDbHandler() {

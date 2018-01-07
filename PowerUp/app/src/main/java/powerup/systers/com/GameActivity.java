@@ -149,6 +149,7 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
+                        ScenarioOverActivity.showKarmaPoints = true;
                         if (answers.get(position).getNextQuestionID() > 0) {
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
@@ -213,6 +214,7 @@ public class GameActivity extends Activity {
                 public void onClick(View v) {
                     // Incase the user move back to map in between a running
                     // Scenario.
+                    ScenarioOverActivity.showKarmaPoints = false;
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                     goToMap.setClickable(false);
                     Intent intent = new Intent(GameActivity.this, MapActivity.class);
