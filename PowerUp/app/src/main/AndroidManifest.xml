@@ -121,6 +121,8 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <service android:name=".MinesweeperSound"
+            android:enabled="true"/>
     </application>
 
 </manifest>
