@@ -127,6 +127,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * @desc the opened mine is red, show failure banner
      */
     public void openedRedMine() {
+        Intent intent = new Intent(this, MinesweeperSound.class);
+        intent.putExtra(PowerUpUtils.MINE_RESULT, PowerUpUtils.INCORRECT_TILE);
+        startService(intent);
         showBanner(1);
     }
 
@@ -136,6 +139,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * includes zoom in and out bounce animation on score
      */
     public void openedGreenMine() {
+        Intent intent = new Intent(this, MinesweeperSound.class);
+        intent.putExtra(PowerUpUtils.MINE_RESULT, PowerUpUtils.CORRECT_TILE);
+        startService(intent);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
