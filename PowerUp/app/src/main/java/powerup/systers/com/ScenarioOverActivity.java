@@ -63,7 +63,13 @@ public class ScenarioOverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new GameActivity().gameActivityInstance.finish();
-                startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                // if game is completed go to GameOverActivity rather than GameActivity
+                if(getIntent().getBooleanExtra(PowerUpUtils.GAME_COMPLETED, false)) {
+                    startActivityForResult(new Intent(ScenarioOverActivity.this, GameOverActivity.class), 0);
+                }
+                else {
+                    startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                }
             }
         });
         if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
