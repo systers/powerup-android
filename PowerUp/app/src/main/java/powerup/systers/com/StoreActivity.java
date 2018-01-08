@@ -1,21 +1,31 @@
 package powerup.systers.com;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -43,6 +53,7 @@ public class StoreActivity extends AppCompatActivity {
     private DatabaseHandler mDbHandler;
     java.lang.reflect.Field photoNameField;
     R.drawable ourRID;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +66,7 @@ public class StoreActivity extends AppCompatActivity {
         karmaPoints = (TextView) findViewById(R.id.karma_points);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         Button mapButton = (Button) findViewById(R.id.map_button);
+        context = StoreActivity.this;
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,31 +315,42 @@ public class StoreActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (v.isEnabled()){
 
-                        TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
+                        TextView itemPoints_View = (TextView) v.findViewById(R.id.item_points);
+                        int itemPoints_Int = Integer.parseInt(itemPoints_View.getText().toString());
                         int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                            if (getmDbHandler().getPurchasedHair(index) == 0 && SessionHistory.totalPoints >= itemPoints_Int){
+                                SessionHistory.totalPoints -= itemPoints_Int;
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-
                                 getmDbHandler().setPurchasedHair(index);
+                                setAvatarHair(index);
+                            } else if (getmDbHandler().getPurchasedHair(index) == 1) {
+                                setAvatarHair(index);
+                            } else {
+                                dialogMaker();
                             }
 
                         } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                            if (getmDbHandler().getPurchasedClothes(index) == 0 && SessionHistory.totalPoints >= itemPoints_Int){
+                                SessionHistory.totalPoints -= itemPoints_Int;
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedClothes(index);
+                            } else if (getmDbHandler().getPurchasedClothes(index) == 1) {
+                                setAvatarClothes(index);
+                            } else {
+                                dialogMaker();
                             }
 
                         } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                            if (getmDbHandler().getPurchasedAccessories(index) == 0 && SessionHistory.totalPoints >= itemPoints_Int){
+                                SessionHistory.totalPoints -= itemPoints_Int;
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedAccessories(index);
+                                setAvatarAccessories(index);
+                            } else if (getmDbHandler().getPurchasedAccessories(index) == 1) {
+                                setAvatarAccessories(index);
+                            } else {
+                                dialogMaker();
                             }
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
@@ -353,7 +376,7 @@ public class StoreActivity extends AppCompatActivity {
 
                 } else { //can't be bought
                     storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
-                    storeItem.setEnabled(false);
+                    storeItem.setEnabled(true);
                 }
             }
             return storeItem;
@@ -378,6 +401,48 @@ public class StoreActivity extends AppCompatActivity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
+    }
+
+    /**
+     * @desc - Function to create AlertDialog in case the user doesn't have enough points
+     */
+    public void dialogMaker() {
+        int titlePadding = context.getResources().getInteger(R.integer.store_dialog_title_padding); //Calling title padding from resources
+        int titleTextSize = context.getResources().getInteger(R.integer.store_dialog_title_textSize);   //Calling title textSize from resources
+        int buttonTextSize = context.getResources().getInteger(R.integer.store_dialog_button_textSize);    //Calling button textSize from resources
+        int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.37);  //Setting width for dialog relative to screenSize
+        String store_dialog_message = getResources().getString(R.string.store_dialog_message);  //Initializing message
+        TextView message2 = new TextView(this); //TextView for custom title
+        message2.setGravity(Gravity.CENTER);
+        message2.setText(getResources().getString(R.string.store_dialog_title));
+        message2.setTextSize(titleTextSize);
+        message2.setTypeface(message2.getTypeface(), Typeface.BOLD);
+        message2.setPadding(0, titlePadding, 0, 0); //Setting custom padding
+        message2.setTextColor(getResources().getColor(R.color.powerup_black));
+        AlertDialog.Builder builder = new AlertDialog.Builder(StoreActivity.this);  //AlertDialogBuilder Initialization
+        builder.setMessage("Message");
+        builder.setPositiveButton((getString(R.string.store_dialog_confirm_message)), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.setCustomTitle(message2);
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        AlertDialog dialog = builder.create();  //Generating AlertDialog with builder specifics
+        dialog.show();
+        final Window window = dialog.getWindow();   //Getting Window for dialog
+        window.setLayout(width, WindowManager.LayoutParams.WRAP_CONTENT);   //Setting custom dimens for dialog with Window
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        LinearLayout parent = (LinearLayout) positiveButton.getParent();
+        View leftSpacer = parent.getChildAt(1);
+        TextView message1 = (TextView) dialog.findViewById(android.R.id.message);
+        message1.setText(store_dialog_message);
+        message1.setGravity(Gravity.CENTER);    //CenterAlign message
+        positiveButton.setTextSize(buttonTextSize);
+        parent.setGravity(Gravity.CENTER_HORIZONTAL);   //Setting button gravity to center
+        leftSpacer.setVisibility(View.GONE);    //Eliminating extraSpace in Button
     }
 
     @Override
