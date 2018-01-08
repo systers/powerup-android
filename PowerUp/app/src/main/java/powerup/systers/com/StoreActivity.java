@@ -2,9 +2,12 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -298,11 +301,28 @@ public class StoreActivity extends AppCompatActivity {
             } else {
                 holder = (ViewHolder) storeItem.getTag();
             }
+            final StoreItem temp = storeItems.get(position);
+            holder.itemImage.setBackground(context.getResources().getDrawable(temp.imageId));
+            holder.itemPoints.setText(temp.points);
+
+            final int id = calculatePosition(position)+1;
+
+            if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
+                storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
+                holder.itemImage.setImageResource(R.drawable.store_tick);
+            } else { //not purchased => available/not available
+                holder.itemImage.setImageResource(Color.TRANSPARENT);
+                if (Integer.parseInt(temp.points) <= SessionHistory.totalPoints) { //can be bought
+                    storeItem.setBackground(getResources().getDrawable(R.drawable.buy_item));
+
+                } else { //can't be bought
+                    storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
+                }
+            }
             storeItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (v.isEnabled()){
-
+                    if (getPurchasedStatus(id) == 1 || Integer.parseInt(temp.points) <= SessionHistory.totalPoints){
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
                         int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
@@ -332,33 +352,31 @@ public class StoreActivity extends AppCompatActivity {
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
 
+                    } else {
+                        showNotEnoughMoneyDialog();
                     }
                 }
             });
-            StoreItem temp = storeItems.get(position);
-                holder.itemImage.setBackground(context.getResources().getDrawable(temp.imageId));
-                holder.itemPoints.setText(temp.points);
-
-            int id = calculatePosition(position)+1;
-
-            if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
-                storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
-                holder.itemImage.setImageResource(R.drawable.store_tick);
-                storeItem.setEnabled(true);
-            } else { //not purchased => available/not available
-                holder.itemImage.setImageResource(Color.TRANSPARENT);
-                if (Integer.parseInt(temp.points) <= SessionHistory.totalPoints) { //can be bought
-                    storeItem.setBackground(getResources().getDrawable(R.drawable.buy_item));
-                    storeItem.setEnabled(true);
-
-                } else { //can't be bought
-                    storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
-                    storeItem.setEnabled(false);
-                }
-            }
             return storeItem;
         }
 
+    }
+
+    private void showNotEnoughMoneyDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.not_enough_money_title)
+                .setMessage(R.string.not_enough_money_message)
+                .setPositiveButton(R.string.not_enough_money_dismiss, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.show();
     }
 
     public int getPurchasedStatus(int index) {
