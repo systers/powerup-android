@@ -2,12 +2,16 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -301,9 +305,9 @@ public class StoreActivity extends AppCompatActivity {
             storeItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (v.isEnabled()){
+                    TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
+                    if (SessionHistory.totalPoints > Integer.parseInt(itemPoints.getText().toString())){
 
-                        TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
                         int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
                             setAvatarHair(index);
@@ -332,6 +336,20 @@ public class StoreActivity extends AppCompatActivity {
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
 
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(StoreActivity.this);
+                        builder.setTitle(context.getResources().getString(R.string.oops_title))
+                                .setMessage(getResources().getString(R.string.not_enough_points));
+                        builder.setNegativeButton(getResources().getString(R.string.dismiss), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+                        drawable.setAlpha(200);
+                        dialog.getWindow().setBackgroundDrawable(drawable);
+                        dialog.show();
                     }
                 }
             });
@@ -353,7 +371,7 @@ public class StoreActivity extends AppCompatActivity {
 
                 } else { //can't be bought
                     storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
-                    storeItem.setEnabled(false);
+                    storeItem.setEnabled(true);
                 }
             }
             return storeItem;
