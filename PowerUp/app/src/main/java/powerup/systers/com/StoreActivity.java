@@ -367,9 +367,9 @@ public class StoreActivity extends AppCompatActivity {
                             } else {
                                 builder = new AlertDialog.Builder(context);
                             }
-                            builder.setTitle(getString(R.string.storedialogtitle))
-                            .setMessage(getString(R.string.storedialogmessage))
-                            .setNegativeButton(getString(R.string.storedialogdismiss), new DialogInterface.OnClickListener() {
+                            builder.setTitle(getString(R.string.store_dialog_title))
+                            .setMessage(getString(R.string.store_dialog_message))
+                            .setNegativeButton(getString(R.string.store_dialog_dismiss), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // do nothing
                                 }
