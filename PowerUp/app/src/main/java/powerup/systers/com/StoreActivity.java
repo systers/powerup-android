@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -353,12 +354,33 @@ public class StoreActivity extends AppCompatActivity {
 
                 } else { //can't be bought
                     storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
-                    storeItem.setEnabled(false);
-                }
-            }
+                    storeItem.setEnabled(true);
+
+                    //When an item that can't be bought is clicked, show alert
+                    storeItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //show alert
+                            AlertDialog.Builder builder;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+                            } else {
+                                builder = new AlertDialog.Builder(context);
+                            }
+                            builder.setTitle(getString(R.string.storedialogtitle))
+                            .setMessage(getString(R.string.storedialogmessage))
+                            .setNegativeButton(getString(R.string.storedialogdismiss), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                        }
+                });
+            }}
             return storeItem;
         }
-
     }
 
     public int getPurchasedStatus(int index) {
