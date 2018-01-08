@@ -2,6 +2,7 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class AboutActivity extends Activity {
             aboutHelpingSection.setVisibility(View.VISIBLE);
         }
 
+        Debug.startMethodTracing("AboutActivity-AboutGameClick");
     }
     public void aboutGamePressed(View view){
         if (aboutGameSection.getVisibility() == View.GONE){
@@ -45,6 +47,7 @@ public class AboutActivity extends Activity {
             aboutGameSection.setVisibility(View.GONE);
             isAboutGameOpen = false;
         }
+        Debug.stopMethodTracing();
     }
 
     public void aboutUrgencyPressed(View view){

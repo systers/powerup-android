@@ -7,6 +7,7 @@ package powerup.systers.com;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -91,6 +92,7 @@ public class MapActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MapActivity.this, StoreActivity.class));
+                Debug.stopMethodTracing();
             }
         });
 
@@ -116,6 +118,7 @@ public class MapActivity extends Activity {
             library.setEnabled(true);
         }
 
+        Debug.startMethodTracing("MapActivity-storeClick");
     }
 
     public DatabaseHandler getmDbHandler() {
