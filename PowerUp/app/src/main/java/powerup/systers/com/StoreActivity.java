@@ -1,12 +1,18 @@
 package powerup.systers.com;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +22,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -305,33 +312,77 @@ public class StoreActivity extends AppCompatActivity {
 
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
                         int index = calculatePosition(position)+1;
-                        if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                        if (getPurchasedStatus(index) == 0 && Integer.parseInt(itemPoints.getText().toString()) > SessionHistory.totalPoints) {
+                            String pointsTitleMessage = getResources().getString(R.string.not_enough_points_title_message);
+                            String pointsDismissMessage = getResources().getString(R.string.not_enough_points_dismiss_message);
+                            String pointsDialogMessage = getResources().getString(R.string.not_enough_points_dialog_message);
 
-                                getmDbHandler().setPurchasedHair(index);
-                            }
+                            int dialogHeight = (int) (screenHeight * 0.5);
+                            int dialogWidth = (int) (screenWidth * 0.43);
 
-                        } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedClothes(index);
-                            }
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(StoreActivity.this);
+                            alertDialogBuilder
+                                    .setTitle(pointsTitleMessage)
+                                    .setMessage(pointsDialogMessage)
+                                    .setCancelable(false)
+                                    .setNeutralButton(pointsDismissMessage, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            int DIALOG_PADDING_5=PowerUpUtils.DIALOG_PADDING_5;
 
-                        } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedAccessories(index);
+                            TextView titleText = new TextView(context);
+                            titleText.setGravity(Gravity.CENTER_HORIZONTAL);
+                            titleText.setText(pointsTitleMessage);
+                            titleText.setTextSize(PowerUpUtils.DIALOG_LARGE_TEXT);
+                            titleText.setTypeface(null, Typeface.BOLD);
+                            titleText.setPadding(DIALOG_PADDING_5, DIALOG_PADDING_5, DIALOG_PADDING_5, PowerUpUtils.DIALOG_PADDING_0);
+                            titleText.setTextColor(getResources().getColor(R.color.powerup_black));
+                            alertDialogBuilder.setCustomTitle(titleText);
+                            final AlertDialog alert = alertDialogBuilder.create();
+
+                            alert.show();
+                            alert.getWindow().setLayout(dialogWidth, dialogHeight);
+                            TextView messageText = (TextView) alert.findViewById(android.R.id.message);
+                            messageText.setTextSize(PowerUpUtils.DIALOG_SMALL_TEXT);
+                            messageText.setPadding(DIALOG_PADDING_5, DIALOG_PADDING_5, DIALOG_PADDING_5, DIALOG_PADDING_5);
+                            messageText.setGravity(Gravity.CENTER);
+
+                            final Button dismissButton = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
+                            dismissButton.setTextSize(PowerUpUtils.DIALOG_SMALL_TEXT);
+                            LinearLayout.LayoutParams dismissButtonLL = (LinearLayout.LayoutParams) dismissButton.getLayoutParams();
+                            dismissButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            dismissButton.setLayoutParams(dismissButtonLL);
+                        } else{
+                            if (storeItemTypeindex == 0) { //hair
+                                setAvatarHair(index);
+                                if (getmDbHandler().getPurchasedHair(index) == 0){
+                                    SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                    karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+
+                                    getmDbHandler().setPurchasedHair(index);
+                                }
+
+                            } else if (storeItemTypeindex == 1) { //clothes
+                                setAvatarClothes(index);
+                                if (getmDbHandler().getPurchasedClothes(index) == 0){
+                                    SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                    karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                                    getmDbHandler().setPurchasedClothes(index);
+                                }
+
+                            } else if (storeItemTypeindex == 2) { //accessories
+                                setAvatarAccessories(index);
+                                if (getmDbHandler().getPurchasedAccessories(index) == 0){
+                                    SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                    karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                                    getmDbHandler().setPurchasedAccessories(index);
+                                }
                             }
+                            adapter.refresh(adapter.storeItems); // will update change the background if any is not available
+
                         }
-                        adapter.refresh(adapter.storeItems); // will update change the background if any is not available
-
                     }
                 }
             });
@@ -353,7 +404,7 @@ public class StoreActivity extends AppCompatActivity {
 
                 } else { //can't be bought
                     storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
-                    storeItem.setEnabled(false);
+                    storeItem.setEnabled(true);
                 }
             }
             return storeItem;
