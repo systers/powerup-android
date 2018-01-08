@@ -13,7 +13,7 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
 
-    public TextView scoreView, correctView, wrongView;
+    private TextView scoreView, correctView, wrongView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,9 +4,9 @@ package powerup.systers.com.sink_to_swim_game;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -28,15 +27,15 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimGame extends AppCompatActivity {
 
-    public ImageView pointer, boat;
-    public int height;
-    public Animation mAnimation;
+    private ImageView pointer, boat;
+    private int height;
+    private Animation mAnimation;
     public int score, curQuestion, speed, correctAnswers, wrongAnswers;
-    public Button trueOption, falseOption, skipOption;
-    public TextView questionView, timer, scoreView;
-    public long millisLeft;
-    public CountDownTimer countDownTimer;
-    public ViewPropertyAnimator animator;
+    private Button trueOption, falseOption, skipOption;
+    private TextView questionView, timer, scoreView;
+    private long millisLeft;
+    private CountDownTimer countDownTimer;
+    private ViewPropertyAnimator animator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

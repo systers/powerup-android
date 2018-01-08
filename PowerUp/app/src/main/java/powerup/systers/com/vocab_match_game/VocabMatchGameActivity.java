@@ -25,10 +25,10 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class VocabMatchGameActivity extends AppCompatActivity {
 
-    public VocabBoardTextView tv1, tv2, tv3;
-    public VocabTileImageView img1, img2, img3;
-    public int height, width, oldestTile, score, latestTile;
-    public TextView scoreView;
+    private VocabBoardTextView tv1, tv2, tv3;
+    private VocabTileImageView img1, img2, img3;
+    private int height, width, oldestTile, score, latestTile;
+    private TextView scoreView;
     Random r;
 
     @Override

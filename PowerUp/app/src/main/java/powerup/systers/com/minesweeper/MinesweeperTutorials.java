@@ -11,8 +11,8 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class MinesweeperTutorials extends AppCompatActivity {
 
-    ImageView tutorialView;
-    int curTutorialImage;
+    private ImageView tutorialView;
+    private int curTutorialImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
