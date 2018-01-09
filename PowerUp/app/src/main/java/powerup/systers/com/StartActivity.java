@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Debug;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -34,6 +35,7 @@ public class StartActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Debug.startMethodTracing("StartActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = StartActivity.this;
@@ -86,6 +88,7 @@ public class StartActivity extends Activity {
             }
         });
 
+        Debug.stopMethodTracing();
     }
 
     @Override

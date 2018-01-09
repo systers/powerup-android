@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,6 +57,7 @@ public class GameActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        Debug.startMethodTracing("GameActivity");
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
         }
@@ -179,6 +181,7 @@ public class GameActivity extends Activity {
                         }
                     }
                 });
+        Debug.stopMethodTracing();
     }
 
     /**
