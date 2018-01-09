@@ -61,10 +61,16 @@
     <string name="about_text"><b>About</b></string>
     <string name="continue_text"><b>Continue</b></string>
     <string name="replay"><b>Replay</b></string>
-    <string name="ok" />
+    <string name="ok">OK</string>
     <string name="create_avatar">\"Create new Avatar\"</string>
     <string name="ok_msg">Create new Avatar</string>
     <string name="start_dialog_message">If you start a new game, previous data and all karma points will be lost !</string>
     <string name="start_title_message">Are you Sure ?</string>
     <string name="start_confirm_message">Create new Avatar</string>
+    <string name="purchase_message">Are you sure you want to purchase this item? You will be spending $%d and the purchase can\'t be reverted.</string>
+    <string name="warning">Warning</string>
+    <string name="purchase">Purchase</string>
+    <string name="yay">Yay!</string>
+    <string name="successful_purchase_message">The purchase is successful!</string>
+    <string name="cancel">Cancel</string>
 </resources>
