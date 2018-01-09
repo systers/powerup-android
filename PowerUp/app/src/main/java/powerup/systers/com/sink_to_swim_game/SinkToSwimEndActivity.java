@@ -11,6 +11,8 @@ import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimEndActivity extends AppCompatActivity {
+    
+    public TextView scoreView, correctView, wrongView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +22,9 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         int wrongAnswers= intent.getExtras().getInt(PowerUpUtils.WRONG_ANSWER);
         int correctAnswers= intent.getExtras().getInt(PowerUpUtils.CORRECT_ANSWERS);
         int score = intent.getExtras().getInt(PowerUpUtils.SCORE);
-        TextView  scoreView = (TextView) findViewById(R.id.swim_score);
-        TextView  correctView = (TextView) findViewById(R.id.correct);
-        TextView  wrongView = (TextView) findViewById(R.id.wrong);
+        scoreView = (TextView) findViewById(R.id.swim_score);
+        correctView = (TextView) findViewById(R.id.correct);
+        wrongView = (TextView) findViewById(R.id.wrong);
         scoreView.setText(""+score);
         correctView.setText(""+correctAnswers);
         wrongView.setText(""+wrongAnswers);
