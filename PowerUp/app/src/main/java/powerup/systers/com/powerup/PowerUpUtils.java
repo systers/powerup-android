@@ -13,6 +13,9 @@ public class PowerUpUtils {
     public static final int MAXIMUM_FLIPS_ALLOWED = 5;
     public static final int RED_BANNER = 1;
     public static final int GREEN_BANNER = 0;
+    public static final int HAIR_CODE = 0;
+    public static final int CLOTHES_CODE = 1;
+    public static final int ACCESSORIES_CODE = 2;
 
     public static final String SCORE = "score";
     public static final String CORRECT_ANSWERS = "correct";
