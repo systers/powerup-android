@@ -67,4 +67,11 @@
     <string name="start_dialog_message">If you start a new game, previous data and all karma points will be lost !</string>
     <string name="start_title_message">Are you Sure ?</string>
     <string name="start_confirm_message">Create new Avatar</string>
+    <string name="warning_purchase_message">Are you sure you want to purchase this item? You will be spending $%d and the purchase can\'t be reverted.</string>
+    <string name="title_warning">Warning</string>
+    <string name="positive_button_purchase_warning">Purchase</string>
+    <string name="negative_button_purchase_warning">Maybe Not</string>
+    <string name="title_yay">Yay!</string>
+    <string name="purchase_message_successful">The purchase is successful!</string>
+    <string name="purchase_successful_confirm">OK</string>
 </resources>
