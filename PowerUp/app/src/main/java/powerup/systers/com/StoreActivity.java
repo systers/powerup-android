@@ -104,12 +104,23 @@ public class StoreActivity extends AppCompatActivity {
         clothesButton = (ImageView) findViewById(R.id.clothes_button);
         accessoriesButton = (ImageView) findViewById(R.id.accessories_button);
 
+        if (currentPage == 0){
+            leftArrow.setVisibility(View.INVISIBLE);
+            leftArrow.setEnabled(false);
+        }
+
         hairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
                 storeItemTypeindex = 0;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, 6));
+                if (currentPage == 0){
+                    leftArrow.setVisibility(View.INVISIBLE);
+                    leftArrow.setEnabled(false);
+                }
+                rightArrow.setVisibility(View.VISIBLE);
+                rightArrow.setEnabled(true);
             }
         });
 
@@ -119,6 +130,14 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 1;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length%6));
+                if (currentPage == 0){
+                    leftArrow.setVisibility(View.INVISIBLE);
+                    leftArrow.setEnabled(false);
+                }
+                if (((currentPage + 2) * 6 > allDataSet.get(storeItemTypeindex).size())){
+                    rightArrow.setVisibility(View.INVISIBLE);
+                    rightArrow.setEnabled(false);
+                }
             }
         });
 
@@ -128,6 +147,14 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 2;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length%6));
+                if (currentPage == 0){
+                    leftArrow.setVisibility(View.INVISIBLE);
+                    leftArrow.setEnabled(false);
+                }
+                if (((currentPage + 2) * 6 > allDataSet.get(storeItemTypeindex).size())){
+                    rightArrow.setVisibility(View.INVISIBLE);
+                    rightArrow.setEnabled(false);
+                }
             }
         });
 
@@ -136,6 +163,12 @@ public class StoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (currentPage == 0) {
                     return;
+                } else if (currentPage == 1){
+                    leftArrow.setVisibility(View.INVISIBLE);
+                    leftArrow.setEnabled(false);
+                }else if (!((currentPage + 1) * 6 < allDataSet.get(storeItemTypeindex).size())){
+                    rightArrow.setVisibility(View.VISIBLE);
+                    rightArrow.setEnabled(true);
                 }
                 currentPage--;
                 if (currentPage * 6 < allDataSet.get(storeItemTypeindex).size()) {
@@ -151,6 +184,13 @@ public class StoreActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (currentPage == 0){
+                    leftArrow.setVisibility(View.VISIBLE);
+                    leftArrow.setEnabled(true);
+                }else if ((currentPage + 2) * 6 > allDataSet.get(storeItemTypeindex).size()){
+                    rightArrow.setVisibility(View.INVISIBLE);
+                    rightArrow.setEnabled(false);
+                }
                 currentPage++;
                 if (currentPage * 6 < allDataSet.get(storeItemTypeindex).size()) {
                     if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
