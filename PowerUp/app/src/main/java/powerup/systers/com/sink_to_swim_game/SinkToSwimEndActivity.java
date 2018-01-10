@@ -30,6 +30,7 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
 
     public void continuePressed(View view){
         Intent intent = new Intent(SinkToSwimEndActivity.this, GameOverActivity.class);
+        intent.putExtra(PowerUpUtils.SCENARIO_NAME, getString(R.string.school));
         finish();
         startActivityForResult(intent, 0);
     }

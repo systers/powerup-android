@@ -53,4 +53,16 @@
         android:textSize="@dimen/karma_points_textSize"
         android:textColor="@color/powerup_black"/>
 
+    <TextView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scenario_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/karmaPoints"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/scenario_name_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/score_color"
+        android:textStyle="bold"
+        tools:text="Current Scenario: Home" />
+
 </RelativeLayout>

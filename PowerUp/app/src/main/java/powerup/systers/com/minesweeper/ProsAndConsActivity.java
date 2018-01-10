@@ -46,6 +46,7 @@ public class ProsAndConsActivity extends AppCompatActivity {
             new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(false); //marks minesweeper game as finished
             Intent intent = new Intent(ProsAndConsActivity.this, ScenarioOverActivity.class);
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
+            intent.putExtra(PowerUpUtils.SCENARIO_NAME, getString(R.string.house));
             startActivity(intent);
         }
     }

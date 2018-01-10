@@ -48,6 +48,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
         ImageView continueButton = (ImageView) findViewById(R.id.continueButton);
         Button mapButton = (Button) findViewById(R.id.mapButton);
+        TextView scenarioNameText = (TextView) findViewById(R.id.scenario_name);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +72,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             continueButton.setOnClickListener(null);
         }
 
-
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +87,15 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
+        String scenarioName;
+        if (getIntent().getExtras().containsKey(PowerUpUtils.SCENARIO_NAME)) {
+            // we are redirected from map or mini game
+            scenarioName = getIntent().getStringExtra(PowerUpUtils.SCENARIO_NAME);
+        } else {
+            // we are redirected from game
+            scenarioName = getmDbHandler().getScenarioFromID(SessionHistory.prevSessionID).getScenarioName();
+        }
+        scenarioNameText.setText(getString(R.string.scenario_name_format, scenarioName));
     }
 
     /**
