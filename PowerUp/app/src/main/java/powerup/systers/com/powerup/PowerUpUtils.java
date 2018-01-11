@@ -1,5 +1,10 @@
 package powerup.systers.com.powerup;
 
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
+
 import powerup.systers.com.R;
 
 /**
@@ -49,11 +54,24 @@ public class PowerUpUtils {
 
     public static final int[] HAIR_IMAGES = {R.drawable.hair1,R.drawable.hair2,R.drawable.hair3,R.drawable.hair4,R.drawable.hair5,R.drawable.hair6,R.drawable.hair7,R.drawable.hair8,R.drawable.hair9,R.drawable.hair10,R.drawable.hair11,R.drawable.hair12,R.drawable.hair13,R.drawable.hair14,R.drawable.hair15,R.drawable.hair16};
     public static final String[] HAIR_POINTS_TEXTS = {"5","5","5","10","10","10","5","5","10","5","5","10","10","10","5","5"};
+    public static final int HAIR_TYPE = 0;
 
     public static final int[] CLOTHES_IMAGES = {R.drawable.dress1,R.drawable.dress2,R.drawable.dress3,R.drawable.dress4};
     public static final String[] CLOTHES_POINTS_TEXTS = {"5","10","10","10"};
+    public static final int CLOTHES_TYPE = 1;
 
     public static final int[] ACCESSORIES_IMAGES = {R.drawable.acc1,R.drawable.acc2,R.drawable.acc3,R.drawable.acc4};
     public static final String[] ACCESSORIES_POINTS_TEXTS = {"10","5","5","10"};
+    public static final int ACCESSORIES_TYPE = 2;
+
+    /**
+     * Applies the properties/theme to the Dialog. Should be used by all dialogs in PowerUp to ensure uniformity
+     * @param dialog Dialog to apply the properties to
+     */
+    public static void setPropertiesForDialog(AlertDialog dialog){
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+    }
 }
 
