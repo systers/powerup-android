@@ -110,6 +110,7 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 0;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, 6));
+                setArrowsVisibility();
             }
         });
 
@@ -119,6 +120,7 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 1;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length%6));
+                setArrowsVisibility();
             }
         });
 
@@ -128,22 +130,19 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 2;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length%6));
+                setArrowsVisibility();
             }
         });
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentPage == 0) {
-                    return;
-                }
                 currentPage--;
-                if (currentPage * 6 < allDataSet.get(storeItemTypeindex).size()) {
-                    if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
-                        adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
-                    } else {
-                        adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, allDataSet.get(storeItemTypeindex).size()));
-                    }
+                setArrowsVisibility();
+                if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
+                    adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
+                } else {
+                    adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, allDataSet.get(storeItemTypeindex).size()));
                 }
             }
         });
@@ -152,14 +151,11 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage++;
-                if (currentPage * 6 < allDataSet.get(storeItemTypeindex).size()) {
-                    if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
-                        adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
-                    } else {
-                        adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, allDataSet.get(storeItemTypeindex).size()));
-                    }
+                setArrowsVisibility();
+                if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
+                    adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
                 } else {
-                    currentPage--;
+                    adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, allDataSet.get(storeItemTypeindex).size()));
                 }
             }
         });
@@ -168,6 +164,7 @@ public class StoreActivity extends AppCompatActivity {
         createDataLists();
         adapter = new GridAdapter(this, allDataSet.get(0).subList(0, 6));
         gridView.setAdapter(adapter);
+        setArrowsVisibility();
     }
 
     public void setAvatarHair(int index){
@@ -384,6 +381,19 @@ public class StoreActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    private void setArrowsVisibility() {
+        if (allDataSet.get(storeItemTypeindex).size() <= currentPage * 6 + 6) {
+            rightArrow.setVisibility(View.GONE);
+        } else {
+            rightArrow.setVisibility(View.VISIBLE);
+        }
+        if (currentPage == 0) {
+            leftArrow.setVisibility(View.GONE);
+        } else {
+            leftArrow.setVisibility(View.VISIBLE);
+        }
     }
 }
 
