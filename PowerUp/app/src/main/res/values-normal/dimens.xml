@@ -60,4 +60,7 @@
     <dimen name="replay_marginTop">180dp</dimen>
     <dimen name="replay_marginLeft">110dp</dimen>
     <dimen name="hair_button_marginLeft">100dp</dimen>
+    <dimen name="current_scenario_height">60dp</dimen>
+    <dimen name="current_scenario_textSize">25sp</dimen>
+    <dimen name="current_scenario_marginTop">50dp</dimen>
 </resources>
