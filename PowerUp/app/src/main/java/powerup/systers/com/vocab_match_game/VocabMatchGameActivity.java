@@ -30,6 +30,8 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public int height, width, oldestTile, score, latestTile;
     public TextView scoreView;
     Random r;
+    public String soundTitle;
+    Intent soundIntent = new Intent(this, VocabMatchSound.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,8 +119,12 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     if (tileText.equals(boardText)) {
                         score++;
                         scoreView.setText("" + score);
+                        soundIntent.putExtra("Correct.wav", soundTitle);
+                        startService(soundIntent);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {
+                        soundIntent.putExtra("Incorrect.mp3", soundTitle);
+                        startService(soundIntent);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_red));
                     }
                 }
