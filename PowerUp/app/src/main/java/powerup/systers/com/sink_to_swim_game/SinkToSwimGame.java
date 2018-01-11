@@ -138,10 +138,10 @@ public class SinkToSwimGame extends AppCompatActivity {
         final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
         final AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
         fadeOut.setFillAfter(true);
-        fadeIn.setDuration(800);
-        fadeOut.setDuration(800);
+        fadeIn.setDuration(400);
+        fadeOut.setDuration(400);
         fadeIn.setFillAfter(true);
-        fadeIn.setStartOffset(500);
+        fadeIn.setStartOffset(250);
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
