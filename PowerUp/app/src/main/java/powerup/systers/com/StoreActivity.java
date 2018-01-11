@@ -2,9 +2,11 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -108,7 +110,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
-                storeItemTypeindex = 0;
+                storeItemTypeindex = PowerUpUtils.HAIR_TYPE;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, 6));
             }
         });
@@ -117,7 +119,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
-                storeItemTypeindex = 1;
+                storeItemTypeindex = PowerUpUtils.CLOTHES_TYPE;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length%6));
             }
         });
@@ -126,7 +128,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
-                storeItemTypeindex = 2;
+                storeItemTypeindex = PowerUpUtils.ACCESSORIES_TYPE;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length%6));
             }
         });
@@ -303,34 +305,77 @@ public class StoreActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (v.isEnabled()){
 
-                        TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
-                        int index = calculatePosition(position)+1;
-                        if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
+                        final TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
+                        final int index = calculatePosition(position)+1;
+                        boolean isPurchase = false;
+                        /*
+                        If the item selected isn't in the list of purchased items, then it is to be purchased.
+                        isPurchased is thus set to true. But if the item is already purchased, we just set
+                        the corresponding Avatar feature to that item
+                         */
+                        if (storeItemTypeindex == PowerUpUtils.HAIR_TYPE) { //hair
                             if (getmDbHandler().getPurchasedHair(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                                isPurchase = true;
+                            } else setAvatarHair(index);
 
-                                getmDbHandler().setPurchasedHair(index);
-                            }
-
-                        } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
+                        } else if (storeItemTypeindex == PowerUpUtils.CLOTHES_TYPE) { //clothes
                             if (getmDbHandler().getPurchasedClothes(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedClothes(index);
-                            }
+                                isPurchase = true;
+                            } else setAvatarClothes(index);
 
-                        } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
+                        } else if (storeItemTypeindex == PowerUpUtils.ACCESSORIES_TYPE) { //accessories
                             if (getmDbHandler().getPurchasedAccessories(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedAccessories(index);
-                            }
+                                isPurchase = true;
+                            } else setAvatarAccessories(index);
                         }
-                        adapter.refresh(adapter.storeItems); // will update change the background if any is not available
+                        // if it is a purchase, interact appropriately with the user to confirm the purchase
+                        if(isPurchase){
+                            AlertDialog.Builder warning = new AlertDialog.Builder(StoreActivity.this);
+                            warning.setTitle(R.string.store_purchase_title)
+                                    .setMessage(String.format(getString(R.string.store_purchase_message), itemPoints.getText().toString()))
+                                    .setPositiveButton(R.string.store_purchase_confirm_message, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            // purchase the item selected
+                                            SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                            karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                                            switch(storeItemTypeindex){
+                                                case PowerUpUtils.HAIR_TYPE: getmDbHandler().setPurchasedHair(index);
+                                                        setAvatarHair(index);
+                                                        break;
+                                                case PowerUpUtils.CLOTHES_TYPE: getmDbHandler().setPurchasedClothes(index);
+                                                        setAvatarClothes(index);
+                                                        break;
+                                                case PowerUpUtils.ACCESSORIES_TYPE: getmDbHandler().setPurchasedAccessories(index);
+                                                        setAvatarAccessories(index);
+                                                        break;
+                                            }
+                                            // display the purchase successful dialog
+                                            AlertDialog.Builder purchaseSuccess = new AlertDialog.Builder(StoreActivity.this);
+                                            purchaseSuccess.setTitle(R.string.store_purchase_successful_title)
+                                                    .setMessage(R.string.store_purchase_successful_message)
+                                                    .setPositiveButton(R.string.store_purchase_successful_close_button, new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            dialogInterface.dismiss();
+                                                        }
+                                                    });
+                                            AlertDialog purchaseSuccessDialog = purchaseSuccess.create();
+                                            PowerUpUtils.setPropertiesForDialog(purchaseSuccessDialog);
+                                            purchaseSuccessDialog.show();
+                                            adapter.refresh(adapter.storeItems); // will update change the background if any is not available
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.store_purchase_cancel_message, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    });
+                            AlertDialog warningDialog = warning.create();
+                            PowerUpUtils.setPropertiesForDialog(warningDialog);
+                            warningDialog.show();
+                        }
 
                     }
                 }
