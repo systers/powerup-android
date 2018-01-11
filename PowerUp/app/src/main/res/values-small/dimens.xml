@@ -39,4 +39,7 @@
     <dimen name="selection_text_size">14sp</dimen>
     <dimen name="start_height">20dp</dimen>
     <dimen name="hair_button_marginLeft">75dp</dimen>
+    <dimen name="current_scenario_height">45dp</dimen>
+    <dimen name="current_scenario_textSize">20sp</dimen>
+    <dimen name="current_scenario_marginTop">41dp</dimen>
 </resources>

@@ -59,6 +59,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+
+        TextView currentScenario = (TextView) findViewById(R.id.currentScenario);
+        currentScenario.setText(currentScenario.getText() + " " + scene.getScenarioName());
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

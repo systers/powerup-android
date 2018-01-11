@@ -9,6 +9,17 @@
     tools:context="powerup.systers.com.ScenarioOverActivity"
     android:id="@+id/root">
 
+    <TextView
+        android:id="@+id/currentScenario"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/current_scenario_height"
+        android:layout_marginTop="@dimen/current_scenario_marginTop"
+        android:gravity="center"
+        android:text="@string/scenario_over_current_text"
+        android:textSize="@dimen/current_scenario_textSize"
+        android:textColor="@color/current_scenario_text"
+        android:textStyle="bold"/>
+
     <ImageView
         android:id="@+id/replayButton"
         android:layout_width="@dimen/continue_width"
