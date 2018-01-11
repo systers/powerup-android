@@ -33,6 +33,7 @@ public class VocabMatchEndActivity extends AppCompatActivity {
 
     public void continuePressed(View view){
         Intent intent = new Intent(VocabMatchEndActivity.this, ScenarioOverActivity.class);
+        intent.putExtra(PowerUpUtils.SCENARIO_NAME, getString(R.string.hospital));
         finish();
         startActivity(intent);
     }
