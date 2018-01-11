@@ -1,27 +1,39 @@
 package powerup.systers.com;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.datamodel.StoreItem;
@@ -43,6 +55,10 @@ public class StoreActivity extends AppCompatActivity {
     private DatabaseHandler mDbHandler;
     java.lang.reflect.Field photoNameField;
     R.drawable ourRID;
+    private Context context;
+    String purchaseWarningMessage;
+    AlertDialog purchaseWarningDialog;
+    Button purchaseWarningButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +71,7 @@ public class StoreActivity extends AppCompatActivity {
         karmaPoints = (TextView) findViewById(R.id.karma_points);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         Button mapButton = (Button) findViewById(R.id.map_button);
+        context = StoreActivity.this;
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -304,30 +321,29 @@ public class StoreActivity extends AppCompatActivity {
                     if (v.isEnabled()){
 
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
-                        int index = calculatePosition(position)+1;
+                        final int index = calculatePosition(position) + 1;
+                        int itemCost = Integer.parseInt(itemPoints.getText().toString());
+                        purchaseWarningMessage = getResources().
+                                getString(R.string.purchase_warning_message, itemCost);
                         if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-
-                                getmDbHandler().setPurchasedHair(index);
+                            if (getmDbHandler().getPurchasedHair(index) == 0 && SessionHistory.totalPoints >= itemCost) {
+                                itemPurchaser(index, storeItemTypeindex, itemCost);
+                            } else if (getmDbHandler().getPurchasedHair(index) == 1) {
+                                setAvatarHair(index);   //Update item in view if already purchased
                             }
 
                         } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedClothes(index);
+                            if (getmDbHandler().getPurchasedClothes(index) == 0 && SessionHistory.totalPoints >= itemCost) {
+                                itemPurchaser(index, storeItemTypeindex, itemCost);
+                            } else if (getmDbHandler().getPurchasedClothes(index) == 1) {
+                                setAvatarClothes(index);    //Update item in view if already purchased
                             }
 
                         } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedAccessories(index);
+                            if (getmDbHandler().getPurchasedAccessories(index) == 0 && SessionHistory.totalPoints >= itemCost) {
+                                itemPurchaser(index, storeItemTypeindex, itemCost);
+                            } else if (getmDbHandler().getPurchasedAccessories(index) == 1) {
+                                setAvatarAccessories(index);    //Update item in view if already purchased
                             }
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
@@ -378,6 +394,129 @@ public class StoreActivity extends AppCompatActivity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
+    }
+
+    /**
+     * @param storeItemTypeindex - To know the required Dialog
+     * @param index              - item index ID
+     * @desc To carry out the purchase of item and display dialogs.
+     */
+    public void itemPurchaser(final int index, final int storeItemTypeindex, final int itemCost) {
+        dialogMaker(false); //Calling first AlertDialog
+        purchaseWarningButton = (purchaseWarningDialog.getButton(AlertDialog.BUTTON_POSITIVE));   //Accessing positive button of dialog
+        purchaseWarningButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                purchaseWarningDialog.dismiss();   //Dismissing first dialog
+                SessionHistory.totalPoints -= itemCost;   //Subtracting points
+                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                switch (storeItemTypeindex) {
+                    case 0:
+                        getmDbHandler().setPurchasedHair(index);
+                        setAvatarHair(index);
+                        break;
+                    case 1:
+                        getmDbHandler().setPurchasedClothes(index);
+                        setAvatarClothes(index);
+                        break;
+                    case 2:
+                        getmDbHandler().setPurchasedAccessories(index);
+                        setAvatarAccessories(index);
+                        break;
+                }
+                dialogMaker(true);  //Calling Second Dialog
+                adapter.refresh(adapter.storeItems); //Refreshing adapter
+            }
+        });
+    }
+
+    /**
+     * @param secondDialogEnabled - To know the required Dialog
+     * @desc Build and Show the required AlertDialog, (1)Warning Dialog or (2)Confirmation Dialog
+     */
+    public void dialogMaker(boolean secondDialogEnabled) {
+        Resources res = getResources();
+        if (!secondDialogEnabled) {
+            dialogInitializer(
+                    res.getString(R.string.purchase_warning_title),
+                    purchaseWarningMessage,
+                    res.getString(R.string.purchase_warning_confirm_message),
+                    res.getString(R.string.purchase_warning_negative_message),
+                    false
+            );
+        } else {
+            dialogInitializer(
+                    res.getString(R.string.purchase_confirm_dialog_title),
+                    res.getString(R.string.purchase_confirm_dialog_message),
+                    res.getString(R.string.purchase_confirm_button_message),
+                    null, true
+            );
+        }
+    }
+
+    /**
+     * @param titleText           - Custom titleText String for dialog
+     * @param message             - Custom message String for dialog
+     * @param positiveButtonText  - Custom positiveButtonText String for dialog
+     * @param negativeButtonText  - Custom negativeButtonText String for dialog
+     * @param secondDialogEnabled - Compare b/w (1)Warning Dialog and (2)Confirmation Dialog
+     * @desc Purchase warning AlertDialog Initializer
+     */
+    public void dialogInitializer(String titleText, String message, String positiveButtonText,
+                                  String negativeButtonText, final boolean secondDialogEnabled) {
+
+        int titlePadding = context.getResources()
+                .getInteger(R.integer.purchase_dialog_title_padding);
+        int titleTextSize = context.getResources()
+                .getInteger(R.integer.purchase_dialog_title_textSize);
+        int buttonTextSize = context.getResources()
+                .getInteger(R.integer.purchase_dialog_button_textSize);
+        int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.43);
+        TextView titleTextView = new TextView(this); //TextView for custom title
+        titleTextView.setGravity(Gravity.CENTER);
+        titleTextView.setText(titleText);
+        titleTextView.setTextSize(titleTextSize);
+        titleTextView.setTypeface(titleTextView.getTypeface(), Typeface.BOLD);
+        titleTextView.setPadding(0, titlePadding, 0, 0); //Setting custom padding
+        titleTextView.setTextColor(getResources().getColor(R.color.powerup_black));
+        //Initializing Custom AlertDialog.Builder object
+        AlertDialog.Builder builder = new AlertDialog.Builder(StoreActivity.this);
+        builder.setMessage("Message");
+        builder.setPositiveButton((positiveButtonText), null);
+        //If Condition - NegativeButton to show only in (1)Warning Dialog
+        if (!secondDialogEnabled) {
+            builder.setNegativeButton((negativeButtonText), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        builder.setCustomTitle(titleTextView);
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        purchaseWarningDialog = builder.create();  //Generating AlertDialog with builder specifics
+        purchaseWarningDialog.show();
+        final Window window = purchaseWarningDialog.getWindow();   //Getting Window for dialog
+        //Mitigating NullPointerException
+        if (window != null) {
+            window.setLayout(width, WindowManager.LayoutParams.WRAP_CONTENT);   //Setting custom dimens
+            window.setBackgroundDrawable(drawable);
+        }
+        TextView messageTextView = (TextView) purchaseWarningDialog.findViewById(android.R.id.message);
+        //Mitigating NullPointerException
+        if (messageTextView != null) {
+            messageTextView.setText(message);
+            messageTextView.setGravity(Gravity.CENTER);
+        }
+        final Button positiveButton = purchaseWarningDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        //If Condition - Text to be enlarged for (2)Confirmation Dialog
+        if (secondDialogEnabled) {
+            positiveButton.setTextSize(buttonTextSize);
+        }
+        LinearLayout parent = (LinearLayout) positiveButton.getParent();    //Getting Layout for buttons
+        View leftSpacer = parent.getChildAt(1); //Getting ExtraSpace in Layout
+        parent.setGravity(Gravity.CENTER_HORIZONTAL);   //Setting button gravity to center
+        leftSpacer.setVisibility(View.GONE);    //Eliminating extraSpace in Layout
     }
 
     @Override
