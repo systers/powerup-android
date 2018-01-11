@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <integer name="purchase_dialog_title_textSize">20</integer>
+    <integer name="purchase_dialog_title_padding">20</integer>
+    <integer name="purchase_dialog_button_textSize">18</integer>
     <integer name="max_progress">100</integer>
     <integer name="half_progress">50</integer>
     <integer name="text_view_ems">10</integer>
