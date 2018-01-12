@@ -2,8 +2,10 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -306,6 +308,9 @@ public class StoreActivity extends AppCompatActivity {
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
                         int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
+                            if (getmDbHandler().getAvatarHair() == index){
+                                alreadySelected();
+                            }
                             setAvatarHair(index);
                             if (getmDbHandler().getPurchasedHair(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
@@ -315,6 +320,9 @@ public class StoreActivity extends AppCompatActivity {
                             }
 
                         } else if (storeItemTypeindex == 1) { //clothes
+                            if (getmDbHandler().getAvatarCloth() == index){
+                                alreadySelected();
+                            }
                             setAvatarClothes(index);
                             if (getmDbHandler().getPurchasedClothes(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
@@ -323,6 +331,9 @@ public class StoreActivity extends AppCompatActivity {
                             }
 
                         } else if (storeItemTypeindex == 2) { //accessories
+                            if (getmDbHandler().getAvatarAccessory() == index){
+                                alreadySelected();
+                            }
                             setAvatarAccessories(index);
                             if (getmDbHandler().getPurchasedAccessories(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
@@ -359,6 +370,22 @@ public class StoreActivity extends AppCompatActivity {
             return storeItem;
         }
 
+    }
+
+    public void alreadySelected(){
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(StoreActivity.this);
+        builder.setTitle(this.getResources().getString(R.string.already_selected_title_message))
+                .setMessage(getResources().getString(R.string.already_selected_dialog_message));
+        builder.setPositiveButton(R.string.already_selected_dismiss_message, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        android.support.v7.app.AlertDialog dialog = builder.create();
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.show();
     }
 
     public int getPurchasedStatus(int index) {
