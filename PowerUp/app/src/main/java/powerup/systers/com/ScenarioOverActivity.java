@@ -45,9 +45,15 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scenario_over);
         scene = getmDbHandler().getScenario();
         scenarioActivityDone = 1;
+        Bundle bundle = getIntent().getExtras();
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
         ImageView continueButton = (ImageView) findViewById(R.id.continueButton);
         Button mapButton = (Button) findViewById(R.id.mapButton);
+        TextView scenarioName = (TextView) findViewById(R.id.scenarioName);
+        if (bundle != null) {
+            scenarioName.setText(String.format(getString(R.string.current_scenario_name),
+                    bundle.getString(getString(R.string.scene))));
+        }
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +72,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
-        if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
+        if (bundle != null && PowerUpUtils.MAP.equals(bundle.getString(PowerUpUtils.SOURCE))) {
             continueButton.setVisibility(View.GONE);
             continueButton.setOnClickListener(null);
         }

@@ -53,4 +53,13 @@
         android:textSize="@dimen/karma_points_textSize"
         android:textColor="@color/powerup_black"/>
 
+    <TextView
+        android:id="@+id/scenarioName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/karma_star"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/score_color"
+        android:textStyle="bold" />
 </RelativeLayout>
