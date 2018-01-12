@@ -238,4 +238,6 @@
     <dimen name="replay_marginTop">400dp</dimen>
     <dimen name="replay_marginLeft">180dp</dimen>
     <dimen name="hair_button_marginLeft">100dp</dimen>
+    <dimen name="game_padding_top">20dp</dimen>
+    <dimen name="ripple_radius">3dp</dimen>
 </resources>

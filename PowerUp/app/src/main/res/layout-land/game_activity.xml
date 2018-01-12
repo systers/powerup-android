@@ -90,12 +90,14 @@
         android:paddingBottom="@dimen/conversation_margin"
         android:paddingLeft="@dimen/game_padding_left"
         android:paddingRight="@dimen/conversation_margin"
+        android:paddingTop="@dimen/game_padding_top"
         android:id="@+id/mainListView"
         android:layout_width="@dimen/answer_listview_width"
         android:layout_height="@dimen/main_list_view_height"
         android:layout_toRightOf="@id/relativeLayout"
         android:layout_centerVertical="true"
         android:background="@drawable/left_conversation"
+        android:listSelector="@drawable/ripple_gray"
         android:clickable="true"/>
     <TextView
         android:textColor="@color/powerup_black"
