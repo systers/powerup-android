@@ -129,7 +129,7 @@ public class SinkToSwimGame extends AppCompatActivity {
      * @desc shows the next question which a fade in and out animation
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void showNextQuestion() {
+    public void showNextQuestion(int fadeDuration, int offSet) {
         curQuestion++;
         if (curQuestion == PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS.length) { //if last question in database,
             gameEnd();
@@ -138,10 +138,10 @@ public class SinkToSwimGame extends AppCompatActivity {
         final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
         final AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
         fadeOut.setFillAfter(true);
-        fadeIn.setDuration(800);
-        fadeOut.setDuration(800);
+        fadeIn.setDuration(fadeDuration);
+        fadeOut.setDuration(fadeDuration);
         fadeIn.setFillAfter(true);
-        fadeIn.setStartOffset(500);
+        fadeIn.setStartOffset(offSet);
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -208,10 +208,14 @@ public class SinkToSwimGame extends AppCompatActivity {
                 questionView.setBackground(getResources().getDrawable(R.drawable.swim_cross));
                 wrongAnswers++;
             }
+        } else if (view == findViewById(R.id.skip_option)) {
+            questionView.setText("");
+            showNextQuestion(300,200);
+            return;
         }
 
         questionView.setText("");
-        showNextQuestion();
+        showNextQuestion(800,500);
         scoreView.setText("Score: " + score);
     }
 
