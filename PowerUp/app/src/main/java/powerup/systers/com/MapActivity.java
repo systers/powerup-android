@@ -33,6 +33,7 @@ public class MapActivity extends Activity {
                 startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
             } else {
                 Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
+                intent.putExtra(getString(R.string.scene), getScenarioName(scenarioChooser.getId()));
                 intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
                 startActivityForResult(intent, 0);
             }

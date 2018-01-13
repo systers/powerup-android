@@ -232,7 +232,7 @@ public class GameActivity extends Activity {
                 SessionHistory.currSessionID = scene.getNextScenarioID();
                 if (type == 0) {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
-                    intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
+                    intent.putExtra(getString(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
                 } else if (type == -1) {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
