@@ -2,9 +2,12 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -303,32 +306,31 @@ public class StoreActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (v.isEnabled()){
 
-                        TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
-                        int index = calculatePosition(position)+1;
-                        if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                        final TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
+                        final int index = calculatePosition(position)+1;
 
-                                getmDbHandler().setPurchasedHair(index);
-                            }
-
-                        } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedClothes(index);
-                            }
-
-                        } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedAccessories(index);
-                            }
+                        switch (storeItemTypeindex){
+                            case PowerUpUtils.HAIR_CODE:
+                                if (getmDbHandler().getPurchasedHair(index) == 1){
+                                    setAvatarHair(index);
+                                } else {
+                                    promptPurchase(Integer.parseInt(String.valueOf(itemPoints.getText())), index);
+                                }
+                                break;
+                            case PowerUpUtils.CLOTHES_CODE:
+                                if (getmDbHandler().getPurchasedClothes(index) == 1){
+                                    setAvatarClothes(index);
+                                } else {
+                                    promptPurchase(Integer.parseInt(String.valueOf(itemPoints.getText())), index);
+                                }
+                                break;
+                            case PowerUpUtils.ACCESSORY_CODE:
+                                if (getmDbHandler().getPurchasedAccessories(index) == 1){
+                                    setAvatarAccessories(index);
+                                } else {
+                                    promptPurchase(Integer.parseInt(String.valueOf(itemPoints.getText())), index);
+                                }
+                                break;
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
 
@@ -384,6 +386,72 @@ public class StoreActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    public void promptPurchase(final int price, final int itemIndex){
+
+        String messageReplacement = getResources().getString(R.string.warning_dialog_message).replace(PowerUpUtils.DIALOG_REPLACE_AMOUNT, String.valueOf(price));
+
+        final AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(StoreActivity.this);
+        confirmBuilder.setTitle(getResources().getString(R.string.confirmation_dialog_title))
+                .setMessage(getResources().getString(R.string.start_dialog_message));
+        confirmBuilder.setMessage(getResources().getString(R.string.confirmation_dialog_message));
+        confirmBuilder.setPositiveButton(getResources().getString(R.string.confirmation_dialog_positive), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog confirmDialog = confirmBuilder.create();
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        confirmDialog.getWindow().setBackgroundDrawable(drawable);
+
+        AlertDialog.Builder warningBuilder = new AlertDialog.Builder(StoreActivity.this);
+        warningBuilder.setTitle(getResources().getString(R.string.warning_dialog_title))
+                .setMessage(getResources().getString(R.string.start_dialog_message));
+        warningBuilder.setMessage(messageReplacement);
+        warningBuilder.setPositiveButton(getResources().getString(R.string.warning_dialog_positive), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                switch (storeItemTypeindex){
+                    case PowerUpUtils.HAIR_CODE:
+                        getmDbHandler().setPurchasedHair(itemIndex);
+                        setAvatarHair(itemIndex);
+                        SessionHistory.totalPoints -= price;
+                        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                        getmDbHandler().setPurchasedHair(itemIndex);
+                        adapter.refresh(adapter.storeItems);
+                        confirmDialog.show();
+                        break;
+                    case PowerUpUtils.CLOTHES_CODE:
+                        getmDbHandler().setPurchasedClothes(itemIndex);
+                        setAvatarClothes(itemIndex);
+                        SessionHistory.totalPoints -= price;
+                        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                        getmDbHandler().setPurchasedHair(itemIndex);
+                        adapter.refresh(adapter.storeItems);
+                        confirmDialog.show();
+                        break;
+                    case PowerUpUtils.ACCESSORY_CODE:
+                        setAvatarAccessories(itemIndex);
+                        getmDbHandler().setPurchasedAccessories(itemIndex);
+                        SessionHistory.totalPoints -= price;
+                        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                        getmDbHandler().setPurchasedHair(itemIndex);
+                        adapter.refresh(adapter.storeItems);
+                        confirmDialog.show();
+                        break;
+                }
+            }
+        });
+        warningBuilder.setNegativeButton(getResources().getString(R.string.warning_dialog_negative), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = warningBuilder.create();
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.show();
     }
 }
 
