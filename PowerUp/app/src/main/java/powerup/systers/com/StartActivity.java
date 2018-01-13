@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
@@ -48,6 +49,7 @@ public class StartActivity extends Activity {
                         .setMessage(getResources().getString(R.string.start_dialog_message));
                 builder.setPositiveButton(getString(R.string.start_confirm_message), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        new MinesweeperSessionManager(StartActivity.this).saveMinesweeperOpenedStatus(false);
                         startActivityForResult(new Intent(StartActivity.this, AvatarRoomActivity.class), 0);
                     }
                 });
