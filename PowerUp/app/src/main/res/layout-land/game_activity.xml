@@ -96,7 +96,8 @@
         android:layout_toRightOf="@id/relativeLayout"
         android:layout_centerVertical="true"
         android:background="@drawable/left_conversation"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:listSelector="@drawable/ripple_effect"/>
     <TextView
         android:textColor="@color/powerup_black"
         android:id="@+id/questionView"
