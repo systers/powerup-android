@@ -115,10 +115,16 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (oldestTile < PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS.length){
                     String tileText = PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile];
                     if (tileText.equals(boardText)) {
+                        Intent intent = new Intent(VocabMatchGameActivity.this, VocabMatchSound.class);
+                        intent.putExtra(PowerUpUtils.MINE_RESULT, PowerUpUtils.CORRECT_TILE);
+                        startService(intent);
                         score++;
                         scoreView.setText("" + score);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {
+                        Intent intent = new Intent(VocabMatchGameActivity.this, VocabMatchSound.class);
+                        intent.putExtra(PowerUpUtils.MINE_RESULT, PowerUpUtils.INCORRECT_TILE);
+                        startService(intent);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_red));
                     }
                 }
@@ -139,10 +145,16 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
-                    Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
-                    intent.putExtra(PowerUpUtils.SCORE,score);
-                    finish();
-                    startActivity(intent);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
+                            intent.putExtra(PowerUpUtils.SCORE,score);
+                            finish();
+                            startActivity(intent);
+                        }
+                    }, PowerUpUtils.VOCAB_GAME_TO_END_DELAY);
                 }
 
             }

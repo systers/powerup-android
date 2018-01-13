@@ -13,6 +13,7 @@ public class PowerUpUtils {
     public static final int MAXIMUM_FLIPS_ALLOWED = 5;
     public static final int RED_BANNER = 1;
     public static final int GREEN_BANNER = 0;
+    public static final int VOCAB_GAME_TO_END_DELAY = 1200;
 
     public static final String SCORE = "score";
     public static final String CORRECT_ANSWERS = "correct";
@@ -55,5 +56,8 @@ public class PowerUpUtils {
 
     public static final int[] ACCESSORIES_IMAGES = {R.drawable.acc1,R.drawable.acc2,R.drawable.acc3,R.drawable.acc4};
     public static final String[] ACCESSORIES_POINTS_TEXTS = {"10","5","5","10"};
+    public static final String MINE_RESULT = "result";
+    public static final String CORRECT_TILE = "right tile";
+    public static final String INCORRECT_TILE = "wrong tile";
 }
 

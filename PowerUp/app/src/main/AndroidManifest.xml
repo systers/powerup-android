@@ -121,6 +121,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <service android:name=".vocab_match_game.VocabMatchSound"/>
     </application>
 
 </manifest>
