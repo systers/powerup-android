@@ -2,11 +2,14 @@ package powerup.systers.com;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -306,8 +309,12 @@ public class StoreActivity extends AppCompatActivity {
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
                         int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
+                            if (getmDbHandler().getAvatarHair() == index) {
+                                showAlreadySelectedItemWarning();
+                            } else {
+                                setAvatarHair(index);
+                            }
+                            if (getmDbHandler().getPurchasedHair(index) == 0) {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
 
@@ -315,16 +322,24 @@ public class StoreActivity extends AppCompatActivity {
                             }
 
                         } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
+                            if (getmDbHandler().getAvatarCloth() == index) {
+                                showAlreadySelectedItemWarning();
+                            } else {
+                                setAvatarClothes(index);
+                            }
+                            if (getmDbHandler().getPurchasedClothes(index) == 0) {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedClothes(index);
                             }
 
                         } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
+                            if (getmDbHandler().getAvatarAccessory() == index) {
+                                showAlreadySelectedItemWarning();
+                            } else {
+                                setAvatarAccessories(index);
+                            }
+                            if (getmDbHandler().getPurchasedAccessories(index) == 0) {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedAccessories(index);
@@ -359,6 +374,23 @@ public class StoreActivity extends AppCompatActivity {
             return storeItem;
         }
 
+    }
+
+    private void showAlreadySelectedItemWarning() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.already_applied_warning_title)
+                .setMessage(R.string.already_applied_warning_message)
+                .setPositiveButton(R.string.already_applied_warning_positive_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
+        drawable.setAlpha(200);
+        dialog.getWindow().setBackgroundDrawable(drawable);
+        dialog.show();
     }
 
     public int getPurchasedStatus(int index) {
