@@ -129,54 +129,99 @@ public class SinkToSwimGame extends AppCompatActivity {
      * @desc shows the next question which a fade in and out animation
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void showNextQuestion() {
+    public void showNextQuestion(int buttonPressedId) {
         curQuestion++;
         if (curQuestion == PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS.length) { //if last question in database,
             gameEnd();
             return;
         }
-        final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
-        final AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
-        fadeOut.setFillAfter(true);
-        fadeIn.setDuration(800);
-        fadeOut.setDuration(800);
-        fadeIn.setFillAfter(true);
-        fadeIn.setStartOffset(500);
-        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
+        if (buttonPressedId == skipOption.getId()){
+            final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+            final AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
+            fadeOut.setFillAfter(true);
+            fadeIn.setDuration(800);
+            fadeOut.setDuration(400);
+            fadeIn.setFillAfter(true);
+            fadeIn.setStartOffset(0);
+            fadeOut.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
 
-            }
+                }
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
-                questionView.setBackground(null);
-                questionView.startAnimation(fadeIn);
-            }
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
+                    questionView.setBackground(null);
+                    questionView.startAnimation(fadeIn);
+                }
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
+                @Override
+                public void onAnimationRepeat(Animation animation) {
 
-            }
-        });
-        fadeIn.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
+                }
+            });
+            fadeIn.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
 
-            }
+                }
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                setButtonsEnabled(true);
-            }
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    setButtonsEnabled(true);
+                }
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
+                @Override
+                public void onAnimationRepeat(Animation animation) {
 
-            }
-        });
-        questionView.startAnimation(fadeOut);
+                }
+            });
+            questionView.startAnimation(fadeOut);
+        } else {
+            final AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+            final AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
+            fadeOut.setFillAfter(true);
+            fadeIn.setDuration(800);
+            fadeOut.setDuration(800);
+            fadeIn.setFillAfter(true);
+            fadeIn.setStartOffset(500);
+            fadeOut.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    questionView.setText(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][0]);
+                    questionView.setBackground(null);
+                    questionView.startAnimation(fadeIn);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            fadeIn.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    setButtonsEnabled(true);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            questionView.startAnimation(fadeOut);
+        }
     }
 
     /**
@@ -211,7 +256,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         }
 
         questionView.setText("");
-        showNextQuestion();
+        showNextQuestion(view.getId());
         scoreView.setText("Score: " + score);
     }
 
