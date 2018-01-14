@@ -343,8 +343,12 @@ public class StoreActivity extends AppCompatActivity {
 
             if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
                 storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
-                holder.itemImage.setImageResource(R.drawable.store_tick);
                 storeItem.setEnabled(true);
+                if (getSelectedItemId() == id) {
+                    holder.itemImage.setImageResource(R.drawable.store_tick);
+                } else {
+                    holder.itemImage.setImageResource(android.R.color.transparent);
+                }
             } else { //not purchased => available/not available
                 holder.itemImage.setImageResource(Color.TRANSPARENT);
                 if (Integer.parseInt(temp.points) <= SessionHistory.totalPoints) { //can be bought
@@ -359,6 +363,19 @@ public class StoreActivity extends AppCompatActivity {
             return storeItem;
         }
 
+    }
+
+    private int getSelectedItemId() {
+        switch (storeItemTypeindex) {
+            case 0: // hair
+                return getmDbHandler().getAvatarHair();
+            case 1: // clothes
+                return getmDbHandler().getAvatarCloth();
+            case 2: // accessories
+                return getmDbHandler().getAvatarCloth();
+            default:
+                throw new IllegalArgumentException("Invalid store type index");
+        }
     }
 
     public int getPurchasedStatus(int index) {
