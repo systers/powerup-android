@@ -3,7 +3,6 @@ package powerup.systers.com;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -108,7 +107,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
-                storeItemTypeindex = 0;
+                storeItemTypeindex = PowerUpUtils.HAIR_CODE;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, 6));
             }
         });
@@ -117,7 +116,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
-                storeItemTypeindex = 1;
+                storeItemTypeindex = PowerUpUtils.CLOTHES_CODE;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length%6));
             }
         });
@@ -126,7 +125,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage = 0;
-                storeItemTypeindex = 2;
+                storeItemTypeindex = PowerUpUtils.ACCESSORIES_CODE;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length%6));
             }
         });
@@ -211,34 +210,27 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     public void createDataLists() {
-        allDataSet = new ArrayList<>();
-
-        List<StoreItem> storeHair = new ArrayList<>();
-        List<StoreItem> storeClothes = new ArrayList<>();
-        List<StoreItem> storeAccessories = new ArrayList<>();
-
-        allDataSet.add(storeHair);
-        allDataSet.add(storeClothes);
-        allDataSet.add(storeAccessories);
-
+        allDataSet = new ArrayList<>(3);
+        for (int i = 0; i < 3; i++) {
+            allDataSet.add(new ArrayList<StoreItem>());
+        }
 
         for (int i = 0; i < PowerUpUtils.HAIR_IMAGES.length; i++) {
             StoreItem item = new StoreItem(PowerUpUtils.HAIR_POINTS_TEXTS[i], PowerUpUtils.HAIR_IMAGES[i]);
-            allDataSet.get(0).add(item);
+            allDataSet.get(PowerUpUtils.HAIR_CODE).add(item);
         }
         for (int i = 0; i < PowerUpUtils.CLOTHES_IMAGES.length; i++) {
             StoreItem item = new StoreItem(PowerUpUtils.CLOTHES_POINTS_TEXTS[i], PowerUpUtils.CLOTHES_IMAGES[i]);
-            allDataSet.get(1).add(item);
+            allDataSet.get(PowerUpUtils.CLOTHES_CODE).add(item);
         }
         for (int i = 0; i < PowerUpUtils.ACCESSORIES_IMAGES.length; i++) {
             StoreItem item = new StoreItem(PowerUpUtils.ACCESSORIES_POINTS_TEXTS[i], PowerUpUtils.ACCESSORIES_IMAGES[i]);
-            allDataSet.get(2).add(item);
+            allDataSet.get(PowerUpUtils.ACCESSORIES_CODE).add(item);
         }
     }
 
     public int calculatePosition(int position) {
-        int id = currentPage*6+position;
-        return id;
+        return currentPage * 6 + position;
     }
 
     class GridAdapter extends BaseAdapter {
@@ -305,7 +297,7 @@ public class StoreActivity extends AppCompatActivity {
 
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
                         int index = calculatePosition(position)+1;
-                        if (storeItemTypeindex == 0) { //hair
+                        if (storeItemTypeindex == PowerUpUtils.HAIR_CODE) { //hair
                             setAvatarHair(index);
                             if (getmDbHandler().getPurchasedHair(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
@@ -314,7 +306,7 @@ public class StoreActivity extends AppCompatActivity {
                                 getmDbHandler().setPurchasedHair(index);
                             }
 
-                        } else if (storeItemTypeindex == 1) { //clothes
+                        } else if (storeItemTypeindex == PowerUpUtils.CLOTHES_CODE) { //clothes
                             setAvatarClothes(index);
                             if (getmDbHandler().getPurchasedClothes(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
@@ -322,7 +314,7 @@ public class StoreActivity extends AppCompatActivity {
                                 getmDbHandler().setPurchasedClothes(index);
                             }
 
-                        } else if (storeItemTypeindex == 2) { //accessories
+                        } else if (storeItemTypeindex == PowerUpUtils.ACCESSORIES_CODE) { //accessories
                             setAvatarAccessories(index);
                             if (getmDbHandler().getPurchasedAccessories(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
@@ -343,10 +335,14 @@ public class StoreActivity extends AppCompatActivity {
 
             if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
                 storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
-                holder.itemImage.setImageResource(R.drawable.store_tick);
                 storeItem.setEnabled(true);
+                if (getSelectedItemId() == id) {
+                    holder.itemImage.setImageResource(R.drawable.store_tick);
+                } else {
+                    holder.itemImage.setImageResource(android.R.color.transparent);
+                }
             } else { //not purchased => available/not available
-                holder.itemImage.setImageResource(Color.TRANSPARENT);
+                holder.itemImage.setImageResource(android.R.color.transparent);
                 if (Integer.parseInt(temp.points) <= SessionHistory.totalPoints) { //can be bought
                     storeItem.setBackground(getResources().getDrawable(R.drawable.buy_item));
                     storeItem.setEnabled(true);
@@ -361,12 +357,24 @@ public class StoreActivity extends AppCompatActivity {
 
     }
 
+    private int getSelectedItemId() {
+        switch (storeItemTypeindex) {
+            case PowerUpUtils.HAIR_CODE:
+                return getmDbHandler().getAvatarHair();
+            case PowerUpUtils.CLOTHES_CODE:
+                return getmDbHandler().getAvatarCloth();
+            case PowerUpUtils.ACCESSORIES_CODE:
+                return getmDbHandler().getAvatarAccessory();
+        }
+        return 0;
+    }
+
     public int getPurchasedStatus(int index) {
-        if (storeItemTypeindex == 0) { //hair
+        if (storeItemTypeindex == PowerUpUtils.HAIR_CODE) { //hair
             return getmDbHandler().getPurchasedHair(index);
-        } else if (storeItemTypeindex == 1) { //clothes
+        } else if (storeItemTypeindex == PowerUpUtils.CLOTHES_CODE) { //clothes
             return getmDbHandler().getPurchasedClothes(index);
-        } else if (storeItemTypeindex == 2) { //accessories
+        } else if (storeItemTypeindex == PowerUpUtils.ACCESSORIES_CODE) { //accessories
             return getmDbHandler().getPurchasedAccessories(index);
         }
         return 0;
