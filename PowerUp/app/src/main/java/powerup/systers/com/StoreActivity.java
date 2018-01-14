@@ -313,6 +313,8 @@ public class StoreActivity extends AppCompatActivity {
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
 
                                 getmDbHandler().setPurchasedHair(index);
+                            } else {
+                                alreadyBought();
                             }
 
                         } else if (storeItemTypeindex == 1) { //clothes
@@ -321,6 +323,8 @@ public class StoreActivity extends AppCompatActivity {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedClothes(index);
+                            } else {
+                                alreadyBought();
                             }
 
                         } else if (storeItemTypeindex == 2) { //accessories
@@ -329,6 +333,8 @@ public class StoreActivity extends AppCompatActivity {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedAccessories(index);
+                            } else {
+                                alreadyBought();
                             }
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
@@ -371,6 +377,24 @@ public class StoreActivity extends AppCompatActivity {
             return getmDbHandler().getPurchasedAccessories(index);
         }
         return 0;
+    }
+
+    // Already Bought Function
+    public void alreadyBought() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(StoreActivity.this);
+        builder.setTitle("Already Selected");
+        builder.setMessage("This item is already chosen");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public DatabaseHandler getmDbHandler() {
