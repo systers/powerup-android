@@ -30,9 +30,11 @@ import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
+import powerup.systers.com.powerup.MiniGameManager;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
@@ -236,11 +238,29 @@ public class GameActivity extends Activity {
                     startActivity(intent);
                 } else if (type == -1) {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
+                    MiniGameManager manager = new MiniGameManager(this);
+                    if (manager.isTutorialShown(MiniGameManager.GAME_MINESWEEPER)) {
+                        startActivity(new Intent(this, MinesweeperGameActivity.class));
+                    } else {
+                        startActivity(new Intent(this, MinesweeperTutorials.class));
+                        manager.setTutorialShown(MiniGameManager.GAME_MINESWEEPER);
+                    }
                 } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
+                    MiniGameManager manager = new MiniGameManager(this);
+                    if (manager.isTutorialShown(MiniGameManager.GAME_SINK)) {
+                        startActivity(new Intent(this, SinkToSwimGame.class));
+                    } else {
+                        startActivity(new Intent(this, SinkToSwimTutorials.class));
+                        manager.setTutorialShown(MiniGameManager.GAME_SINK);
+                    }
                 } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
+                    MiniGameManager manager = new MiniGameManager(this);
+                    if (manager.isTutorialShown(MiniGameManager.GAME_VOCAB)) {
+                        startActivity(new Intent(this, VocabMatchGameActivity.class));
+                    } else {
+                        startActivity(new Intent(this, VocabMatchTutorials.class));
+                        manager.setTutorialShown(MiniGameManager.GAME_VOCAB);
+                    }
                 }
 
         }
