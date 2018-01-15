@@ -342,8 +342,12 @@ public class StoreActivity extends AppCompatActivity {
             int id = calculatePosition(position)+1;
 
             if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
+                if (getSelectedItem() == id ){
+                    holder.itemImage.setImageResource(R.drawable.store_tick);
+                } else {
+                    holder.itemImage.setImageResource(android.R.color.transparent);
+                }
                 storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
-                holder.itemImage.setImageResource(R.drawable.store_tick);
                 storeItem.setEnabled(true);
             } else { //not purchased => available/not available
                 holder.itemImage.setImageResource(Color.TRANSPARENT);
@@ -384,6 +388,19 @@ public class StoreActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    public int getSelectedItem(){
+        switch (storeItemTypeindex){
+            case PowerUpUtils.HAIR_CODE:
+                return getmDbHandler().getAvatarHair();
+            case PowerUpUtils.CLOTHES_CODE:
+                return getmDbHandler().getAvatarCloth();
+            case PowerUpUtils.ACCESSORY_CODE:
+                return getmDbHandler().getAvatarAccessory();
+            default:
+                throw new IllegalArgumentException(String.valueOf(storeItemTypeindex) + getResources().getString(R.string.iae_store_type_index));
+        }
     }
 }
 

@@ -20,6 +20,9 @@ public class PowerUpUtils {
     public static final String MAP = "map";
     public static final String SOURCE = "source";
 
+    public static final int HAIR_CODE = 0;
+    public static final int CLOTHES_CODE = 1;
+    public static final int ACCESSORY_CODE = 2;
 
     public static final String CALLED_BY = "TUTORIALS_ACTIVITY";
     public static final String ID_REFERENCE = "powerup.systers.com.powerup:id/imageView";
