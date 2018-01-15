@@ -293,6 +293,7 @@ public class StoreActivity extends AppCompatActivity {
                 int itemWidth = (int) ((screenWidth / 85.428f) * 13);
                 int itemHeight = (int) ((screenHeight / 51.428f) * 18);
                 storeItem.setLayoutParams(new AbsListView.LayoutParams(itemWidth, itemHeight));
+
                 holder = new ViewHolder(storeItem);
                 storeItem.setTag(holder);
             } else {
@@ -379,12 +380,20 @@ public class StoreActivity extends AppCompatActivity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
-
+    //function to go back to map
+    public void goToMap(){
+        finish();
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
+        goToMap();
     }
+
 }
 
 
