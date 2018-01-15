@@ -381,11 +381,19 @@ public class StoreActivity extends AppCompatActivity {
         this.mDbHandler = mDbHandler;
     }
 
+  //function to go back to map
+    public void goToMap(){
+        new GameActivity().gameActivityInstance.finish();
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
-    }
+        goToMap()
+	}
 }
 
 

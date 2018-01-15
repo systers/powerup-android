@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+import powerup.systers.com.StartActivity;
 public class GameOverActivity extends Activity {
 
     /**
@@ -31,4 +31,17 @@ public class GameOverActivity extends Activity {
             }
         });
     }
+	 //function to go back to map
+    public void goToStart(){
+        new GameActivity().gameActivityInstance.finish();
+        Intent intent = new Intent(this, StartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToMap()
+	}
 }
