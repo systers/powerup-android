@@ -32,5 +32,6 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         Intent intent = new Intent(SinkToSwimEndActivity.this, GameOverActivity.class);
         finish();
         startActivityForResult(intent, 0);
+        overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
     }
 }

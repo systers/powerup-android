@@ -46,6 +46,7 @@ public class SinkToSwimTutorials extends AppCompatActivity {
                     Intent intent = new Intent(SinkToSwimTutorials.this,SinkToSwimGame.class);
                     finish();
                     startActivity(intent);
+                    overridePendingTransition(R.animator.custom_fade_in, R.animator.custom_fade_out);
                 }
             }
         });
