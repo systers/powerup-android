@@ -8,7 +8,9 @@ package powerup.systers.com;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +35,7 @@ import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
@@ -236,15 +239,52 @@ public class GameActivity extends Activity {
                     startActivity(intent);
                 } else if (type == -1) {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
+                    startGame(PowerUpUtils.MINESWEEPER);
                 } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
+                    startGame(PowerUpUtils.SINK_TO_SWIM);
                 } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
+                    startGame(PowerUpUtils.VOCAB_MATCH);
                 }
 
         }
 
+    }
+
+    private void startGame(String game){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        Boolean tutorialHasStarted;
+        switch (game){
+            case PowerUpUtils.MINESWEEPER:
+                tutorialHasStarted = prefs.getBoolean(PowerUpUtils.MINESWEEPER, false);
+                if (tutorialHasStarted){
+                    Intent minesweeperIntent = new Intent(GameActivity.this, MinesweeperGameActivity.class);
+                    startActivity(minesweeperIntent);
+                    return;
+                }
+                Intent minesweeperTutorialIntent = new Intent(GameActivity.this, MinesweeperTutorials.class);
+                startActivity(minesweeperTutorialIntent);
+                break;
+            case PowerUpUtils.VOCAB_MATCH:
+                tutorialHasStarted = prefs.getBoolean(PowerUpUtils.VOCAB_MATCH, false);
+                if (tutorialHasStarted){
+                    Intent vocabMatchIntent = new Intent(GameActivity.this, VocabMatchGameActivity.class);
+                    startActivity(vocabMatchIntent);
+                    return;
+                }
+                Intent vocabMatchTutorialIntent = new Intent(GameActivity.this, VocabMatchTutorials.class);
+                startActivity(vocabMatchTutorialIntent);
+                break;
+            case PowerUpUtils.SINK_TO_SWIM:
+                tutorialHasStarted = prefs.getBoolean(PowerUpUtils.SINK_TO_SWIM, false);
+                if (tutorialHasStarted){
+                    Intent sinktoswimIntent = new Intent(GameActivity.this, SinkToSwimGame.class);
+                    startActivity(sinktoswimIntent);
+                    return;
+                }
+                Intent sinktoswimTutorialIntent = new Intent(GameActivity.this, SinkToSwimTutorials.class);
+                startActivity(sinktoswimTutorialIntent);
+                break;
+        }
     }
 
     /**
