@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -32,5 +33,18 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         Intent intent = new Intent(SinkToSwimEndActivity.this, GameOverActivity.class);
         finish();
         startActivityForResult(intent, 0);
+    }
+    //function to go back to map
+    public void goToMap(){
+
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToMap();
     }
 }

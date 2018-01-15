@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 
@@ -33,5 +34,18 @@ public class VocabMatchTutorials extends AppCompatActivity {
                 }
             }
         });
+    }
+    //function to go back to map
+    public void goToMap(){
+
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToMap();
     }
 }
