@@ -8,7 +8,9 @@ package powerup.systers.com;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +35,7 @@ import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
@@ -228,23 +231,56 @@ public class GameActivity extends Activity {
         scenarioNameTextView.setText(scene.getScenarioName());
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
-                SessionHistory.prevSessionID = scene.getId();
-                SessionHistory.currSessionID = scene.getNextScenarioID();
-                if (type == 0) {
-                    Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
+            SessionHistory.prevSessionID = scene.getId();
+            SessionHistory.currSessionID = scene.getNextScenarioID();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            Intent intent;
+            switch (type) {
+                case 0:
+                    intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
-                } else if (type == -1) {
+                    break;
+                case -1:
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
-                }
-
+                    if (preferences.getBoolean(PowerUpUtils.MINESWEEPER_PREVIOUSLY_STARTED, false)) {
+                        intent = new Intent(this, MinesweeperGameActivity.class);
+                        /* Passing true starts a fresh instance of the game and the game is not
+                        resumed so that scores of previous rounds are not loaded from database */
+                        intent.putExtra(PowerUpUtils.CALLED_BY, true);
+                        startActivity(intent);
+                    } else {
+                        intent = new Intent(this, MinesweeperTutorials.class);
+                        startActivity(intent);
+                        editor.putBoolean(PowerUpUtils.MINESWEEPER_PREVIOUSLY_STARTED, true);
+                        editor.apply();
+                    }
+                    break;
+                case -2:
+                    if (preferences.getBoolean(PowerUpUtils.SINK_TO_SWIM_PREVIOUSLY_STARTED, false)) {
+                        intent = new Intent(this, SinkToSwimGame.class);
+                        startActivity(intent);
+                    } else {
+                        intent = new Intent(this, SinkToSwimTutorials.class);
+                        startActivity(intent);
+                        editor.putBoolean(PowerUpUtils.SINK_TO_SWIM_PREVIOUSLY_STARTED, true);
+                        editor.apply();
+                    }
+                    break;
+                case -3:
+                    if (preferences.getBoolean(PowerUpUtils.VOCAB_MATCH_PREVIOUSLY_STARTED, false)) {
+                        intent = new Intent(this, VocabMatchGameActivity.class);
+                        startActivity(intent);
+                    } else {
+                        intent = new Intent(this, VocabMatchTutorials.class);
+                        startActivity(intent);
+                        editor.putBoolean(PowerUpUtils.VOCAB_MATCH_PREVIOUSLY_STARTED, true);
+                        editor.apply();
+                    }
+                    break;
+            }
         }
-
     }
 
     /**
