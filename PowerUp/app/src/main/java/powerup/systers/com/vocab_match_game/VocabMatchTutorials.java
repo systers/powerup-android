@@ -1,6 +1,8 @@
 package powerup.systers.com.vocab_match_game;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +29,10 @@ public class VocabMatchTutorials extends AppCompatActivity {
                     Intent intent = new Intent(VocabMatchTutorials.this,VocabMatchGameActivity.class);
                     finish();
                     startActivity(intent);
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(VocabMatchTutorials.this);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean(PowerUpUtils.VOCAB_MATCH, true);
+                    editor.apply();
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_MATCH_TUTS[curTutorialImage]));
                     curTutorialImage++;

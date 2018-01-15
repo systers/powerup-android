@@ -1,6 +1,8 @@
 package powerup.systers.com.minesweeper;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +29,10 @@ public class MinesweeperTutorials extends AppCompatActivity {
                     Intent intent = new Intent(MinesweeperTutorials.this,MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, true);
                     finish();
                     startActivity(intent);
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MinesweeperTutorials.this);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean(PowerUpUtils.MINESWEEPER, true);
+                    editor.apply();
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.MINES_TUTS[curTutorialImage]));
                     curTutorialImage++;

@@ -1,6 +1,8 @@
 package powerup.systers.com.sink_to_swim_game;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +48,10 @@ public class SinkToSwimTutorials extends AppCompatActivity {
                     Intent intent = new Intent(SinkToSwimTutorials.this,SinkToSwimGame.class);
                     finish();
                     startActivity(intent);
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SinkToSwimTutorials.this);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean(PowerUpUtils.SINK_TO_SWIM, true);
+                    editor.apply();
                 }
             }
         });
