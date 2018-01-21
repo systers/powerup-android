@@ -50,8 +50,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * set up the score and number of completed rounds
+     * @desc set up the score and number of completed rounds
      * sets the background image corresponding to contraceptive method for current round
      * sets red mines at random positions in board based on success percentage of contraceptive method of current round
      */
@@ -79,10 +78,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * called when user opens any mine from the board
-     * flips animation on the opened mine
      * @param view mine which is opened
+     * @desc called when user opens any mine from the board
+     * flips animation on the opened mine
      */
     public void openMine(final View view) {
         final ImageView imageView = (ImageView) view;
@@ -131,16 +129,15 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * opened mine is green, increment the score
+     * @desc opened mine is green, increment the score
      * includes zoom in and out bounce animation on score
      */
     public void openedGreenMine() {
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
         scoreTextView.setText("Score: " + score);
-        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_out);
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_out);
         scoreTextView.startAnimation(animation);
         numSelectionsLeft--; //decrement the number of selection left
         if (numSelectionsLeft == 0) {
@@ -149,10 +146,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * shows the failure or success banner based on last selection
-     * includes fade in animation on the banner and continue button
      * @param type type of banner, 1 signify failure, 0 signify success
+     * @desc shows the failure or success banner based on last selection
+     * includes fade in animation on the banner and continue button
      */
     public void showBanner(int type) {
         banner = (ImageView) findViewById(R.id.banner);
@@ -186,8 +182,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * shows the original placement of red mines and green mines to user
+     * @desc shows the original placement of red mines and green mines to user
      */
     public void showOriginalMines() {
         ImageView mine;
@@ -206,10 +201,10 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
+     * @param enabled false if mine is disabled i.e. greyed out animation
+     * @param item    mine imageview which has to be greyed out
      * @desc Adds a greying out animation on the green mines when round completes
      * reduces the alpha value and multiplies RGB components of image colors with grey color
-     * @param enabled false if mine is disabled i.e. greyed out animation
-     * @param item mine imageview which has to be greyed out
      */
     public void setImageButtonEnabled(Context ctxt, boolean enabled, ImageView item, Drawable originalIcon) {
         item.setAlpha(0.8f);
@@ -223,8 +218,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     }
 
     /**
-     * @desc
-     * called when continue button is pressed in minesweeper game
+     * @desc called when continue button is pressed in minesweeper game
      * updated the data from this round into session database and opens pros and cons screen
      * includes fade in and fade out activity transition
      */
