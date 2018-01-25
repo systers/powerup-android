@@ -6,9 +6,11 @@
 package powerup.systers.com;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,7 +38,7 @@ import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
-public class GameActivity extends Activity {
+public class GameActivity extends AppCompatActivity {
 
     public Activity gameActivityInstance;
     private DatabaseHandler mDbHandler;
@@ -66,6 +68,9 @@ public class GameActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.game_activity);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
@@ -74,7 +79,7 @@ public class GameActivity extends Activity {
         listAdapter = new ArrayAdapter<>(this, R.layout.simplerow, new ArrayList<String>());
         answers = new ArrayList<>();
         scene = getmDbHandler().getScenario();
-        findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getId()-1]));
+        findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getId() - 1]));
         goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
         SessionHistory.currScenePoints = 0;
         ImageView eyeImageView = (ImageView) findViewById(R.id.eye_view);
@@ -163,12 +168,11 @@ public class GameActivity extends Activity {
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-2);
-                        } else if (answers.get(position).getNextQuestionID() == -3){
+                        } else if (answers.get(position).getNextQuestionID() == -3) {
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-3);
-                        }
-                        else {
+                        } else {
                             if (SessionHistory.currSessionID == -1) {
                                 // Check to make sure all scenes are completed
                                 SessionHistory.currSessionID = 1;
@@ -196,6 +200,7 @@ public class GameActivity extends Activity {
     /**
      * Finish, replay, or go to another scenario as needed. Updates the
      * question and answer if the last scenario has not yet been reached.
+     *
      * @param type coding scheme for .csv files, -1 means minesweeper game, 0 means scenario completion
      */
     private void updateScenario(int type) {
@@ -228,20 +233,20 @@ public class GameActivity extends Activity {
         scenarioNameTextView.setText(scene.getScenarioName());
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
-                SessionHistory.prevSessionID = scene.getId();
-                SessionHistory.currSessionID = scene.getNextScenarioID();
-                if (type == 0) {
-                    Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
-                    intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
-                    startActivity(intent);
-                } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
-                }
+            SessionHistory.prevSessionID = scene.getId();
+            SessionHistory.currSessionID = scene.getNextScenarioID();
+            if (type == 0) {
+                Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
+                intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
+                startActivity(intent);
+            } else if (type == -1) {
+                new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
+                startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
+            } else if (type == -2) {
+                startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
+            } else if (type == -3) {
+                startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
+            }
 
         }
 

@@ -2,10 +2,11 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-public class AboutActivity extends Activity {
+public class AboutActivity extends AppCompatActivity {
 
     private boolean isAboutGameOpen = false;
     private boolean isAboutUrgencyOpen = false;
@@ -14,11 +15,15 @@ public class AboutActivity extends Activity {
     private static String isUrgencyOpen = "ABOUT_URGENCY_OPEN";
     private static String isHelpingOpen = "ABOUT_HELPING_OPEN";
     private TextView aboutGameSection, aboutUrgencySection, aboutHelpingSection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        if (savedInstanceState != null){
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+        if (savedInstanceState != null) {
             isAboutGameOpen = savedInstanceState.getBoolean(isGameOpen);
             isAboutUrgencyOpen = savedInstanceState.getBoolean(isUrgencyOpen);
             isAboutHelpingOpen = savedInstanceState.getBoolean(isHelpingOpen);
@@ -26,19 +31,20 @@ public class AboutActivity extends Activity {
         aboutGameSection = (TextView) findViewById(R.id.about_the_game);
         aboutUrgencySection = (TextView) findViewById(R.id.about_the_urgency);
         aboutHelpingSection = (TextView) findViewById(R.id.about_helping_by);
-        if (isAboutGameOpen){
-           aboutGameSection.setVisibility(View.VISIBLE);
+        if (isAboutGameOpen) {
+            aboutGameSection.setVisibility(View.VISIBLE);
         }
-        if (isAboutUrgencyOpen){
+        if (isAboutUrgencyOpen) {
             aboutUrgencySection.setVisibility(View.VISIBLE);
         }
-        if (isAboutHelpingOpen){
+        if (isAboutHelpingOpen) {
             aboutHelpingSection.setVisibility(View.VISIBLE);
         }
 
     }
-    public void aboutGamePressed(View view){
-        if (aboutGameSection.getVisibility() == View.GONE){
+
+    public void aboutGamePressed(View view) {
+        if (aboutGameSection.getVisibility() == View.GONE) {
             aboutGameSection.setVisibility(View.VISIBLE);
             isAboutGameOpen = true;
         } else {
@@ -47,8 +53,8 @@ public class AboutActivity extends Activity {
         }
     }
 
-    public void aboutUrgencyPressed(View view){
-        if (aboutUrgencySection.getVisibility() == View.GONE){
+    public void aboutUrgencyPressed(View view) {
+        if (aboutUrgencySection.getVisibility() == View.GONE) {
             aboutUrgencySection.setVisibility(View.VISIBLE);
             isAboutUrgencyOpen = true;
         } else {
@@ -57,8 +63,8 @@ public class AboutActivity extends Activity {
         }
     }
 
-    public void aboutHelpingByPressed(View view){
-        if (aboutHelpingSection.getVisibility() == View.GONE){
+    public void aboutHelpingByPressed(View view) {
+        if (aboutHelpingSection.getVisibility() == View.GONE) {
             aboutHelpingSection.setVisibility(View.VISIBLE);
             isAboutHelpingOpen = true;
         } else {
@@ -67,15 +73,15 @@ public class AboutActivity extends Activity {
         }
     }
 
-    public void pressHomeButton(View view){
+    public void pressHomeButton(View view) {
         finish();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(isGameOpen,isAboutGameOpen);
-        outState.putBoolean(isHelpingOpen,isAboutHelpingOpen);
-        outState.putBoolean(isUrgencyOpen,isAboutUrgencyOpen);
+        outState.putBoolean(isGameOpen, isAboutGameOpen);
+        outState.putBoolean(isHelpingOpen, isAboutHelpingOpen);
+        outState.putBoolean(isUrgencyOpen, isAboutUrgencyOpen);
     }
 }

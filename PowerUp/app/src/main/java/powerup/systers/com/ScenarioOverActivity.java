@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import powerup.systers.com.datamodel.Scenario;
@@ -36,6 +37,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public ScenarioOverActivity() {
         scenarioOverActivityInstance = this;
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.activity_scenario_over);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         scene = getmDbHandler().getScenario();
         scenarioActivityDone = 1;
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
@@ -57,7 +62,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         });
 
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
-        
+
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +71,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
-        if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
+        if (getIntent().getExtras() != null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))) {
             continueButton.setVisibility(View.GONE);
             continueButton.setOnClickListener(null);
         }

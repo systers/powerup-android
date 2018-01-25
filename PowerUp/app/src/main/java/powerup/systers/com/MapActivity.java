@@ -7,6 +7,7 @@ package powerup.systers.com;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -19,35 +20,41 @@ import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.powerup.PowerUpUtils;
 
-public class MapActivity extends Activity {
+public class MapActivity extends AppCompatActivity {
 
     private DatabaseHandler mDbHandler;
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             ImageView scenarioChooser = (ImageView) v;
-            if (v.isEnabled()){
-            if (getmDbHandler().setSessionId(getScenarioName(scenarioChooser.getId()))) {
-                startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
-            } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
-                startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
-            } else {
-                Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
-                intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
-                startActivityForResult(intent, 0);
+            if (v.isEnabled()) {
+                if (getmDbHandler().setSessionId(getScenarioName(scenarioChooser.getId()))) {
+                    startActivityForResult(new Intent(MapActivity.this, GameActivity.class), 0);
+                } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
+                    startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
+                } else {
+                    Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
+                    intent.putExtra(PowerUpUtils.SOURCE, PowerUpUtils.MAP);
+                    startActivityForResult(intent, 0);
+                }
+                finish();
             }
-            finish();
-        }}
+        }
     };
 
     private String getScenarioName(int id) {
-        switch (id){
-            case R.id.school : return "School";
-            case R.id.library : return "Library";
-            case R.id.house : return "Home";
-            case R.id.hospital : return "Hospital";
+        switch (id) {
+            case R.id.school:
+                return "School";
+            case R.id.library:
+                return "Library";
+            case R.id.house:
+                return "Home";
+            case R.id.hospital:
+                return "Hospital";
 
-            default: return "Home";
+            default:
+                return "Home";
         }
     }
 
@@ -58,10 +65,13 @@ public class MapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.gamemap);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         ImageView schoolBuilding = (ImageView) findViewById(R.id.school_building);
         ImageView hospitalBuilding = (ImageView) findViewById(R.id.hospital_building);
@@ -76,7 +86,7 @@ public class MapActivity extends Activity {
         ImageView house = (ImageView) findViewById(R.id.house);
         house.setOnClickListener(onClickListener);
 
-        ImageView hospital = (ImageView)  findViewById(R.id.hospital);
+        ImageView hospital = (ImageView) findViewById(R.id.hospital);
         hospital.setOnClickListener(onClickListener);
 
         ImageView library = (ImageView) findViewById(R.id.library);
@@ -98,20 +108,20 @@ public class MapActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(MapActivity.this,StartActivity.class));
+                startActivity(new Intent(MapActivity.this, StartActivity.class));
             }
         });
 
         //changes the Map building's greyscale color and locks according to the scenarios completions
-        if (getmDbHandler().getScenarioFromID(4).getCompleted() == 1){
+        if (getmDbHandler().getScenarioFromID(4).getCompleted() == 1) {
             schoolBuilding.setImageDrawable(getResources().getDrawable(R.drawable.school_colored));
             school.setEnabled(true);
         }
-        if (getmDbHandler().getScenarioFromID(5).getCompleted() == 1){
+        if (getmDbHandler().getScenarioFromID(5).getCompleted() == 1) {
             hospitalBuilding.setImageDrawable(getResources().getDrawable(R.drawable.hospital_colored));
             hospital.setEnabled(true);
         }
-        if (getmDbHandler().getScenarioFromID(6).getCompleted() == 1){
+        if (getmDbHandler().getScenarioFromID(6).getCompleted() == 1) {
             libraryBuilding.setImageDrawable(getResources().getDrawable(R.drawable.library_colored));
             library.setEnabled(true);
         }

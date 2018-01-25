@@ -48,6 +48,9 @@ public class StoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -60,7 +63,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(StoreActivity.this,MapActivity.class));
+                startActivity(new Intent(StoreActivity.this, MapActivity.class));
             }
         });
 
@@ -118,7 +121,7 @@ public class StoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 currentPage = 0;
                 storeItemTypeindex = 1;
-                adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length%6));
+                adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length % 6));
             }
         });
 
@@ -127,7 +130,7 @@ public class StoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 currentPage = 0;
                 storeItemTypeindex = 2;
-                adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length%6));
+                adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length % 6));
             }
         });
 
@@ -170,7 +173,7 @@ public class StoreActivity extends AppCompatActivity {
         gridView.setAdapter(adapter);
     }
 
-    public void setAvatarHair(int index){
+    public void setAvatarHair(int index) {
         getmDbHandler().setAvatarHair(index);
         String hairImageName = getResources().getString(R.string.hair);
         hairImageName = hairImageName + index;
@@ -184,7 +187,7 @@ public class StoreActivity extends AppCompatActivity {
 
     }
 
-    public void setAvatarClothes(int index){
+    public void setAvatarClothes(int index) {
         getmDbHandler().setAvatarCloth(index);
         String clothImageName = getResources().getString(R.string.cloth);
         clothImageName = clothImageName + index;
@@ -197,7 +200,7 @@ public class StoreActivity extends AppCompatActivity {
         }
     }
 
-    public void setAvatarAccessories(int index){
+    public void setAvatarAccessories(int index) {
         getmDbHandler().setAvatarAccessory(index);
         String accessoryImageName = getResources().getString(R.string.accessories);
         accessoryImageName = accessoryImageName + index;
@@ -237,7 +240,7 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     public int calculatePosition(int position) {
-        int id = currentPage*6+position;
+        int id = currentPage * 6 + position;
         return id;
     }
 
@@ -302,13 +305,13 @@ public class StoreActivity extends AppCompatActivity {
             storeItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (v.isEnabled()){
+                    if (v.isEnabled()) {
 
                         TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
-                        int index = calculatePosition(position)+1;
+                        int index = calculatePosition(position) + 1;
                         if (storeItemTypeindex == 0) { //hair
                             setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
+                            if (getmDbHandler().getPurchasedHair(index) == 0) {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
 
@@ -317,7 +320,7 @@ public class StoreActivity extends AppCompatActivity {
 
                         } else if (storeItemTypeindex == 1) { //clothes
                             setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
+                            if (getmDbHandler().getPurchasedClothes(index) == 0) {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedClothes(index);
@@ -325,7 +328,7 @@ public class StoreActivity extends AppCompatActivity {
 
                         } else if (storeItemTypeindex == 2) { //accessories
                             setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
+                            if (getmDbHandler().getPurchasedAccessories(index) == 0) {
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                                 getmDbHandler().setPurchasedAccessories(index);
@@ -337,10 +340,10 @@ public class StoreActivity extends AppCompatActivity {
                 }
             });
             StoreItem temp = storeItems.get(position);
-                holder.itemImage.setBackground(context.getResources().getDrawable(temp.imageId));
-                holder.itemPoints.setText(temp.points);
+            holder.itemImage.setBackground(context.getResources().getDrawable(temp.imageId));
+            holder.itemPoints.setText(temp.points);
 
-            int id = calculatePosition(position)+1;
+            int id = calculatePosition(position) + 1;
 
             if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
                 storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));

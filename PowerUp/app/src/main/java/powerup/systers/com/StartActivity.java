@@ -17,13 +17,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class StartActivity extends Activity {
+public class StartActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
@@ -36,6 +37,9 @@ public class StartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         context = StartActivity.this;
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
@@ -96,4 +100,6 @@ public class StartActivity extends Activity {
             startButton.setText(getString(R.string.resume_text));
         }
     }
+
+
 }

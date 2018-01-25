@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,7 +19,7 @@ import java.util.Random;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
-public class AvatarRoomActivity extends Activity {
+public class AvatarRoomActivity extends AppCompatActivity {
 
     public Activity avatarRoomInstance;
     private DatabaseHandler mDbHandler;
@@ -40,6 +41,9 @@ public class AvatarRoomActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.avatar_room);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         eyeAvatar = (ImageView) findViewById(R.id.eye_view);
         hairAvatar = (ImageView) findViewById(R.id.hair_view);
         skinAvatar = (ImageView) findViewById(R.id.skin_view);
