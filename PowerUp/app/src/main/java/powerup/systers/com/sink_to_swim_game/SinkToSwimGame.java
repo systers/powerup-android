@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -189,7 +191,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void answerChosen(View view) {
         setButtonsEnabled(false);
         if (view == findViewById(R.id.true_option)) {
-            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
+            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1].equals("T")) {
                 score += 1;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
@@ -199,7 +201,7 @@ public class SinkToSwimGame extends AppCompatActivity {
                 wrongAnswers++;
             }
         } else if (view == findViewById(R.id.false_option)) {
-            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "F") {
+            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1].equals("F")) {
                 score += 1;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
