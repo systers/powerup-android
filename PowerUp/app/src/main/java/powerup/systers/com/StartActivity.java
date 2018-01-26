@@ -63,7 +63,9 @@ public class StartActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 ColorDrawable drawable = new ColorDrawable(Color.WHITE);
                 drawable.setAlpha(200);
-                dialog.getWindow().setBackgroundDrawable(drawable);
+                if (dialog.getWindow() != null) {
+                    dialog.getWindow().setBackgroundDrawable(drawable);
+                }
                 dialog.show();
             }
         });

@@ -25,14 +25,16 @@ public class GameOverActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
-        backToMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GameOverActivity.this,
-                        MapActivity.class);
-                finish();
-                startActivityForResult(intent, 0);
-            }
-        });
+        if (backToMap != null) {
+            backToMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(GameOverActivity.this,
+                            MapActivity.class);
+                    finish();
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }
     }
 }

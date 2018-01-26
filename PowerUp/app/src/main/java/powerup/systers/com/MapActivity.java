@@ -78,52 +78,87 @@ public class MapActivity extends AppCompatActivity {
         ImageView libraryBuilding = (ImageView) findViewById(R.id.library_building);
 
         Button homeButton = (Button) findViewById(R.id.home_button);
-        homeButton.setHeight(homeButton.getWidth());
+        if (homeButton != null) {
+            homeButton.setHeight(homeButton.getWidth());
+        }
+
 
         ImageView school = (ImageView) findViewById(R.id.school);
-        school.setOnClickListener(onClickListener);
+        if (school != null) {
+            school.setOnClickListener(onClickListener);
+        }
+
 
         ImageView house = (ImageView) findViewById(R.id.house);
-        house.setOnClickListener(onClickListener);
+        if (house != null) {
+            house.setOnClickListener(onClickListener);
+        }
 
         ImageView hospital = (ImageView) findViewById(R.id.hospital);
-        hospital.setOnClickListener(onClickListener);
+        if (hospital != null) {
+            hospital.setOnClickListener(onClickListener);
+        }
 
         ImageView library = (ImageView) findViewById(R.id.library);
-        library.setOnClickListener(onClickListener);
+        if (library != null) {
+            library.setOnClickListener(onClickListener);
+        }
 
-        school.setEnabled(false);
-        hospital.setEnabled(false);
-        library.setEnabled(false);
+        if (school != null) {
+            school.setEnabled(false);
+        }
+        if (hospital != null) {
+            hospital.setEnabled(false);
+        }
+        if (library != null) {
+            library.setEnabled(false);
+        }
 
         Button storeButton = (Button) findViewById(R.id.store);
-        storeButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MapActivity.this, StoreActivity.class));
-            }
-        });
+        if (storeButton != null) {
+            storeButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MapActivity.this, StoreActivity.class));
+                }
+            });
+        }
 
-        homeButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(new Intent(MapActivity.this, StartActivity.class));
-            }
-        });
+        if (homeButton != null) {
+            homeButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    startActivity(new Intent(MapActivity.this, StartActivity.class));
+                }
+            });
+        }
 
         //changes the Map building's greyscale color and locks according to the scenarios completions
         if (getmDbHandler().getScenarioFromID(4).getCompleted() == 1) {
-            schoolBuilding.setImageDrawable(getResources().getDrawable(R.drawable.school_colored));
-            school.setEnabled(true);
+
+            if (schoolBuilding != null) {
+                schoolBuilding.setImageDrawable(getResources().getDrawable(R.drawable.school_colored));
+            }
+            if (school != null) {
+                school.setEnabled(true);
+            }
         }
         if (getmDbHandler().getScenarioFromID(5).getCompleted() == 1) {
-            hospitalBuilding.setImageDrawable(getResources().getDrawable(R.drawable.hospital_colored));
-            hospital.setEnabled(true);
+            if (hospitalBuilding != null) {
+                hospitalBuilding.setImageDrawable(getResources().getDrawable(R.drawable.hospital_colored));
+            }
+            if (hospital != null) {
+                hospital.setEnabled(true);
+            }
         }
         if (getmDbHandler().getScenarioFromID(6).getCompleted() == 1) {
-            libraryBuilding.setImageDrawable(getResources().getDrawable(R.drawable.library_colored));
-            library.setEnabled(true);
+            if (libraryBuilding != null) {
+                libraryBuilding.setImageDrawable(getResources().getDrawable(R.drawable.library_colored));
+            }
+            if (library != null) {
+                library.setEnabled(true);
+            }
         }
 
     }

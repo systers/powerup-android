@@ -59,13 +59,15 @@ public class StoreActivity extends AppCompatActivity {
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         Button mapButton = (Button) findViewById(R.id.map_button);
 
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(new Intent(StoreActivity.this, MapActivity.class));
-            }
-        });
+        if (mapButton != null) {
+            mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    startActivity(new Intent(StoreActivity.this, MapActivity.class));
+                }
+            });
+        }
 
 
         ImageView eyeImageView = (ImageView) findViewById(R.id.eye_view);
@@ -80,7 +82,9 @@ public class StoreActivity extends AppCompatActivity {
 
         try {
             photoNameField = ourRID.getClass().getField(eyeImageName);
-            eyeImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (eyeImageView != null) {
+                eyeImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -90,7 +94,9 @@ public class StoreActivity extends AppCompatActivity {
         skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
         try {
             photoNameField = ourRID.getClass().getField(skinImageName);
-            skinImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (skinImageView != null) {
+                skinImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -292,53 +298,61 @@ public class StoreActivity extends AppCompatActivity {
             ViewHolder holder;
             if (storeItem == null) {
                 LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                storeItem = layoutInflater.inflate(R.layout.store_selection_view, parent, false);
+                if (layoutInflater != null) {
+                    storeItem = layoutInflater.inflate(R.layout.store_selection_view, parent, false);
+                }
                 int itemWidth = (int) ((screenWidth / 85.428f) * 13);
                 int itemHeight = (int) ((screenHeight / 51.428f) * 18);
-                storeItem.setLayoutParams(new AbsListView.LayoutParams(itemWidth, itemHeight));
+                if (storeItem != null) {
+                    storeItem.setLayoutParams(new AbsListView.LayoutParams(itemWidth, itemHeight));
+                }
 
                 holder = new ViewHolder(storeItem);
-                storeItem.setTag(holder);
+                if (storeItem != null) {
+                    storeItem.setTag(holder);
+                }
             } else {
                 holder = (ViewHolder) storeItem.getTag();
             }
-            storeItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (v.isEnabled()) {
+            if (storeItem != null) {
+                storeItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (v.isEnabled()) {
 
-                        TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
-                        int index = calculatePosition(position) + 1;
-                        if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0) {
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                            TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
+                            int index = calculatePosition(position) + 1;
+                            if (storeItemTypeindex == 0) { //hair
+                                setAvatarHair(index);
+                                if (getmDbHandler().getPurchasedHair(index) == 0) {
+                                    SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                    karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
 
-                                getmDbHandler().setPurchasedHair(index);
+                                    getmDbHandler().setPurchasedHair(index);
+                                }
+
+                            } else if (storeItemTypeindex == 1) { //clothes
+                                setAvatarClothes(index);
+                                if (getmDbHandler().getPurchasedClothes(index) == 0) {
+                                    SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                    karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                                    getmDbHandler().setPurchasedClothes(index);
+                                }
+
+                            } else if (storeItemTypeindex == 2) { //accessories
+                                setAvatarAccessories(index);
+                                if (getmDbHandler().getPurchasedAccessories(index) == 0) {
+                                    SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
+                                    karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+                                    getmDbHandler().setPurchasedAccessories(index);
+                                }
                             }
+                            adapter.refresh(adapter.storeItems); // will update change the background if any is not available
 
-                        } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0) {
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedClothes(index);
-                            }
-
-                        } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0) {
-                                SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
-                                karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-                                getmDbHandler().setPurchasedAccessories(index);
-                            }
                         }
-                        adapter.refresh(adapter.storeItems); // will update change the background if any is not available
-
                     }
-                }
-            });
+                });
+            }
             StoreItem temp = storeItems.get(position);
             holder.itemImage.setBackground(context.getResources().getDrawable(temp.imageId));
             holder.itemPoints.setText(temp.points);
@@ -346,18 +360,24 @@ public class StoreActivity extends AppCompatActivity {
             int id = calculatePosition(position) + 1;
 
             if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
-                storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
-                holder.itemImage.setImageResource(R.drawable.store_tick);
-                storeItem.setEnabled(true);
+                if (storeItem != null) {
+                    storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
+                    holder.itemImage.setImageResource(R.drawable.store_tick);
+                    storeItem.setEnabled(true);
+                }
             } else { //not purchased => available/not available
                 holder.itemImage.setImageResource(Color.TRANSPARENT);
                 if (Integer.parseInt(temp.points) <= SessionHistory.totalPoints) { //can be bought
-                    storeItem.setBackground(getResources().getDrawable(R.drawable.buy_item));
-                    storeItem.setEnabled(true);
+                    if (storeItem != null) {
+                        storeItem.setBackground(getResources().getDrawable(R.drawable.buy_item));
+                        storeItem.setEnabled(true);
+                    }
 
                 } else { //can't be bought
-                    storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
-                    storeItem.setEnabled(false);
+                    if (storeItem != null) {
+                        storeItem.setBackground(getResources().getDrawable(R.drawable.unavailable_item));
+                        storeItem.setEnabled(false);
+                    }
                 }
             }
             return storeItem;

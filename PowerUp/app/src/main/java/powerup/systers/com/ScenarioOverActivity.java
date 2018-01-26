@@ -53,45 +53,55 @@ public class ScenarioOverActivity extends AppCompatActivity {
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
         ImageView continueButton = (ImageView) findViewById(R.id.continueButton);
         Button mapButton = (Button) findViewById(R.id.mapButton);
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
-            }
-        });
+        if (mapButton != null) {
+            mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
+                }
+            });
+        }
 
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
 
-        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new GameActivity().gameActivityInstance.finish();
-                startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
-            }
-        });
+        if (karmaPoints != null) {
+            karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        }
+        if (continueButton != null) {
+            continueButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new GameActivity().gameActivityInstance.finish();
+                    startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                }
+            });
+        }
         if (getIntent().getExtras() != null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))) {
-            continueButton.setVisibility(View.GONE);
-            continueButton.setOnClickListener(null);
+            if (continueButton != null) {
+                continueButton.setVisibility(View.GONE);
+                continueButton.setOnClickListener(null);
+            }
         }
 
 
-        replayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SessionHistory.currSessionID = SessionHistory.prevSessionID;
-                SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                SessionHistory.currScenePoints = 0;
-                scenarioActivityDone = 0;
-                DatabaseHandler dbHandler = new DatabaseHandler(ScenarioOverActivity.this);
-                dbHandler.resetCompleted(SessionHistory.currSessionID);
-                dbHandler.resetReplayed(SessionHistory.currSessionID);
-                new GameActivity().gameActivityInstance.finish();
-                scenarioOverActivityInstance.finish();
-                startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
-            }
-        });
+        if (replayButton != null) {
+            replayButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                    SessionHistory.totalPoints -= SessionHistory.currScenePoints;
+                    SessionHistory.currScenePoints = 0;
+                    scenarioActivityDone = 0;
+                    DatabaseHandler dbHandler = new DatabaseHandler(ScenarioOverActivity.this);
+                    dbHandler.resetCompleted(SessionHistory.currSessionID);
+                    dbHandler.resetReplayed(SessionHistory.currSessionID);
+                    new GameActivity().gameActivityInstance.finish();
+                    scenarioOverActivityInstance.finish();
+                    startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
+                }
+            });
+        }
     }
 
     /**
