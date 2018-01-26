@@ -29,6 +29,9 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public VocabTileImageView img1, img2, img3;
     public int height, width, oldestTile, score, latestTile;
     public TextView scoreView;
+    final String SOUND_TYPE = "SOUND_TYPE";
+    final int CORRECT_MATCH = 0;
+    final int WRONG_MATCH = 1;
     Random r;
 
     @Override
@@ -115,10 +118,14 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (oldestTile < PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS.length){
                     String tileText = PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile];
                     if (tileText.equals(boardText)) {
+                        startService(new Intent(VocabMatchGameActivity.this, VocabMatchSound.class)
+                                .putExtra(SOUND_TYPE,CORRECT_MATCH));
                         score++;
                         scoreView.setText("" + score);
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {
+                        startService(new Intent(VocabMatchGameActivity.this, VocabMatchSound.class)
+                                .putExtra(SOUND_TYPE,WRONG_MATCH));
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_red));
                     }
                 }
@@ -139,10 +146,17 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
-                    Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
-                    intent.putExtra(PowerUpUtils.SCORE,score);
-                    finish();
-                    startActivity(intent);
+                    final Handler handler = new Handler(); //make sure the last sound is heard
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(VocabMatchGameActivity.this, VocabMatchEndActivity.class);
+                            intent.putExtra(PowerUpUtils.SCORE, score);
+                            stopService(new Intent(VocabMatchGameActivity.this, VocabMatchSound.class));
+                            finish();
+                            startActivity(intent);
+                        }
+                    }, 1000);
                 }
 
             }
