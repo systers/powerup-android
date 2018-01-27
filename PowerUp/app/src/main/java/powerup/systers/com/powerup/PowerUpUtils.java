@@ -56,5 +56,6 @@ public class PowerUpUtils {
 
     public static final int[] ACCESSORIES_IMAGES = {R.drawable.acc1,R.drawable.acc2,R.drawable.acc3,R.drawable.acc4};
     public static final String[] ACCESSORIES_POINTS_TEXTS = {"10","5","5","10"};
+    public static final String FINAL_SCENARIO = "final scenario";
 }
 
