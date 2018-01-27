@@ -56,6 +56,7 @@ public class GameActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        new ScenarioOverActivity(this).saveActivityOpenedStatus(false);
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
         }

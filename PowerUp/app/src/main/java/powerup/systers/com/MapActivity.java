@@ -32,6 +32,7 @@ public class MapActivity extends Activity {
             } else if (new MinesweeperSessionManager(MapActivity.this).isMinesweeperOpened()) { //if minesweeper game was left incomplete
                 startActivity(new Intent(MapActivity.this, MinesweeperGameActivity.class));
             } else {
+                new ScenarioOverActivity(MapActivity.this).saveActivityOpenedStatus(true);
                 Intent intent = new Intent(MapActivity.this, ScenarioOverActivity.class);
                 intent.putExtra(PowerUpUtils.SOURCE,PowerUpUtils.MAP);
                 startActivityForResult(intent, 0);
