@@ -80,6 +80,7 @@ public class GameActivity extends AppCompatActivity {
         answers = new ArrayList<>();
         scene = getmDbHandler().getScenario();
         View rootView = findViewById(R.id.root);
+
         if (rootView != null) {
             rootView.setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getId() - 1]));
         }
@@ -199,6 +200,7 @@ public class GameActivity extends AppCompatActivity {
                     });
         }
     }
+
 
     /**
      * Add karma points to the session.

@@ -18,14 +18,20 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sink_to_swim_end);
         Intent intent = getIntent();
         int wrongAnswers= intent.getExtras().getInt(PowerUpUtils.WRONG_ANSWER);
-        int correctAnswers= intent.getExtras().getInt(PowerUpUtils.CORRECT_ANSWERS);
+        int correctAnswers = intent.getExtras().getInt(PowerUpUtils.CORRECT_ANSWERS);
         int score = intent.getExtras().getInt(PowerUpUtils.SCORE);
         TextView  scoreView = (TextView) findViewById(R.id.swim_score);
         TextView  correctView = (TextView) findViewById(R.id.correct);
         TextView  wrongView = (TextView) findViewById(R.id.wrong);
-        scoreView.setText(""+score);
-        correctView.setText(""+correctAnswers);
-        wrongView.setText(""+wrongAnswers);
+        if(scoreView!=null) {
+            scoreView.setText("" + score);
+        }
+        if(correctView!=null) {
+            correctView.setText("" + correctAnswers);
+        }
+        if(wrongView!=null) {
+            wrongView.setText("" + wrongAnswers);
+        }
     }
 
     public void continuePressed(View view){

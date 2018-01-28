@@ -44,7 +44,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         scoreTextView = (TextView) findViewById(R.id.minesweeper_score);
         banner = (ImageView) findViewById(R.id.banner);
         continueButton = (ImageView) findViewById(R.id.continue_button);
-        continueButton.setClickable(false);
+        if (continueButton != null) {
+            continueButton.setClickable(false);
+        }
         mines = new HashSet<>();
         setUpGame();
     }
@@ -66,7 +68,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             scoreTextView.setText("Score: " + score);
             gameRound = session.getCompletedRounds();
             ImageView background = (ImageView) findViewById(R.id.mine_background); //set background according to current contracpetive method
-            background.setImageDrawable(getResources().getDrawable(PowerUpUtils.ROUND_BACKGROUNDS[gameRound]));
+            if (background != null) {
+                background.setImageDrawable(getResources().getDrawable(PowerUpUtils.ROUND_BACKGROUNDS[gameRound]));
+            }
             mines.clear();
         }
         gameRound++;
@@ -195,8 +199,10 @@ public class MinesweeperGameActivity extends AppCompatActivity {
                 drawable = getResources().getDrawable(R.drawable.green_star);
                 setImageButtonEnabled(this, false, mine, drawable); //calls grey out animation on all green mines
             }
-            mine.setImageDrawable(drawable);
-            mine.setEnabled(false);
+            if (mine != null) {
+                mine.setImageDrawable(drawable);
+                mine.setEnabled(false);
+            }
         }
     }
 
