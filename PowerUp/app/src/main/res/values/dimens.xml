@@ -1,4 +1,6 @@
 <resources>
     <dimen name="banner_height">30dp</dimen>
+    <dimen name="current_scenario_text_size">20sp</dimen>
+    <dimen name="current_scenario_top_margin">23dp</dimen>
 </resources>
 

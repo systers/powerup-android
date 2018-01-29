@@ -229,7 +229,6 @@ public class GameActivity extends Activity {
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
                 SessionHistory.prevSessionID = scene.getId();
-                SessionHistory.currSessionID = scene.getNextScenarioID();
                 if (type == 0) {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());

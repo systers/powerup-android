@@ -55,6 +55,9 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
             }
         });
+        TextView scenarioCompleted = (TextView) findViewById(R.id.completedScenario);
+        scenarioCompleted.setText(scenarioCompleted.getText() + " " + scene.getScenarioName());
+        SessionHistory.currSessionID = scene.getNextScenarioID();
 
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         
