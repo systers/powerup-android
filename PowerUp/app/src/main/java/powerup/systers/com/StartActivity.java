@@ -24,6 +24,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import powerup.systers.com.alarm.AlertService;
+
 public class StartActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
@@ -31,6 +33,7 @@ public class StartActivity extends AppCompatActivity {
     private Button startButton;
     private Button newUserButton;
     private Button aboutButton;
+    private Button settingsButton;
     Context context;
 
     @Override
@@ -40,6 +43,7 @@ public class StartActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+        settingsButton = (Button) findViewById(R.id.settings_button);
         context = StartActivity.this;
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
@@ -89,6 +93,13 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(StartActivity.this, SettingsActivity.class));
             }
         });
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+
+        android:defaultValue="false"
+        android:key="@string/setAlarm"
+        android:summary="Set a reminder to play the game at a specified time"
+        android:title="Set Reminder" />
+
+
+    <ListPreference
+        android:defaultValue="10:00 AM"
+        android:dependency="set_alarm"
+        android:entries="@array/time_strings"
+        android:entryValues="@array/time_values"
+        android:key="@string/timeSlots"
+        android:title="Choose Time" />
+
+
+    />
+
+
+</PreferenceScreen>
