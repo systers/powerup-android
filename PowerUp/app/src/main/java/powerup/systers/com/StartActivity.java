@@ -17,25 +17,33 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class StartActivity extends Activity {
+import powerup.systers.com.alarm.AlertService;
+
+public class StartActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
     private Button startButton;
     private Button newUserButton;
     private Button aboutButton;
+    private Button settingsButton;
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+        settingsButton = (Button) findViewById(R.id.settings_button);
         context = StartActivity.this;
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
@@ -59,7 +67,9 @@ public class StartActivity extends Activity {
                 AlertDialog dialog = builder.create();
                 ColorDrawable drawable = new ColorDrawable(Color.WHITE);
                 drawable.setAlpha(200);
-                dialog.getWindow().setBackgroundDrawable(drawable);
+                if (dialog.getWindow() != null) {
+                    dialog.getWindow().setBackgroundDrawable(drawable);
+                }
                 dialog.show();
             }
         });
@@ -86,6 +96,13 @@ public class StartActivity extends Activity {
             }
         });
 
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(StartActivity.this, SettingsActivity.class));
+            }
+        });
+
     }
 
     @Override
@@ -96,4 +113,6 @@ public class StartActivity extends Activity {
             startButton.setText(getString(R.string.resume_text));
         }
     }
+
+
 }

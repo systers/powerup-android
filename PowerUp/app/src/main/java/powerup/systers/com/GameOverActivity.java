@@ -8,10 +8,11 @@ package powerup.systers.com;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class GameOverActivity extends Activity {
+public class GameOverActivity extends AppCompatActivity {
 
     /**
      * Called when the activity is first created.
@@ -20,15 +21,20 @@ public class GameOverActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.completed_game);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         Button backToMap = (Button) findViewById(R.id.ContinueButtonMap);
-        backToMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GameOverActivity.this,
-                        MapActivity.class);
-                finish();
-                startActivityForResult(intent, 0);
-            }
-        });
+        if (backToMap != null) {
+            backToMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(GameOverActivity.this,
+                            MapActivity.class);
+                    finish();
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }
     }
 }
