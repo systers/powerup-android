@@ -14,10 +14,6 @@ import powerup.systers.com.alarm.AlarmReceiver;
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 
-    public SettingsFragment() {
-
-    }
-
 
     public void onCreate(Bundle savedInstanceState) {
 
