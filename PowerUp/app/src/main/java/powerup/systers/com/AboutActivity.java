@@ -37,10 +37,10 @@ public class AboutActivity extends AppCompatActivity {
         if (isAboutUrgencyOpen) {
             aboutUrgencySection.setVisibility(View.VISIBLE);
         }
-        if (isAboutHelpingOpen) {
-            if (aboutHelpingSection != null) {
-                aboutHelpingSection.setVisibility(View.VISIBLE);
-            }
+        if (isAboutHelpingOpen && aboutHelpingSection != null) {
+
+            aboutHelpingSection.setVisibility(View.VISIBLE);
+
         }
 
     }

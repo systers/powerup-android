@@ -77,11 +77,11 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 }
             });
         }
-        if (getIntent().getExtras() != null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))) {
-            if (continueButton != null) {
+        if (getIntent().getExtras() != null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE)) && continueButton!=null) {
+
                 continueButton.setVisibility(View.GONE);
                 continueButton.setOnClickListener(null);
-            }
+
         }
 
 
