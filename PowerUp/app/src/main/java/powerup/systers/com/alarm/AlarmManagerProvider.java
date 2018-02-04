@@ -11,7 +11,7 @@ public class AlarmManagerProvider {
 
     private static AlarmManager sAlarmManager;
 
-    private static synchronized AlarmManager getAlarmManager(Context context) {
+    public static synchronized AlarmManager getAlarmManager(Context context) {
         if (sAlarmManager == null) {
             sAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         }
