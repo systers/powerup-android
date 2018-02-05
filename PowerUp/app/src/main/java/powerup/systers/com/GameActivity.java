@@ -267,4 +267,10 @@ public class GameActivity extends Activity {
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(GameActivity.this, StartActivity.class);
+        startActivity(intent);
+    }
 }
