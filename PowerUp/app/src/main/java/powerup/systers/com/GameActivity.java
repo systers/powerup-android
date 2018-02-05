@@ -80,10 +80,6 @@ public class GameActivity extends Activity  {
                     {
                         Log.e("TTS","LANGUAGE NOT SUPPORTED");
                     }
-                    else
-                        {
-
-                        }
                 }
                 else
                 {
@@ -179,24 +175,24 @@ public class GameActivity extends Activity  {
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
                                     .getNextQuestionID();
-                            speak(a);
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             updateQA();
                         } else if (answers.get(position).getNextQuestionID() == -1) {
                             String a=answers.get(position).getAnswerDescription();
-                            speak(a);
+                            speak(a); //the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-1);
                         } else if (answers.get(position).getNextQuestionID() == -2) {
                             String a=answers.get(position).getAnswerDescription();
-                            speak(a);
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-2);
                         } else if (answers.get(position).getNextQuestionID() == -3){
                             String a=answers.get(position).getAnswerDescription();
-                            speak(a);
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-3);
@@ -207,7 +203,7 @@ public class GameActivity extends Activity  {
                                 SessionHistory.currSessionID = 1;
                             }
                             String a=answers.get(position).getAnswerDescription();
-                            speak(a);
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(0);
