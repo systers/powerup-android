@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -75,7 +76,34 @@ public class ScenarioOverActivity extends AppCompatActivity {
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                if(getIntent().getExtras() !=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE)) && getIntent().getStringExtra(PowerUpUtils.SCENARIO_NAME) != null) {
+                    String scenario = getIntent().getStringExtra(PowerUpUtils.SCENARIO_NAME);
+                    int id;
+                    switch (scenario) {
+                        case "Home":
+                            id = 4;
+                            SessionHistory.sceneHomeIsReplayed = true;
+                            break;
+                        case "School":
+                            id = 5;
+                            SessionHistory.sceneSchoolIsReplayed = true;
+                            break;
+                        case "Hospital":
+                            id = 6;
+                            SessionHistory.sceneHospitalIsReplayed = true;
+                            break;
+                        case "Library":
+                            id = 7;
+                            SessionHistory.sceneLibraryIsReplayed = true;
+                            break;
+                        default:
+                            id = 4;
+                    }
+                    SessionHistory.currSessionID = id;
+                } else {
+                    SessionHistory.currSessionID = SessionHistory.prevSessionID;
+                    scenarioActivityDone = 0;
+                }
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 SessionHistory.currScenePoints = 0;
                 scenarioActivityDone = 0;
