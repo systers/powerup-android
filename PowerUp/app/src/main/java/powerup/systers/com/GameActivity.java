@@ -127,15 +127,17 @@ public class GameActivity extends Activity {
 
         getmDbHandler().setAvatarAccessory(getmDbHandler().getAvatarAccessory());
         String accessoryImageName = getResources().getString(R.string.accessories);
-        accessoryImageName = accessoryImageName + getmDbHandler().getAvatarAccessory();
-        try {
-            photoNameField = ourRID.getClass().getField(accessoryImageName);
-            accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
+        int index = getmDbHandler().getAvatarAccessory();
+        if (index!=0) {
+            accessoryImageName = accessoryImageName + index;
+            try {
+                photoNameField = ourRID.getClass().getField(accessoryImageName);
+                accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
+            } catch (NoSuchFieldException | IllegalAccessException
+                    | IllegalArgumentException error) {
+                error.printStackTrace();
+            }
         }
-
         // Update Scene
         updateScenario(0);
         updateQA();
