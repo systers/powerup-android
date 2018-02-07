@@ -11,12 +11,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import powerup.systers.com.datamodel.Scenario;
@@ -33,9 +35,11 @@ public class ScenarioOverActivity extends AppCompatActivity {
     private DatabaseHandler mDbHandler;
     public Scenario scene;
 
+
     public ScenarioOverActivity() {
         scenarioOverActivityInstance = this;
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         scenarioActivityDone = 1;
         ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
         ImageView continueButton = (ImageView) findViewById(R.id.continueButton);
+        FloatingActionButton fabShare = (FloatingActionButton) findViewById(R.id.fab_share);
         Button mapButton = (Button) findViewById(R.id.mapButton);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +61,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
             }
         });
 
-        TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
-        
+        final TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
+
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +71,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
-        if (getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))){
+        if (getIntent().getExtras() != null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))) {
             continueButton.setVisibility(View.GONE);
             continueButton.setOnClickListener(null);
         }
@@ -87,6 +92,21 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
+
+        if (fabShare != null) {
+            fabShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/html");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "My Karma Points are " + karmaPoints.getText());
+                    startActivity(Intent.createChooser(shareIntent, "Share via"));
+
+
+                }
+            });
+        }
     }
 
     /**
