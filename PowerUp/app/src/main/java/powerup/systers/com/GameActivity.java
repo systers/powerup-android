@@ -9,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import powerup.systers.com.datamodel.Answer;
 import powerup.systers.com.datamodel.Question;
@@ -36,7 +39,7 @@ import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
-public class GameActivity extends Activity {
+public class GameActivity extends Activity  {
 
     public Activity gameActivityInstance;
     private DatabaseHandler mDbHandler;
@@ -44,6 +47,7 @@ public class GameActivity extends Activity {
     private Scenario scene;
     private Scenario prevScene;
     private TextView questionTextView;
+    private TextToSpeech textToSpeech;
     private TextView scenarioNameTextView;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
@@ -66,6 +70,23 @@ public class GameActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.game_activity);
+        textToSpeech=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status==TextToSpeech.SUCCESS)
+                {
+                    int result=textToSpeech.setLanguage(Locale.ENGLISH);
+                    if(result==textToSpeech.LANG_MISSING_DATA || result==textToSpeech.LANG_NOT_SUPPORTED)
+                    {
+                        Log.e("TTS","LANGUAGE NOT SUPPORTED");
+                    }
+                }
+                else
+                {
+                    Log.e("TTS","INITIALISATION FAILED");
+                }
+            }
+        });
 
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
@@ -150,20 +171,28 @@ public class GameActivity extends Activity {
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
                         if (answers.get(position).getNextQuestionID() > 0) {
+                            String a=answers.get(position).getAnswerDescription();
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
                                     .getNextQuestionID();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             updateQA();
                         } else if (answers.get(position).getNextQuestionID() == -1) {
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a); //the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-1);
                         } else if (answers.get(position).getNextQuestionID() == -2) {
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-2);
                         } else if (answers.get(position).getNextQuestionID() == -3){
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-3);
@@ -173,6 +202,8 @@ public class GameActivity extends Activity {
                                 // Check to make sure all scenes are completed
                                 SessionHistory.currSessionID = 1;
                             }
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(0);
@@ -246,7 +277,22 @@ public class GameActivity extends Activity {
         }
 
     }
-
+    /*this speak function is for converting text choosen by the user to speech
+     */
+    private void speak(String text)
+    {
+        textToSpeech.setSpeechRate(2);
+        textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+    }
+    @Override
+    protected void onDestroy()
+    {
+        if(textToSpeech!=null)
+        {
+            textToSpeech.stop();
+        }
+        super.onDestroy();
+    }
     /**
      * Replace the current scenario with another question/answer.
      */
