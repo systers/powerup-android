@@ -1,15 +1,16 @@
 # PowerUp - Android
 
 PowerUp is a female empowerment educational mobile game app that will allow young girls to learn about reproductive health 
-and self-esteem by navigating the life of their avatar!
+and self-esteem by navigating the life of their avatar! [PowerUp Android App](/Screenshots_README/PowerUp_Android.png "PowerUp Android App")
 
 ## Setup for Developers
-1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS
-1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" 
-1. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality
-1. Clone the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
+1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS [Download Android Studio](/Screenshots_README/Download_AndroidStudio.png "Download Android Studio")
+1. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" [Forking Screenshot](/Screenshots_README/PowerUp_Github.png "Forking Screenshot")
+1. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality [Download Git Bash](/Screenshots_README/Download_GitBash.png "Download Git Bash")
+1. Clone the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git` [Clone Command in Git Bash](/Screenshots_README/PowerUp_GitBash.png "Clone Command in Git Bash")
 1. Initialize Git. `git init`
-1. Open the project with Android Studio 
+1. Open the project with Android Studio [PowerUp in Android Studio](/Screenshots_README/PowerUp_AndroidStudio.png "PowerUp in Android Studio")
+Add screenshots of PowerUp-Android to the README.md.
 
 ## Configure remotes
 When a repository is cloned, it has a default remote called `origin` that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you should add another remote named `upstream`:
