@@ -3,103 +3,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutActivity"
-    android:background="@drawable/plain_background">
+    android:background="@drawable/plain_background"
+    tools:context=".AboutActivity">
 
     <Button
         android:id="@+id/homeButton"
-        android:onClick="pressHomeButton"
-        android:layout_alignParentRight="true"
         android:layout_width="@dimen/home_button_height"
         android:layout_height="@dimen/home_button_height"
-        android:background="@drawable/home_button" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/home_button"
+        android:onClick="pressHomeButton" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:paddingBottom="@dimen/about_top_bottom_padding"
         android:paddingLeft="@dimen/about_side_padding"
         android:paddingRight="@dimen/about_side_padding"
-        android:paddingTop="@dimen/about_top_bottom_padding"
-        android:orientation="vertical">
+        android:paddingTop="@dimen/about_top_bottom_padding">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_title"
-        android:textSize="@dimen/about_text_size_title"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="@color/powerup_black"
-        android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
-        android:id="@+id/about_title"/>
+        <TextView
+            android:id="@+id/about_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
+            android:gravity="center"
+            android:text="@string/about_title"
+            android:textAlignment="center"
+            android:textColor="@color/powerup_black"
+            android:textSize="@dimen/about_text_size_title" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="@color/about_background"
+                android:orientation="vertical"
                 android:padding="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/about_game_section_title"
-                    android:textColor="@color/powerup_black"
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutGamePressed"
-                    android:textSize="@dimen/about_text_size_section_title"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:text="@string/about_game_section_title"
                     android:textColor="@color/powerup_black"
-                    android:textSize="@dimen/about_text_size_section_content"
+                    android:textSize="@dimen/about_text_size_section_title" />
+
+                <TextView
                     android:id="@+id/about_the_game"
-                    android:visibility="gone"
-                    android:text="@string/about_game_section_content"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_game_section_content"
+                    android:textColor="@color/powerup_black"
+                    android:textSize="@dimen/about_text_size_section_content"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/about_urgency_section_title"
-                    android:textSize="@dimen/about_text_size_section_title"
-                    android:layout_marginTop="@dimen/about_section_title_top_margin"
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
+                    android:layout_marginTop="@dimen/about_section_title_top_margin"
                     android:onClick="aboutUrgencyPressed"
-                    android:textColor="@color/powerup_black"/>
+                    android:text="@string/about_urgency_section_title"
+                    android:textColor="@color/powerup_black"
+                    android:textSize="@dimen/about_text_size_section_title" />
+
                 <TextView
+                    android:id="@+id/about_the_urgency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/about_urgency_section_content"
                     android:textColor="@color/powerup_black"
                     android:textSize="@dimen/about_text_size_section_content"
-                    android:id="@+id/about_the_urgency"
-                    android:visibility="gone"
-                    android:text="@string/about_urgency_section_content"/>
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/about_how_app_helps_section_title"
-                    android:textSize="@dimen/about_text_size_section_title"
-                    android:layout_marginTop="@dimen/about_section_title_top_margin"
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
+                    android:layout_marginTop="@dimen/about_section_title_top_margin"
                     android:onClick="aboutHelpingByPressed"
-                    android:textColor="@color/powerup_black"/>
+                    android:text="@string/about_how_app_helps_section_title"
+                    android:textColor="@color/powerup_black"
+                    android:textSize="@dimen/about_text_size_section_title" />
+
                 <TextView
+                    android:id="@+id/about_helping_by"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/about_how_app_helps_section_content"
                     android:textColor="@color/powerup_black"
                     android:textSize="@dimen/about_text_size_section_content"
-                    android:id="@+id/about_helping_by"
-                    android:visibility="gone"
-                    android:text="@string/about_how_app_helps_section_content"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>
