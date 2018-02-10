@@ -26,7 +26,7 @@ Describe the tests you ran to verify your changes. Provide instructions or GIFs 
 ### Checklist:
 **Delete irrelevant options.**
 
-- [ ] My PR follows the style guidelines of this project
+- [ ] My PR follows the style guidelines for this project
 - [ ] I have performed a self-review of my own code or materials
 - [ ] I have commented my code or provided relevant documentation, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
@@ -34,7 +34,7 @@ Describe the tests you ran to verify your changes. Provide instructions or GIFs 
 
 **Code/Quality Assurance Only**
 - [ ] My changes generate no new warnings 
-- [ ] My PR currently breaks something (fix or feature that would cause existing functionality to not work as expected)
+- [ ] My PR currently doesn't break something (fix or feature that would cause existing functionality to not work as expected)
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] Any dependent changes have been published in downstream modules
