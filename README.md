@@ -24,13 +24,13 @@ When a repository is cloned, it has a default remote called `origin` that points
   
 1. Run `git remote -v` to check the status, you should see something like the following:
 
-  > origin    https://github.com/YOUR_USERNAME/powerup-android.git (fetch)
+      > origin    https://github.com/YOUR_USERNAME/powerup-android.git (fetch)
   
-  > origin    https://github.com/YOUR_USERNAME/powerup-android.git (push)
+      > origin    https://github.com/YOUR_USERNAME/powerup-android.git (push)
   
-  > upstream  https://github.com/systers/powerup-android.git (fetch)
+      > upstream  https://github.com/systers/powerup-android.git (fetch)
   
-  > upstream  https://github.com/systers/powerup-android.git (push)
+      > upstream  https://github.com/systers/powerup-android.git (push)
 
 1. To update your local copy with remote changes, run the following:
 
@@ -43,8 +43,8 @@ When a repository is cloned, it has a default remote called `origin` that points
 ## Contributing and developing a feature
 1. Make sure you are in the master branch `git checkout master`
 1. Sync your copy `git pull`
-1. Create a new branch with a meaningful name `git checkout -b branch_name`
-1. Develop your feature on Android Studio and run it using the emulator or connecting your own Android device
+1. Create a new _branch_ with a meaningful name `git checkout -b branch_name`
+1. Develop your feature on **Android Studio** and run it using the emulator or connecting your own _Android_ device
 1. Clean your project from Android Studio `Build/Clean project`
 1. Add the files you changed `git add file_name` (avoid using `git add .`)
 1. Commit your changes `git commit -m "Message briefly explaining the feature"`
@@ -61,9 +61,8 @@ When a repository is cloned, it has a default remote called `origin` that points
 Here's the link to the official documentation:
 [Visit Documentation!](http://chetnagsocpowerupandroid.blogspot.in/2015/05/database-design.html)
 
-##Coding Guidelines
-1. Don't use magic numbers or hard-coded strings. Put them in dimens.xml or strings.xml
+1. Don't use magic numbers or _hard-coded_ strings. Put them in dimens.xml or strings.xml
 1. Class names should be in CamelCase. Name activities with names including Activity so it's easier to know what they are.
 1. Include spaces between parameters when you call a method for example: `Intent(MainActivity.this, GameActivity.class)`.
 1. Give relevant names to buttons and other resources. 
-1. Use `@id` instead of `@+id` when referring to resources that have been already created in xml files.
+1. Use `@id` instead of `@+id` when referring to resources that have been already created in `.xml` files.
