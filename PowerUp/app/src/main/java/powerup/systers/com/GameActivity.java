@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,7 +37,7 @@ import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
-public class GameActivity extends Activity {
+public class GameActivity extends AppCompatActivity {
 
     public Activity gameActivityInstance;
     private DatabaseHandler mDbHandler;
@@ -66,6 +67,9 @@ public class GameActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.game_activity);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
@@ -74,7 +78,11 @@ public class GameActivity extends Activity {
         listAdapter = new ArrayAdapter<>(this, R.layout.simplerow, new ArrayList<String>());
         answers = new ArrayList<>();
         scene = getmDbHandler().getScenario();
-        findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getId()-1]));
+        View rootView = findViewById(R.id.root);
+
+        if (rootView != null) {
+            rootView.setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getId() - 1]));
+        }
         goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
         SessionHistory.currScenePoints = 0;
         ImageView eyeImageView = (ImageView) findViewById(R.id.eye_view);
@@ -89,7 +97,9 @@ public class GameActivity extends Activity {
         java.lang.reflect.Field photoNameField;
         try {
             photoNameField = ourRID.getClass().getField(eyeImageName);
-            eyeImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (eyeImageView != null) {
+                eyeImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -99,7 +109,9 @@ public class GameActivity extends Activity {
         skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
         try {
             photoNameField = ourRID.getClass().getField(skinImageName);
-            skinImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (skinImageView != null) {
+                skinImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -109,7 +121,9 @@ public class GameActivity extends Activity {
         clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
         try {
             photoNameField = ourRID.getClass().getField(clothImageName);
-            clothImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (clothImageView != null) {
+                clothImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -119,7 +133,9 @@ public class GameActivity extends Activity {
         hairImageName = hairImageName + getmDbHandler().getAvatarHair();
         try {
             photoNameField = ourRID.getClass().getField(hairImageName);
-            hairImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (hairImageView != null) {
+                hairImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -130,7 +146,9 @@ public class GameActivity extends Activity {
         accessoryImageName = accessoryImageName + getmDbHandler().getAvatarAccessory();
         try {
             photoNameField = ourRID.getClass().getField(accessoryImageName);
-            accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
+            if (accessoryImageView != null) {
+                accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
+            }
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException error) {
             error.printStackTrace();
@@ -143,43 +161,45 @@ public class GameActivity extends Activity {
             goToMap.setAlpha((float) 0.0);
         }
         // Set the ArrayAdapter as the ListView's adapter.
-        mainListView.setAdapter(listAdapter);
-        mainListView
-                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> arg0, View view,
-                                            int position, long id) {
-                        if (answers.get(position).getNextQuestionID() > 0) {
-                            // Next Question
-                            SessionHistory.currQID = answers.get(position)
-                                    .getNextQuestionID();
-                            updatePoints(position);
-                            updateQA();
-                        } else if (answers.get(position).getNextQuestionID() == -1) {
-                            updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
-                            updateScenario(-1);
-                        } else if (answers.get(position).getNextQuestionID() == -2) {
-                            updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
-                            updateScenario(-2);
-                        } else if (answers.get(position).getNextQuestionID() == -3){
-                            updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
-                            updateScenario(-3);
-                        }
-                        else {
-                            if (SessionHistory.currSessionID == -1) {
-                                // Check to make sure all scenes are completed
-                                SessionHistory.currSessionID = 1;
+        if (mainListView != null) {
+            mainListView.setAdapter(listAdapter);
+            mainListView
+                    .setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> arg0, View view,
+                                                int position, long id) {
+                            if (answers.get(position).getNextQuestionID() > 0) {
+                                // Next Question
+                                SessionHistory.currQID = answers.get(position)
+                                        .getNextQuestionID();
+                                updatePoints(position);
+                                updateQA();
+                            } else if (answers.get(position).getNextQuestionID() == -1) {
+                                updatePoints(position);
+                                getmDbHandler().setCompletedScenario(scene.getId());
+                                updateScenario(-1);
+                            } else if (answers.get(position).getNextQuestionID() == -2) {
+                                updatePoints(position);
+                                getmDbHandler().setCompletedScenario(scene.getId());
+                                updateScenario(-2);
+                            } else if (answers.get(position).getNextQuestionID() == -3) {
+                                updatePoints(position);
+                                getmDbHandler().setCompletedScenario(scene.getId());
+                                updateScenario(-3);
+                            } else {
+                                if (SessionHistory.currSessionID == -1) {
+                                    // Check to make sure all scenes are completed
+                                    SessionHistory.currSessionID = 1;
+                                }
+                                updatePoints(position);
+                                getmDbHandler().setCompletedScenario(scene.getId());
+                                updateScenario(0);
                             }
-                            updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
-                            updateScenario(0);
                         }
-                    }
-                });
+                    });
+        }
     }
+
 
     /**
      * Add karma points to the session.
@@ -196,6 +216,7 @@ public class GameActivity extends Activity {
     /**
      * Finish, replay, or go to another scenario as needed. Updates the
      * question and answer if the last scenario has not yet been reached.
+     *
      * @param type coding scheme for .csv files, -1 means minesweeper game, 0 means scenario completion
      */
     private void updateScenario(int type) {
@@ -228,20 +249,20 @@ public class GameActivity extends Activity {
         scenarioNameTextView.setText(scene.getScenarioName());
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
-                SessionHistory.prevSessionID = scene.getId();
-                SessionHistory.currSessionID = scene.getNextScenarioID();
-                if (type == 0) {
-                    Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
-                    intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
-                    startActivity(intent);
-                } else if (type == -1) {
-                    new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
-                    startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                } else if (type == -2) {
-                    startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                } else if (type == -3) {
-                    startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
-                }
+            SessionHistory.prevSessionID = scene.getId();
+            SessionHistory.currSessionID = scene.getNextScenarioID();
+            if (type == 0) {
+                Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
+                intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
+                startActivity(intent);
+            } else if (type == -1) {
+                new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
+                startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
+            } else if (type == -2) {
+                startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
+            } else if (type == -3) {
+                startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
+            }
 
         }
 
