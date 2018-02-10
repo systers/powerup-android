@@ -51,10 +51,19 @@ public class StoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
-        screenWidth = getResources().getDisplayMetrics().widthPixels;
-        screenHeight = getResources().getDisplayMetrics().heightPixels;
+        screenWidth = getResources()
+                      .getDisplayMetrics()
+                      .widthPixels;
+        screenHeight = getResources()
+                      .getDisplayMetrics()
+                      .heightPixels;
         karmaPoints = (TextView) findViewById(R.id.karma_points);
-        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        karmaPoints
+                .setText
+                (String
+                .valueOf
+                (SessionHistory
+                .totalPoints));
         Button mapButton = (Button) findViewById(R.id.map_button);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
