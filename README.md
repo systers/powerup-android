@@ -10,9 +10,13 @@ and self-esteem by navigating the life of their avatar!
 2. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" 
 3. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality
 4. Clone the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
-5. Initialize Git. `git init`
-6. Open the project with Android Studio 
-7. Fetch the latest version of code from branch "GSoC17".
+5. Open the project with Android Studio
+   a. Go to Android Studio and click the option "Import Project (Eclipse ADT, Grade etc.)"
+   b. Locate your Eclipse project folder, build.gradle, or settings.gradle and type in the path
+      eg. /User/COMPUTER-USERNAME/powerup-android/PowerUp/build.gradle
+      (Replace COMPUTER-USERNAME with your computer username)
+   c. If needed, update/install build tools. 
+6. Fetch the latest version of code from branch "GSoC17".
 
 ## Configure remotes
 When a repository is cloned, it has a default remote called `origin` that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you should add another remote named `upstream`:
