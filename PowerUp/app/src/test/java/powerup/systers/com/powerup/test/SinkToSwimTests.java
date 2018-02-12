@@ -44,6 +44,10 @@ public class SinkToSwimTests {
 
     @Test
     public void shouldNotBeNull() throws Exception {
+        /**
+         * Null activity can cause the app to crash.
+         * This tests if this activity is null.
+         */
         assertNotNull(activity);
     }
 
@@ -56,6 +60,9 @@ public class SinkToSwimTests {
 
         ShadowActivity shadowActivity = Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
+        /**
+         * This tests if the SinkToSwinEndActivity is the next activity.
+         */
         assertTrue(expectedIntent.filterEquals(actualIntent));
     }
 
@@ -67,6 +74,10 @@ public class SinkToSwimTests {
         activity.bringPointerAndBoatToInitial();
 
         float actualPosition = activity.pointer.getY();
+        /**
+         * This tests chekcs if the pointer Y value of the pointer
+         * is at 100 after runnng bringPointerAndBoatToInitial().
+         */
         assertEquals(expectedPosition, actualPosition, 0f);
     }
 
@@ -78,6 +89,10 @@ public class SinkToSwimTests {
         activity.bringPointerAndBoatToInitial();
 
         float actualPosition = activity.boat.getY();
+        /**
+         * This tests chekcs if the pointer Y value of the pointer
+         * is at -50 after runnng bringPointerAndBoatToInitial().
+         */
         assertEquals(expectedPosition, actualPosition, 0f);
     }
 
@@ -87,6 +102,10 @@ public class SinkToSwimTests {
 
         activity.setButtonsEnabled(false);
 
+        /**
+         * SetButtonsEnabled(false) makes buttons NOT Clickable.
+         * This tests if this is happens.
+         */
         assertEquals(expected, activity.skipOption.isClickable());
         assertEquals(expected, activity.trueOption.isClickable());
         assertEquals(expected, activity.falseOption.isClickable());
@@ -98,6 +117,10 @@ public class SinkToSwimTests {
 
         activity.setButtonsEnabled(true);
 
+        /**
+         * SetButtonsEnabled(true) makes buttons Clickable.
+         * This tests if this is happens.
+         */
         assertEquals(expected, activity.skipOption.isClickable());
         assertEquals(expected, activity.trueOption.isClickable());
         assertEquals(expected, activity.falseOption.isClickable());
@@ -106,6 +129,10 @@ public class SinkToSwimTests {
     @Test
     public void TimerPausesCorrectly() {
         activity.onPause();
+        /**
+         * When the app is paused, the timer should stop.
+         * This tested by checking if countDownTimer is null.
+         */
         assertEquals(null, activity.countDownTimer);
     }
 
@@ -119,6 +146,11 @@ public class SinkToSwimTests {
         activity.bringPointerAndAvatarUp();
 
         float actualPosition = activity.pointer.getY();
+        /**
+         * This function sets variables so that when bringPointerAndAvatarUp() 
+         * runs, the Y position of the pointer does not change.
+         * This tests if the actual Y pointer position stays at 199.
+         */
         assertEquals(expectedPosition, actualPosition, 0f);
     }
 
@@ -132,6 +164,11 @@ public class SinkToSwimTests {
         activity.bringPointerAndAvatarUp();
 
         float actualPosition = activity.boat.getY();
+        /**
+         * This function sets variables so that when bringPointerAndAvatarUp() 
+         * runs, the Y position of the boat, where the avatar is, does not change.
+         * This tests if the actual Y avatar position stays the same.
+         */
         assertEquals(expectedPosition, actualPosition, 0f);
     }
 
@@ -145,6 +182,11 @@ public class SinkToSwimTests {
         activity.bringPointerAndAvatarUp();
 
         float actualPosition = activity.pointer.getY();
+        /**
+         * This function sets variables so that when bringPointerAndAvatarUp() 
+         * runs, the Y position of the pointer decreases by 100.
+         * This tests if the actual Y pointer position is 201-100=101.
+         */
         assertEquals(expectedPosition, actualPosition, 0f);
     }
 
@@ -158,6 +200,11 @@ public class SinkToSwimTests {
         activity.bringPointerAndAvatarUp();
 
         float actualPosition = activity.boat.getY();
+        /**
+         * This function sets variables so that when bringPointerAndAvatarUp() 
+         * runs, the Y position of the boat, where the avatar is, decreases by 66.
+         * This tests if the actual Y avatar position is 66 less than before.
+         */
         assertEquals(expectedPosition, actualPosition, 1f);
     }
 
@@ -170,6 +217,11 @@ public class SinkToSwimTests {
         activity.bringPointerAndAvatarDown();
 
         float actualPosition = activity.pointer.getY();
+        /**
+         * This function sets variables so that when bringPointerAndAvatarDown() 
+         * runs, the Y position of the pointer increases by 20.
+         * This tests if the actual Y pointer position is 20 more than before.
+         */
         assertEquals(expectedPosition, actualPosition, 1f);
     }
 
@@ -182,6 +234,11 @@ public class SinkToSwimTests {
         activity.bringPointerAndAvatarDown();
 
         float actualPosition = activity.boat.getY();
+        /**
+         * This function sets variables so that when bringPointerAndAvatarDown() 
+         * runs, the Y position of the boat, where the avatar is, increases by 20.
+         * This tests if the actual Y avatar position is 20 more than before.
+         */
         assertEquals(expectedPosition, actualPosition, 1f);
     }
 
@@ -195,6 +252,11 @@ public class SinkToSwimTests {
 
         ShadowActivity shadowActivity = Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
+        /**
+         * This fuction sets curQuestion so when showNextQuestion() runs,
+         * gameEnd() runs are starts SinkToSwimEndActivity.
+         * This tests if this happens.
+         */
         assertTrue(expectedIntent.filterEquals(actualIntent));
     }
 
@@ -206,6 +268,11 @@ public class SinkToSwimTests {
 
         activity.answerChosen(activity.findViewById(R.id.false_option));
 
+        /**
+         * This funciton sets variables so when answerChosen(false)
+         * runs, the new score should be 1.
+         * This tests if the ScoreView is "Score: 1".
+         */
         assertEquals("Score: 1", activity.scoreView.getText().toString());
     }
 
@@ -217,6 +284,11 @@ public class SinkToSwimTests {
 
         activity.answerChosen(activity.findViewById(R.id.true_option));
 
+         /**
+         * This funciton sets variables so when answerChosen(true)
+         * runs, the new score should be 0.
+         * This tests if the ScoreView is "Score: 0".
+         */
         assertEquals("Score: 0", activity.scoreView.getText().toString());
     }
 
@@ -226,6 +298,10 @@ public class SinkToSwimTests {
 
         activity.answerChosen(activity.findViewById(R.id.true_option));
 
+         /**
+         * This function runs answerChosen() which runs showNextQuestion(). 
+         * This tests if the QuestionView is the second/ next Sink To Swim question.
+         */
         assertEquals(PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[1][0], activity.questionView.getText().toString());
     }
 
