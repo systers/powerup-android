@@ -72,4 +72,5 @@
     <string name="start_confirm_message_load">Dismiss</string>
     <string name="game_to_map_message">If you migrate to map, current scene karma points will be lost</string>
     <string name="game_confirm_message">Go to Map</string>
+    <string name="marcello_Text">Marcello</string>
 </resources>
