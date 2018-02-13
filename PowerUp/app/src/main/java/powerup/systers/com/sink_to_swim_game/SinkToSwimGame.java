@@ -3,8 +3,10 @@ package powerup.systers.com.sink_to_swim_game;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -19,8 +21,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import powerup.systers.com.GameOverActivity;
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
+import powerup.systers.com.datamodel.SessionHistory;
 
 /**
  * Created by sachinaggarwal on 7/07/17.
@@ -37,6 +41,10 @@ public class SinkToSwimGame extends AppCompatActivity {
     public long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
+    final String SOUND_TYPE = "SOUND_TYPE";
+    final static int BGM = 0;
+    private SharedPreferences prefs;
+    final String CURR_POSITION = "CURR_POSITION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +96,10 @@ public class SinkToSwimGame extends AppCompatActivity {
                 gameEnd(); //game ends when time finishes
             }
         };
+        prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putInt(CURR_POSITION, 0);
+        edit.apply();
         gameBegins();
     }
 
@@ -121,8 +133,11 @@ public class SinkToSwimGame extends AppCompatActivity {
         intent.putExtra(PowerUpUtils.SCORE,score);
         intent.putExtra(PowerUpUtils.CORRECT_ANSWERS,correctAnswers);
         intent.putExtra(PowerUpUtils.WRONG_ANSWER,wrongAnswers);
+        SessionHistory.totalPoints += score;
+        SessionHistory.currScenePoints += score;
         finish();
         startActivity(intent);
+        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
     }
 
     /**
@@ -189,7 +204,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void answerChosen(View view) {
         setButtonsEnabled(false);
         if (view == findViewById(R.id.true_option)) {
-            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "T") {
+            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1].equals("T")) {
                 score += 1;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
@@ -199,7 +214,7 @@ public class SinkToSwimGame extends AppCompatActivity {
                 wrongAnswers++;
             }
         } else if (view == findViewById(R.id.false_option)) {
-            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1] == "F") {
+            if (PowerUpUtils.SWIM_SINK_QUESTION_ANSWERS[curQuestion][1].equals("F")) {
                 score += 1;
                 correctAnswers++;
                 bringPointerAndAvatarUp();
@@ -274,6 +289,8 @@ public class SinkToSwimGame extends AppCompatActivity {
                     gameEnd(); //game ends when time finishes
                 }
             }.start();
+        startService(new Intent(SinkToSwimGame.this, SinkToSwimSound.class)
+                .putExtra(SOUND_TYPE, BGM));
         super.onResume();
     }
 
@@ -285,6 +302,18 @@ public class SinkToSwimGame extends AppCompatActivity {
     public void onPause() {
         countDownTimer.cancel();
         countDownTimer = null;
+        stopService(new Intent(SinkToSwimGame.this, SinkToSwimSound.class));
         super.onPause();
+    }
+
+    /**
+     * Goes back to the map when user presses back button
+     */
+    @Override
+    public void onBackPressed(){
+        // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
+        // clears the activities that were created after the found instance of the required activity
+        startActivity(new Intent(SinkToSwimGame.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        finish();
     }
 }
