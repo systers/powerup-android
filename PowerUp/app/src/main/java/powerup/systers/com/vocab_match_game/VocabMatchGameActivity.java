@@ -6,8 +6,10 @@ import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -19,10 +21,12 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
-
+import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
+import powerup.systers.com.datamodel.SessionHistory;
 
 public class VocabMatchGameActivity extends AppCompatActivity {
 
@@ -30,6 +34,8 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public VocabTileImageView img1, img2, img3;
     public int height, width, oldestTile, score, latestTile;
     public TextView scoreView;
+    public MediaPlayer mediaPlayerPlus;
+    public MediaPlayer mediaPlayerNegative;
     Random r;
 
     @Override
@@ -60,6 +66,8 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         img3.getLayoutParams().width = height / 4;
         img3.getLayoutParams().height = height / 4;
         initialSetUp();
+        mediaPlayerPlus = MediaPlayer.create(this, R.raw.plus_power_up);
+        mediaPlayerNegative = MediaPlayer.create(this, R.raw.negative_hurt);
     }
 
     public void initialSetUp() {
@@ -137,8 +145,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     if (tileText.equals(boardText)) {
                         score++;
                         scoreView.setText("" + score);
+                        mediaPlayerPlus.start();
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
-                    } else {
+                    }else {
+                        mediaPlayerNegative.start();
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_red));
                     }
                 }
@@ -148,7 +158,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     public void run() {
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_yellow));
                     }
-                }, 2);
+                },250);
                 latestTile++;
 
 
@@ -158,11 +168,14 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                 oldestTile++;
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
-                } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2) {
-                    Intent intent = new Intent(VocabMatchGameActivity.this, VocabMatchEndActivity.class);
-                    intent.putExtra(PowerUpUtils.SCORE, score);
+                } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
+                    Intent intent = new Intent(VocabMatchGameActivity.this,VocabMatchEndActivity.class);
+                    intent.putExtra(PowerUpUtils.SCORE,score);
+                    SessionHistory.totalPoints += score;
+                    SessionHistory.currScenePoints += score;
                     finish();
                     startActivity(intent);
+                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 }
 
             }
@@ -243,5 +256,17 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         VocabMatchSessionManager session = new VocabMatchSessionManager(this);
         session.saveData(score, oldestTile);
         super.onPause();
+    }
+}
+
+    /**
+     * Goes back to the map when user presses back button
+     */
+    @Override
+    public void onBackPressed(){
+        // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
+        // clears the activities that were created after the found instance of the required activity
+        startActivity(new Intent(VocabMatchGameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        finish();
     }
 }
