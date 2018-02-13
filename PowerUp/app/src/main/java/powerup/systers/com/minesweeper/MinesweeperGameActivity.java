@@ -22,6 +22,7 @@ import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
+import powerup.systers.com.datamodel.SessionHistory;
 
 /**
  * Created by sachinaggarwal on 25/06/17.
@@ -233,6 +234,8 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     public void continuePressed(View view) {
         MinesweeperSessionManager session = new MinesweeperSessionManager(this);
         session.saveData(score, gameRound);
+        SessionHistory.totalPoints += score;
+        SessionHistory.currScenePoints += score;
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
         overridePendingTransition(R.animator.fade_in, R.animator.fade_out);
