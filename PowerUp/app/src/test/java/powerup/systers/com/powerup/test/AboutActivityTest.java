@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class)
+@Config(constants = BuildConfig.class,sdk = Build.VERSION_CODES.LOLLIPOP)
 public class AboutActivityTest {
     private AboutActivity activity;
 
@@ -40,8 +40,7 @@ public class AboutActivityTest {
 
     @Test
     public void clickingHomeButton_shouldFinishActivity() {
-        Button homeButton = activity.findViewById(R.id.homeButton);
-        homeButton.performClick();
+        activity.findViewById(R.id.homeButton).performClick();
         ShadowActivity activityShadow = shadowOf(activity);
         assertTrue(activityShadow.isFinishing());
     }
