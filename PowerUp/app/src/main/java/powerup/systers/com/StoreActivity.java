@@ -43,6 +43,7 @@ public class StoreActivity extends AppCompatActivity {
     private DatabaseHandler mDbHandler;
     java.lang.reflect.Field photoNameField;
     R.drawable ourRID;
+    long selectedItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 0;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, 6));
+                setArrows();
             }
         });
 
@@ -120,6 +122,7 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 1;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.CLOTHES_IMAGES.length%6));
+                setArrows();
             }
         });
 
@@ -129,16 +132,15 @@ public class StoreActivity extends AppCompatActivity {
                 currentPage = 0;
                 storeItemTypeindex = 2;
                 adapter.refresh(allDataSet.get(storeItemTypeindex).subList(0, PowerUpUtils.ACCESSORIES_IMAGES.length%6));
+                setArrows();
             }
         });
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentPage == 0) {
-                    return;
-                }
                 currentPage--;
+                setArrows();
                 if (currentPage * 6 < allDataSet.get(storeItemTypeindex).size()) {
                     if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
                         adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
@@ -153,14 +155,11 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentPage++;
-                if (currentPage * 6 < allDataSet.get(storeItemTypeindex).size()) {
-                    if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
-                        adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
-                    } else {
-                        adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, allDataSet.get(storeItemTypeindex).size()));
-                    }
+                setArrows();
+                if (allDataSet.get(storeItemTypeindex).size() >= currentPage * 6 + 6) {
+                    adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, currentPage * 6 + 6));
                 } else {
-                    currentPage--;
+                    adapter.refresh(allDataSet.get(storeItemTypeindex).subList(currentPage * 6, allDataSet.get(storeItemTypeindex).size()));
                 }
             }
         });
@@ -169,6 +168,7 @@ public class StoreActivity extends AppCompatActivity {
         createDataLists();
         adapter = new GridAdapter(this, allDataSet.get(0).subList(0, 6));
         gridView.setAdapter(adapter);
+        setArrows();
     }
 
     public void setAvatarHair(int index){
@@ -296,6 +296,7 @@ public class StoreActivity extends AppCompatActivity {
                 storeItem.setLayoutParams(new AbsListView.LayoutParams(itemWidth, itemHeight));
                 holder = new ViewHolder(storeItem);
                 storeItem.setTag(holder);
+                selectedItemId = getItemId(calculatePosition(position)+1); //Previously purchased
             } else {
                 holder = (ViewHolder) storeItem.getTag();
             }
@@ -308,6 +309,7 @@ public class StoreActivity extends AppCompatActivity {
                         int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
                             setAvatarHair(index);
+                            selectedItemId = getmDbHandler().getAvatarHair(); //hairItem selected
                             if (getmDbHandler().getPurchasedHair(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
@@ -317,6 +319,7 @@ public class StoreActivity extends AppCompatActivity {
 
                         } else if (storeItemTypeindex == 1) { //clothes
                             setAvatarClothes(index);
+                            selectedItemId = getmDbHandler().getAvatarCloth(); //clothItem selected
                             if (getmDbHandler().getPurchasedClothes(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
@@ -325,6 +328,7 @@ public class StoreActivity extends AppCompatActivity {
 
                         } else if (storeItemTypeindex == 2) { //accessories
                             setAvatarAccessories(index);
+                            selectedItemId = getmDbHandler().getAvatarAccessory(); //accessoryItem selected
                             if (getmDbHandler().getPurchasedAccessories(index) == 0){
                                 SessionHistory.totalPoints -= Integer.parseInt(itemPoints.getText().toString());
                                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
@@ -344,8 +348,13 @@ public class StoreActivity extends AppCompatActivity {
 
             if (getPurchasedStatus(id) == 1) { // whatever type is currently opened, it is already bought
                 storeItem.setBackground(getResources().getDrawable(R.drawable.sold_item));
-                holder.itemImage.setImageResource(R.drawable.store_tick);
                 storeItem.setEnabled(true);
+                //Testing whether the item matches id (selected)
+                if (selectedItemId == id) {
+                    holder.itemImage.setImageResource(R.drawable.store_tick);
+                } else {
+                    holder.itemImage.setImageResource(android.R.color.transparent);
+                }
             } else { //not purchased => available/not available
                 holder.itemImage.setImageResource(Color.TRANSPARENT);
                 if (Integer.parseInt(temp.points) <= SessionHistory.totalPoints) { //can be bought
@@ -379,6 +388,19 @@ public class StoreActivity extends AppCompatActivity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
+    }
+
+    public void setArrows() {
+        if(currentPage==0){
+            leftArrow.setVisibility(View.GONE);
+        } else {
+            leftArrow.setVisibility(View.VISIBLE);
+        }
+        if((currentPage+1) * 6 >= allDataSet.get(storeItemTypeindex).size()){
+            rightArrow.setVisibility(View.GONE);
+        } else {
+            rightArrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
