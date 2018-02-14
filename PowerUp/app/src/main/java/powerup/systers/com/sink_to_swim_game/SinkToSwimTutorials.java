@@ -1,3 +1,7 @@
+/**
+ * @desc instruct the user on how to play Sink To Swim before starting the mini game
+ */
+
 package powerup.systers.com.sink_to_swim_game;
 
 import android.content.Intent;

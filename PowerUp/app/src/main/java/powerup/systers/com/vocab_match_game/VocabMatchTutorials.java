@@ -1,3 +1,7 @@
+/**
+ * @desc instruct the user on how to play Vocab Match before starting the mini game
+ */
+
 package powerup.systers.com.vocab_match_game;
 
 import android.content.Intent;

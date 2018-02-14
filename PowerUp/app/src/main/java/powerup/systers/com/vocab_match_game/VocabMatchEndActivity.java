@@ -1,3 +1,7 @@
+/**
+ * @desc creates an ending screen showing user's score upon completion of the Vocab Match mini game
+ */
+
 package powerup.systers.com.vocab_match_game;
 
 import android.content.Intent;

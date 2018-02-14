@@ -1,3 +1,7 @@
+/**
+ * @desc instruct the user on how to play Minesweeper before starting the mini game
+ */
+
 package powerup.systers.com.minesweeper;
 
 import android.content.Intent;
@@ -28,6 +32,7 @@ public class MinesweeperTutorials extends AppCompatActivity {
                     Intent intent = new Intent(MinesweeperTutorials.this,MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, true);
                     finish();
                     startActivity(intent);
+
                     overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 }else {
                     tutorialView.setImageDrawable(getResources().getDrawable(PowerUpUtils.MINES_TUTS[curTutorialImage]));

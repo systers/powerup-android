@@ -1,3 +1,7 @@
+/**
+ * @desc informs the user about the contraceptive method being used in the round
+ */
+
 package powerup.systers.com.minesweeper;
 
 import android.content.Intent;
