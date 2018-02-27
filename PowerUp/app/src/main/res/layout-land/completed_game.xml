@@ -15,29 +15,45 @@
         android:layout_height="@dimen/karma_star_height"
         android:layout_toRightOf="@id/karma_star"
         android:gravity="center"
+        android:textAlignment="center"
         android:text="0"
         android:textSize="@dimen/karma_points_textSize"
         android:textColor="@color/powerup_black"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/completed_game_textView"
-        android:layout_width="@dimen/completed_scene_text_land_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/completed_scene_text_land_margin_top"
+        android:textAlignment="center"
         android:ems="10"
-        android:text="@string/completed_game"
+        android:text="@string/completed_game1"
         android:textColor="@android:color/black"
         android:textSize="@dimen/game_text_size" />
+ <TextView
+        android:id="@+id/completed_game_textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:ems="10"
+     android:layout_marginTop="@dimen/game_text_margin_top"
+        android:text="@string/completed_game2"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/game_completed_text_size" />
 
     <Button
         android:id="@+id/ContinueButtonMap"
         android:layout_width="@dimen/continue_width"
         android:layout_height="@dimen/continue_height"
         android:background="@drawable/map_button"
+        android:layout_marginTop="@dimen/margin_game_over_button"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
 
         />
+    </LinearLayout>
 
 </RelativeLayout>

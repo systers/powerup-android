@@ -10,7 +10,8 @@
     <string name="powerup">"PowerUp"</string>
     <string name="completed_scene">This scene is completed Darling.\n\n
         Please go back to the map or buy exciting things from the store</string>
-    <string name="completed_game">Wow! You are brilliant.\n\nGame completed !!</string>
+    <string name="completed_game1">Wow! You are brilliant.</string>
+    <string name="completed_game2"><b>Game Completed!</b></string>
     <string name="map">Map</string>
     <string name="store">Store</string>
     <string name="enter">Continue..</string>
