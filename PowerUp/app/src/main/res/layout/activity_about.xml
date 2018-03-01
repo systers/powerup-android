@@ -56,6 +56,7 @@
                     android:textColor="@color/powerup_black"
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutGamePressed"
+                    android:clickable="true"
                     android:textSize="@dimen/about_text_size_section_title"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -74,6 +75,7 @@
                     android:layout_marginTop="@dimen/about_section_title_top_margin"
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutUrgencyPressed"
+                    android:clickable="true"
                     android:textColor="@color/powerup_black"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -92,6 +94,7 @@
                     android:layout_marginTop="@dimen/about_section_title_top_margin"
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutHelpingByPressed"
+                    android:clickable="true"
                     android:textColor="@color/powerup_black"/>
                 <TextView
                     android:layout_width="match_parent"
