@@ -7,14 +7,10 @@ package powerup.systers.com;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.support.v7.app.AlertDialog;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +23,7 @@ import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import powerup.systers.com.datamodel.Answer;
 import powerup.systers.com.datamodel.Question;
@@ -38,14 +35,11 @@ import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
-import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
-import powerup.systers.com.vocab_match_game.VocabMatchGameActivity;
-import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
 import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 
 @SuppressLint("NewApi")
-public class GameActivity extends Activity {
+public class GameActivity extends Activity  {
 
     public Activity gameActivityInstance;
     private DatabaseHandler mDbHandler;
@@ -53,11 +47,11 @@ public class GameActivity extends Activity {
     private Scenario scene;
     private Scenario prevScene;
     private TextView questionTextView;
+    private TextToSpeech textToSpeech;
     private TextView scenarioNameTextView;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
     private static boolean isStateChanged = false;
-    Context context;
 
     public GameActivity() {
         gameActivityInstance = this;
@@ -65,17 +59,9 @@ public class GameActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        new ScenarioOverActivity(this).saveActivityOpenedStatus(false);
-        context = GameActivity.this;
+
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
-        }
-        if(new SinkToSwimSessionManager(this).isSinkToSwimOpened()) {
-            startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
-        }
-        if(new VocabMatchSessionManager(this).isVocabMatchOpened()) {
-            startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
         }
         if (savedInstanceState != null) {
             isStateChanged = true;
@@ -84,6 +70,23 @@ public class GameActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.game_activity);
+        textToSpeech=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status==TextToSpeech.SUCCESS)
+                {
+                    int result=textToSpeech.setLanguage(Locale.ENGLISH);
+                    if(result==textToSpeech.LANG_MISSING_DATA || result==textToSpeech.LANG_NOT_SUPPORTED)
+                    {
+                        Log.e("TTS","LANGUAGE NOT SUPPORTED");
+                    }
+                }
+                else
+                {
+                    Log.e("TTS","INITIALISATION FAILED");
+                }
+            }
+        });
 
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
@@ -100,7 +103,7 @@ public class GameActivity extends Activity {
         ImageView hairImageView = (ImageView) findViewById(R.id.hair_view);
         ImageView clothImageView = (ImageView) findViewById(R.id.dress_view);
         ImageView accessoryImageView = (ImageView) findViewById(R.id.accessory_view);
-        questionTextView.setMovementMethod(new ScrollingMovementMethod());
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -157,26 +160,8 @@ public class GameActivity extends Activity {
         // Update Scene
         updateScenario(0);
         updateQA();
-        //Scene is Replayed
         if (scene.getReplayed() == 1) {
-            goToMap.setAlpha((float) 1.0);
-            goToMap.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(SessionHistory.currScenePoints != 0) {
-                        gotToMapDialogue();
-                        SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                        goToMap.setClickable(false);
-                        getmDbHandler()
-                                .setReplayedScenario(scene.getScenarioName());
-                        goToMap.setAlpha((float) 0.0);
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(),MapActivity.class);
-                        finish();
-                        startActivity(intent);
-                    }
-                }
-            });
+            goToMap.setAlpha((float) 0.0);
         }
         // Set the ArrayAdapter as the ListView's adapter.
         mainListView.setAdapter(listAdapter);
@@ -186,20 +171,28 @@ public class GameActivity extends Activity {
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
                         if (answers.get(position).getNextQuestionID() > 0) {
+                            String a=answers.get(position).getAnswerDescription();
                             // Next Question
                             SessionHistory.currQID = answers.get(position)
                                     .getNextQuestionID();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             updateQA();
                         } else if (answers.get(position).getNextQuestionID() == -1) {
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a); //the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-1);
                         } else if (answers.get(position).getNextQuestionID() == -2) {
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-2);
                         } else if (answers.get(position).getNextQuestionID() == -3){
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(-3);
@@ -209,6 +202,8 @@ public class GameActivity extends Activity {
                                 // Check to make sure all scenes are completed
                                 SessionHistory.currSessionID = 1;
                             }
+                            String a=answers.get(position).getAnswerDescription();
+                            speak(a);//the function for incoporating google voice
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
                             updateScenario(0);
@@ -240,7 +235,7 @@ public class GameActivity extends Activity {
         if (scene != null)
             prevScene = getmDbHandler().getScenarioFromID(scene.getId());
         scene = getmDbHandler().getScenario();
-        // Play the scenario first time
+        // Replay a scenario
         if (scene.getReplayed() == 0) {
             // goToMap Mechanics
             goToMap.setAlpha((float) 1.0);
@@ -249,19 +244,14 @@ public class GameActivity extends Activity {
                 public void onClick(View v) {
                     // Incase the user move back to map in between a running
                     // Scenario.
-                    if(SessionHistory.currScenePoints != 0) {
-                        gotToMapDialogue();
-                        SessionHistory.totalPoints -= SessionHistory.currScenePoints;
-                        goToMap.setClickable(false);
-                        getmDbHandler()
-                                .setReplayedScenario(scene.getScenarioName());
-                        goToMap.setAlpha((float) 0.0);
-                    } else {
-                        Intent intent = new Intent(GameActivity.this, MapActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivityForResult(intent, 0);
-                        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
-                    }
+                    SessionHistory.totalPoints -= SessionHistory.currScenePoints;
+                    goToMap.setClickable(false);
+                    Intent intent = new Intent(GameActivity.this, MapActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivityForResult(intent, 0);
+                    getmDbHandler()
+                            .setReplayedScenario(scene.getScenarioName());
+                    goToMap.setAlpha((float) 0.0);
                 }
             });
         }
@@ -275,25 +265,34 @@ public class GameActivity extends Activity {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                     intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                     startActivity(intent);
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 } else if (type == -1) {
                     new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                     startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 } else if (type == -2) {
-                    new SinkToSwimSessionManager(this).saveSinkToSwimOpenedStatus(true);
                     startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 } else if (type == -3) {
-                    new VocabMatchSessionManager(this).saveVocabMatchOpenedStatus(true);
                     startActivity(new Intent(GameActivity.this, VocabMatchTutorials.class));
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 }
 
         }
 
     }
-
+    /*this speak function is for converting text choosen by the user to speech
+     */
+    private void speak(String text)
+    {
+        textToSpeech.setSpeechRate(2);
+        textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+    }
+    @Override
+    protected void onDestroy()
+    {
+        if(textToSpeech!=null)
+        {
+            textToSpeech.stop();
+        }
+        super.onDestroy();
+    }
     /**
      * Replace the current scenario with another question/answer.
      */
@@ -313,36 +312,5 @@ public class GameActivity extends Activity {
 
     public void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
-    }
-
-    /**
-     * Goes back to the map when user presses back button
-     */
-    @Override
-    public void onBackPressed(){
-        // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
-        // clears the activities that were created after the found instance of the required activity
-        startActivity(new Intent(GameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        finish();
-    }
-    public void gotToMapDialogue(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
-        builder.setTitle(context.getResources().getString(R.string.start_title_message))
-                .setMessage(getResources().getString(R.string.game_to_map_message));
-        builder.setPositiveButton(getString(R.string.game_confirm_message), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                startActivityForResult(new Intent(GameActivity.this, MapActivity.class), 0);
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        ColorDrawable drawable = new ColorDrawable(Color.WHITE);
-        drawable.setAlpha(200);
-        dialog.getWindow().setBackgroundDrawable(drawable);
-        dialog.show();
     }
 }
