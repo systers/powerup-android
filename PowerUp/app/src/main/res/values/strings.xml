@@ -87,4 +87,12 @@
     <string name="game_to_map_message">If you migrate to map, current scene karma points will be lost</string>
     <string name="game_confirm_message">Go to Map</string>
     <string name="marcello_Text">Marcello</string>
+    <string name="bra_text">Bra</string>
+    <string name="pimple_text">Pimples</string>
+    <string name="periods_text">Periods</string>
+    <string name="zero_text">0</string>
+    <string name="skin_text">Skin</string>
+    <string name="eyes_text">Eyes</string>
+    <string name="clothes_text">Clothes</string>
+    <string name="hair_text">Hair</string>
 </resources>
