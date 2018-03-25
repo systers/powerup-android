@@ -11,9 +11,12 @@ import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Array;
+import java.util.Arrays;
 
 public abstract class AbstractDbAdapter {
 
@@ -61,7 +64,7 @@ public abstract class AbstractDbAdapter {
             values.put(PowerUpContract.AvatarEntry.COLUMN_EYES, 1);
             values.put(PowerUpContract.AvatarEntry.COLUMN_HAT, 0);
             values.put(PowerUpContract.AvatarEntry.COLUMN_GLASSES, 0);
-            values.put(PowerUpContract.AvatarEntry.COLUMN_BAG, 0);
+            values.put(PowerUpContract.AvatarEntry.COLUMN_ACCESSORY, 0);
             values.put(PowerUpContract.AvatarEntry.COLUMN_NECKLACE, 0);
             db.insert(PowerUpContract.AvatarEntry.TABLE_NAME, null, values);
         }
@@ -119,7 +122,7 @@ public abstract class AbstractDbAdapter {
                 throw new Error(
                         "Incorrect Answer CSV Format! Use AID, QID, ADes,"
                                 + "NextID, Points at line: "
-                                + rowData.toString());
+                                + Arrays.toString(rowData));
             }
         }
 
@@ -144,7 +147,7 @@ public abstract class AbstractDbAdapter {
             } else {
                 throw new Error("Incorrect Scenario CSV Format! Use ID,"
                         + "ScenarioName, Timestamp, Asker, Avatar, FirstQID,"
-                        + " NextScenarioID at line: " + rowData.toString());
+                        + " NextScenarioID at line: " + Arrays.toString(rowData));
             }
         }
 
@@ -163,7 +166,7 @@ public abstract class AbstractDbAdapter {
                 db.insert(PowerUpContract.ClothesEntry.TABLE_NAME, null, values);
             } else {
                 throw new Error("Incorrect Clothes CSV Format! Use ID,"
-                        + "ClothName, Points" + rowData.toString());
+                        + "ClothName, Points" + Arrays.toString(rowData));
             }
         }
 
@@ -182,7 +185,7 @@ public abstract class AbstractDbAdapter {
                 db.insert(PowerUpContract.HairEntry.TABLE_NAME, null, values);
             } else {
                 throw new Error("Incorrect Hair CSV Format! Use ID,"
-                        + "HairName, Points" + rowData.toString());
+                        + "HairName, Points" + Arrays.toString(rowData));
             }
         }
 
@@ -201,7 +204,7 @@ public abstract class AbstractDbAdapter {
                 db.insert(PowerUpContract.AccessoryEntry.TABLE_NAME, null, values);
             } else {
                 throw new Error("Incorrect Accessory CSV Format! Use ID,"
-                        + "AccessoryName, Points" + rowData.toString());
+                        + "AccessoryName, Points" + Arrays.toString(rowData));
             }
         }
 
@@ -301,6 +304,7 @@ public abstract class AbstractDbAdapter {
             in.close();
         }
 
+
         @Override
         public void onCreate(SQLiteDatabase db) {
 
@@ -346,7 +350,7 @@ public abstract class AbstractDbAdapter {
                     PowerUpContract.AvatarEntry.COLUMN_HAIR + " INTEGER, " +
                     PowerUpContract.AvatarEntry.COLUMN_EYES + " INTEGER, " +
                     PowerUpContract.AvatarEntry.COLUMN_HAT + " INTEGER, " +
-                    PowerUpContract.AvatarEntry.COLUMN_BAG + " INTEGER, " +
+                    PowerUpContract.AvatarEntry.COLUMN_ACCESSORY + " INTEGER, " +
                     PowerUpContract.AvatarEntry.COLUMN_GLASSES + " INTEGER, " +
                     PowerUpContract.AvatarEntry.COLUMN_NECKLACE + " INTEGER" +
                     ")";
