@@ -2,6 +2,7 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ public class AboutActivity extends Activity {
     private static String isGameOpen = "ABOUT_GAME_OPEN";
     private static String isUrgencyOpen = "ABOUT_URGENCY_OPEN";
     private static String isHelpingOpen = "ABOUT_HELPING_OPEN";
-    private TextView aboutGameSection, aboutUrgencySection, aboutHelpingSection;
+    private CardView aboutGameSection, aboutUrgencySection, aboutHelpingSection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +24,9 @@ public class AboutActivity extends Activity {
             isAboutUrgencyOpen = savedInstanceState.getBoolean(isUrgencyOpen);
             isAboutHelpingOpen = savedInstanceState.getBoolean(isHelpingOpen);
         }
-        aboutGameSection = (TextView) findViewById(R.id.about_the_game);
-        aboutUrgencySection = (TextView) findViewById(R.id.about_the_urgency);
-        aboutHelpingSection = (TextView) findViewById(R.id.about_helping_by);
+        aboutGameSection = (CardView) findViewById(R.id.about_the_game);
+        aboutUrgencySection = (CardView) findViewById(R.id.about_the_urgency);
+        aboutHelpingSection = (CardView) findViewById(R.id.about_helping_by);
         if (isAboutGameOpen){
            aboutGameSection.setVisibility(View.VISIBLE);
         }

@@ -57,14 +57,25 @@
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutGamePressed"
                     android:textSize="@dimen/about_text_size_section_title"/>
-                <TextView
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/about_the_game"
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/powerup_black"
-                    android:textSize="@dimen/about_text_size_section_content"
-                    android:id="@+id/about_the_game"
-                    android:visibility="gone"
-                    android:text="@string/about_game_section_content"/>
+                    card_view:cardCornerRadius="4dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/powerup_black"
+                        android:textSize="@dimen/about_text_size_section_content"
+                        android:text="@string/about_game_section_content"
+                        android:padding="10dp"/>
+
+                </android.support.v7.widget.CardView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -75,14 +86,25 @@
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutUrgencyPressed"
                     android:textColor="@color/powerup_black"/>
-                <TextView
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/about_the_urgency"
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/powerup_black"
-                    android:textSize="@dimen/about_text_size_section_content"
-                    android:id="@+id/about_the_urgency"
-                    android:visibility="gone"
-                    android:text="@string/about_urgency_section_content"/>
+                    card_view:cardCornerRadius="4dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/powerup_black"
+                        android:textSize="@dimen/about_text_size_section_content"
+                        android:text="@string/about_urgency_section_content"
+                        android:padding="10dp"/>
+
+                </android.support.v7.widget.CardView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -93,14 +115,25 @@
                     android:layout_marginBottom="@dimen/about_section_title_bottom_margin"
                     android:onClick="aboutHelpingByPressed"
                     android:textColor="@color/powerup_black"/>
-                <TextView
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/about_helping_by"
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/powerup_black"
-                    android:textSize="@dimen/about_text_size_section_content"
-                    android:id="@+id/about_helping_by"
-                    android:visibility="gone"
-                    android:text="@string/about_how_app_helps_section_content"/>
+                    card_view:cardCornerRadius="4dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/powerup_black"
+                        android:textSize="@dimen/about_text_size_section_content"
+                        android:text="@string/about_how_app_helps_section_content"
+                        android:padding="10dp"/>
+
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
         </ScrollView>
