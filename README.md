@@ -10,9 +10,18 @@ and self-esteem by navigating the life of their avatar!
 2. Go to [the project repo](https://github.com/systers/powerup-android/) and fork it by clicking "Fork" 
 3. If you are working on Windows, download [Git Bash for Windows](https://git-for-windows.github.io/) to get a full Unix bash with Git functionality
 4. Clone the repo to your desktop `git clone https://github.com/YOUR_USERNAME/powerup-android.git`
+
 5. Open the project with Android Studio 
 6. Fetch the latest version of code from branch "GSoC17".
-7. Build PowerUp as [android project](https://github.com/systers/powerup-android/tree/develop/PowerUp) instead of building the base directory.
+7. Fetch the latest version of code from branch "develop". 
+8. Build PowerUp as [android project](https://github.com/systers/powerup-android/tree/develop/PowerUp) instead of building the base directory.
+
+5. Initialize Git. `git init`
+6. Open the project with Android Studio 
+7. Fetch the latest version of code from branch "develop".
+8. Build PowerUp as [android project](https://github.com/systers/powerup-android/tree/develop/PowerUp) instead of building the base directory.
+
+
 ## Configure remotes
 When a repository is cloned, it has a default remote called `origin` that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you should add another remote named `upstream`:
 
