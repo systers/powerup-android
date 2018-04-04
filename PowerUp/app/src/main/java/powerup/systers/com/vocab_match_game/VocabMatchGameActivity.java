@@ -30,10 +30,10 @@ import powerup.systers.com.datamodel.SessionHistory;
 
 public class VocabMatchGameActivity extends AppCompatActivity {
 
-    public VocabBoardTextView tv1, tv2, tv3;
-    public VocabTileImageView img1, img2, img3;
-    public int height, width, oldestTile, score, latestTile;
-    public TextView scoreView;
+    private VocabBoardTextView tv1, tv2, tv3;
+    private VocabTileImageView img1, img2, img3;
+    private int height, width, oldestTile, score, latestTile;
+    private TextView scoreView;
     public MediaPlayer mediaPlayerPlus;
     public MediaPlayer mediaPlayerNegative;
     Random r;

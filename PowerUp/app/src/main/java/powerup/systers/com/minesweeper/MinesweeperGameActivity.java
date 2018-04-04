@@ -31,15 +31,15 @@ import powerup.systers.com.datamodel.SessionHistory;
 
 public class MinesweeperGameActivity extends AppCompatActivity {
 
-    public HashSet<String> mines;
-    public int score = 0;
-    public int gameRound = 0;
-    public int numRedMines;
-    public int numSelectionsLeft;
-    public TextView scoreTextView;
-    public ImageView banner;
-    public ImageView continueButton;
-    public PorterDuffColorFilter filter;
+    private HashSet<String> mines;
+    private int score = 0;
+    private int gameRound = 0;
+    private int numRedMines;
+    private int numSelectionsLeft;
+    private TextView scoreTextView;
+    private ImageView banner;
+    private ImageView continueButton;
+    private PorterDuffColorFilter filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,7 +16,7 @@ import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 
 public class VocabMatchEndActivity extends AppCompatActivity {
 
-    public TextView scoreView, correctView, wrongView;
+    private TextView scoreView, correctView, wrongView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

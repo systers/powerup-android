@@ -24,11 +24,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import powerup.systers.com.datamodel.Scenario;
 import powerup.systers.com.datamodel.Score;
@@ -38,7 +36,6 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 import static powerup.systers.com.R.string.scenario_description;
 import static powerup.systers.com.R.string.scene;
-
 public class ScenarioOverActivity extends AppCompatActivity {
 
     public Activity scenarioOverActivityInstance;
@@ -90,7 +87,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         currentScenarioName.setText(getResources().
                 getString(R.string.current_scenario_name,prevScene.getScenarioName()));
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
-        
+
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override

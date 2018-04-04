@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +16,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +31,18 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class StoreActivity extends AppCompatActivity {
 
-    GridView gridView;
-    public int storeItemTypeindex = 0;
-    public int currentPage = 0;
-    int screenWidth, screenHeight;
-    ImageView clothImageView, hairImageView, accessoryImageView;
-    ImageView leftArrow, rightArrow, hairButton, clothesButton, accessoriesButton;
-    List<List<StoreItem>> allDataSet;
-    GridAdapter adapter;
-    TextView karmaPoints;
+    private GridView gridView;
+    private int storeItemTypeindex = 0;
+    private int currentPage = 0;
+    private int screenWidth, screenHeight;
+    private ImageView clothImageView, hairImageView, accessoryImageView;
+    private ImageView leftArrow, rightArrow, hairButton, clothesButton, accessoriesButton;
+    private List<List<StoreItem>> allDataSet;
+    private GridAdapter adapter;
+    private TextView karmaPoints;
     private DatabaseHandler mDbHandler;
-    java.lang.reflect.Field photoNameField;
-    R.drawable ourRID;
+    private java.lang.reflect.Field photoNameField;
+    private R.drawable ourRID;
     long selectedItemId;
 
     @Override

@@ -1,7 +1,7 @@
 /**
-* @desc holds functions to allow game features to be inserted into the database by reading
-* CSV files. Examples include insertPoints() and insertDBScenario().
-*/
+ * @desc holds functions to allow game features to be inserted into the database by reading
+ * CSV files. Examples include insertPoints() and insertDBScenario().
+ */
 
 package powerup.systers.com.db;
 
@@ -50,12 +50,12 @@ public abstract class AbstractDbAdapter {
         DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
-	
-	/**
-	* @desc enter the default avatar settings into the database.
-	* @param db - the database the avatar will be put into
-	*/
-        public void insertAvatar(SQLiteDatabase db) {
+
+        /**
+         * @desc enter the default avatar settings into the database.
+         * @param db - the database the avatar will be put into
+         */
+        private void insertAvatar(SQLiteDatabase db) {
             ContentValues values = new ContentValues();
             values.put(PowerUpContract.AvatarEntry.COLUMN_ID, 1);
             values.put(PowerUpContract.AvatarEntry.COLUMN_FACE, 1);
@@ -68,13 +68,13 @@ public abstract class AbstractDbAdapter {
             values.put(PowerUpContract.AvatarEntry.COLUMN_NECKLACE, 0);
             db.insert(PowerUpContract.AvatarEntry.TABLE_NAME, null, values);
         }
-	
-	/**
-	* @desc enter the lowest possible values of power/health bars and karma points
-	* into the database.
-	* @param db - the database the scores will be put into
-	*/
-        public void insertPoints(SQLiteDatabase db) {
+
+        /**
+         * @desc enter the lowest possible values of power/health bars and karma points
+         * into the database.
+         * @param db - the database the scores will be put into
+         */
+        private void insertPoints(SQLiteDatabase db) {
             ContentValues values = new ContentValues();
             values.put(PowerUpContract.PointEntry.COLUMN_ID, 1);
             values.put(PowerUpContract.PointEntry.COLUMN_HEALING, 1);
@@ -85,12 +85,12 @@ public abstract class AbstractDbAdapter {
             db.insert(PowerUpContract.PointEntry.TABLE_NAME, null, values);
         }
 
-	/**
-	* @desc enter the questions into the database.
-	* @param db - the database the questions will be put into
-	* @param rowData - the array to read question information from
-	*/
-        public void insertDBQuestion(SQLiteDatabase db, String[] rowData) {
+        /**
+         * @desc enter the questions into the database.
+         * @param db - the database the questions will be put into
+         * @param rowData - the array to read question information from
+         */
+        private void insertDBQuestion(SQLiteDatabase db, String[] rowData) {
             ContentValues values = new ContentValues();
             // if (rowData.length == 3) {
             values.put(PowerUpContract.QuestionEntry.COLUMN_QUESTION_ID, rowData[0]);
@@ -104,12 +104,12 @@ public abstract class AbstractDbAdapter {
 			 */
         }
 
-	/**
-	* @desc enter the answers into the database.
-	* @param db - the database the answers will be put into
-	* @param rowData - the array to read answer information from
-	*/
-        public void insertDBAnswer(SQLiteDatabase db, String[] rowData) {
+        /**
+         * @desc enter the answers into the database.
+         * @param db - the database the answers will be put into
+         * @param rowData - the array to read answer information from
+         */
+        private void insertDBAnswer(SQLiteDatabase db, String[] rowData) {
             ContentValues values = new ContentValues();
             if (rowData.length == 5) {
                 values.put(PowerUpContract.AnswerEntry.COLUMN_ANSWER_ID, rowData[0]);
@@ -126,12 +126,12 @@ public abstract class AbstractDbAdapter {
             }
         }
 
-	/**
-	* @desc enter the dialogue scenarios into the database.
-	* @param db - the database the scenarios will be put into
-	* @param rowData - the array to read scenario information from
-	*/
-        public void insertDBScenario(SQLiteDatabase db, String[] rowData) {
+        /**
+         * @desc enter the dialogue scenarios into the database.
+         * @param db - the database the scenarios will be put into
+         * @param rowData - the array to read scenario information from
+         */
+        private void insertDBScenario(SQLiteDatabase db, String[] rowData) {
             ContentValues values = new ContentValues();
             if (rowData.length == 7) {
                 values.put(PowerUpContract.ScenarioEntry.COLUMN_ID, rowData[0]);
@@ -151,12 +151,12 @@ public abstract class AbstractDbAdapter {
             }
         }
 
-	/**
-	* @desc enter the clothing information into the database.
-	* @param db - the database the clothes will be put into
-	* @param rowData - the array to read clothing information from
-	*/
-        public void insertDBClothes(SQLiteDatabase db, String[] rowData) {
+        /**
+         * @desc enter the clothing information into the database.
+         * @param db - the database the clothes will be put into
+         * @param rowData - the array to read clothing information from
+         */
+        private void insertDBClothes(SQLiteDatabase db, String[] rowData) {
             ContentValues values = new ContentValues();
             if (rowData.length == 3) {
                 values.put(PowerUpContract.ClothesEntry.COLUMN_ID, rowData[0]);
@@ -170,12 +170,12 @@ public abstract class AbstractDbAdapter {
             }
         }
 
-	/**
-	* @desc enter the hair information into the database.
-	* @param db - the database the hair will be put into
-	* @param rowData - the array to read hair information from
-	*/
-        public void insertDBHair(SQLiteDatabase db, String[] rowData) {
+        /**
+         * @desc enter the hair information into the database.
+         * @param db - the database the hair will be put into
+         * @param rowData - the array to read hair information from
+         */
+        private void insertDBHair(SQLiteDatabase db, String[] rowData) {
             ContentValues values = new ContentValues();
             if (rowData.length == 3) {
                 values.put(PowerUpContract.HairEntry.COLUMN_ID, rowData[0]);
@@ -189,12 +189,12 @@ public abstract class AbstractDbAdapter {
             }
         }
 
-	/**
-	* @desc enter the accessory information into the database.
-	* @param db - the database the accessory will be put into
-	* @param rowData - the array to read accessory information from
-	*/
-        public void insertDBAccessories(SQLiteDatabase db, String[] rowData) {
+        /**
+         * @desc enter the accessory information into the database.
+         * @param db - the database the accessory will be put into
+         * @param rowData - the array to read accessory information from
+         */
+        private void insertDBAccessories(SQLiteDatabase db, String[] rowData) {
             ContentValues values = new ContentValues();
             if (rowData.length == 3) {
                 values.put(PowerUpContract.AccessoryEntry.COLUMN_ID, rowData[0]);
@@ -208,12 +208,12 @@ public abstract class AbstractDbAdapter {
             }
         }
 
-	/**
-	* @desc read CSV file and insert the question it contains into database.
-	* @param db - the database the question will be put into
-	* @param filename - the file to extract question information from
-	*/
-        public void readCSVQuestion(SQLiteDatabase db, String filename)
+        /**
+         * @desc read CSV file and insert the question it contains into database.
+         * @param db - the database the question will be put into
+         * @param filename - the file to extract question information from
+         */
+        private void readCSVQuestion(SQLiteDatabase db, String filename)
                 throws IOException {
             in = new BufferedReader(new InputStreamReader(
                     assetManager.open(filename)));
@@ -225,12 +225,12 @@ public abstract class AbstractDbAdapter {
             in.close();
         }
 
-	/**
-	* @desc read CSV file and insert the answer it contains into database.
-	* @param db - the database the answer will be put into
-	* @param filename - the file to extract answer information from
-	*/
-        public void readCSVAnswer(SQLiteDatabase db, String filename)
+        /**
+         * @desc read CSV file and insert the answer it contains into database.
+         * @param db - the database the answer will be put into
+         * @param filename - the file to extract answer information from
+         */
+        private void readCSVAnswer(SQLiteDatabase db, String filename)
                 throws IOException {
             in = new BufferedReader(new InputStreamReader(
                     assetManager.open(filename)));
@@ -242,12 +242,12 @@ public abstract class AbstractDbAdapter {
             in.close();
         }
 
-	/**
-	* @desc read CSV file and insert the scenario it contains into database.
-	* @param db - the database the scenario will be put into
-	* @param filename - the file to extract scenario information from
-	*/
-        public void readCSVScenario(SQLiteDatabase db, String filename)
+        /**
+         * @desc read CSV file and insert the scenario it contains into database.
+         * @param db - the database the scenario will be put into
+         * @param filename - the file to extract scenario information from
+         */
+        private void readCSVScenario(SQLiteDatabase db, String filename)
                 throws IOException {
             in = new BufferedReader(new InputStreamReader(
                     assetManager.open(filename)));
@@ -259,12 +259,12 @@ public abstract class AbstractDbAdapter {
             in.close();
         }
 
-	/**
-	* @desc read CSV file and insert the clotes it contains into database.
-	* @param db - the database the clothes will be put into
-	* @param filename - the file to extract clothing information from
-	*/
-        public void readCSVClothes(SQLiteDatabase db, String filename) throws IOException {
+        /**
+         * @desc read CSV file and insert the clotes it contains into database.
+         * @param db - the database the clothes will be put into
+         * @param filename - the file to extract clothing information from
+         */
+        private void readCSVClothes(SQLiteDatabase db, String filename) throws IOException {
             in = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
             String reader;
             while ((reader = in.readLine()) != null) {
@@ -274,12 +274,12 @@ public abstract class AbstractDbAdapter {
             in.close();
         }
 
-	/**
-	* @desc read CSV file and insert the hair it contains into database.
-	* @param db - the database the hair will be put into
-	* @param filename - the file to extract hair information from
-	*/
-        public void readCSVHair(SQLiteDatabase db, String filename) throws IOException {
+        /**
+         * @desc read CSV file and insert the hair it contains into database.
+         * @param db - the database the hair will be put into
+         * @param filename - the file to extract hair information from
+         */
+        private void readCSVHair(SQLiteDatabase db, String filename) throws IOException {
             in = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
             String reader;
             while ((reader = in.readLine()) != null) {
@@ -289,12 +289,12 @@ public abstract class AbstractDbAdapter {
             in.close();
         }
 
-	/**
-	* @desc read CSV file and insert the accessores it contains into database.
-	* @param db - the database the accessories will be put into
-	* @param filename - the file to extract accessory information from
-	*/
-        public void readCSVAccessories(SQLiteDatabase db, String filename) throws IOException {
+        /**
+         * @desc read CSV file and insert the accessores it contains into database.
+         * @param db - the database the accessories will be put into
+         * @param filename - the file to extract accessory information from
+         */
+        private void readCSVAccessories(SQLiteDatabase db, String filename) throws IOException {
             in = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
             String reader;
             while ((reader = in.readLine()) != null) {

@@ -5,10 +5,10 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -33,15 +33,15 @@ import powerup.systers.com.datamodel.SessionHistory;
 
 public class SinkToSwimGame extends AppCompatActivity {
 
-    public ImageView pointer, boat;
-    public int height;
-    public Animation mAnimation;
+    private ImageView pointer, boat;
+    private int height;
+    private Animation mAnimation;
     public int score, curQuestion, speed, correctAnswers, wrongAnswers;
-    public Button trueOption, falseOption, skipOption;
-    public TextView questionView, timer, scoreView;
-    public long millisLeft;
-    public CountDownTimer countDownTimer;
-    public ViewPropertyAnimator animator;
+    private Button trueOption, falseOption, skipOption;
+    private TextView questionView, timer, scoreView;
+    private long millisLeft;
+    private CountDownTimer countDownTimer;
+    private ViewPropertyAnimator animator;
     final String SOUND_TYPE = "SOUND_TYPE";
     final static int BGM = 0;
     private SharedPreferences prefs;

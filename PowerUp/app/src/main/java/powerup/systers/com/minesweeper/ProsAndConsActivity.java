@@ -13,9 +13,9 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class ProsAndConsActivity extends AppCompatActivity {
 
-    public int completedRounds;
-    public int score;
-    public TextView proOne, proTwo, conOne;
+    private int completedRounds;
+    private int score;
+    private TextView proOne, proTwo, conOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
