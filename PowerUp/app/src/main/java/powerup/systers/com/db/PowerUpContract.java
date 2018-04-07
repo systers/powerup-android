@@ -6,7 +6,7 @@ package powerup.systers.com.db;
 
 import android.provider.BaseColumns;
 
-public class PowerUpContract {
+class PowerUpContract {
 
     public static final class ScenarioEntry implements BaseColumns {
 

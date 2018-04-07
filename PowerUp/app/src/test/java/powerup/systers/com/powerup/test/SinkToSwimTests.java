@@ -35,7 +35,7 @@ import static org.junit.Assert.assertTrue;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SinkToSwimTests {
 
-    SinkToSwimGame activity;
+    private SinkToSwimGame activity;
 
     @Before
     public void setUp() throws Exception {

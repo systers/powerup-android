@@ -14,11 +14,11 @@ import powerup.systers.com.R;
  */
 
 public class SinkToSwimSound extends Service {
-    MediaPlayer mediaPlayer;
-    final String SOUND_TYPE = "SOUND_TYPE";
-    final static int BGM = 0;
+    private MediaPlayer mediaPlayer;
+    private final String SOUND_TYPE = "SOUND_TYPE";
+    private final static int BGM = 0;
     private SharedPreferences  prefs;
-    final String CURR_POSITION = "CURR_POSITION";
+    private final String CURR_POSITION = "CURR_POSITION";
 
     @Override
     public IBinder onBind(Intent intent) {

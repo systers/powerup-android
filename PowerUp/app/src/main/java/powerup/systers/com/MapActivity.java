@@ -131,11 +131,11 @@ public class MapActivity extends Activity {
 
     }
 
-    public DatabaseHandler getmDbHandler() {
+    private DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
+    private void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
 

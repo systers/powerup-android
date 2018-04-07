@@ -36,8 +36,8 @@ public class StartActivity extends Activity {
     private Button startButton;
     private Button newUserButton;
     private Button aboutButton;
-    Context context;
-    boolean backAlreadyPressed = false;
+    private Context context;
+    private boolean backAlreadyPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

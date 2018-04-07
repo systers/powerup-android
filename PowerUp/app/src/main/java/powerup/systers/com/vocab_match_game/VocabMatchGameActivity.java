@@ -31,12 +31,18 @@ import powerup.systers.com.datamodel.SessionHistory;
 public class VocabMatchGameActivity extends AppCompatActivity {
 
     public VocabBoardTextView tv1, tv2, tv3;
-    public VocabTileImageView img1, img2, img3;
-    public int height, width, oldestTile, score, latestTile;
-    public TextView scoreView;
-    public MediaPlayer mediaPlayerPlus;
-    public MediaPlayer mediaPlayerNegative;
-    Random r;
+    public VocabTileImageView img1;
+    private VocabTileImageView img2;
+    private VocabTileImageView img3;
+    private int height;
+    private int width;
+    private int oldestTile;
+    private int score;
+    public int latestTile;
+    private TextView scoreView;
+    private MediaPlayer mediaPlayerPlus;
+    private MediaPlayer mediaPlayerNegative;
+    private Random r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +76,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         mediaPlayerNegative = MediaPlayer.create(this, R.raw.negative_hurt);
     }
 
-    public void initialSetUp() {
+    private void initialSetUp() {
         boolean calledByTutorialsActivity = getIntent().
                 getBooleanExtra(PowerUpUtils.CALLED_BY, false);
         if(!calledByTutorialsActivity) {
@@ -201,7 +207,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
             return tv3;
     }
 
-    View.OnDragListener listenDrag = new View.OnDragListener() {
+    private View.OnDragListener listenDrag = new View.OnDragListener() {
 
         @Override
         public boolean onDrag(View v, DragEvent event) {

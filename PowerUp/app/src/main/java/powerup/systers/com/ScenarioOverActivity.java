@@ -24,39 +24,30 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import powerup.systers.com.datamodel.Scenario;
-import powerup.systers.com.datamodel.Score;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
-
-import static powerup.systers.com.R.string.scenario_description;
-import static powerup.systers.com.R.string.scene;
 
 public class ScenarioOverActivity extends AppCompatActivity {
 
     public Activity scenarioOverActivityInstance;
     public static int scenarioActivityDone;
     private DatabaseHandler mDbHandler;
-    public Scenario scene;
     private final String PREF_NAME_SCENARIO = "SCENARIO_OVER_DIALOG";
     private final int PRIVATE_MODE_SCENARIO = 0;
     private final String GAME_OPENED_SCENARIO = "IS_GAME_REPLAYED";
-    SharedPreferences sharedPreferences_scenario;
-    Context context_scenario;
-    SharedPreferences.Editor editor_scenario;
+    private SharedPreferences sharedPreferences_scenario;
+    private SharedPreferences.Editor editor_scenario;
 
     public ScenarioOverActivity() {
         scenarioOverActivityInstance = this;
     }
     public ScenarioOverActivity(Context context){
-        this.context_scenario = context;
         sharedPreferences_scenario = context.getSharedPreferences(PREF_NAME_SCENARIO, PRIVATE_MODE_SCENARIO);
         editor_scenario = sharedPreferences_scenario.edit();
     }
@@ -67,7 +58,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.activity_scenario_over);
-        scene = getmDbHandler().getScenario();
         Scenario prevScene = getmDbHandler().getScenarioFromID(SessionHistory.prevSessionID); //Fetching Scenario
         scenarioActivityDone = 1;
         if(!new ScenarioOverActivity(this).isActivityOpened()){
@@ -139,7 +129,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         finish();
     }
 
-    public void dialogMaker() {
+    private void dialogMaker() {
         int width = (int)(getResources().getDisplayMetrics().widthPixels*0.43);
         String scenario_over_dialog_message = getResources().getString(R.string.scenario_over_dialog_message1);
         String scenario_over_dialog_message2 = getResources().getString(R.string.scenario_over_dialog_message2);
@@ -179,7 +169,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         leftSpacer.setVisibility(View.GONE);
     }
 
-    public boolean isActivityOpened() {
+    private boolean isActivityOpened() {
         return sharedPreferences_scenario.getBoolean(GAME_OPENED_SCENARIO, false);
     }
 
@@ -189,11 +179,11 @@ public class ScenarioOverActivity extends AppCompatActivity {
         editor_scenario.commit();
     }
 
-    public DatabaseHandler getmDbHandler() {
+    private DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
+    private void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
 }

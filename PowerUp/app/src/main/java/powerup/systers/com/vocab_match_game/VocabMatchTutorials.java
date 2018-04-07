@@ -13,8 +13,8 @@ import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 
 public class VocabMatchTutorials extends AppCompatActivity {
 
-    ImageView tutorialView;
-    int curTutorialImage;
+    private ImageView tutorialView;
+    private int curTutorialImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

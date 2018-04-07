@@ -32,7 +32,7 @@ import static org.junit.Assert.assertTrue;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class ProsConsTests {
 
-    ProsAndConsActivity activity;
+    private ProsAndConsActivity activity;
 
     @Before
     public void setUp() throws Exception {

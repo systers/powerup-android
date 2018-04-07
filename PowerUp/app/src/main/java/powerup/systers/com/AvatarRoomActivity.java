@@ -13,14 +13,11 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.Random;
-
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.db.DatabaseHandler;
 
 public class AvatarRoomActivity extends Activity {
 
-    public Activity avatarRoomInstance;
     private DatabaseHandler mDbHandler;
     private ImageView eyeAvatar;
     private ImageView skinAvatar;
@@ -32,7 +29,6 @@ public class AvatarRoomActivity extends Activity {
     private Integer cloth;
 
     public AvatarRoomActivity() {
-        avatarRoomInstance = this;
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -294,11 +290,11 @@ public class AvatarRoomActivity extends Activity {
         getmDbHandler().close();
     }
 
-    public DatabaseHandler getmDbHandler() {
+    private DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
+    private void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
 }

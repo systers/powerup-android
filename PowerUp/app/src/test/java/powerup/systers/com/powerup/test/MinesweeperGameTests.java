@@ -42,8 +42,8 @@ import static org.junit.Assert.assertTrue;
 
 public class MinesweeperGameTests {
 
-    MinesweeperGameActivity activity;
-    MinesweeperSessionManager sessionManager;
+    private MinesweeperGameActivity activity;
+    private MinesweeperSessionManager sessionManager;
 
     // Initial setup for running Robolectric test, this function is called before starting each test
     @Before
