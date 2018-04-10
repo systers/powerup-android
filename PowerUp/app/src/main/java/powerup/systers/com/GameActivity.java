@@ -13,8 +13,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,8 +22,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +54,6 @@ public class GameActivity extends Activity {
     private TextView scenarioNameTextView;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
-    private static boolean isStateChanged = false;
     Context context;
 
     public GameActivity() {
@@ -65,6 +62,7 @@ public class GameActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+         boolean isStateChanged = false;
         new ScenarioOverActivity(this).saveActivityOpenedStatus(false);
         context = GameActivity.this;
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
@@ -77,9 +75,9 @@ public class GameActivity extends Activity {
         if(new VocabMatchSessionManager(this).isVocabMatchOpened()) {
             startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
         }
-        if (savedInstanceState != null) {
-            isStateChanged = true;
-        }
+      if(savedInstanceState !=null){
+            isStateChanged = false;
+      }
         super.onCreate(savedInstanceState);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();

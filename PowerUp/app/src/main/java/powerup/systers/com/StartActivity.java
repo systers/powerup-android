@@ -12,15 +12,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -32,22 +29,20 @@ public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
-    private boolean hasPreviouslyCustomized;
     private Button startButton;
-    private Button newUserButton;
-    private Button aboutButton;
     Context context;
     boolean backAlreadyPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        boolean hasPreviouslyCustomized;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = StartActivity.this;
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
-        hasPreviouslyCustomized = preferences.getBoolean(getString(R.string.preferences_has_previously_customized), false);
-        newUserButton = (Button) findViewById(R.id.newUserButtonFirstPage);
+           hasPreviouslyCustomized= preferences.getBoolean(getString(R.string.preferences_has_previously_customized),false);
+                   Button newUserButton = (Button) findViewById(R.id.newUserButtonFirstPage);
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +105,7 @@ public class StartActivity extends Activity {
             }
         });
 
-        aboutButton = (Button) findViewById(R.id.aboutButtonMain);
+        Button aboutButton = (Button) findViewById(R.id.aboutButtonMain);
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -44,7 +44,6 @@ public class SinkToSwimGame extends AppCompatActivity {
     public ViewPropertyAnimator animator;
     final String SOUND_TYPE = "SOUND_TYPE";
     final static int BGM = 0;
-    private SharedPreferences prefs;
     final String CURR_POSITION = "CURR_POSITION";
 
     @Override
@@ -116,7 +115,7 @@ public class SinkToSwimGame extends AppCompatActivity {
                 gameEnd(); //game ends when time finishes
             }
         };
-        prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         SharedPreferences.Editor edit = prefs.edit();
         edit.putInt(CURR_POSITION, 0);
         edit.apply();

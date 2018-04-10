@@ -9,16 +9,16 @@ import android.content.SharedPreferences;
 
 public class VocabMatchSessionManager {
     private final String GAME_OPENED = "IS_VOCAB_MATCH_OPENED";
-    private final String PREF_NAME = "VOCAB_MATCH_PREFERENCE";
     static final String CURR_SCORE = "currScore";
     static final String CURR_TILE = "currTile";
-    private final int PRIVATE_MODE = 0;
 
     SharedPreferences pref;
     Context context;
     SharedPreferences.Editor editor;
     public VocabMatchSessionManager(Context context) {
         this.context = context;
+        String PREF_NAME = "VOCAB_MATCH_PREFERENCE";
+        int PRIVATE_MODE = 0;
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }

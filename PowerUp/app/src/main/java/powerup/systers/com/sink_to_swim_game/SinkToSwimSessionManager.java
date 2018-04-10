@@ -17,14 +17,13 @@ public class SinkToSwimSessionManager {
     private static final String SPEED = "speed";
     private static final String BOAT_HEIGHT = "boatHeight";
     private static final String POINTER_HEIGHT = "pointerHeight";
-    private final String PREF_NAME = "SINK_TO_SWIM_PREFERENCE";
-    private final int PRIVATE_MODE = 0;
 
     private SharedPreferences pref;
-    private Context context;
     private SharedPreferences.Editor editor;
     public SinkToSwimSessionManager(Context context) {
-        this.context = context;
+       
+        String PREF_NAME = "SINK_TO_SWIM_PREFERENCE";
+        int PRIVATE_MODE = 0;
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
