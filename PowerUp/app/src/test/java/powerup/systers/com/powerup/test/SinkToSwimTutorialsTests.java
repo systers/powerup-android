@@ -23,13 +23,14 @@ import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SinkToSwimTutorialsTests {
 
-    SinkToSwimTutorials activity;
-    ImageView tutorialView, startButton;
+    private SinkToSwimTutorials activity;
+    private ImageView tutorialView, startButton;
 
     @Before
     public void setUp() throws Exception {
@@ -77,11 +78,11 @@ public class SinkToSwimTutorialsTests {
 
     @Test
     public void startButtonNotClickableOnGameStart() throws Exception {
-        assertTrue(!startButton.isEnabled());
+        assertFalse(startButton.isEnabled());
     }
 
     @Test
     public void startButtonHiddenOnStart() throws Exception {
-        assertTrue(!startButton.isOpaque());
+        assertFalse(startButton.isOpaque());
     }
 }

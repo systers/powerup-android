@@ -28,8 +28,8 @@ import static org.junit.Assert.assertTrue;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class MinesweeperTutorialsTests {
 
-    MinesweeperTutorials activity;
-    ImageView tutorialView;
+    private MinesweeperTutorials activity;
+    private ImageView tutorialView;
 
     @Before
     public void setUp() throws Exception {

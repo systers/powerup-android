@@ -30,21 +30,20 @@ import static org.junit.Assert.assertTrue;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SinkToSwimEndTests {
 
-    private ActivityController<SinkToSwimEndActivity> controller;
     private SinkToSwimEndActivity activity;
 
     @Before
     public void setUp() {
-        controller = Robolectric.buildActivity(SinkToSwimEndActivity.class);
+        Robolectric.buildActivity(SinkToSwimEndActivity.class);
     }
 
     private void createWithIntent(int extra, String type) {
         Intent intent = new Intent(RuntimeEnvironment.application, SinkToSwimEndActivity.class);
-        if (type.equals("score")) {
+        if ("score".equals(type)) {
             intent.putExtra(PowerUpUtils.SCORE, extra);
-        } else if (type.equals("correct")) {
+        } else if ("correct".equals(type)) {
             intent.putExtra(PowerUpUtils.CORRECT_ANSWERS, extra);
-        } else if (type.equals("wrong")) {
+        } else if ("wrong".equals(type)) {
             intent.putExtra(PowerUpUtils.WRONG_ANSWER, extra);
         }
         activity = Robolectric.buildActivity(SinkToSwimEndActivity.class, intent)
