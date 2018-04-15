@@ -35,17 +35,22 @@ public class SinkToSwimGame extends AppCompatActivity {
 
     public ImageView pointer, boat;
     public int height;
-    public Animation mAnimation;
-    public int score, curQuestion, speed, correctAnswers, wrongAnswers;
+    public int score;
+    public int curQuestion;
+    public int speed;
+    private int correctAnswers;
+    private int wrongAnswers;
     public Button trueOption, falseOption, skipOption;
-    public TextView questionView, timer, scoreView;
-    public long millisLeft;
+    public TextView questionView;
+    private TextView timer;
+    public TextView scoreView;
+    private long millisLeft;
     public CountDownTimer countDownTimer;
     public ViewPropertyAnimator animator;
-    final String SOUND_TYPE = "SOUND_TYPE";
-    final static int BGM = 0;
+    private final String SOUND_TYPE = "SOUND_TYPE";
+    private final static int BGM = 0;
     private SharedPreferences prefs;
-    final String CURR_POSITION = "CURR_POSITION";
+    private final String CURR_POSITION = "CURR_POSITION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +75,7 @@ public class SinkToSwimGame extends AppCompatActivity {
     /**
      * @desc sets up the initial setting of the game
      */
-    public void initialSetUp() {
+    private void initialSetUp() {
         boolean calledByTutorialsActivity = getIntent().
                 getBooleanExtra(PowerUpUtils.CALLED_BY, false);
         if(!calledByTutorialsActivity) {
@@ -124,9 +129,9 @@ public class SinkToSwimGame extends AppCompatActivity {
     }
 
 
-    public void gameBegins() {
+    private void gameBegins() {
         //defines the wave animation on boat
-        mAnimation = AnimationUtils.loadAnimation(this, R.animator.boat_animation);
+        Animation mAnimation = AnimationUtils.loadAnimation(this, R.animator.boat_animation);
         mAnimation.setInterpolator(new LinearInterpolator());
         mAnimation.setRepeatMode(Animation.INFINITE); //does not work
         boat.startAnimation(mAnimation); //starts wave animation on boat

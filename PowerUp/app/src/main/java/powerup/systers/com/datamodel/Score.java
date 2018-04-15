@@ -5,11 +5,11 @@
 
 package powerup.systers.com.datamodel;
 
-public class Score {
-    public Integer healing;
-    public Integer strength;
-    public Integer telepathy;
-    public Integer invisibility;
+class Score {
+    private Integer healing;
+    private Integer strength;
+    private Integer telepathy;
+    private Integer invisibility;
 
     public Integer getHealing() {
         return healing;

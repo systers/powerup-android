@@ -15,7 +15,9 @@ public class ProsAndConsActivity extends AppCompatActivity {
 
     public int completedRounds;
     public int score;
-    public TextView proOne, proTwo, conOne;
+    private TextView proOne;
+    private TextView proTwo;
+    private TextView conOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

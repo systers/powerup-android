@@ -11,9 +11,9 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.Random;
 
-import powerup.systers.com.datamodel.SessionHistory;
+
+
 import powerup.systers.com.db.DatabaseHandler;
 
 public class FinalAvatarActivity extends Activity{
@@ -22,10 +22,10 @@ public class FinalAvatarActivity extends Activity{
     private ImageView clothAvatar;
     private ImageView hairAvatar;
     private DatabaseHandler mDbHandler;
-    public Activity finalAvatarInstance;
-    public FinalAvatarActivity() {
-        finalAvatarInstance = this;
-    }
+
+
+
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,11 +100,12 @@ public class FinalAvatarActivity extends Activity{
             }
         });
     }
-    public DatabaseHandler getmDbHandler() {
+    private DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
+    private void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
 }
+

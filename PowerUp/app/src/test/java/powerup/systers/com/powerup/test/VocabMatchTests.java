@@ -31,7 +31,7 @@ import static org.junit.Assert.assertNotNull;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class VocabMatchTests {
 
-    VocabMatchGameActivity activity;
+    private VocabMatchGameActivity activity;
 
     @Before
     public void setUp() throws Exception {

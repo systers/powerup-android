@@ -57,7 +57,7 @@ public class GameActivity extends Activity {
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
     private static boolean isStateChanged = false;
-    Context context;
+    private Context context;
 
     public GameActivity() {
         gameActivityInstance = this;
@@ -307,11 +307,11 @@ public class GameActivity extends Activity {
         questionTextView.setText(questions.getQuestionDescription());
     }
 
-    public DatabaseHandler getmDbHandler() {
+    private DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
+    private void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
 
@@ -325,7 +325,7 @@ public class GameActivity extends Activity {
         startActivity(new Intent(GameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
     }
-    public void gotToMapDialogue(){
+    private void gotToMapDialogue(){
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
         builder.setTitle(context.getResources().getString(R.string.start_title_message))
                 .setMessage(getResources().getString(R.string.game_to_map_message));

@@ -1,5 +1,6 @@
 package powerup.systers.com;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +32,22 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class StoreActivity extends AppCompatActivity {
 
-    GridView gridView;
-    public int storeItemTypeindex = 0;
-    public int currentPage = 0;
-    int screenWidth, screenHeight;
-    ImageView clothImageView, hairImageView, accessoryImageView;
-    ImageView leftArrow, rightArrow, hairButton, clothesButton, accessoriesButton;
-    List<List<StoreItem>> allDataSet;
-    GridAdapter adapter;
-    TextView karmaPoints;
+    private int storeItemTypeindex = 0;
+    private int currentPage = 0;
+    private int screenWidth;
+    private int screenHeight;
+    private ImageView clothImageView;
+    private ImageView hairImageView;
+    private ImageView accessoryImageView;
+    private ImageView leftArrow;
+    private ImageView rightArrow;
+    private List<List<StoreItem>> allDataSet;
+    private GridAdapter adapter;
+    private TextView karmaPoints;
     private DatabaseHandler mDbHandler;
-    java.lang.reflect.Field photoNameField;
-    R.drawable ourRID;
-    long selectedItemId;
+    private java.lang.reflect.Field photoNameField;
+    private R.drawable ourRID;
+    private long selectedItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +106,9 @@ public class StoreActivity extends AppCompatActivity {
 
         leftArrow = (ImageView) findViewById(R.id.left_arrow);
         rightArrow = (ImageView) findViewById(R.id.right_arrow);
-        hairButton = (ImageView) findViewById(R.id.hair_button);
-        clothesButton = (ImageView) findViewById(R.id.clothes_button);
-        accessoriesButton = (ImageView) findViewById(R.id.accessories_button);
+        ImageView hairButton = (ImageView) findViewById(R.id.hair_button);
+        ImageView clothesButton = (ImageView) findViewById(R.id.clothes_button);
+        ImageView accessoriesButton = (ImageView) findViewById(R.id.accessories_button);
 
         hairButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,14 +168,14 @@ public class StoreActivity extends AppCompatActivity {
             }
         });
 
-        gridView = (GridView) findViewById(R.id.grid_view);
+        GridView gridView = (GridView) findViewById(R.id.grid_view);
         createDataLists();
         adapter = new GridAdapter(this, allDataSet.get(0).subList(0, 6));
         gridView.setAdapter(adapter);
         setArrows();
     }
 
-    public void setAvatarHair(int index){
+    private void setAvatarHair(int index){
         getmDbHandler().setAvatarHair(index);
         String hairImageName = getResources().getString(R.string.hair);
         hairImageName = hairImageName + index;
@@ -189,7 +189,7 @@ public class StoreActivity extends AppCompatActivity {
 
     }
 
-    public void setAvatarClothes(int index){
+    private void setAvatarClothes(int index){
         getmDbHandler().setAvatarCloth(index);
         String clothImageName = getResources().getString(R.string.cloth);
         clothImageName = clothImageName + index;
@@ -202,7 +202,7 @@ public class StoreActivity extends AppCompatActivity {
         }
     }
 
-    public void setAvatarAccessories(int index){
+    private void setAvatarAccessories(int index){
         getmDbHandler().setAvatarAccessory(index);
         String accessoryImageName = getResources().getString(R.string.accessories);
         accessoryImageName = accessoryImageName + index;
@@ -215,7 +215,7 @@ public class StoreActivity extends AppCompatActivity {
         }
     }
 
-    public void createDataLists() {
+    private void createDataLists() {
         allDataSet = new ArrayList<>();
 
         List<StoreItem> storeHair = new ArrayList<>();
@@ -241,7 +241,7 @@ public class StoreActivity extends AppCompatActivity {
         }
     }
 
-    public int calculatePosition(int position) {
+    private int calculatePosition(int position) {
         int id = currentPage*6+position;
         return id;
     }
@@ -256,7 +256,7 @@ public class StoreActivity extends AppCompatActivity {
             this.storeItems = list;
         }
 
-        public void refresh(List<StoreItem> updatedList) {
+        private void refresh(List<StoreItem> updatedList) {
             this.storeItems = updatedList;
             notifyDataSetChanged();
         }
@@ -286,6 +286,7 @@ public class StoreActivity extends AppCompatActivity {
             }
         }
 
+        @SuppressLint("ResourceType")
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -427,7 +428,7 @@ public class StoreActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public int getPurchasedStatus(int index) {
+    private int getPurchasedStatus(int index) {
         if (storeItemTypeindex == 0) { //hair
             return getmDbHandler().getPurchasedHair(index);
         } else if (storeItemTypeindex == 1) { //clothes
@@ -438,15 +439,15 @@ public class StoreActivity extends AppCompatActivity {
         return 0;
     }
 
-    public DatabaseHandler getmDbHandler() {
+    private DatabaseHandler getmDbHandler() {
         return mDbHandler;
     }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
+    private void setmDbHandler(DatabaseHandler mDbHandler) {
         this.mDbHandler = mDbHandler;
     }
   
-  public void setArrows() {
+  private void setArrows() {
         if(currentPage==0){
             leftArrow.setVisibility(View.GONE);
         } else {

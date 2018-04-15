@@ -12,9 +12,9 @@ import powerup.systers.com.powerup.PowerUpUtils;
 
 public class SinkToSwimTutorials extends AppCompatActivity {
 
-    ImageView tutorialView;
-    int curTutorialImage;
-    ImageView startButton;
+    private ImageView tutorialView;
+    private int curTutorialImage;
+    private ImageView startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

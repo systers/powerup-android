@@ -1,7 +1,7 @@
 package powerup.systers.com.minesweeper;
 
 import android.animation.Animator;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.Random;
 
 import powerup.systers.com.MinesweeperSound;
-import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
@@ -33,8 +32,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
 
     public HashSet<String> mines;
     public int score = 0;
-    public int gameRound = 0;
-    public int numRedMines;
+    private int gameRound = 0;
     public int numSelectionsLeft;
     public TextView scoreTextView;
     public ImageView banner;
@@ -75,7 +73,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             mines.clear();
         }
         gameRound++;
-        numRedMines = (PowerUpUtils.ROUNDS_FAILURE_PERCENTAGES[gameRound - 1] * PowerUpUtils.NUMBER_OF_CELLS) / 100;
+        int numRedMines = (PowerUpUtils.ROUNDS_FAILURE_PERCENTAGES[gameRound - 1] * PowerUpUtils.NUMBER_OF_CELLS) / 100;
         while (mines.size() != numRedMines) { //add red mines randomly and store them in mines
             Random random = new Random();
             mines.add(PowerUpUtils.ID_REFERENCE + Math.abs(random.nextInt() % 25));
@@ -140,9 +138,10 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * opened mine is green, increment the score
      * includes zoom in and out bounce animation on score
      */
+    @SuppressLint("ResourceType")
     public void openedGreenMine() {
         playSound(MinesweeperSound.TYPE_CORRECT);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
+        @SuppressLint("ResourceType") Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
         scoreTextView.setText("Score: " + score);
@@ -204,7 +203,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
                 drawable = getResources().getDrawable(R.drawable.red_star);
             } else {
                 drawable = getResources().getDrawable(R.drawable.green_star);
-                setImageButtonEnabled(this, false, mine, drawable); //calls grey out animation on all green mines
+                setImageButtonEnabled(false, mine, drawable); //calls grey out animation on all green mines
             }
             mine.setImageDrawable(drawable);
             mine.setEnabled(false);
@@ -217,7 +216,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      * @param enabled false if mine is disabled i.e. greyed out animation
      * @param item mine imageview which has to be greyed out
      */
-    public void setImageButtonEnabled(Context ctxt, boolean enabled, ImageView item, Drawable originalIcon) {
+    private void setImageButtonEnabled(boolean enabled, ImageView item, Drawable originalIcon) {
         item.setAlpha(0.8f);
         Drawable res = originalIcon.mutate();
         if (enabled) {

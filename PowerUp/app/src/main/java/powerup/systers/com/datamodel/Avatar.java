@@ -5,7 +5,7 @@
 
 package powerup.systers.com.datamodel;
 
-public class Avatar {
+class Avatar {
     private Integer id;
     private Integer face;
     private Integer eyes;

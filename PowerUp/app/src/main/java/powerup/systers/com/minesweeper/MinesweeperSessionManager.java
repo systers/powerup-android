@@ -15,16 +15,15 @@ public class MinesweeperSessionManager {
     private final int PRIVATE_MODE = 0;
     private final String GAME_OPENED = "IS_MINESWEEPER_OPENED";
 
-    SharedPreferences pref;
-    Context context;
-    SharedPreferences.Editor editor;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     /**
      * @desc Returns the object of SessionManager through which session changes can be made
      * @param context - context of the calling activity
      */
     public MinesweeperSessionManager(Context context) {
-        this.context = context;
+
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
