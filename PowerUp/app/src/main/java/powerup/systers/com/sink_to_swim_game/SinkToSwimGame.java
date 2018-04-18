@@ -19,11 +19,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import powerup.systers.com.GameOverActivity;
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
-import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
 import powerup.systers.com.powerup.PowerUpUtils;
 import powerup.systers.com.datamodel.SessionHistory;
 
