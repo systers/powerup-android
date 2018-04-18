@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
 import powerup.systers.com.powerup.PowerUpUtils;
-import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 
 public class VocabMatchTutorials extends AppCompatActivity {
 
