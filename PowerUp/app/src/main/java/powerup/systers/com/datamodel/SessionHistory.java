@@ -19,4 +19,5 @@ public class SessionHistory {
     public static int hatTotalNo = 4;
     public static int necklaceTotalNo = 4;
     public static int accessoryTotalNo = 4;
+    public static boolean accessoryBought = false;
 }
