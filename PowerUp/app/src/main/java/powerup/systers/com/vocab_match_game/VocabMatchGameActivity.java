@@ -12,9 +12,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.DragEvent;
 
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -287,5 +287,26 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         finish();
 
     }
+
+    @Override
+    protected void onStop() {
+        isBackPressed = TRUE;
+        mediaPlayerNegative.stop();
+        mediaPlayerPlus.stop();
+        super.onStop();
+    }
+
+    /* @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_HOME)) {
+
+            isBackPressed = TRUE;
+            mediaPlayerPlus.stop();
+            mediaPlayerNegative.stop();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+
+    } */
 
 }
