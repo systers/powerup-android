@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.DragEvent;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -25,6 +27,9 @@ import powerup.systers.com.R;
 import powerup.systers.com.datamodel.SessionHistory;
 import powerup.systers.com.powerup.PowerUpUtils;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 public class VocabMatchGameActivity extends AppCompatActivity {
 
     public VocabBoardTextView tv1, tv2, tv3;
@@ -33,6 +38,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public TextView scoreView;
     public MediaPlayer mediaPlayerPlus;
     public MediaPlayer mediaPlayerNegative;
+    private boolean isBackPressed = FALSE;
     Random r;
 
     @Override
@@ -115,6 +121,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void startNewTile(final int position, final VocabTileImageView imageview) {
+        //if back button is pressed return from function
+        if(isBackPressed == TRUE){
+            return;
+        }
 
         if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
             imageview.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_TILES_IMAGES[latestTile]));
@@ -131,6 +141,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                //if Back button is presed return from function
+                if(isBackPressed == TRUE){
+                    return;
+                }
 
                 imageview.setLayerType(View.LAYER_TYPE_NONE, null);
                 imageview.setVisibility(View.GONE);
@@ -163,6 +177,8 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     getPositionFromText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile]).setText(PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[latestTile]);
                 }
                 oldestTile++;
+
+
                 if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
                     startNewTile(Math.abs(r.nextInt() % 3), imageview);
                 } else if (latestTile == PowerUpUtils.VOCAB_TILES_IMAGES.length + 2){
@@ -178,8 +194,9 @@ public class VocabMatchGameActivity extends AppCompatActivity {
             }
         });
         animation.start();
-    }
 
+
+    }
     public TextView getBoardFromPosition(int position) {
         if (tv1.getPosition() == position)
             return tv1;
@@ -248,8 +265,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public void onPause() {
+        Log.e("VocanMatchGameActivity","OnPause is called");
         VocabMatchSessionManager session = new VocabMatchSessionManager(this);
         session.saveData(score, oldestTile);
         super.onPause();
@@ -262,7 +281,12 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public void onBackPressed(){
         // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
         // clears the activities that were created after the found instance of the required activity
+        mediaPlayerNegative.stop();
+        mediaPlayerPlus.stop();
+        isBackPressed = TRUE;
         startActivity(new Intent(VocabMatchGameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
+
     }
+
 }
