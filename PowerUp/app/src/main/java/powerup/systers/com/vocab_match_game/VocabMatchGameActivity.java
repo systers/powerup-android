@@ -268,7 +268,6 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
     @Override
     public void onPause() {
-        Log.e("VocanMatchGameActivity","OnPause is called");
         VocabMatchSessionManager session = new VocabMatchSessionManager(this);
         session.saveData(score, oldestTile);
         super.onPause();
