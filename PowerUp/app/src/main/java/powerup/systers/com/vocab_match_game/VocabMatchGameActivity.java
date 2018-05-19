@@ -13,8 +13,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.DragEvent;
-
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -121,7 +119,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void startNewTile(final int position, final VocabTileImageView imageview) {
-        //if back button is pressed return from function
+        //if back button or home button is pressed return from function
         if(isBackPressed == TRUE){
             return;
         }
@@ -141,7 +139,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                //if Back button is presed return from function
+                //if Back button or Home button is pressed return from function
                 if(isBackPressed == TRUE){
                     return;
                 }
@@ -290,23 +288,12 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        //to handle when Home button is pressed
         isBackPressed = TRUE;
         mediaPlayerNegative.stop();
         mediaPlayerPlus.stop();
         super.onStop();
     }
 
-    /* @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_HOME)) {
-
-            isBackPressed = TRUE;
-            mediaPlayerPlus.stop();
-            mediaPlayerNegative.stop();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-
-    } */
 
 }
