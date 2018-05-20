@@ -28,6 +28,9 @@ import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.datamodel.SessionHistory;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 public class VocabMatchGameActivity extends AppCompatActivity {
 
     public VocabBoardTextView tv1, tv2, tv3;
@@ -36,6 +39,8 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public TextView scoreView;
     public MediaPlayer mediaPlayerPlus;
     public MediaPlayer mediaPlayerNegative;
+    private boolean isDisrupted = FALSE;
+
     Random r;
 
     @Override
@@ -119,6 +124,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void startNewTile(final int position, final VocabTileImageView imageview) {
 
+        //if Back/Home is pressed, return from function
+        if(isDisrupted == TRUE)
+            return;
+
         if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
             imageview.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_TILES_IMAGES[latestTile]));
         }
@@ -134,6 +143,11 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+
+                //if Home/Back is pressed ,return from function so that already executing function
+                //calls of startNewTile do not execute this function.
+                if(isDisrupted == TRUE)
+                    return;
 
                 imageview.setLayerType(View.LAYER_TYPE_NONE, null);
                 imageview.setVisibility(View.GONE);
@@ -265,7 +279,19 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public void onBackPressed(){
         // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
         // clears the activities that were created after the found instance of the required activity
+        isDisrupted = TRUE;
+        mediaPlayerPlus.stop();
+        mediaPlayerNegative.stop();
         startActivity(new Intent(VocabMatchGameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
+    }
+
+    //to handle issues when Home button is pressed
+    @Override
+    protected void onStop() {
+        isDisrupted = TRUE;
+        mediaPlayerNegative.stop();
+        mediaPlayerPlus.stop();
+        super.onStop();
     }
 }
