@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.db.DatabaseHandler;
 
 public class GameOverActivity extends Activity {
 
@@ -27,6 +28,14 @@ public class GameOverActivity extends Activity {
         backToMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //once the whole game has been completed, user should be
+                // able to play any scenario
+                if(!SessionHistory.hasGameAlreadyPlayedOnce){
+                     DatabaseHandler dbHandler = new DatabaseHandler(GameOverActivity.this); dbHandler.updateReplayed();
+                     dbHandler.updateComplete();
+                     dbHandler.updateUnlockEveryScenario();
+                     SessionHistory.hasGameAlreadyPlayedOnce = true;
+                }
                 Intent intent = new Intent(GameOverActivity.this,
                         MapActivity.class);
                 finish();

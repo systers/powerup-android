@@ -33,6 +33,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public TextView scoreView;
     public MediaPlayer mediaPlayerPlus;
     public MediaPlayer mediaPlayerNegative;
+    private boolean isDisrupted = false;
     Random r;
 
     @Override
@@ -115,7 +116,9 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void startNewTile(final int position, final VocabTileImageView imageview) {
-
+        //if Back/Home is pressed, return from function
+        if(isDisrupted)
+            return;
         if (latestTile < PowerUpUtils.VOCAB_TILES_IMAGES.length) {
             imageview.setImageDrawable(getResources().getDrawable(PowerUpUtils.VOCAB_TILES_IMAGES[latestTile]));
         }
@@ -131,7 +134,10 @@ public class VocabMatchGameActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-
+                //if Home/Back is pressed ,return from function so that already executing function
+                //calls of startNewTile do not execute this function.
+                if(isDisrupted)
+                    return;
                 imageview.setLayerType(View.LAYER_TYPE_NONE, null);
                 imageview.setVisibility(View.GONE);
                 final TextView boardView = getBoardFromPosition(imageview.getPosition());
@@ -262,7 +268,19 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     public void onBackPressed(){
         // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
         // clears the activities that were created after the found instance of the required activity
+        isDisrupted = true;
+        mediaPlayerPlus.stop();
+        mediaPlayerNegative.stop();
         startActivity(new Intent(VocabMatchGameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
+    }
+
+    //to handle issues when Home button is pressed
+    @Override
+    protected void onStop() {
+        isDisrupted = true;
+        mediaPlayerNegative.stop();
+        mediaPlayerPlus.stop();
+        super.onStop();
     }
 }

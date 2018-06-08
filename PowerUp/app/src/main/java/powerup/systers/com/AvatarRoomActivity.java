@@ -277,6 +277,7 @@ public class AvatarRoomActivity extends Activity {
                 getmDbHandler().setPurchasedClothes(cloth);
                 getmDbHandler().updateComplete();//set all the complete fields back to 0
                 getmDbHandler().updateReplayed();//set all the replayed fields back to 0
+                getmDbHandler().updateLock(); //set all scenarios back to locked
                 SessionHistory.totalPoints = 0;    //reset the points stored
                 SessionHistory.currSessionID = 1;
                 SessionHistory.currScenePoints = 0;

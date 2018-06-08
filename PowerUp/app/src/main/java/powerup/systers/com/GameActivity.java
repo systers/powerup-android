@@ -209,6 +209,7 @@ public class GameActivity extends Activity {
                             }
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(scene.getId());
+                            getmDbHandler().setUnlockedScenario(scene.getNextScenarioID());
                             updateScenario(0);
                         }
                     }

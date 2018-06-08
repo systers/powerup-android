@@ -63,7 +63,6 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         numSelectionsLeft = PowerUpUtils.MAXIMUM_FLIPS_ALLOWED;
 
         if (!calledByTutorialsActivity) { //if called by previous round of minesweeper game
-
             //fetch previous round score and rounds completed from session database
             MinesweeperSessionManager session = new MinesweeperSessionManager(this);
             score = session.getScore();

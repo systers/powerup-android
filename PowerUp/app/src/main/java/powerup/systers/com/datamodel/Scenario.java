@@ -16,6 +16,7 @@ public class Scenario {
     private int completed;  // If equal to 1, the scenario is already completed
     private int nextScenarioID;
     private int replayed;   // If equal to 0, the scenario can be replayed
+    private int unlockedScenario; // If equal to 1, Scenario gets unlocked (default is 0)
 
     public int getId() {
         return id;
@@ -88,4 +89,8 @@ public class Scenario {
     public void setReplayed(int replayed) {
         this.replayed = replayed;
     }
+
+    public void setUnlockScenario(int unlock){this.unlockedScenario = unlock;}
+
+    public int getUnlocked(){return unlockedScenario;}
 }
