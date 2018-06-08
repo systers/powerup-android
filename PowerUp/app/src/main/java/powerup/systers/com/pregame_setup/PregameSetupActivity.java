@@ -87,7 +87,7 @@ public class PregameSetupActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_back)
     public void clickBackButton() {
-        saveChosenNpc(SessionHistory.npcType);
+        saveChosenNpc(SessionHistory.npcType, clickedPosition);
         startActivity(new Intent(PregameSetupActivity.this, PreGameSetupInitialActivity.class));
         overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
     }
@@ -118,7 +118,7 @@ public class PregameSetupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        saveChosenNpc(SessionHistory.npcType);
+        saveChosenNpc(SessionHistory.npcType, clickedPosition);
         startActivity(new Intent(PregameSetupActivity.this, PreGameSetupInitialActivity.class));
         overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
         super.onBackPressed();
@@ -126,7 +126,8 @@ public class PregameSetupActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        updateClickedPosition(SessionHistory.npcType);
+        clickedPosition = updateClickedPosition(SessionHistory.npcType);
+        imageViewNpc.setImageResource(npcFullViewList.get(SessionHistory.npcType).get(clickedPosition));
         super.onStart();
     }
 
@@ -162,46 +163,40 @@ public class PregameSetupActivity extends AppCompatActivity {
         }
     }
 
-    public void saveChosenNpc(int type) {
+    public void saveChosenNpc(int type, int position) {
         switch (type) {
             case PowerUpUtils.SISTER_TYPE:
-                SessionHistory.npcHome = clickedPosition;
+                SessionHistory.npcHome = position;
                 Log.v("Saved Value", "value = " + SessionHistory.npcHome);
                 break;
             case PowerUpUtils.FRIEND_TYPE:
-                SessionHistory.npcSchool = clickedPosition;
+                SessionHistory.npcSchool = position;
                 break;
             case PowerUpUtils.DOCTOR_TYPE:
-                SessionHistory.npcHospital = clickedPosition;
+                SessionHistory.npcHospital = position;
                 break;
             case PowerUpUtils.TEACHER_TYPE:
-                SessionHistory.npcLibrary = clickedPosition;
+                SessionHistory.npcLibrary = position;
                 break;
             default:
-                SessionHistory.npcHome = clickedPosition;
+                SessionHistory.npcHome = position;
                 break;
         }
     }
 
-    public void updateClickedPosition(int type) {
+    public int updateClickedPosition(int type) {
         switch (type) {
             case PowerUpUtils.SISTER_TYPE:
-                clickedPosition = SessionHistory.npcHome;
-                break;
+                return SessionHistory.npcHome;
             case PowerUpUtils.FRIEND_TYPE:
-                clickedPosition = SessionHistory.npcSchool;
-                break;
+                return SessionHistory.npcSchool;
             case PowerUpUtils.DOCTOR_TYPE:
-                clickedPosition = SessionHistory.npcHospital;
-                break;
+                return SessionHistory.npcHospital;
             case PowerUpUtils.TEACHER_TYPE:
-                clickedPosition = SessionHistory.npcLibrary;
-                break;
+                return SessionHistory.npcLibrary;
             default:
-                clickedPosition = SessionHistory.npcLibrary;
-                break;
+                return SessionHistory.npcLibrary;
         }
-        imageViewNpc.setImageResource(npcFullViewList.get(SessionHistory.npcType).get(clickedPosition));
     }
 
     class GridAdapter extends BaseAdapter {
