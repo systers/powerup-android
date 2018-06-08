@@ -118,15 +118,15 @@ public class MapActivity extends Activity {
         });
 
         //changes the Map building's greyscale color and locks according to the scenarios completions
-        if (getmDbHandler().getScenarioFromID(4).getCompleted() == 1 || SessionHistory.sceneHomeIsReplayed){
+        if (getmDbHandler().getScenarioFromID(5).getUnlocked() == 1 || SessionHistory.sceneHomeIsReplayed){
             schoolBuilding.setImageDrawable(getResources().getDrawable(R.drawable.school_colored));
             school.setEnabled(true);
         }
-        if (getmDbHandler().getScenarioFromID(5).getCompleted() == 1 || SessionHistory.sceneSchoolIsReplayed){
+        if (getmDbHandler().getScenarioFromID(6).getUnlocked() == 1|| SessionHistory.sceneSchoolIsReplayed){
             hospitalBuilding.setImageDrawable(getResources().getDrawable(R.drawable.hospital_colored));
             hospital.setEnabled(true);
         }
-        if (getmDbHandler().getScenarioFromID(6).getCompleted() == 1 || SessionHistory.sceneHospitalIsReplayed){
+        if (getmDbHandler().getScenarioFromID(7).getUnlocked() == 1 || SessionHistory.sceneHospitalIsReplayed){
             libraryBuilding.setImageDrawable(getResources().getDrawable(R.drawable.library_colored));
             library.setEnabled(true);
         }

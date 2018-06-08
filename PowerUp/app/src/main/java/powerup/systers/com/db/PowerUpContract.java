@@ -30,6 +30,7 @@ public class PowerUpContract {
 
         public static final String COLUMN_REPLAYED = "Replayed";
 
+        public static final String COLUMN_UNLOCKED = "Unlocked";
     }
 
     public static final class AvatarEntry implements BaseColumns {

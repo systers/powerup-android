@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public abstract class AbstractDbAdapter {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "PowerUpDB";
     protected static SQLiteDatabase mDb;
     private static BufferedReader in;
@@ -142,6 +142,7 @@ public abstract class AbstractDbAdapter {
                 values.put(PowerUpContract.ScenarioEntry.COLUMN_COMPLETED, 0);
                 values.put(PowerUpContract.ScenarioEntry.COLUMN_NEXT_SCENARIO_ID, rowData[6]);
                 values.put(PowerUpContract.ScenarioEntry.COLUMN_REPLAYED, 0);
+                values.put(PowerUpContract.ScenarioEntry.COLUMN_UNLOCKED,0);
                 db.insert(PowerUpContract.ScenarioEntry.TABLE_NAME, null, values);
             } else {
                 throw new Error("Incorrect Scenario CSV Format! Use ID,"
@@ -330,7 +331,8 @@ public abstract class AbstractDbAdapter {
                     PowerUpContract.ScenarioEntry.COLUMN_FIRST_QUESTION_ID + " INTEGER, " +
                     PowerUpContract.ScenarioEntry.COLUMN_COMPLETED + " INTEGER, " +
                     PowerUpContract.ScenarioEntry.COLUMN_NEXT_SCENARIO_ID + " INTEGER, " +
-                    PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " INTEGER" +
+                    PowerUpContract.ScenarioEntry.COLUMN_REPLAYED + " INTEGER, " +
+                    PowerUpContract.ScenarioEntry.COLUMN_UNLOCKED + " INTEGER" +
                     ")";
 
             String CREATE_POINT_TABLE = "CREATE TABLE " + PowerUpContract.PointEntry.TABLE_NAME + "(" +

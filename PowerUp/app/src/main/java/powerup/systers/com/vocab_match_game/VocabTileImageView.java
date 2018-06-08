@@ -15,7 +15,6 @@ public class VocabTileImageView extends android.support.v7.widget.AppCompatImage
         super(context, attrs);
     }
 
-
     public int getPosition() {
         return position;
     }

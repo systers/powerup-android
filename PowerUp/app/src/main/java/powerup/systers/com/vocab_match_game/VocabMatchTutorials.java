@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class VocabMatchTutorials extends AppCompatActivity {
@@ -18,6 +20,11 @@ public class VocabMatchTutorials extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //locks Library Scenario (only for the very first time)
+        if(!SessionHistory.hasGameAlreadyPlayedOnce) {
+            DatabaseHandler dbHandler = new DatabaseHandler(this);
+            dbHandler.resetUnlocked(7);
+        }
         setContentView(R.layout.activity_vocab_match_tutorials);
         tutorialView = (ImageView) findViewById(R.id.tut);
         curTutorialImage = 1;

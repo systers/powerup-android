@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
+import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.powerup.PowerUpUtils;
 
 public class MinesweeperTutorials extends AppCompatActivity {
@@ -18,6 +20,11 @@ public class MinesweeperTutorials extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Locks Hospital Scenario Only for the very first time
+        if(!SessionHistory.hasGameAlreadyPlayedOnce) {
+             DatabaseHandler dbHandler = new DatabaseHandler(this);
+             dbHandler.resetUnlocked(6);
+        }
         setContentView(R.layout.activity_minesweeper_tutorials);
         tutorialView = (ImageView) findViewById(R.id.tut);
         curTutorialImage = 1;
@@ -47,5 +54,5 @@ public class MinesweeperTutorials extends AppCompatActivity {
         startActivity(new Intent(MinesweeperTutorials.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
     }
-    }
+}
 
