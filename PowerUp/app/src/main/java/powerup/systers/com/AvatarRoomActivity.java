@@ -7,19 +7,18 @@ package powerup.systers.com;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 
-import powerup.systers.com.datamodel.SessionHistory;
-import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.data.DataSource;
+import powerup.systers.com.data.IDataSource;
+import powerup.systers.com.data.SessionHistory;
+import powerup.systers.com.utils.InjectionClass;
 
 public class AvatarRoomActivity extends Activity {
 
     public Activity avatarRoomInstance;
-    private DatabaseHandler mDbHandler;
     private ImageView eyeAvatar;
     private ImageView skinAvatar;
     private ImageView clothAvatar;
@@ -29,6 +28,8 @@ public class AvatarRoomActivity extends Activity {
     private Integer skin;
     private Integer cloth;
 
+    private DataSource source;
+
     public AvatarRoomActivity() {
         avatarRoomInstance = this;
     }
@@ -37,8 +38,7 @@ public class AvatarRoomActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // get the database instance
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        source = InjectionClass.provideDataSource(this);
 
         // initialize views
         setContentView(R.layout.avatar_room);
@@ -65,13 +65,33 @@ public class AvatarRoomActivity extends Activity {
             SessionHistory.hasPreviouslyCustomized = true;
         } else {
             // if yes, check the customization from database for eyes, skin, hair, skin
-            eye=getmDbHandler().getAvatarEye();
-            skin=getmDbHandler().getAvatarSkin();
-            hair=getmDbHandler().getAvatarHair();
-            cloth=getmDbHandler().getAvatarCloth();
+            source.getAvatarEye(new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    eye = value;
+                }
+            });
+            source.getAvatarSkin(new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    skin = value;
+                }
+            });
+            source.getAvatarHair(new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    hair = value;
+                }
+            });
+            source.getAvatarCloth(new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    cloth = value;
+                }
+            });
 
             String eyeImageName = getResources().getString(R.string.eye);
-            eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
+            eyeImageName = eyeImageName + eye;
             R.drawable ourRID = new R.drawable();
             java.lang.reflect.Field photoNameField;
             try {
@@ -83,7 +103,7 @@ public class AvatarRoomActivity extends Activity {
             }
 
             String skinImageName = getResources().getString(R.string.skin);
-            skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
+            skinImageName = skinImageName + skin;
             try {
                 photoNameField = ourRID.getClass().getField(skinImageName);
                 skinAvatar.setImageResource(photoNameField.getInt(ourRID));
@@ -93,7 +113,7 @@ public class AvatarRoomActivity extends Activity {
             }
 
             String clothImageName = getResources().getString(R.string.cloth);
-            clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
+            clothImageName = clothImageName + cloth;
             try {
                 photoNameField = ourRID.getClass().getField(clothImageName);
                 clothAvatar.setImageResource(photoNameField.getInt(ourRID));
@@ -103,7 +123,7 @@ public class AvatarRoomActivity extends Activity {
             }
 
             String hairImageName = getResources().getString(R.string.hair);
-            hairImageName = hairImageName + getmDbHandler().getAvatarHair();
+            hairImageName = hairImageName + hair;
             try {
                 photoNameField = ourRID.getClass().getField(hairImageName);
                 hairAvatar.setImageResource(photoNameField.getInt(ourRID));
@@ -277,21 +297,20 @@ public class AvatarRoomActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                getmDbHandler().open();
-                getmDbHandler().resetPurchase();
+                source.resetPurchase();
 
                 // update avatar table with selected eye,skin,hair,skin
-                getmDbHandler().setAvatarEye(eye);
-                getmDbHandler().setAvatarSkin(skin);
-                getmDbHandler().setAvatarHair(hair);
-                getmDbHandler().setAvatarCloth(cloth);
+                source.setAvatarEye(eye);
+                source.setAvatarSkin(skin);
+                source.setAvatarHair(hair);
+                source.setAvatarCloth(cloth);
 
                 //update hair, clothes table as purchased
-                getmDbHandler().setPurchasedHair(hair);
-                getmDbHandler().setPurchasedClothes(cloth);
+                source.setPurchasedHair(hair);
+                source.setPurchasedClothes(cloth);
 
-                getmDbHandler().updateComplete();//set all the complete fields back to 0
-                getmDbHandler().updateReplayed();//set all the replayed fields back to 0
+                source.updateComplete();//set all the complete fields back to 0
+                source.updateReplayed();//set all the replayed fields back to 0
 
                 SessionHistory.totalPoints = 0;    //reset the points stored
                 SessionHistory.currSessionID = 1;
@@ -305,14 +324,8 @@ public class AvatarRoomActivity extends Activity {
                 overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
             }
         });
-        getmDbHandler().close();
+        DataSource.clearInstance();
     }
 
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
 
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
-    }
 }

@@ -15,26 +15,27 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.data.DataSource;
+import powerup.systers.com.data.SessionHistory;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
+import powerup.systers.com.utils.InjectionClass;
 import powerup.systers.com.vocab_match_game.VocabMatchSessionManager;
 
 public class StartActivity extends Activity {
 
     private SharedPreferences preferences;
     private boolean hasPreviouslyStarted;
-    private boolean hasPreviouslyCustomized;
     private Button startButton;
     private Button newUserButton;
     private Button aboutButton;
-    Context context;
+    private Context context;
+    private DataSource dataSource;
     boolean backAlreadyPressed = false;
 
     @Override
@@ -43,10 +44,17 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_main);
         context = StartActivity.this;
 
+        // instantiating datasource
+        dataSource = InjectionClass.provideDataSource(context);
+
         //checking whether it's first time run of application or not
-        preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
-        hasPreviouslyCustomized = preferences.getBoolean(getString(R.string.preferences_has_previously_customized), false);
+        hasPreviouslyStarted = dataSource.checkFirstTime();
+
+        // populate database if it's first run of application
+        if(hasPreviouslyStarted) {
+            //Todo set it later to false
+            populateDatabase();
+        }
 
         // onclick for New Game button
         newUserButton = (Button) findViewById(R.id.newUserButtonFirstPage);
@@ -139,10 +147,14 @@ public class StartActivity extends Activity {
 
     }
 
+    private void populateDatabase() {
+        dataSource.readAndInsertCSVData();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        hasPreviouslyStarted = preferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
+        hasPreviouslyStarted = dataSource.checkFirstTime();
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }

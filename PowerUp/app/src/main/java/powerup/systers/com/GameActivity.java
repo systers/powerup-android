@@ -26,14 +26,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import powerup.systers.com.datamodel.Answer;
-import powerup.systers.com.datamodel.Question;
-import powerup.systers.com.datamodel.Scenario;
-import powerup.systers.com.datamodel.SessionHistory;
-import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.data.DataSource;
+import powerup.systers.com.data.IDataSource;
+import powerup.systers.com.data.SessionHistory;
+import powerup.systers.com.data.entities.Answer;
+import powerup.systers.com.data.entities.Scenario;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
+import powerup.systers.com.utils.DbResourceUtils;
+import powerup.systers.com.utils.InjectionClass;
 import powerup.systers.com.utils.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
@@ -46,7 +48,7 @@ import powerup.systers.com.vocab_match_game.VocabMatchTutorials;
 public class GameActivity extends Activity {
 
     public Activity gameActivityInstance;
-    private DatabaseHandler mDbHandler;
+    private DataSource dataSource;
     private List<Answer> answers;
     private Scenario scene;
     private Scenario prevScene;
@@ -65,6 +67,8 @@ public class GameActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         new ScenarioOverActivity(this).saveActivityOpenedStatus(false);
         context = GameActivity.this;
+
+
         // if any game was left incomplete, open respective gameactivity
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
@@ -81,19 +85,21 @@ public class GameActivity extends Activity {
             isStateChanged = true;
         }
         super.onCreate(savedInstanceState);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+
         setContentView(R.layout.game_activity);
+        // datasource injection
+        dataSource = InjectionClass.provideDataSource(context);
+
 
         // instantiate views
-        questionTextView = (TextView) findViewById(R.id.questionView);
-        scenarioNameTextView = (TextView) findViewById(R.id.scenarioNameEditText);
-        goToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
-        ImageView eyeImageView = (ImageView) findViewById(R.id.eye_view);
-        ImageView skinImageView = (ImageView) findViewById(R.id.skin_view);
-        ImageView hairImageView = (ImageView) findViewById(R.id.hair_view);
-        ImageView clothImageView = (ImageView) findViewById(R.id.dress_view);
-        ImageView accessoryImageView = (ImageView) findViewById(R.id.accessory_view);
+        questionTextView = findViewById(R.id.questionView);
+        scenarioNameTextView = findViewById(R.id.scenarioNameEditText);
+        goToMap = findViewById(R.id.continueButtonGoesToMap);
+        ImageView eyeImageView = findViewById(R.id.eye_view);
+        ImageView skinImageView = findViewById(R.id.skin_view);
+        ImageView hairImageView = findViewById(R.id.hair_view);
+        ImageView clothImageView = findViewById(R.id.dress_view);
+        ImageView accessoryImageView = findViewById(R.id.accessory_view);
 
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
@@ -101,66 +107,25 @@ public class GameActivity extends Activity {
         answers = new ArrayList<>();
 
         // get scenario from database & set layout background
-        scene = getmDbHandler().getScenario();
-        findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getId()-1]));
+        dataSource.getScenarioFromId(SessionHistory.currSessionID, new IDataSource.LoadScenarioCallBack() {
+            @Override
+            public void onScenarioLoaded(Scenario scenario) {
+                scene = scenario;
+            }
+        });
+        findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[scene.getScenarioId()-1]));
         SessionHistory.currScenePoints = 0;
 
         // sets the movement method for handling arrow key movement
         questionTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        // set eye,skin,cloth,hair,accessory to avatar
-        String eyeImageName = getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
-        R.drawable ourRID = new R.drawable();
-        java.lang.reflect.Field photoNameField;
-        try {
-            photoNameField = ourRID.getClass().getField(eyeImageName);
-            eyeImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String skinImageName = getResources().getString(R.string.skin);
-        skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
-        try {
-            photoNameField = ourRID.getClass().getField(skinImageName);
-            skinImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
-        try {
-            photoNameField = ourRID.getClass().getField(clothImageName);
-            clothImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
-        try {
-            photoNameField = ourRID.getClass().getField(hairImageName);
-            hairImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        getmDbHandler().setAvatarAccessory(getmDbHandler().getAvatarAccessory());
-        String accessoryImageName = getResources().getString(R.string.accessories);
-        accessoryImageName = accessoryImageName + getmDbHandler().getAvatarAccessory();
-        try {
-            photoNameField = ourRID.getClass().getField(accessoryImageName);
-            accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
+        // use DbResourceUtil to extract data from database & apply it on avatar
+        DbResourceUtils resourceUtils = new DbResourceUtils(dataSource, context);
+        eyeImageView.setImageResource(resourceUtils.getEyeResourceId());
+        skinImageView.setImageResource(resourceUtils.getSkinResourceId());
+        clothImageView.setImageResource(resourceUtils.getClothResourceId());
+        hairImageView.setImageResource(resourceUtils.getHairResourceId());
+        accessoryImageView.setImageResource(resourceUtils.getAvatarAccessoriesResourceId());
 
         // Update Scene
         updateScenario(0);
@@ -175,8 +140,7 @@ public class GameActivity extends Activity {
                         gotToMapDialogue();
                         SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                         goToMap.setClickable(false);
-                        getmDbHandler()
-                                .setReplayedScenario(scene.getScenarioName());
+                        dataSource.setReplayedScenario(scene.getScenarioName());
                         goToMap.setAlpha((float) 0.0);
                     } else {
                         Intent intent = new Intent(getApplicationContext(),MapActivity.class);
@@ -201,15 +165,15 @@ public class GameActivity extends Activity {
                             updateQA();
                         } else if (answers.get(position).getNextQuestionID() == -1) {
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            dataSource.setCompletedScenario(scene.getScenarioId());
                             updateScenario(-1);
                         } else if (answers.get(position).getNextQuestionID() == -2) {
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            dataSource.setCompletedScenario(scene.getScenarioId());
                             updateScenario(-2);
                         } else if (answers.get(position).getNextQuestionID() == -3){
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            dataSource.setCompletedScenario(scene.getScenarioId());
                             updateScenario(-3);
                         }
                         else {
@@ -218,7 +182,7 @@ public class GameActivity extends Activity {
                                 SessionHistory.currSessionID = 1;
                             }
                             updatePoints(position);
-                            getmDbHandler().setCompletedScenario(scene.getId());
+                            dataSource.setCompletedScenario(scene.getScenarioId());
                             updateScenario(0);
                         }
                     }
@@ -232,9 +196,9 @@ public class GameActivity extends Activity {
      */
     private void updatePoints(int position) {
         // Update the Scene Points
-        SessionHistory.currScenePoints += answers.get(position).getPoints();
+        SessionHistory.currScenePoints += answers.get(position).getAnswerPoints();
         // Update Total Points
-        SessionHistory.totalPoints += answers.get(position).getPoints();
+        SessionHistory.totalPoints += answers.get(position).getAnswerPoints();
     }
 
     /**
@@ -245,9 +209,20 @@ public class GameActivity extends Activity {
     private void updateScenario(int type) {
         if (ScenarioOverActivity.scenarioActivityDone == 1)
             new ScenarioOverActivity().scenarioOverActivityInstance.finish();
-        if (scene != null)
-            prevScene = getmDbHandler().getScenarioFromID(scene.getId());
-        scene = getmDbHandler().getScenario();
+        if (scene != null) {
+            dataSource.getScenarioFromId(scene.getScenarioId(), new IDataSource.LoadScenarioCallBack() {
+                @Override
+                public void onScenarioLoaded(Scenario scenario) {
+                    prevScene = scenario;
+                }
+            });
+        }
+        dataSource.getScenarioFromId(SessionHistory.currSessionID, new IDataSource.LoadScenarioCallBack() {
+            @Override
+            public void onScenarioLoaded(Scenario scenario) {
+                scene = scenario;
+            }
+        });
         // Play the scenario first time
         if (scene.getReplayed() == 0) {
             // goToMap Mechanics
@@ -261,8 +236,7 @@ public class GameActivity extends Activity {
                         gotToMapDialogue();
                         SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                         goToMap.setClickable(false);
-                        getmDbHandler()
-                                .setReplayedScenario(scene.getScenarioName());
+                        dataSource.setReplayedScenario(scene.getScenarioName());
                         goToMap.setAlpha((float) 0.0);
                     } else {
                         Intent intent = new Intent(GameActivity.this, MapActivity.class);
@@ -277,7 +251,7 @@ public class GameActivity extends Activity {
         scenarioNameTextView.setText(scene.getScenarioName());
         // If completed check if it is last scene
         if (prevScene != null && prevScene.getCompleted() == 1) {
-                SessionHistory.prevSessionID = scene.getId();
+                SessionHistory.prevSessionID = scene.getScenarioId();
                 SessionHistory.currSessionID = scene.getNextScenarioID();
                 if (type == 0) {
                     Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
@@ -307,20 +281,23 @@ public class GameActivity extends Activity {
      */
     private void updateQA() {
         listAdapter.clear();
-        getmDbHandler().getAllAnswer(answers, SessionHistory.currQID);
+        dataSource.getAnswerList(SessionHistory.currQID, new IDataSource.LoadAnswerListCallBack() {
+            @Override
+            public void onDataLoaded(List<Answer> dataList) {
+                answers = dataList;
+            }
+        });
         for (Answer ans : answers) {
             listAdapter.add(ans.getAnswerDescription());
         }
-        Question questions = getmDbHandler().getCurrentQuestion();
-        questionTextView.setText(questions.getQuestionDescription());
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
+        final String[] questionDescription = new String[1];
+        dataSource.getCurrentQuestion(new IDataSource.LoadStringCallBack() {
+            @Override
+            public void onDataLoaded(String data) {
+                questionDescription[0] = data;
+            }
+        });
+        questionTextView.setText(questionDescription[0]);
     }
 
     /**
@@ -348,7 +325,7 @@ public class GameActivity extends Activity {
                 startActivity(new Intent(GameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 finish();
-                getmDbHandler().setReplayedScenario(scene.getScenarioName());
+                dataSource.setReplayedScenario(scene.getScenarioName());
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -363,5 +340,11 @@ public class GameActivity extends Activity {
         drawable.setAlpha(200);
         dialog.getWindow().setBackgroundDrawable(drawable);
         dialog.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DataSource.clearInstance();
     }
 }

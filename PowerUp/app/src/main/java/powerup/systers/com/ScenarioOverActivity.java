@@ -28,9 +28,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import powerup.systers.com.datamodel.Scenario;
-import powerup.systers.com.datamodel.SessionHistory;
-import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.data.DataSource;
+import powerup.systers.com.data.IDataSource;
+import powerup.systers.com.data.entities.Scenario;
+import powerup.systers.com.data.SessionHistory;
+import powerup.systers.com.utils.InjectionClass;
 import powerup.systers.com.utils.PowerUpUtils;
 
 
@@ -38,8 +40,10 @@ public class ScenarioOverActivity extends AppCompatActivity {
 
     public Activity scenarioOverActivityInstance;
     public static int scenarioActivityDone;
-    private DatabaseHandler mDbHandler;
-    public Scenario scene;
+    private DataSource dataSource;
+    public Scenario scene, prevScene;
+
+    //Todo check preferences and shift it to pref file
     private final String PREF_NAME_SCENARIO = "SCENARIO_OVER_DIALOG";
     private final int PRIVATE_MODE_SCENARIO = 0;
     private final String GAME_OPENED_SCENARIO = "IS_GAME_REPLAYED";
@@ -55,23 +59,41 @@ public class ScenarioOverActivity extends AppCompatActivity {
         sharedPreferences_scenario = context.getSharedPreferences(PREF_NAME_SCENARIO, PRIVATE_MODE_SCENARIO);
         editor_scenario = sharedPreferences_scenario.edit();
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+
+        dataSource = InjectionClass.provideDataSource(scenarioOverActivityInstance);
         setContentView(R.layout.activity_scenario_over);
-        scene = getmDbHandler().getScenario();
-        final Scenario prevScene = getmDbHandler().getScenarioFromID(SessionHistory.prevSessionID); //Fetching Scenario
+
+        // setting value to current scene object & prevScene object
+        dataSource.getScenarioFromId(SessionHistory.currSessionID, new IDataSource.LoadScenarioCallBack() {
+            @Override
+            public void onScenarioLoaded(Scenario scenario) {
+                scene = scenario;
+            }
+        });
+        dataSource.getScenarioFromId(SessionHistory.prevSessionID, new IDataSource.LoadScenarioCallBack() {
+            @Override
+            public void onScenarioLoaded(Scenario scenario) {
+               prevScene = scenario;
+            }
+        });
+
         scenarioActivityDone = 1;
         //If not launched from map then only dialogMaker() is called
         if(!new ScenarioOverActivity(this).isActivityOpened() && (!(getIntent().getExtras()!=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE))))){
             dialogMaker();
         }
-        ImageView replayButton = (ImageView) findViewById(R.id.replayButton);
-        ImageView continueButton = (ImageView) findViewById(R.id.continueButton);
-        Button mapButton = (Button) findViewById(R.id.mapButton);
+
+        // init view of replay, continue, map button
+        ImageView replayButton = findViewById(R.id.replayButton);
+        ImageView continueButton = findViewById(R.id.continueButton);
+        Button mapButton = findViewById(R.id.mapButton);
+
+        // open MapActivity on map button click
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,12 +104,12 @@ public class ScenarioOverActivity extends AppCompatActivity {
         });
 
         //Initializing and setting Text for currentScenarioName
-        final TextView currentScenarioName = (TextView) findViewById(R.id.currentScenarioName);
+        final TextView currentScenarioName = findViewById(R.id.currentScenarioName);
         if(getIntent().getExtras() !=null && PowerUpUtils.MAP.equals(getIntent().getExtras().getString(PowerUpUtils.SOURCE)) && getIntent().getStringExtra(PowerUpUtils.SCENARIO_NAME) != null)
             currentScenarioName.setText(getResources().getString(R.string.current_scenario_name,getIntent().getStringExtra(PowerUpUtils.SCENARIO_NAME)));
         else
             currentScenarioName.setText(getResources().getString(R.string.current_scenario_name,prevScene.getScenarioName()));
-        TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
+        TextView karmaPoints = findViewById(R.id.karmaPoints);
         
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         continueButton.setOnClickListener(new View.OnClickListener() {
@@ -145,9 +167,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 SessionHistory.currScenePoints = 0;
                 scenarioActivityDone = 0;
-                DatabaseHandler dbHandler = new DatabaseHandler(ScenarioOverActivity.this);
-                dbHandler.resetCompleted(SessionHistory.currSessionID);
-                dbHandler.resetReplayed(SessionHistory.currSessionID);
+                dataSource.resetCompleted(SessionHistory.currSessionID);
+                dataSource.resetReplayed(SessionHistory.currSessionID);
                 scenarioOverActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
                 overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
@@ -216,11 +237,4 @@ public class ScenarioOverActivity extends AppCompatActivity {
         editor_scenario.commit();
     }
 
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
-    }
 }
