@@ -14,10 +14,6 @@ import android.widget.ImageView;
 import powerup.systers.com.db.DatabaseHandler;
 
 public class FinalAvatarActivity extends Activity{
-    private ImageView eyeAvatar;
-    private ImageView skinAvatar;
-    private ImageView clothAvatar;
-    private ImageView hairAvatar;
     private DatabaseHandler mDbHandler;
     public Activity finalAvatarInstance;
     public FinalAvatarActivity() {
@@ -29,10 +25,10 @@ public class FinalAvatarActivity extends Activity{
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.final_avatar);
-        eyeAvatar = (ImageView) findViewById(R.id.eye_view);
-        hairAvatar = (ImageView) findViewById(R.id.hair_view);
-        skinAvatar = (ImageView) findViewById(R.id.skin_view);
-        clothAvatar = (ImageView) findViewById(R.id.dress_view);
+        ImageView eyeAvatar = (ImageView) findViewById(R.id.eye_view);
+        ImageView hairAvatar = (ImageView) findViewById(R.id.hair_view);
+        ImageView skinAvatar = (ImageView) findViewById(R.id.skin_view);
+        ImageView clothAvatar = (ImageView) findViewById(R.id.dress_view);
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();

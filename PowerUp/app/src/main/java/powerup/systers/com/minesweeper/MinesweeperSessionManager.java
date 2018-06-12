@@ -11,8 +11,6 @@ public class MinesweeperSessionManager {
 
     private final String SCORE = "MINESWEEPER_SCORE";
     private final String ROUNDS_COMPLETED = "MINESWEEPER_ROUND_COMPLETED";
-    private final String PREF_NAME = "MINESWEEPER_PREFERENCE";
-    private final int PRIVATE_MODE = 0;
     private final String GAME_OPENED = "IS_MINESWEEPER_OPENED";
 
     SharedPreferences pref;
@@ -25,6 +23,8 @@ public class MinesweeperSessionManager {
      */
     public MinesweeperSessionManager(Context context) {
         this.context = context;
+        String PREF_NAME = "MINESWEEPER_PREFERENCE";
+        int PRIVATE_MODE = 0;
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }

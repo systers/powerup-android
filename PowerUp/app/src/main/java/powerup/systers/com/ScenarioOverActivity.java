@@ -40,8 +40,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
     public static int scenarioActivityDone;
     private DatabaseHandler mDbHandler;
     public Scenario scene;
-    private final String PREF_NAME_SCENARIO = "SCENARIO_OVER_DIALOG";
-    private final int PRIVATE_MODE_SCENARIO = 0;
     private final String GAME_OPENED_SCENARIO = "IS_GAME_REPLAYED";
     SharedPreferences sharedPreferences_scenario;
     Context context_scenario;
@@ -52,6 +50,8 @@ public class ScenarioOverActivity extends AppCompatActivity {
     }
     public ScenarioOverActivity(Context context){
         this.context_scenario = context;
+        String PREF_NAME_SCENARIO = "SCENARIO_OVER_DIALOG";
+        int PRIVATE_MODE_SCENARIO = 0;
         sharedPreferences_scenario = context.getSharedPreferences(PREF_NAME_SCENARIO, PRIVATE_MODE_SCENARIO);
         editor_scenario = sharedPreferences_scenario.edit();
     }

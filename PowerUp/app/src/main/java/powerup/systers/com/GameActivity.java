@@ -54,7 +54,6 @@ public class GameActivity extends Activity {
     private TextView scenarioNameTextView;
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
-    private static boolean isStateChanged = false;
     Context context;
 
     public GameActivity() {
@@ -63,6 +62,7 @@ public class GameActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+         boolean isStateChanged = false;
         new ScenarioOverActivity(this).saveActivityOpenedStatus(false);
         context = GameActivity.this;
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
@@ -75,9 +75,9 @@ public class GameActivity extends Activity {
         if(new VocabMatchSessionManager(this).isVocabMatchOpened()) {
             startActivity(new Intent(GameActivity.this, VocabMatchGameActivity.class));
         }
-        if (savedInstanceState != null) {
-            isStateChanged = true;
-        }
+      if(savedInstanceState !=null){
+            isStateChanged = false;
+      }
         super.onCreate(savedInstanceState);
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
