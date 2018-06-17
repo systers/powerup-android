@@ -23,7 +23,6 @@ import powerup.systers.com.R;
 import powerup.systers.com.ScenarioOverActivity;
 import powerup.systers.com.StartActivity;
 import powerup.systers.com.StoreActivity;
-import powerup.systers.com.db.DatabaseHandler;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;

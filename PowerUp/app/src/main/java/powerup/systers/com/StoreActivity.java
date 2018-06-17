@@ -23,9 +23,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import powerup.systers.com.datamodel.SessionHistory;
-import powerup.systers.com.datamodel.StoreItem;
-import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.data.DataSource;
+import powerup.systers.com.data.IDataSource;
+import powerup.systers.com.data.SessionHistory;
+import powerup.systers.com.data.StoreItem;
+import powerup.systers.com.utils.DbResourceUtils;
+import powerup.systers.com.utils.InjectionClass;
 import powerup.systers.com.utils.PowerUpUtils;
 
 import static powerup.systers.com.utils.PowerUpUtils.MAX_ELEMENTS_PER_SCREEN;
@@ -37,14 +40,13 @@ public class StoreActivity extends AppCompatActivity {
     public int storeItemTypeindex = 0;
     public int currentPage = 0;
     int screenWidth, screenHeight;
-    ImageView clothImageView, hairImageView, accessoryImageView;
     ImageView leftArrow, rightArrow, hairButton, clothesButton, accessoriesButton;
     List<List<StoreItem>> allDataSet;
     GridAdapter adapter;
     TextView karmaPoints;
-    private DatabaseHandler mDbHandler;
-    java.lang.reflect.Field photoNameField;
-    R.drawable ourRID;
+    private DataSource dataSource;
+    private DbResourceUtils resourceUtils;
+    private ImageView eyeImageView, skinImageView, clothImageView, hairImageView, accessoryImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +54,39 @@ public class StoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store);
 
         // get the database instance
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
-
+        dataSource = InjectionClass.provideDataSource(this);
         // getting the screen dimensions
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
 
         // set the karma points
-        karmaPoints = (TextView) findViewById(R.id.karma_points);
+        karmaPoints = findViewById(R.id.karma_points);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
 
+        // init avatar image views
+        eyeImageView = findViewById(R.id.eye_view);
+        skinImageView = findViewById(R.id.skin_view);
+        hairImageView = findViewById(R.id.hair_view);
+        clothImageView = findViewById(R.id.dress_view);
+        accessoryImageView = findViewById(R.id.acc_view);
+
+        //  init views
+        leftArrow = findViewById(R.id.left_arrow);
+        rightArrow = findViewById(R.id.right_arrow);
+        hairButton = findViewById(R.id.hair_button);
+        clothesButton = findViewById(R.id.clothes_button);
+        accessoriesButton = findViewById(R.id.accessories_button);
+
+        // use DbResourceUtil to extract data from database & apply it on avatar
+        resourceUtils = new DbResourceUtils(dataSource, this);
+        eyeImageView.setImageResource(resourceUtils.getEyeResourceId());
+        skinImageView.setImageResource(resourceUtils.getSkinResourceId());
+        clothImageView.setImageResource(resourceUtils.getClothResourceId());
+        hairImageView.setImageResource(resourceUtils.getHairResourceId());
+        accessoryImageView.setImageResource(resourceUtils.getAvatarAccessoriesResourceId());
+
         // starts the map activity
-        Button mapButton = (Button) findViewById(R.id.map_button);
+        Button mapButton = findViewById(R.id.map_button);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,47 +95,6 @@ public class StoreActivity extends AppCompatActivity {
                 overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
             }
         });
-
-        // init avatar image views
-        ImageView eyeImageView = (ImageView) findViewById(R.id.eye_view);
-        ImageView skinImageView = (ImageView) findViewById(R.id.skin_view);
-        hairImageView = (ImageView) findViewById(R.id.hair_view);
-        clothImageView = (ImageView) findViewById(R.id.dress_view);
-        accessoryImageView = (ImageView) findViewById(R.id.acc_view);
-
-        // get value from database & set views on avatar
-        String eyeImageName = getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
-        ourRID = new R.drawable();
-
-        try {
-            photoNameField = ourRID.getClass().getField(eyeImageName);
-            eyeImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String skinImageName = getResources().getString(R.string.skin);
-        skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
-        try {
-            photoNameField = ourRID.getClass().getField(skinImageName);
-            skinImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        setAvatarClothes(getmDbHandler().getAvatarCloth());
-        setAvatarHair(getmDbHandler().getAvatarHair());
-        setAvatarAccessories(getmDbHandler().getAvatarAccessory());
-
-        //  init views
-        leftArrow = (ImageView) findViewById(R.id.left_arrow);
-        rightArrow = (ImageView) findViewById(R.id.right_arrow);
-        hairButton = (ImageView) findViewById(R.id.hair_button);
-        clothesButton = (ImageView) findViewById(R.id.clothes_button);
-        accessoriesButton = (ImageView) findViewById(R.id.accessories_button);
 
         hairButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,51 +154,11 @@ public class StoreActivity extends AppCompatActivity {
             }
         });
 
-        gridView = (GridView) findViewById(R.id.grid_view);
+        gridView = findViewById(R.id.grid_view);
         createDataLists();
         adapter = new GridAdapter(this, allDataSet.get(0).subList(0, MAX_ELEMENTS_PER_SCREEN));
         gridView.setAdapter(adapter);
         setArrows();
-    }
-
-    public void setAvatarHair(int index){
-        getmDbHandler().setAvatarHair(index);
-        String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + index;
-        try {
-            photoNameField = ourRID.getClass().getField(hairImageName);
-            hairImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-    }
-
-    public void setAvatarClothes(int index){
-        getmDbHandler().setAvatarCloth(index);
-        String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + index;
-        try {
-            photoNameField = ourRID.getClass().getField(clothImageName);
-            clothImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-    }
-
-    public void setAvatarAccessories(int index){
-        getmDbHandler().setAvatarAccessory(index);
-        String accessoryImageName = getResources().getString(R.string.accessories);
-        accessoryImageName = accessoryImageName + index;
-        try {
-            photoNameField = ourRID.getClass().getField(accessoryImageName);
-            accessoryImageView.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
     }
 
     // create store data arraylist & add it in allDataSet array list
@@ -316,37 +257,53 @@ public class StoreActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (v.isEnabled()){
 
-                        TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
-                        int index = calculatePosition(position)+1;
+                        final TextView itemPoints = (TextView) v.findViewById(R.id.item_points);
+                        final int index = calculatePosition(position)+1;
                         if (storeItemTypeindex == 0) { //hair
-                            setAvatarHair(index);
-                            if (getmDbHandler().getPurchasedHair(index) == 0){
-                                final int cost = Integer.parseInt(itemPoints.getText().toString());
-                                showConfirmPurchaseDialog(cost, index);
-                            } else {
-                                setAvatarHair(index);
-                            }
-
+                            dataSource.setAvatarHair(index);
+                            hairImageView.setImageResource(resourceUtils.getHairResourceId());
+                            dataSource.getPurchasedHair(index, new IDataSource.LoadIntegerCallback() {
+                                @Override
+                                public void onResultLoaded(int value) {
+                                    if (value == 0) {
+                                        final int cost = Integer.parseInt(itemPoints.getText().toString());
+                                        showConfirmPurchaseDialog(cost, index);
+                                    }
+                                    else {
+                                        dataSource.setAvatarHair(index);
+                                    }
+                                }
+                            });
+                            
                         } else if (storeItemTypeindex == 1) { //clothes
-                            setAvatarClothes(index);
-                            if (getmDbHandler().getPurchasedClothes(index) == 0){
-                                final int cost = Integer.parseInt(itemPoints.getText().toString());
-                                showConfirmPurchaseDialog(cost, index);
-                            } else {
-                                setAvatarClothes(index);
-                            }
-
+                            dataSource.setAvatarCloth(index);
+                            dataSource.getPurchasedClothes(index, new IDataSource.LoadIntegerCallback() {
+                                @Override
+                                public void onResultLoaded(int value) {
+                                    if(value == 0) {
+                                        final int cost = Integer.parseInt(itemPoints.getText().toString());
+                                        showConfirmPurchaseDialog(cost, index);
+                                    }
+                                    else {
+                                        dataSource.setAvatarCloth(index);
+                                    }
+                                }
+                            });
                         } else if (storeItemTypeindex == 2) { //accessories
-                            setAvatarAccessories(index);
-                            if (getmDbHandler().getPurchasedAccessories(index) == 0){
-                                final int cost = Integer.parseInt(itemPoints.getText().toString());
-                                showConfirmPurchaseDialog(cost, index);
-                            } else {
-                                setAvatarAccessories(index);
-                            }
+                            dataSource.setAvatarAccessory(index);
+                            dataSource.getPurchasedAccessories(index, new IDataSource.LoadIntegerCallback() {
+                                @Override
+                                public void onResultLoaded(int value) {
+                                    if (value == 0) {
+                                        final int cost = Integer.parseInt(itemPoints.getText().toString());
+                                        showConfirmPurchaseDialog(cost, index);
+                                    } else {
+                                        dataSource.setAvatarAccessory(index);
+                                    }
+                                }
+                            });
                         }
                         adapter.refresh(adapter.storeItems); // will update change the background if any is not available
-
                     }
                 }
             });
@@ -382,13 +339,32 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     private int getSelectedItemId(){
+        final int[] returnValue = new int[1];
         switch (storeItemTypeindex) {
             case 0: //hair
-                return getmDbHandler().getAvatarHair();
+                dataSource.getAvatarHair(new IDataSource.LoadIntegerCallback() {
+                    @Override
+                    public void onResultLoaded(int value) {
+                        returnValue[0] = value;
+                    }
+                });
+                return returnValue[0];
             case 1: //cloth
-                return getmDbHandler().getAvatarCloth();
+                dataSource.getAvatarCloth(new IDataSource.LoadIntegerCallback() {
+                    @Override
+                    public void onResultLoaded(int value) {
+                        returnValue[0] = value;
+                    }
+                });
+                return returnValue[0];
             case 2:
-                return getmDbHandler().getAvatarAccessory();
+                dataSource.getAvatarAccessory(new IDataSource.LoadIntegerCallback() {
+                    @Override
+                    public void onResultLoaded(int value) {
+                        returnValue[0] = value;
+                    }
+                });
+                return returnValue[0];
             default:
                 throw new IllegalArgumentException("Invalid store type index");
         }
@@ -404,16 +380,16 @@ public class StoreActivity extends AppCompatActivity {
                 karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
                 switch (storeItemTypeindex) {
                     case PowerUpUtils.TYPE_HAIR:
-                        getmDbHandler().setPurchasedHair(index);
-                        setAvatarHair(index);
+                        dataSource.setPurchasedHair(index);
+                        dataSource.setAvatarHair(index);
                         break;
                     case PowerUpUtils.TYPE_CLOTHES:
-                        getmDbHandler().setPurchasedClothes(index);
-                        setAvatarClothes(index);
+                        dataSource.setPurchasedClothes(index);
+                        dataSource.setAvatarCloth(index);
                         break;
                     case PowerUpUtils.TYPE_ACCESSORIES:
-                        getmDbHandler().setPurchasedAccessories(index);
-                        setAvatarAccessories(index);
+                        dataSource.setPurchasedAccessories(index);
+                        dataSource.setAvatarAccessory(index);
                 }
                 adapter.refresh(adapter.storeItems); // will update change the background if any is not available
                 showSuccessPurchaseDialog();
@@ -445,20 +421,31 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     public int getPurchasedStatus(int index) {
+        final int[] returnValue = new int[1];
         switch(storeItemTypeindex) {
-            case 0: return getmDbHandler().getPurchasedHair(index); // hair
-            case 1: return getmDbHandler().getPurchasedClothes(index); // clothes
-            case 2: return getmDbHandler().getPurchasedAccessories(index); // accessories
+            case 0: dataSource.getPurchasedHair(index, new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    returnValue[0] = value;
+                }
+            }); // hair
+                return returnValue[0];
+            case 1: dataSource.getPurchasedClothes(index, new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    returnValue[0] = value;
+                }
+            }); // clothes
+                return returnValue[0];
+            case 2: dataSource.getPurchasedAccessories(index, new IDataSource.LoadIntegerCallback() {
+                @Override
+                public void onResultLoaded(int value) {
+                    returnValue[0] = value;
+                }
+            }); // accessories
+                return returnValue[0]; // accessories
             default:return 0;
         }
-    }
-
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
     }
 
 
@@ -486,6 +473,14 @@ public class StoreActivity extends AppCompatActivity {
         startActivity(new Intent(StoreActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DataSource.clearInstance();
+    }
 }
+
+
 
 

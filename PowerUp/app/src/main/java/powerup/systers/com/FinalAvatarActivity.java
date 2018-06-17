@@ -5,20 +5,16 @@ package powerup.systers.com;
  */
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 
-import powerup.systers.com.db.DatabaseHandler;
+import powerup.systers.com.data.DataSource;
+import powerup.systers.com.utils.DbResourceUtils;
+import powerup.systers.com.utils.InjectionClass;
 
 public class FinalAvatarActivity extends Activity{
-    private ImageView eyeAvatar;
-    private ImageView skinAvatar;
-    private ImageView clothAvatar;
-    private ImageView hairAvatar;
-    private DatabaseHandler mDbHandler;
+    private DataSource dataSource;
     public Activity finalAvatarInstance;
     public FinalAvatarActivity() {
         finalAvatarInstance = this;
@@ -28,73 +24,33 @@ public class FinalAvatarActivity extends Activity{
         super.onCreate(savedInstanceState);
 
         // get the database instance
-        setmDbHandler(new DatabaseHandler(this));
-        getmDbHandler().open();
+        dataSource = InjectionClass.provideDataSource(this);
 
         // initialize variables
         setContentView(R.layout.final_avatar);
-        eyeAvatar = (ImageView) findViewById(R.id.eye_view);
-        hairAvatar = (ImageView) findViewById(R.id.hair_view);
-        skinAvatar = (ImageView) findViewById(R.id.skin_view);
-        clothAvatar = (ImageView) findViewById(R.id.dress_view);
+        ImageView eyeAvatar = findViewById(R.id.eye_view);
+        ImageView hairAvatar = findViewById(R.id.hair_view);
+        ImageView skinAvatar = findViewById(R.id.skin_view);
+        ImageView clothAvatar = findViewById(R.id.dress_view);
 
-        // extract selected eyes,skin,cloth,hair from database & apply it on avatar
-        String eyeImageName = getResources().getString(R.string.eye);
-        eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
-        R.drawable ourRID = new R.drawable();
-        java.lang.reflect.Field photoNameField;
-        try {
-            photoNameField = ourRID.getClass().getField(eyeImageName);
-            eyeAvatar.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String skinImageName = getResources().getString(R.string.skin);
-        skinImageName = skinImageName + getmDbHandler().getAvatarSkin();
-        try {
-            photoNameField = ourRID.getClass().getField(skinImageName);
-            skinAvatar.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String clothImageName = getResources().getString(R.string.cloth);
-        clothImageName = clothImageName + getmDbHandler().getAvatarCloth();
-        try {
-            photoNameField = ourRID.getClass().getField(clothImageName);
-            clothAvatar.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
-
-        String hairImageName = getResources().getString(R.string.hair);
-        hairImageName = hairImageName + getmDbHandler().getAvatarHair();
-        try {
-            photoNameField = ourRID.getClass().getField(hairImageName);
-            hairAvatar.setImageResource(photoNameField.getInt(ourRID));
-        } catch (NoSuchFieldException | IllegalAccessException
-                | IllegalArgumentException error) {
-            error.printStackTrace();
-        }
+        // use DbResourceUtil to extract data from database & apply it on avatar
+        DbResourceUtils resourceUtils = new DbResourceUtils(dataSource, FinalAvatarActivity.this);
+        eyeAvatar.setImageResource(resourceUtils.getEyeResourceId());
+        skinAvatar.setImageResource(resourceUtils.getSkinResourceId());
+        clothAvatar.setImageResource(resourceUtils.getClothResourceId());
+        hairAvatar.setImageResource(resourceUtils.getHairResourceId());
 
         //initialize continue & back button
-        ImageView continueButton = (ImageView) findViewById(R.id.continueButtonFinal);
-        ImageView backButton = (ImageView) findViewById(R.id.backButtonFinal);
+        ImageView continueButton = findViewById(R.id.continueButtonFinal);
+        ImageView backButton = findViewById(R.id.backButtonFinal);
 
         // setting has previously started to true in preferences & start MapActivity
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(FinalAvatarActivity.this);
-                boolean hasPreviouslyStarted = prefs.getBoolean(getString(R.string.preferences_has_previously_started), false);
+                boolean hasPreviouslyStarted = dataSource.checkFirstTime();
                 if (!hasPreviouslyStarted) {
-                    SharedPreferences.Editor edit = prefs.edit();
-                    edit.putBoolean(getString(R.string.preferences_has_previously_started), Boolean.TRUE);
-                    edit.apply();
+                    dataSource.setFirstTime(true);
                 }
                 startActivityForResult(new Intent(FinalAvatarActivity.this, MapActivity.class), 0);
                 overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
@@ -111,11 +67,9 @@ public class FinalAvatarActivity extends Activity{
         });
     }
 
-    public DatabaseHandler getmDbHandler() {
-        return mDbHandler;
-    }
-
-    public void setmDbHandler(DatabaseHandler mDbHandler) {
-        this.mDbHandler = mDbHandler;
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DataSource.clearInstance();
     }
 }

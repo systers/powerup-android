@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import powerup.systers.com.MapActivity;
 import powerup.systers.com.R;
-import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.data.SessionHistory;
 import powerup.systers.com.utils.PowerUpUtils;
 
 /**

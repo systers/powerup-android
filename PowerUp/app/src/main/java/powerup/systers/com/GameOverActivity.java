@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import powerup.systers.com.datamodel.SessionHistory;
+import powerup.systers.com.data.SessionHistory;
 
 public class GameOverActivity extends Activity {
 
