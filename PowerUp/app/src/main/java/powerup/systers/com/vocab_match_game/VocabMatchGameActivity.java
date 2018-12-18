@@ -76,7 +76,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
             oldestTile = session.getCurrTile();
             latestTile = session.getCurrTile();
             score = session.getCurrScore();
-            scoreView.setText("" + score);
+            scoreView.setText(String.valueOf(score));
             //makes sure no array out of bond, if no board left loop to the beginning
             //this is cleaner than trying to figure out what the clipboard contained before
             tv1.setText(PowerUpUtils.
@@ -142,7 +142,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     String tileText = PowerUpUtils.VOCAB_MATCHES_BOARDS_TEXTS[oldestTile];
                     if (tileText.equals(boardText)) {
                         score++;
-                        scoreView.setText("" + score);
+                        scoreView.setText(String.valueOf(score));
                         mediaPlayerPlus.start();
                         boardView.setBackground(getResources().getDrawable(R.drawable.vocab_clipboard_green));
                     }else {

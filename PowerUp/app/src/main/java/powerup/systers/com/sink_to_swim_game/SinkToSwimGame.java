@@ -79,7 +79,7 @@ public class SinkToSwimGame extends AppCompatActivity {
             correctAnswers = session.getCorrectAnswer();
             wrongAnswers = session.getWrongAnswer();
             score = session.getCurrScore();
-            scoreView.setText("Score: " + score);
+            scoreView.setText(new StringBuilder().append("Score: ").append(score).toString());
             speed = session.getSpeed();
             curQuestion = session.getCurrQuestion();
             millisLeft = session.getTimeLeft();
@@ -105,7 +105,7 @@ public class SinkToSwimGame extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 millisLeft = millisUntilFinished;
                 long secLeft = millisLeft / 1000;
-                timer.setText("" + secLeft); //set the new time in timer textView
+                timer.setText(String.valueOf(secLeft)); //set the new time in timer textView
                 bringPointerAndAvatarDown(); //every second, pointer and avatar are brought down by some amount
                 float pointerBottomPoint = height * 0.75f;
                 if (pointer.getTranslationY() > pointerBottomPoint) {
@@ -249,7 +249,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         }
 
         showNextQuestion();
-        scoreView.setText("Score: " + score);
+        scoreView.setText(new StringBuilder().append("Score: ").append(score).toString());
     }
 
     /**
@@ -299,7 +299,7 @@ public class SinkToSwimGame extends AppCompatActivity {
                 public void onTick(long millisUntilFinished) {
                     millisLeft = millisUntilFinished;
                     long secLeft = millisLeft / 1000;
-                    timer.setText("" + secLeft); //set the new time in timer textView
+                    timer.setText(String.valueOf(secLeft)); //set the new time in timer textView
                     bringPointerAndAvatarDown(); //every second, pointer and avatar are brought down by some amount
                     float pointerBottomPoint = height * 0.75f;
                     if (pointer.getTranslationY() > pointerBottomPoint) {

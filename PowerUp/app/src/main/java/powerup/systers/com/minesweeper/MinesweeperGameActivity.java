@@ -67,7 +67,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             //fetch previous round score and rounds completed from session database
             MinesweeperSessionManager session = new MinesweeperSessionManager(this);
             score = session.getScore();
-            scoreTextView.setText("Score: " + score);
+            scoreTextView.setText(new StringBuilder().append("Score: ").append(score).toString());
             gameRound = session.getCompletedRounds();
             ImageView background = (ImageView) findViewById(R.id.mine_background); //set background according to current contracpetive method
             background.setImageDrawable(getResources().getDrawable(PowerUpUtils.ROUND_BACKGROUNDS[gameRound]));
@@ -144,7 +144,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
-        scoreTextView.setText("Score: " + score);
+        scoreTextView.setText(new StringBuilder().append("Score: ").append(score).toString());
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_out);
         scoreTextView.startAnimation(animation);
         numSelectionsLeft--; //decrement the number of selection left

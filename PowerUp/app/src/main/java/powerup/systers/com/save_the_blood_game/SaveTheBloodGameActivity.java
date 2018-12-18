@@ -214,7 +214,7 @@ public class SaveTheBloodGameActivity extends Activity {
             if (calledFromActivity) {
                 Log.v("Save Blood Game", "Correct Answer Clicked");
                 tv.setTextColor(getResources().getColor(R.color.correct_answer));
-                txtScore.setText("" + score);
+                txtScore.setText(String.valueOf(score));
                 progressBar.setProgress(progress);
                 if (PowerUpUtils.SAVE_BLOOD_ANSWER_COUNT[roundCount] == answerCount)
                     showNextRound(tv);

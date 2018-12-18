@@ -78,7 +78,7 @@ public class MemoryMatchGameActivity extends Activity {
             imgTile1.setImageResource(PowerUpUtils.MEMORY_GAME_TILE[arrayTile.get(1)]);
             btnStart.setVisibility(View.GONE);
             positionCount = 1;
-            txtScore.setText(""+score);
+            txtScore.setText(String.valueOf(score));
         } else {
             //Setting the view of first tile
             position = random.nextInt(8);
@@ -146,7 +146,7 @@ public class MemoryMatchGameActivity extends Activity {
      * Updating the value of score after each answer
      */
     public void updateViews() {
-        txtScore.setText("" + score);
+        txtScore.setText(String.valueOf(score));
         imgTile1.startAnimation(translateTile);
         translateTile.setAnimationListener(new Animation.AnimationListener() {
             @Override

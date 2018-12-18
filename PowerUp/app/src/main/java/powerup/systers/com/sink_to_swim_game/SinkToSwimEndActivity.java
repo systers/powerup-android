@@ -24,9 +24,9 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         TextView  scoreView = (TextView) findViewById(R.id.swim_score);
         TextView  correctView = (TextView) findViewById(R.id.correct);
         TextView  wrongView = (TextView) findViewById(R.id.wrong);
-        scoreView.setText(""+score);
-        correctView.setText(""+correctAnswers);
-        wrongView.setText(""+wrongAnswers);
+        scoreView.setText(String.valueOf(score));
+        correctView.setText(String.valueOf(correctAnswers));
+        wrongView.setText(String.valueOf(wrongAnswers));
     }
 
     public void continuePressed(View view){

@@ -40,9 +40,9 @@ public class MemoryMatchEndActivity extends Activity {
     }
 
     public void updateViews(){
-        txtScore.setText(""+score);
-        txtMemoryCorrect.setText(""+correct);
-        txtMemoryWrong.setText(""+wrong);
+        txtScore.setText(String.valueOf(score));
+        txtMemoryCorrect.setText(String.valueOf(correct));
+        txtMemoryWrong.setText(String.valueOf(wrong));
     }
 
     public void getValues(){

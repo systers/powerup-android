@@ -93,8 +93,8 @@ public class KillTheVirusGame extends Activity {
             millisLeft = session.getTime();
             lives = session.getLives();
             duration = session.getSpeed();
-            txtScore.setText(""+score);
-            txtLives.setText(""+lives);
+            txtScore.setText(String.valueOf(score));
+            txtLives.setText(String.valueOf(lives));
             for(int i = 1; i<= 8; i++){
                 if(PowerUpUtils.VIRUS_HIT[i])
                     imgVirusArray[i].setVisibility(View.GONE);
@@ -147,7 +147,7 @@ public class KillTheVirusGame extends Activity {
         imgVirusArray[virusNumber].setVisibility(View.GONE);
         PowerUpUtils.VIRUS_HIT[virusNumber] = true;
         score = increasePoint(score);
-        txtScore.setText(Integer.toString(score));
+        txtScore.setText(String.valueOf(score));
         if (score == 8)
             gameEnd(score);
     }
@@ -260,7 +260,7 @@ public class KillTheVirusGame extends Activity {
 
     public void updateLives(){
         lives = lives - 1;
-        txtLives.setText("" + lives);
+        txtLives.setText(String.valueOf(lives));
         if(lives == 0)
             gameEnd(score);
     }

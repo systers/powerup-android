@@ -43,9 +43,9 @@ public class SaveTheBloodEndActivity extends Activity {
     }
 
     public void updateViews(){
-        txtScore.setText(""+score);
-        txtCorrect.setText(""+correct);
-        txtWrong.setText(""+wrong);
+        txtScore.setText(String.valueOf(score));
+        txtCorrect.setText(String.valueOf(correct));
+        txtWrong.setText(String.valueOf(wrong));
     }
 
     public void getValues(){

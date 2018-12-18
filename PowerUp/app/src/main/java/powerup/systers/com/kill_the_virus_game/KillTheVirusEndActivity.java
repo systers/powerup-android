@@ -35,7 +35,7 @@ public class KillTheVirusEndActivity extends Activity {
     private void updateScore() {
         //getting the value of score from intent extra
         int score = getIntent().getIntExtra(getString(R.string.score_kill_the_virus), -1);
-        txtScoreEnd.setText("" + score);
+        txtScoreEnd.setText(String.valueOf(score));
     }
 
     @Override

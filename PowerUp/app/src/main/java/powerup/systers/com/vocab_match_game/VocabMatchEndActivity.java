@@ -26,9 +26,9 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         scoreView = (TextView) findViewById(R.id.vocab_score);
         correctView = (TextView) findViewById(R.id.correct);
         wrongView = (TextView) findViewById(R.id.wrong);
-        scoreView.setText(""+score);
-        correctView.setText(""+correctAnswers);
-        wrongView.setText(""+wrongAnswers);
+        scoreView.setText(String.valueOf(score));
+        correctView.setText(String.valueOf(correctAnswers));
+        wrongView.setText(String.valueOf(wrongAnswers));
     }
 
     public void continuePressed(View view){
