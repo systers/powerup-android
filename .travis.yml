@@ -14,4 +14,4 @@ script:
  - ./gradlew assembleDebug
 after_success:
   - cd ..
-  - ./generate-apk.sh
+- ./generate-apk.sh
