@@ -55,7 +55,6 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
     private StorePresenter presenter;
 
     private AppDatabase database;
-    private Points p;
     private int points;
 
     @BindView(R.id.karma_points)
@@ -134,7 +133,7 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
         screenHeight = getResources().getDisplayMetrics().heightPixels;
 
         //get the karma points
-        p = database.pointsDao().getPoints();
+        Points p = database.pointsDao().getPoints();
         points = p.getUserPoints();
 
         // set the karma points
