@@ -51,3 +51,4 @@ Only permanent resolutions (such as bans) may be appealed. To appeal a decision 
 
 _Revision 1.0, DRAFT, proposed June 2014_
 _Reporting Guidelines derived from those of the [Django Software Foundation](https://www.djangoproject.com/conduct/reporting/)._
+This is a small change
