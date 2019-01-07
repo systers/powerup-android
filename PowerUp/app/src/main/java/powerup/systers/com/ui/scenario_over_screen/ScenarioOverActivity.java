@@ -8,6 +8,7 @@ package powerup.systers.com.ui.scenario_over_screen;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,7 +32,9 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import powerup.systers.com.R;
+import powerup.systers.com.data.AppDatabase;
 import powerup.systers.com.data.DataSource;
+import powerup.systers.com.data.entities.Points;
 import powerup.systers.com.data.entities.Scenario;
 import powerup.systers.com.data.SessionHistory;
 import powerup.systers.com.ui.Level2TransitionActivity;
@@ -70,6 +73,12 @@ public class ScenarioOverActivity extends AppCompatActivity implements ScenarioO
 
         dataSource = InjectionClass.provideDataSource(scenarioOverActivityInstance);
         setContentView(R.layout.activity_scenario_over);
+
+        //Initializing the database
+        AppDatabase database = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"points-database")
+                .allowMainThreadQueries()
+                .build();
+
         ButterKnife.bind(this);
         presenter = new ScenarioOverPresenter(this, dataSource);
 
@@ -86,6 +95,11 @@ public class ScenarioOverActivity extends AppCompatActivity implements ScenarioO
         TextView karmaPoints = findViewById(R.id.karmaPoints);
 
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+
+        //Storing points in Room database
+        Points p = new Points(1,SessionHistory.progressHealth,SessionHistory.progressInvisibility,SessionHistory.progressHealing,SessionHistory.progressTelepathy,SessionHistory.totalPoints);
+        database.pointsDao().insertPoints(p);
+
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

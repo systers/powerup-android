@@ -1,6 +1,7 @@
 package powerup.systers.com.ui.store_screen;
 
 import android.annotation.TargetApi;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,10 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import powerup.systers.com.R;
+import powerup.systers.com.data.AppDatabase;
 import powerup.systers.com.data.DataSource;
 import powerup.systers.com.data.IDataSource;
 import powerup.systers.com.data.SessionHistory;
 import powerup.systers.com.data.StoreItem;
+import powerup.systers.com.data.entities.Points;
 import powerup.systers.com.ui.map_screen.MapActivity;
 import powerup.systers.com.utils.InjectionClass;
 
@@ -50,6 +53,9 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
 
     private DataSource dataSource;
     private StorePresenter presenter;
+
+    private AppDatabase database;
+    private int points;
 
     @BindView(R.id.karma_points)
     public TextView karmaPoints;
@@ -75,6 +81,12 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+
+        //Initializing the database
+        database = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"points-database")
+                .allowMainThreadQueries()
+                .build();
+
         ButterKnife.bind(this);
         init();
 
@@ -121,8 +133,16 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
 
-        // set the karma points
-        karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        //get the karma points
+        if(database.pointsDao()!= null){
+            Points p = database.pointsDao().getPoints();
+            points = p.getUserPoints();
+            karmaPoints.setText(String.valueOf(points));
+        }
+        else{
+            karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+        }
+
         presenter.setValues();
         // create store data arraylist & add it in allDataSet array list
         allDataSet = presenter.createDataList();

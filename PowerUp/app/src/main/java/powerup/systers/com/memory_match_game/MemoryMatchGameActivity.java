@@ -2,6 +2,7 @@ package powerup.systers.com.memory_match_game;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -23,7 +24,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import powerup.systers.com.R;
+import powerup.systers.com.data.AppDatabase;
 import powerup.systers.com.data.SessionHistory;
+import powerup.systers.com.data.entities.Points;
 import powerup.systers.com.ui.map_screen.MapActivity;
 import powerup.systers.com.utils.PowerUpUtils;
 
@@ -52,11 +55,19 @@ public class MemoryMatchGameActivity extends Activity {
     public boolean calledFromActivity = true, correctAns = true, buttonClick = false;;
     private long millisLeft = 30000;
 
+    private AppDatabase database;
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_match_game);
+
+        //Initializing the database
+        database = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"points-database")
+                .allowMainThreadQueries()
+                .build();
+
         ButterKnife.bind(this);
         translateTile = AnimationUtils.loadAnimation(this, R.animator.translate_tile);
         random = new Random();
@@ -221,6 +232,11 @@ public class MemoryMatchGameActivity extends Activity {
         //Adding mini-game scores
         SessionHistory.totalPoints += score;
         SessionHistory.currScenePoints += score;
+
+        //Storing points in Room database
+        Points p = new Points(1,SessionHistory.progressHealth,SessionHistory.progressInvisibility,SessionHistory.progressHealing,SessionHistory.progressTelepathy,SessionHistory.totalPoints);
+        database.pointsDao().insertPoints(p);
+
         startActivity(intent);
         overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
     }
