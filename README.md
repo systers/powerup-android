@@ -65,3 +65,5 @@ Here's the link to the official documentation:
 1. Include spaces between parameters when you call a method for example: `Intent(MainActivity.this, GameActivity.class)`.
 1. Give relevant names to buttons and other resources. 
 1. Use `@id` instead of `@+id` when referring to resources that have been already created in xml files.
+
+coder
