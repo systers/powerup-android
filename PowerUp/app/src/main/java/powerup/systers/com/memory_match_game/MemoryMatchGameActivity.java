@@ -52,7 +52,7 @@ public class MemoryMatchGameActivity extends Activity {
     public boolean calledFromActivity = true, correctAns = true, buttonClick = false;;
     private long millisLeft = 30000;
 
-    //Variable to see if
+    //Variable to see if game has paused and restarted
     private static boolean Restart=false;
 
     @SuppressLint("ResourceType")
