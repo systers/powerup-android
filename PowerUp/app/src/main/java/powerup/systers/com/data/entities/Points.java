@@ -3,7 +3,7 @@ package powerup.systers.com.data.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "Point")
+@Entity
 public class Points {
 
     @PrimaryKey
