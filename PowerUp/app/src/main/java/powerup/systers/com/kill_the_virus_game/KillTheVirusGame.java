@@ -63,7 +63,6 @@ public class KillTheVirusGame extends Activity {
     private long duration = 5000, millisLeft = 30000;;
     private ImageView[] imgVirusArray = new ImageView[9];
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +71,7 @@ public class KillTheVirusGame extends Activity {
         imgVirusArray = new ImageView[]{null, imgVirus1, imgVirus2, imgVirus3, imgVirus4, imgVirus5, imgVirus6, imgVirus7, imgVirus8};
         virusColors = getApplicationContext().getResources().getIntArray(R.array.kill_virus_colors);
         initialSetup();
-        translateSyringe = AnimationUtils.loadAnimation(this, R.animator.translate);
+        translateSyringe = AnimationUtils.loadAnimation(this, R.anim.translate);
     }
 
     @OnClick(R.id.constraint_layout_kill)

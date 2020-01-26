@@ -35,7 +35,6 @@ public class Level2TransitionActivity extends Activity {
     private AlphaAnimation fadeIn;
     private AlphaAnimation fadeIn2;
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +47,8 @@ public class Level2TransitionActivity extends Activity {
         imgCharacter2.setVisibility(View.GONE);
         mapLayout.setAlpha((float) 0.5);
 
-        animationRight = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.animator.translate_right);
-        animationLeft = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.animator.translate_left);
+        animationRight = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.anim.translate_right);
+        animationLeft = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.anim.translate_left);
 
         //Initializing fade in animations
         fadeIn = new AlphaAnimation(0.0f, 1.0f);

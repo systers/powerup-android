@@ -55,13 +55,12 @@ public class MemoryMatchGameActivity extends Activity {
     //Variable to see if game has paused and restarted
     private static boolean restart=false;
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_match_game);
         ButterKnife.bind(this);
-        translateTile = AnimationUtils.loadAnimation(this, R.animator.translate_tile);
+        translateTile = AnimationUtils.loadAnimation(this, R.anim.translate_tile);
         random = new Random();
         restart=false;
         initializeView();
