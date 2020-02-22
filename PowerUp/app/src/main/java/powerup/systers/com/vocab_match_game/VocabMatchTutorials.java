@@ -19,7 +19,7 @@ public class VocabMatchTutorials extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocab_match_tutorials);
-        tutorialView = (ImageView) findViewById(R.id.tut);
+        tutorialView = findViewById(R.id.tut);
         curTutorialImage = 1;
         tutorialView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -20,8 +20,8 @@ public class SinkToSwimTutorials extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sink_to_swim_tutorials);
-        tutorialView = (ImageView) findViewById(R.id.tut);
-        startButton = (ImageView) findViewById(R.id.start_button);
+        tutorialView = findViewById(R.id.tut);
+        startButton = findViewById(R.id.start_button);
         startButton.setEnabled(false);
         curTutorialImage = 1;
         tutorialView.setOnClickListener(new View.OnClickListener() {

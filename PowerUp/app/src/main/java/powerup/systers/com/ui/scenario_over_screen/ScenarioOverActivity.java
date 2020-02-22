@@ -202,7 +202,7 @@ public class ScenarioOverActivity extends AppCompatActivity implements ScenarioO
         final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         LinearLayout parent = (LinearLayout) positiveButton.getParent();
         View leftSpacer = parent.getChildAt(1);
-        TextView message1 = (TextView) dialog.findViewById(android.R.id.message);
+        TextView message1 = dialog.findViewById(android.R.id.message);
         message1.setText(scenario_over_dialog_message);
         message1.setGravity(Gravity.CENTER);
         positiveButton.setTextSize(15);

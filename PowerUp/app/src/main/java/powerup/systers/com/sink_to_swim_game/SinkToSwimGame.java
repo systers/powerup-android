@@ -52,14 +52,14 @@ public class SinkToSwimGame extends AppCompatActivity {
         setContentView(R.layout.activity_sink_to_swim_game);
 
         // init views
-        boat = (ImageView) findViewById(R.id.boat);
-        trueOption = (Button) findViewById(R.id.true_option);
-        skipOption = (Button) findViewById(R.id.skip_option);
-        falseOption = (Button) findViewById(R.id.false_option);
-        questionView = (TextView) findViewById(R.id.questionView);
-        scoreView = (TextView) findViewById(R.id.swim_score);
-        timer = (TextView) findViewById(R.id.time);
-        pointer = (ImageView) findViewById(R.id.pointer);
+        boat =  findViewById(R.id.boat);
+        trueOption = findViewById(R.id.true_option);
+        skipOption = findViewById(R.id.skip_option);
+        falseOption = findViewById(R.id.false_option);
+        questionView = findViewById(R.id.questionView);
+        scoreView = findViewById(R.id.swim_score);
+        timer = findViewById(R.id.time);
+        pointer = findViewById(R.id.pointer);
 
         //get the height of screen to move translation animation proportionally
         DisplayMetrics displayMetrics = new DisplayMetrics();

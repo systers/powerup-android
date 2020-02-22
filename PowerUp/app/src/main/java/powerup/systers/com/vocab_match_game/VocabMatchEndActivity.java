@@ -23,9 +23,9 @@ public class VocabMatchEndActivity extends AppCompatActivity {
         int score = intent.getExtras().getInt(PowerUpUtils.SCORE);
         int correctAnswers= score;
         int wrongAnswers= PowerUpUtils.VOCAB_TILES_IMAGES.length - score;
-        scoreView = (TextView) findViewById(R.id.vocab_score);
-        correctView = (TextView) findViewById(R.id.correct);
-        wrongView = (TextView) findViewById(R.id.wrong);
+        scoreView =  findViewById(R.id.vocab_score);
+        correctView =  findViewById(R.id.correct);
+        wrongView =  findViewById(R.id.wrong);
         scoreView.setText(""+score);
         correctView.setText(""+correctAnswers);
         wrongView.setText(""+wrongAnswers);

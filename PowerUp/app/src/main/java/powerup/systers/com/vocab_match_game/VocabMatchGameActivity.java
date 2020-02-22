@@ -40,19 +40,19 @@ public class VocabMatchGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocab_match_game);
-        scoreView = (TextView) findViewById(R.id.vocab_score);
-        tv1 = (VocabBoardTextView) findViewById(R.id.tv1);
-        tv2 = (VocabBoardTextView) findViewById(R.id.tv2);
-        tv3 = (VocabBoardTextView) findViewById(R.id.tv3);
+        scoreView =  findViewById(R.id.vocab_score);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
         tv1.setOnDragListener(listenDrag);
         tv2.setOnDragListener(listenDrag);
         tv3.setOnDragListener(listenDrag);
         tv1.setOnTouchListener(new TouchListener());
         tv2.setOnTouchListener(new TouchListener());
         tv3.setOnTouchListener(new TouchListener());
-        img1 = (VocabTileImageView) findViewById(R.id.img1);
-        img3 = (VocabTileImageView) findViewById(R.id.img3);
-        img2 = (VocabTileImageView) findViewById(R.id.img2);
+        img1 = findViewById(R.id.img1);
+        img3 = findViewById(R.id.img3);
+        img2 = findViewById(R.id.img2);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;

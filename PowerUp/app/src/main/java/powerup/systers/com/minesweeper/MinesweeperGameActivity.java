@@ -44,9 +44,9 @@ public class MinesweeperGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minesweeper_game);
-        scoreTextView = (TextView) findViewById(R.id.minesweeper_score);
-        banner = (ImageView) findViewById(R.id.banner);
-        continueButton = (ImageView) findViewById(R.id.continue_button);
+        scoreTextView = findViewById(R.id.minesweeper_score);
+        banner = findViewById(R.id.banner);
+        continueButton = findViewById(R.id.continue_button);
         continueButton.setClickable(false);
         mines = new HashSet<>();
         setUpGame();
@@ -69,7 +69,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
             score = session.getScore();
             scoreTextView.setText("Score: " + score);
             gameRound = session.getCompletedRounds();
-            ImageView background = (ImageView) findViewById(R.id.mine_background); //set background according to current contracpetive method
+            ImageView background = findViewById(R.id.mine_background); //set background according to current contracpetive method
             background.setImageDrawable(getResources().getDrawable(PowerUpUtils.ROUND_BACKGROUNDS[gameRound]));
             mines.clear();
         }
