@@ -36,7 +36,7 @@ public class GameOverActivity extends Activity {
                 MapLevel2Activity.class);
         finish();
         startActivityForResult(intent, 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
     /**
      * Goes back to the map when user presses back button

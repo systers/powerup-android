@@ -173,7 +173,7 @@ public class VocabMatchGameActivity extends AppCompatActivity {
                     SessionHistory.currScenePoints += score;
                     finish();
                     startActivity(intent);
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                    overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                 }
 
             }

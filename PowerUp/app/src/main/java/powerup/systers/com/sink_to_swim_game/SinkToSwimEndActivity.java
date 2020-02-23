@@ -36,7 +36,7 @@ public class SinkToSwimEndActivity extends AppCompatActivity {
         intent.putExtra(PowerUpUtils.IS_FINAL_SCENARIO_EXTRA, true);
         finish();
         startActivityForResult(intent, 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     /**

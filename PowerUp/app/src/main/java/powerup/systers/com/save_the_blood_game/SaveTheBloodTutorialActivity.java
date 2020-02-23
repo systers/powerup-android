@@ -77,7 +77,7 @@ public class SaveTheBloodTutorialActivity extends Activity {
             showTutorial3();
         else {
             startActivity(new Intent(SaveTheBloodTutorialActivity.this, SaveTheBloodGameActivity.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
     }
 

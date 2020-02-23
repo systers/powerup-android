@@ -67,7 +67,7 @@ public class StartActivity extends Activity {
     @OnClick(R.id.aboutButtonMain)
     public void aboutButtonListener(View view) {
         startActivity(new Intent(context, AboutActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.newUserButtonFirstPage)
@@ -89,7 +89,7 @@ public class StartActivity extends Activity {
                     new VocabMatchSessionManager(context)
                             .saveVocabMatchOpenedStatus(false);
                     startActivityForResult(new Intent(context, AvatarRoomActivity.class), 0);
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                    overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                 }
             });
             //delete avatar data
@@ -130,7 +130,7 @@ public class StartActivity extends Activity {
                 startActivity(new Intent(context, MapLevel2Activity.class));
             else
                 startActivity(new Intent(context, MapActivity.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         } else {
             // create dialog to use new game button instead & dismiss dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);

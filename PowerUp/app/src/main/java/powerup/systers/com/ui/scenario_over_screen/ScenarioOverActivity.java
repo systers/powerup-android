@@ -93,10 +93,10 @@ public class ScenarioOverActivity extends AppCompatActivity implements ScenarioO
                 if (getIntent().getBooleanExtra(PowerUpUtils.IS_FINAL_SCENARIO_EXTRA, false)) {
                     SessionHistory.level1Completed = true;
                     startActivity(new Intent(ScenarioOverActivity.this, Level2TransitionActivity.class));
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                    overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                 } else {
                     startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
-                    overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                    overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                 }
             }
         });
@@ -116,7 +116,7 @@ public class ScenarioOverActivity extends AppCompatActivity implements ScenarioO
     public void mapButtonListener (View view) {
         finish();
         startActivity(new Intent(ScenarioOverActivity.this, MapActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.replayButton)
@@ -158,7 +158,7 @@ public class ScenarioOverActivity extends AppCompatActivity implements ScenarioO
         dataSource.resetReplayed(SessionHistory.currSessionID);
         scenarioOverActivityInstance.finish();
         startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
     /**
      * Goes back to the map when user presses back button

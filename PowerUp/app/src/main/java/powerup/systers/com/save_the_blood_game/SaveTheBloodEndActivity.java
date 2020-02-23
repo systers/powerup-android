@@ -39,7 +39,7 @@ public class SaveTheBloodEndActivity extends Activity {
         Intent intent = new Intent(SaveTheBloodEndActivity.this, ScenarioOverLevel2Activity.class);
         intent.putExtra(PowerUpUtils.IS_FINAL_SCENARIO_EXTRA, true);
         startActivity(intent);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     public void updateViews(){

@@ -48,8 +48,8 @@ public class Level2TransitionActivity extends Activity {
         imgCharacter2.setVisibility(View.GONE);
         mapLayout.setAlpha((float) 0.5);
 
-        animationRight = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.animator.translate_right);
-        animationLeft = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.animator.translate_left);
+        animationRight = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.anim.translate_right);
+        animationLeft = AnimationUtils.loadAnimation(Level2TransitionActivity.this, R.anim.translate_left);
 
         //Initializing fade in animations
         fadeIn = new AlphaAnimation(0.0f, 1.0f);
@@ -135,7 +135,7 @@ public class Level2TransitionActivity extends Activity {
                     @Override
                     public void run() {
                         startActivity(new Intent(Level2TransitionActivity.this, MapLevel2Activity.class));
-                        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                     }
                 }, 1000);
             }

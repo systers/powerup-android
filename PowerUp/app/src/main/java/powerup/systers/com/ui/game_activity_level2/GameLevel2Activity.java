@@ -222,11 +222,11 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
     private void checkGameIncomplete() {
         if(new KillTheVirusSessionManager(this).isKillTheVirusOpened()){
             startActivity(new Intent(GameLevel2Activity.this, KillTheVirusGame.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
         if(new SaveTheBloodSessionManager(this).isSaveBloodOpened()){
             startActivity(new Intent(GameLevel2Activity.this, SaveTheBloodGameActivity.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
     }
 
@@ -432,7 +432,7 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
                         Intent intent = new Intent(GameLevel2Activity.this, MapLevel2Activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivityForResult(intent, 0);
-                        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                     }
                 }
             });
@@ -498,18 +498,18 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
                 Intent intent = new Intent(GameLevel2Activity.this, ScenarioOverLevel2Activity.class);
                 intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                 startActivity(intent);
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             } else if (type == -8) {
                 new KillTheVirusSessionManager(this).saveKillTheVirusOpenedStatus(true);
                 startActivity(new Intent(GameLevel2Activity.this, KillTheVirusTutorials.class));
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             } else if (type == -10) {
                 startActivity(new Intent(GameLevel2Activity.this, VocabMatchTutorials.class));
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             } else if (type == -11) {
                 startActivity(new Intent(GameLevel2Activity.this, SaveTheBloodTutorialActivity.class));
                 new SaveTheBloodSessionManager(this).saveSaveBloodOpenedStatus(true);
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             }
         }
     }

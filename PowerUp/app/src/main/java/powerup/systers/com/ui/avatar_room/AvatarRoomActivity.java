@@ -90,7 +90,7 @@ public class AvatarRoomActivity extends Activity implements AvatarRoomContract.I
 
         finish();
         startActivity(intent);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.eyes_left)

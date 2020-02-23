@@ -72,7 +72,7 @@ public class KillTheVirusGame extends Activity {
         imgVirusArray = new ImageView[]{null, imgVirus1, imgVirus2, imgVirus3, imgVirus4, imgVirus5, imgVirus6, imgVirus7, imgVirus8};
         virusColors = getApplicationContext().getResources().getIntArray(R.array.kill_virus_colors);
         initialSetup();
-        translateSyringe = AnimationUtils.loadAnimation(this, R.animator.translate);
+        translateSyringe = AnimationUtils.loadAnimation(this, R.anim.translate);
     }
 
     @OnClick(R.id.constraint_layout_kill)
@@ -183,7 +183,7 @@ public class KillTheVirusGame extends Activity {
         SessionHistory.currScenePoints += score;
         //End the Game
         startActivity(intent);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     //Attaches rotational animation to all the virus images
@@ -291,6 +291,6 @@ public class KillTheVirusGame extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(KillTheVirusGame.this, MapLevel2Activity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 }

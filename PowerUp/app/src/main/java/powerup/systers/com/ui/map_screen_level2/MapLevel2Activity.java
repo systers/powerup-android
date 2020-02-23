@@ -81,7 +81,7 @@ public class MapLevel2Activity extends Activity implements MapLevel2Contract.IMa
     @OnClick(R.id.store)
     public void storeButtonListener(View view) {
         startActivity(new Intent(MapLevel2Activity.this, StoreLevel2Activity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     // home button click listener, open startActivity
@@ -89,7 +89,7 @@ public class MapLevel2Activity extends Activity implements MapLevel2Contract.IMa
     public void homeButtonListener(View view) {
         finish();
         startActivity(new Intent(MapLevel2Activity.this, StartActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     private void init() {
@@ -134,19 +134,19 @@ public class MapLevel2Activity extends Activity implements MapLevel2Contract.IMa
                     public void onResultLoaded(boolean value) {
                         if (value) {
                             startActivityForResult(new Intent(MapLevel2Activity.this, GameLevel2Activity.class), 0);
-                            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                         } else if(new KillTheVirusSessionManager(MapLevel2Activity.this).isKillTheVirusOpened()){
                             startActivity(new Intent(MapLevel2Activity.this, KillTheVirusGame.class));
-                            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                         } else if(new SaveTheBloodSessionManager(MapLevel2Activity.this).isSaveBloodOpened()){
                             startActivity(new Intent(MapLevel2Activity.this, SaveTheBloodGameActivity.class));
-                            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                         } else {
                             Intent intent = new Intent(MapLevel2Activity.this, ScenarioOverLevel2Activity.class);
                             intent.putExtra(PowerUpUtils.SOURCE, PowerUpUtils.MAP);
                             intent.putExtra(PowerUpUtils.SCENARIO_NAME, getScenarioName(scenarioChooser.getId()));
                             startActivityForResult(intent, 0);
-                            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                         }
                     }
                 });

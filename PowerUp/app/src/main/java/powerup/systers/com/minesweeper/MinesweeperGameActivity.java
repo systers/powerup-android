@@ -141,11 +141,11 @@ public class MinesweeperGameActivity extends AppCompatActivity {
      */
     public void openedGreenMine() {
         playSound(MinesweeperSound.TYPE_CORRECT);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in);
         scoreTextView.startAnimation(animation);
         score++;
         scoreTextView.setText("Score: " + score);
-        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_out);
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_out);
         scoreTextView.startAnimation(animation);
         numSelectionsLeft--; //decrement the number of selection left
         if (numSelectionsLeft == 0) {
@@ -240,7 +240,7 @@ public class MinesweeperGameActivity extends AppCompatActivity {
         SessionHistory.currScenePoints += score;
         finish();
         startActivity(new Intent(MinesweeperGameActivity.this, ProsAndConsActivity.class));
-        overridePendingTransition(R.animator.fade_in, R.animator.fade_out);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     private void playSound(int sound) {

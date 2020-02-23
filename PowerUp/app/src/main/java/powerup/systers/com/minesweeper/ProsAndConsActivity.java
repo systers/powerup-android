@@ -43,13 +43,13 @@ public class ProsAndConsActivity extends AppCompatActivity {
     public void continuePressedProsAndCons(View v) {
         if (completedRounds < PowerUpUtils.NUMBER_OF_ROUNDS) { //calls next round if true
             startActivity(new Intent(ProsAndConsActivity.this, MinesweeperGameActivity.class).putExtra(PowerUpUtils.CALLED_BY, false));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         } else {
             new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(false); //marks minesweeper game as finished
             Intent intent = new Intent(ProsAndConsActivity.this, ScenarioOverActivity.class);
             intent.putExtra(String.valueOf(R.string.scene), PowerUpUtils.MINESWEEP_PREVIOUS_SCENARIO);
             startActivity(intent);
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
     }
 

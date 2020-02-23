@@ -29,7 +29,7 @@ public class KillTheVirusEndActivity extends Activity {
     public void clickContinue() {
         new KillTheVirusSessionManager(this).saveKillTheVirusOpenedStatus(false);
         startActivity(new Intent(KillTheVirusEndActivity.this, ScenarioOverLevel2Activity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     private void updateScore() {
@@ -41,6 +41,6 @@ public class KillTheVirusEndActivity extends Activity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(KillTheVirusEndActivity.this, StartActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 }

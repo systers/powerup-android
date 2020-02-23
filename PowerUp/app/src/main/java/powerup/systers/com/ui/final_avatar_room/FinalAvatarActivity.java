@@ -93,7 +93,7 @@ public class FinalAvatarActivity extends Activity implements FinalAvatarRoomCont
         SessionHistory.level1Completed = false;
         // starting map activity
         startActivityForResult(new Intent(FinalAvatarActivity.this, PreGameSetupInitialActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.backButtonFinal)

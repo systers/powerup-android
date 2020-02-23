@@ -252,7 +252,7 @@ public class SaveTheBloodGameActivity extends Activity {
         Log.v("SaveBloodGameActivity", "Correct answers: " + correctAnswer);
         Log.v("SaveBloodGameActivity", "Wrong answers " + wrongAnswer);
         startActivity(intent);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @Override
@@ -260,7 +260,7 @@ public class SaveTheBloodGameActivity extends Activity {
         super.onBackPressed();
         countDownTimer.cancel();
         startActivity(new Intent(SaveTheBloodGameActivity.this, MapLevel2Activity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @Override

@@ -460,7 +460,7 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
     public void mapButtonListener(View view) {
         finish();
         startActivity(new Intent(StoreActivity.this,MapActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @Override

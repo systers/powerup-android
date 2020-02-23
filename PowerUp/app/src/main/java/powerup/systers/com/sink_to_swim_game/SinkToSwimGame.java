@@ -127,7 +127,7 @@ public class SinkToSwimGame extends AppCompatActivity {
 
     public void gameBegins() {
         //defines the wave animation on boat
-        mAnimation = AnimationUtils.loadAnimation(this, R.animator.boat_animation);
+        mAnimation = AnimationUtils.loadAnimation(this, R.anim.boat_animation);
         mAnimation.setInterpolator(new LinearInterpolator());
         mAnimation.setRepeatMode(Animation.INFINITE); //does not work
         boat.startAnimation(mAnimation); //starts wave animation on boat
@@ -158,7 +158,7 @@ public class SinkToSwimGame extends AppCompatActivity {
         SessionHistory.currScenePoints += score;
         finish();
         startActivity(intent);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     /**

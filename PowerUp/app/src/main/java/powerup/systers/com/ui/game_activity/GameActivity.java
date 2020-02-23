@@ -224,15 +224,15 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
     private void checkGameIncomplete() {
         if (new MinesweeperSessionManager(this).isMinesweeperOpened()) {
             startActivity(new Intent(GameActivity.this, MinesweeperGameActivity.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
         if(new SinkToSwimSessionManager(this).isSinkToSwimOpened()) {
             startActivity(new Intent(GameActivity.this, SinkToSwimGame.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
         if(new MemoryMatchSessionManager(this).isMemoryMatchOpened()){
             startActivity(new Intent(GameActivity.this, MemoryMatchGameActivity.class));
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
     }
 
@@ -438,7 +438,7 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
                         Intent intent = new Intent(GameActivity.this, MapActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivityForResult(intent, 0);
-                        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
                     }
                 }
             });
@@ -504,19 +504,19 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
                 Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                 intent.putExtra(String.valueOf(R.string.scene), prevScene.getScenarioName());
                 startActivity(intent);
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             } else if (type == -1) {
                 new MinesweeperSessionManager(this).saveMinesweeperOpenedStatus(true); //marks minesweeper game as opened and incompleted
                 startActivity(new Intent(GameActivity.this, MinesweeperTutorials.class));
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             } else if (type == -2) {
                 new SinkToSwimSessionManager(this).saveSinkToSwimOpenedStatus(true);
                 startActivity(new Intent(GameActivity.this, SinkToSwimTutorials.class));
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             } else if (type == -3) {
                 new MemoryMatchSessionManager(this).saveMemoryMatchOpenedStatus(true);
                 startActivity(new Intent(GameActivity.this, MemoryMatchTutorialActivity.class));
-                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+                overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
             }
 
         }

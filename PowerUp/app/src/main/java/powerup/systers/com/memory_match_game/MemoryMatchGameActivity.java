@@ -61,7 +61,7 @@ public class MemoryMatchGameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_match_game);
         ButterKnife.bind(this);
-        translateTile = AnimationUtils.loadAnimation(this, R.animator.translate_tile);
+        translateTile = AnimationUtils.loadAnimation(this, R.anim.translate_tile);
         random = new Random();
         restart=false;
         initializeView();
@@ -226,7 +226,7 @@ public class MemoryMatchGameActivity extends Activity {
         SessionHistory.totalPoints += score;
         SessionHistory.currScenePoints += score;
         startActivity(intent);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     /**
@@ -258,7 +258,7 @@ public class MemoryMatchGameActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(MemoryMatchGameActivity.this, MapActivity.class));
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     public void onRestart() {

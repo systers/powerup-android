@@ -77,7 +77,7 @@ public class KillTheVirusTutorials extends Activity {
             Intent intent = new Intent(KillTheVirusTutorials.this, KillTheVirusGame.class);
             intent.putExtra(PowerUpUtils.CALLED_BY, true);
             startActivity(intent);
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         }
     }
 

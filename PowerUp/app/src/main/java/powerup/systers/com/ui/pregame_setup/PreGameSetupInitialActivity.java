@@ -42,7 +42,7 @@ public class PreGameSetupInitialActivity extends Activity {
     public void click() {
         if (SessionHistory.characterChosen) {
             startActivityForResult(new Intent(PreGameSetupInitialActivity.this, MapActivity.class), 0);
-            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+            overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(PreGameSetupInitialActivity.this);
             builder.setTitle(getResources().getString(R.string.choose_member))
@@ -69,7 +69,7 @@ public class PreGameSetupInitialActivity extends Activity {
         SessionHistory.characterChosen = true;
         SessionHistory.selectedValue = SessionHistory.selectedAdult1;
         startActivityForResult(new Intent(PreGameSetupInitialActivity.this, PregameSetupActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.pregame_img_2)
@@ -79,7 +79,7 @@ public class PreGameSetupInitialActivity extends Activity {
         SessionHistory.characterType = PowerUpUtils.NPC_ADULT_2;
         SessionHistory.adult2Chosen = true;
         startActivityForResult(new Intent(PreGameSetupInitialActivity.this, PregameSetupActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.pregame_img_3)
@@ -89,7 +89,7 @@ public class PreGameSetupInitialActivity extends Activity {
         SessionHistory.characterType = PowerUpUtils.NPC_CHILD_1;
         SessionHistory.child1Chosen = true;
         startActivityForResult(new Intent(PreGameSetupInitialActivity.this, PregameSetupActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @OnClick(R.id.pregame_img_4)
@@ -99,7 +99,7 @@ public class PreGameSetupInitialActivity extends Activity {
         SessionHistory.characterType = PowerUpUtils.NPC_CHILD_2;
         SessionHistory.child2Chosen = true;
         startActivityForResult(new Intent(PreGameSetupInitialActivity.this, PregameSetupActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     private void updateNpcView() {
@@ -116,5 +116,5 @@ public class PreGameSetupInitialActivity extends Activity {
     @Override
     public void onBackPressed() {
         startActivityForResult(new Intent(PreGameSetupInitialActivity.this, StartActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);    }
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);    }
 }

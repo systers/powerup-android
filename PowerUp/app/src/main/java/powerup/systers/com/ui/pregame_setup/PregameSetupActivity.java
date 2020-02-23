@@ -149,13 +149,13 @@ public class PregameSetupActivity extends Activity {
     public void clickBack() {
         saveCharacter(SessionHistory.characterType, clickedPosition);
         startActivityForResult(new Intent(PregameSetupActivity.this, PreGameSetupInitialActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     @Override
     public void onBackPressed() {
         startActivityForResult(new Intent(PregameSetupActivity.this, PreGameSetupInitialActivity.class), 0);
-        overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+        overridePendingTransition(R.anim.fade_in_custom, R.anim.fade_out_custom);
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
