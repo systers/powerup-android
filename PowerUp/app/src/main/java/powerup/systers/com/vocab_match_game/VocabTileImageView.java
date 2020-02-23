@@ -7,7 +7,7 @@ import android.util.AttributeSet;
  * Created by sachinaggarwal on 24/07/17.
  */
 
-public class VocabTileImageView extends android.support.v7.widget.AppCompatImageView {
+public class VocabTileImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     private int position;
 

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/classroom">
+    android:background="@drawable/classroom"
+    tools:ignore="MissingDefaultResource">
 
     <FrameLayout
         android:id="@+id/relativeLayout"
         android:layout_width="@dimen/avatar_width"
         android:layout_height="@dimen/avatar_height"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/skin_view"
@@ -187,4 +190,4 @@
         app:layout_constraintVertical_bias="0.19999999" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

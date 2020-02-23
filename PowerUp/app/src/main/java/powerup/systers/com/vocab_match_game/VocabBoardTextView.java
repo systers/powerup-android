@@ -1,14 +1,14 @@
 package powerup.systers.com.vocab_match_game;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 
 /**
  * Created by sachinaggarwal on 23/07/17.
  */
 
-public class VocabBoardTextView extends android.support.v7.widget.AppCompatTextView {
+public class VocabBoardTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     private int position;
 

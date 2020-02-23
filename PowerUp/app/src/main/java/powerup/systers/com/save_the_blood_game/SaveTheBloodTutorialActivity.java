@@ -3,7 +3,7 @@ package powerup.systers.com.save_the_blood_game;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
