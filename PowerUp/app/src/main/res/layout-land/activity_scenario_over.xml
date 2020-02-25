@@ -23,6 +23,7 @@
         android:layout_toEndOf="@id/replayButton"
         android:id="@+id/mapButton"
         android:layout_width="@dimen/continue_width"
+        android:layout_marginLeft="140dp"
         android:layout_height="@dimen/continue_height"
         android:layout_marginTop="@dimen/replay_marginTop"
         android:alpha="0"/>
