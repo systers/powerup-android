@@ -32,23 +32,23 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import powerup.systers.com.R;
-import powerup.systers.com.memory_match_game.MemoryMatchGameActivity;
-import powerup.systers.com.memory_match_game.MemoryMatchSessionManager;
-import powerup.systers.com.memory_match_game.MemoryMatchTutorialActivity;
-import powerup.systers.com.ui.scenario_over_screen.ScenarioOverActivity;
 import powerup.systers.com.data.DataSource;
 import powerup.systers.com.data.SessionHistory;
 import powerup.systers.com.data.entities.Answer;
 import powerup.systers.com.data.entities.Scenario;
+import powerup.systers.com.memory_match_game.MemoryMatchGameActivity;
+import powerup.systers.com.memory_match_game.MemoryMatchSessionManager;
+import powerup.systers.com.memory_match_game.MemoryMatchTutorialActivity;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
 import powerup.systers.com.minesweeper.MinesweeperSessionManager;
 import powerup.systers.com.minesweeper.MinesweeperTutorials;
-import powerup.systers.com.ui.map_screen.MapActivity;
-import powerup.systers.com.utils.InjectionClass;
-import powerup.systers.com.utils.PowerUpUtils;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimGame;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimSessionManager;
 import powerup.systers.com.sink_to_swim_game.SinkToSwimTutorials;
+import powerup.systers.com.ui.map_screen.MapActivity;
+import powerup.systers.com.ui.scenario_over_screen.ScenarioOverActivity;
+import powerup.systers.com.utils.InjectionClass;
+import powerup.systers.com.utils.PowerUpUtils;
 
 @SuppressLint("NewApi")
 public class GameActivity extends Activity implements GameScreenContract.IGameScreenView{
@@ -358,7 +358,9 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
         } else {
             // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
             // clears the activities that were created after the found instance of the required activity
-            startActivity(new Intent(GameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+           // Log.d("TAG!!!!","Pressed");
+            this.startActivity(new Intent(GameActivity.this, MapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            this.overridePendingTransition(R.animator.fade_in_custom,R.animator.fade_out_custom);
             finish();
         }
     }
