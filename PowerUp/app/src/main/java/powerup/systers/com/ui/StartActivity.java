@@ -38,6 +38,9 @@ public class StartActivity extends Activity {
     @BindView(R.id.startButtonMain)
     public Button startButton;
 
+    @BindView(R.id.aboutButtonMain)
+    public Button aboutButtonMain;
+
     private boolean hasPreviouslyStarted;
     private Context context;
     private DataSource dataSource;
@@ -67,6 +70,7 @@ public class StartActivity extends Activity {
     @OnClick(R.id.aboutButtonMain)
     public void aboutButtonListener(View view) {
         startActivity(new Intent(context, AboutActivity.class));
+        aboutButtonMain.setEnabled(false);
         overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
     }
 
@@ -163,6 +167,7 @@ public class StartActivity extends Activity {
         if (hasPreviouslyStarted) {
             startButton.setText(getString(R.string.resume_text));
         }
+        aboutButtonMain.setEnabled(true);
     }
 
     @Override
