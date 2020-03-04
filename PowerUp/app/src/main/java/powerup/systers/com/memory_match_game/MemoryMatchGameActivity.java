@@ -250,7 +250,13 @@ public class MemoryMatchGameActivity extends Activity {
         MemoryMatchSessionManager sessionManager = new MemoryMatchSessionManager(this);
         countDownTimer.cancel();
         countDownTimer = null;
-        sessionManager.saveData(score, millisLeft, arrayTile.get(positionCount), arrayTile.get(positionCount - 1) , correctAnswer, wrongAnswer);
+        try {
+            sessionManager.saveData(score, millisLeft, arrayTile.get(positionCount), arrayTile.get(positionCount - 1), correctAnswer, wrongAnswer);
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            Log.d("NODATA",e.toString());
+        }
         super.onPause();
     }
 
