@@ -4,6 +4,9 @@
 
 PowerUp is a female empowerment educational mobile game app that will allow young girls to learn about reproductive health 
 and self-esteem by navigating the life of their avatar!
+## Some Screenshot
+<img src="https://user-images.githubusercontent.com/40147174/76064481-c3603880-5faf-11ea-8421-ed5360e4b57b.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063333-885d0580-5fad-11ea-9e39-ebf5981dde38.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063339-8a26c900-5fad-11ea-91d9-cec0d388772f.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063341-8b57f600-5fad-11ea-82d5-06ce8f7d6716.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063344-8b57f600-5fad-11ea-9676-78efee6c7e28.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063345-8bf08c80-5fad-11ea-8447-ef5d30bb4551.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063348-8d21b980-5fad-11ea-9065-b568b1cc7e6f.png" width="430"> <img src="https://user-images.githubusercontent.com/40147174/76063350-8e52e680-5fad-11ea-977f-c16b41d6d8a6.png" width="430">
+
 
 ## Setup for Developers
 1. Make sure you have downloaded the latest version of [Android Studio](https://developer.android.com/sdk/index.html). It works on Linux, Windows and Mac. Download the correct version for your OS.
