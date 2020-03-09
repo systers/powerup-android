@@ -1,6 +1,7 @@
 package powerup.systers.com.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -71,6 +72,7 @@ public class AboutActivity extends Activity {
 
     public void pressHomeButton(View view){
         finish();
+        startActivity(new Intent(AboutActivity.this,StartActivity.class));
         overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
     }
 }
