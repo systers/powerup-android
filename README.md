@@ -70,5 +70,4 @@ Here's the link to the official documentation:
 
 You can reach our community and its maintainers on [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/)
 
-If you are interested in contributing to the PowerUp application, we have a dedicated stream for this project where you can ask questions and interact with the community. Join with us on Zulip [here](https://anitab-org.zulipchat.com/#narrow/stream/222537-powerup)
-
+If you are interested in contributing to the PowerUp application, we have a dedicated stream for this project where you can ask questions and interact with the community. Join with us on [#powerup](https://anitab-org.zulipchat.com/#narrow/stream/222537-powerup) stream on Zulip.
