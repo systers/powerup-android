@@ -68,3 +68,6 @@ Here's the link to the official documentation:
 1. Include spaces between parameters when you call a method for example: `Intent(MainActivity.this, GameActivity.class)`.
 1. Give relevant names to buttons and other resources. 
 1. Use `@id` instead of `@+id` when referring to resources that have been already created in xml files.
+
+## Contact
+You can reach the maintainers and our community on [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/#). If you are interested in contributing to the powerUP, we have a dedicated stream for this project [#powerUp](https://anitab-org.zulipchat.com/#narrow/stream/222537-powerup), where you can ask questions and interact with the community, join with us!
