@@ -37,6 +37,8 @@ public class StartActivity extends Activity {
 
     @BindView(R.id.startButtonMain)
     public Button startButton;
+    @BindView(R.id.shareButtonMain)
+    public Button shareButton;
 
     private boolean hasPreviouslyStarted;
     private Context context;
@@ -68,6 +70,22 @@ public class StartActivity extends Activity {
     public void aboutButtonListener(View view) {
         startActivity(new Intent(context, AboutActivity.class));
         overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
+    }
+
+    // starts the share intent
+    @OnClick(R.id.shareButtonMain)
+    public void shareButtonListener(View view) {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "PowerUp");
+            String shareMessage= "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://github.com/anitab-org/powerup-android/blob/apk/app-debug.apk" + "\n\n" + "This application helps preadolscent girls take better desicions !";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 
     @OnClick(R.id.newUserButtonFirstPage)

@@ -1,4 +1,8 @@
 <resources>
+<!--    dimentions for share button-->
+    <dimen name="share_width">170dp</dimen>
+    <dimen name="share_marginTop">15dp</dimen>
+    <dimen name="share_marginStart">8dp</dimen>
     <dimen name="banner_height">30dp</dimen>
     <dimen name="width_list_item">100dp</dimen>
     <dimen name="height_list_item">120dp</dimen>

@@ -13,6 +13,18 @@
         android:layout_height="0dp"
         android:alpha="0"/>
 
+    <Button
+        android:background="@color/powerup_primary_color"
+        android:textColor="@color/current_scenario_text"
+        android:id="@+id/shareButtonMain"
+        android:layout_marginStart="@dimen/share_marginStart"
+        android:layout_marginTop="@dimen/share_marginTop"
+        android:layout_width="@dimen/share_width"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Share"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
