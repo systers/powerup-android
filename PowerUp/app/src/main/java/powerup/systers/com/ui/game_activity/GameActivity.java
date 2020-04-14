@@ -14,8 +14,11 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,6 +66,7 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
     private Button goToMap;
     private ArrayAdapter<String> listAdapter;
     private Context context;
+    private ImageView parent;
     private GameScreenPresenter presenter;
     //avatar views
     @BindView(R.id.askerImageView)
@@ -473,6 +477,29 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
     @Override
     public void setScenarioBackground(int id) {
         findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[id]));
+         //Change in the guardian or parent position with the change in the background
+        if(PowerUpUtils.SCENARIO_BACKGROUNDS[id]==R.drawable.hospital||PowerUpUtils.SCENARIO_BACKGROUNDS[id]==R.drawable.hospital_bg)
+        {
+            Context context = this;
+            int pxValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, context.getResources().getDisplayMetrics());
+            ConstraintSet constraintSet = new ConstraintSet();
+            parent = (ImageView) findViewById(R.id.askerImageView);
+            ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.root);
+            constraintSet.clone(context,R.layout.game_activity);
+            constraintSet.connect(R.id.askerImageView, ConstraintSet.TOP, R.id.root, ConstraintSet.TOP, pxValue);
+            constraintSet.applyTo(constraintLayout);
+        }
+        if(PowerUpUtils.SCENARIO_BACKGROUNDS[id]==R.drawable.library)
+        {
+            Context context = this;
+            int pxValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, context.getResources().getDisplayMetrics());
+            ConstraintSet constraintSet = new ConstraintSet();
+            parent = (ImageView) findViewById(R.id.askerImageView);
+            ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.root);
+            constraintSet.clone(context,R.layout.game_activity);
+            constraintSet.connect(R.id.askerImageView, ConstraintSet.BOTTOM, R.id.root, ConstraintSet.BOTTOM, pxValue);
+            constraintSet.applyTo(constraintLayout);
+        }
     }
 
     @Override
