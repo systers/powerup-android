@@ -14,9 +14,12 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.util.TypedValue;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -63,6 +66,7 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
     private ArrayAdapter<String> listAdapter;
     private static boolean isStateChanged = false;
     private Context context;
+    private ImageView parent;
     private GameScreenLevel2Presenter presenter;
     //avatar views
     @BindView(R.id.eye_view)
@@ -353,6 +357,7 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
             // The flag FLAG_ACTIVITY_CLEAR_TOP checks if an instance of the activity is present and it
             // clears the activities that were created after the found instance of the required activity
             startActivity(new Intent(GameLevel2Activity.this, MapLevel2Activity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
             finish();
         }
     }
@@ -364,6 +369,7 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
         builder.setPositiveButton(getString(R.string.game_confirm_message), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 startActivity(new Intent(GameLevel2Activity.this, MapLevel2Activity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                overridePendingTransition(R.animator.fade_in_custom, R.animator.fade_out_custom);
                 SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                 finish();
                 dataSource.setReplayedScenario(scene.getScenarioName());
@@ -466,6 +472,30 @@ public class GameLevel2Activity extends Activity implements GameScreenLevel2Cont
     @Override
     public void setScenarioBackground(int id) {
         findViewById(R.id.root).setBackground(getResources().getDrawable(PowerUpUtils.SCENARIO_BACKGROUNDS[id]));
+        //Change in the guardian or parent position with the change in the background
+        if(PowerUpUtils.SCENARIO_BACKGROUNDS[id]==R.drawable.hospital||PowerUpUtils.SCENARIO_BACKGROUNDS[id]==R.drawable.hospital_bg)
+        {
+            Context context = this;
+            int pxValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics());
+            ConstraintSet constraintSet = new ConstraintSet();
+            parent = (ImageView) findViewById(R.id.askerImageView);
+            ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.root);
+            constraintSet.clone(context,R.layout.activity_game_level_2);
+            constraintSet.connect(R.id.askerImageView, ConstraintSet.TOP, R.id.root, ConstraintSet.TOP, pxValue);
+            constraintSet.applyTo(constraintLayout);
+        }
+        if(PowerUpUtils.SCENARIO_BACKGROUNDS[id]==R.drawable.library)
+        {
+
+            Context context = this;
+            int pxValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, context.getResources().getDisplayMetrics());
+            ConstraintSet constraintSet = new ConstraintSet();
+            parent = (ImageView) findViewById(R.id.askerImageView);
+            ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.root);
+            constraintSet.clone(context,R.layout.activity_game_level_2);
+            constraintSet.connect(R.id.askerImageView, ConstraintSet.BOTTOM, R.id.root, ConstraintSet.BOTTOM, pxValue);
+            constraintSet.applyTo(constraintLayout);
+        }
     }
 
     @Override
