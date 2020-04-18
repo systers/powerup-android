@@ -163,12 +163,11 @@ public class AvatarRoomActivity extends Activity implements AvatarRoomContract.I
     public boolean onArrowTouchListener(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_MOVE){
             view.setAlpha(0f);
-            return true;
         }
         else {
             view.setAlpha(1f);
-            return true;
         }
+        return false;
     }
 
 
