@@ -65,4 +65,7 @@
     <dimen name="margin_right_txt_msg2">125dp</dimen>
     <dimen name="btn_padding">4dp</dimen>
     <dimen name="btn_radius">3dp</dimen>
+    <dimen name="vocab_match_padding">40dp</dimen>
+    <dimen name="vocab_match_maxTextSize">20dp</dimen>
+    <dimen name="vocab_match_minTextSize">10dp</dimen>
 </resources>
