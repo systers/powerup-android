@@ -317,6 +317,12 @@ public class GameActivity extends Activity implements GameScreenContract.IGameSc
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                SessionHistory.totalPoints+=5;
+            }
+        });
         ColorDrawable drawable = new ColorDrawable(Color.WHITE);
         drawable.setAlpha(200);
         dialog.getWindow().setBackgroundDrawable(drawable);
