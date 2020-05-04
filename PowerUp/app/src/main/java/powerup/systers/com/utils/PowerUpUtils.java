@@ -345,18 +345,18 @@ public class PowerUpUtils {
 
     public static int[] SAVE_BLOOD_ANSWER_COUNT = {0,2,2,2,3,3,2,6};
 
-    public static int[] HS_CLOTHES_IMAGES = {
-            R.drawable.hs_dress_avatar1,
-            R.drawable.hs_dress_avatar2,
-            R.drawable.hs_dress_avatar3,
-            R.drawable.hs_dress_avatar4,
-            R.drawable.hs_dress_avatar5,
-            R.drawable.hs_dress_avatar6,
-            R.drawable.hs_dress_avatar7,
-            R.drawable.hs_dress_avatar8
+    public static final int[] HS_CLOTHES_IMAGES = {
+            R.drawable.dress1_level2,
+            R.drawable.dress2_level2,
+            R.drawable.dress3_level2,
+            R.drawable.dress4_level2,
+            R.drawable.dress5_level2,
+            R.drawable.dress6_level2,
+            R.drawable.dress7_level2,
+            R.drawable.dress8_level2
     };
 
-    public static String[] HS_CLOTHES_POINTS_TEXTS = {"5", "5", "5", "5", "10", "10", "10", "10" };
+    public static final String[] HS_CLOTHES_POINTS_TEXTS = {"5", "5", "5", "5", "10", "10", "10", "10" };
 
     public static final String questionCSV = "Question.csv";
     public static final String answerCSV = "Answer.csv";
