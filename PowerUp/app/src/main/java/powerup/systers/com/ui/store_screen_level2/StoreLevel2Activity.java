@@ -72,8 +72,8 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
         ButterKnife.bind(this);
-
         init();
+
         GridView gridView = findViewById(R.id.grid_view);
         //adapter = new powerup.systers.com.ui.store_screen.StoreLevel2Activity.GridAdapter(this, allDataSet.get(0).subList(0, MAX_ELEMENTS_PER_SCREEN));
         adapter = new GridAdapter(this, allDataSet.get(0).subList(0, MAX_ELEMENTS_PER_SCREEN));
@@ -157,8 +157,8 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
 
     class GridAdapter extends BaseAdapter {
 
-        private List<StoreItem> storeItems;
-        private Context context;
+        List<StoreItem> storeItems;
+        Context context;
 
         GridAdapter(Context context, List<StoreItem> list) {
             this.context = context;
@@ -186,8 +186,8 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
         }
 
         class ViewHolder {
-            private ImageView itemImage;
-            private TextView itemPoints;
+            ImageView itemImage;
+            TextView itemPoints;
 
             ViewHolder(View view) {
                 itemImage = view.findViewById(R.id.item_image);
@@ -195,13 +195,13 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
             }
         }
 
-        @SuppressLint("ResourceType")
+//        @SuppressLint("ResourceType")
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
 
             View storeItem = convertView;
-            GridAdapter.ViewHolder holder;
+            ViewHolder holder;
             if (storeItem == null) {
                 // inflating the store_selection_view layout
                 LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -211,10 +211,10 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
                 int itemHeight = (int) ((screenHeight / 51.428f) * 18);
                 storeItem.setLayoutParams(new AbsListView.LayoutParams(itemWidth, itemHeight));
 
-                holder = new GridAdapter.ViewHolder(storeItem);
+                holder = new ViewHolder(storeItem);
                 storeItem.setTag(holder);
             } else {
-                holder = (GridAdapter.ViewHolder) storeItem.getTag();
+                holder = (ViewHolder) storeItem.getTag();
             }
             storeItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -358,8 +358,8 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
                         dataSource.setCurrentAccessoriesValue(index);
                         presenter.calculateAccessoryValue(index);
                         break;
-                    default:
-                        throw new IllegalArgumentException("Invalid store type index");
+//                    default:
+//                        throw new IllegalArgumentException("Invalid store type index");
                 }
                 adapter.refresh(adapter.storeItems); // will update change the background if any is not available
                 showSuccessPurchaseDialog();
@@ -393,21 +393,21 @@ public class StoreLevel2Activity extends AppCompatActivity implements StoreLevel
     public int getPurchasedStatus(int index) {
         final int[] returnValue = new int[1];
         switch(storeItemTypeindex) {
-            case 0: dataSource.getPurchasedHair(index, new IDataSource.LoadIntegerCallback() {
+            case TYPE_HAIR: dataSource.getPurchasedHair(index, new IDataSource.LoadIntegerCallback() {
                 @Override
                 public void onResultLoaded(int value) {
                     returnValue[0] = value;
                 }
             }); // hair
                 return returnValue[0];
-            case 1: dataSource.getPurchasedClothes(index, new IDataSource.LoadIntegerCallback() {
+            case TYPE_CLOTHES: dataSource.getPurchasedClothes(index, new IDataSource.LoadIntegerCallback() {
                 @Override
                 public void onResultLoaded(int value) {
                     returnValue[0] = value;
                 }
             }); // clothes
                 return returnValue[0];
-            case 2: dataSource.getPurchasedAccessories(index, new IDataSource.LoadIntegerCallback() {
+            case TYPE_ACCESSORIES: dataSource.getPurchasedAccessories(index, new IDataSource.LoadIntegerCallback() {
                 @Override
                 public void onResultLoaded(int value) {
                     returnValue[0] = value;

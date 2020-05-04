@@ -246,7 +246,7 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
                                 }
                             });
 
-                        } else if (storeItemTypeindex == 1) { //clothes
+                        } else if (storeItemTypeindex == TYPE_CLOTHES) { //clothes
                             dataSource.getPurchasedClothes(index, new IDataSource.LoadIntegerCallback() {
                                 @Override
                                 public void onResultLoaded(int value) {
@@ -260,7 +260,7 @@ public class StoreActivity extends AppCompatActivity implements StoreContract.IS
                                     }
                                 }
                             });
-                        } else if (storeItemTypeindex == 2) { //accessories
+                        } else if (storeItemTypeindex == TYPE_ACCESSORIES) { //accessories
                             dataSource.getPurchasedAccessories(index, new IDataSource.LoadIntegerCallback() {
                                 @Override
                                 public void onResultLoaded(int value) {
